@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cqbbj.dao.MoneyDetailMapper">
+    <sql id="insert_all_fields">
+        createTime,
+        deleteStatus,
+        company_no,
+        emp_no,
+        type,
+        money,
+        remark
+    </sql>
+    <sql id="insert_all_values">
+        #{createTime},
+        #{deleteStatus},
+        #{company_no},
+        #{emp_no},
+        #{type},
+        #{money},
+        #{remark}
+    </sql>
+    <sql id="query_all_fields">
+        emp_no,
+        type,
+        moeny,
+        remark,
+        createTime
+    </sql>
+    <!-- 保存收支明细 -->
+    <insert id="save" parameterType="moneyDetail" useGeneratedKeys="true" keyProperty="id">
+        insert into sys_money_detail(<include refid="insert_all_fields"/>) values(<include refid="insert_all_values"/>)
+    </insert>
+    <!-- 查询收支明细列表 -->
+    <select id="queryList" resultType="moneyDetail" parameterType="moneyDetail">
+        select <include refid="query_all_fields"></include> from sys_money_detail where deleteStatus = 0
+    </select>
+</mapper>

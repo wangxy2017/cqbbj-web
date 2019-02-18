@@ -6,8 +6,6 @@
  */
 package com.cqbbj.core.base;
 
-import com.github.pagehelper.PageInfo;
-
 import java.util.List;
 
 public interface BaseService<T> {
