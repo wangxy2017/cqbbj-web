@@ -57,7 +57,7 @@ public interface BaseService<T> {
      * @param pageSize
      * @return
      */
-    PageInfo<T> queryPageList(T t, int pageNum, int pageSize);
+    PageModel<T> queryPageList(T t, int pageNum, int pageSize);
 
     /**
      * 根据ID查询对象

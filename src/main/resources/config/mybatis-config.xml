@@ -10,6 +10,7 @@
     <typeAliases>
         <!-- 自定义别名 -->
         <typeAlias type="com.cqbbj.entity.Menu" alias="menu"/>
+        <typeAlias type="com.cqbbj.entity.Company" alias="company"/>
     </typeAliases>
     <plugins>
         <!-- 分页插件 -->

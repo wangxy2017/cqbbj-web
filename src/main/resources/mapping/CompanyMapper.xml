@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cqbbj.dao.CompanyMapper">
+    <sql id="insert_all_fields">
+        createTime,
+        deleteStatus,
+        company_no,
+        name,
+        address,
+        telephone,
+        credit_code,
+        is_disabled
+    </sql>
+    <sql id="insert_all_values">
+        #{createTime},
+        #{deleteStatus},
+        #{company_no},
+        #{name},
+        #{address},
+        #{telephone},
+        #{credit_code},
+        #{is_disabled}
+    </sql>
+    <sql id="query_all_fields">
+        id,
+        name,
+        address,
+        telephone,
+        credit_code,
+        is_disabled,
+        company_no,
+        createTime
+    </sql>
+    <!-- 保存公司 -->
+    <insert id="save" parameterType="company" useGeneratedKeys="true" keyProperty="id">
+        insert into sys_company(<include refid="insert_all_fields"/>) values(<include refid="insert_all_values"/>)
+    </insert>
+    <!-- 修改公司 -->
+    <update id="update" parameterType="company">
+        update sys_company
+        <set>
+            <if test="name != null and name != ''">name = #{name},</if>
+            <if test="address != null and address != ''">address = #{address},</if>
+            <if test="telephone != null and telephone != ''">telephone = #{telephone},</if>
+            <if test="credit_code != null and credit_code != ''">credit_code = #{credit_code},</if>
+            <if test="is_disabled != null">is_disabled = #{is_disabled},</if>
+        </set>
+        where id = #{id}
+    </update>
+    <!-- 删除公司 -->
+    <delete id="delete" parameterType="int">
+        delete from sys_company where id = #{id}
+    </delete>
+    <!-- 查询公司列表 -->
+    <select id="queryList" resultType="company" parameterType="company">
+        select <include refid="query_all_fields"></include> from sys_company where deleteStatus = 0
+    </select>
+</mapper>

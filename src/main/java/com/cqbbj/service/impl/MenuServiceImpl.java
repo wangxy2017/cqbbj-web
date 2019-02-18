@@ -1,9 +1,9 @@
 package com.cqbbj.service.impl;
 
+import com.cqbbj.core.base.PageModel;
 import com.cqbbj.dao.MenuMapper;
 import com.cqbbj.entity.Menu;
 import com.cqbbj.service.IMenuService;
-import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -50,7 +50,7 @@ public class MenuServiceImpl implements IMenuService {
     }
 
     @Override
-    public PageInfo<Menu> queryPageList(Menu menu, int pageNum, int pageSize) {
+    public PageModel<Menu> queryPageList(Menu menu, int pageNum, int pageSize) {
         return null;
     }
 
