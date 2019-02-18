@@ -38,7 +38,7 @@
         emp_no,
         dept_id,
         position_id,
-        moeny,
+        money,
         createTime
     </sql>
     <!-- 保存员工 -->
