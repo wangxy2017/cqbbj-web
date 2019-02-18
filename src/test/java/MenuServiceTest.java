@@ -28,7 +28,6 @@ public class MenuServiceTest {
             Menu menu = new Menu();
             menu.setCreateTime(new Date());
             menu.setDeleteStatus(0);
-            menu.setCompany_no("123");
             menu.setName("测试菜单" + i);
             menu.setPid(0);
             menu.setIs_disabled(0);

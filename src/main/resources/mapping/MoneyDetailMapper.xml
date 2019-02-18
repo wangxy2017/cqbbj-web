@@ -24,7 +24,7 @@
     <sql id="query_all_fields">
         emp_no,
         type,
-        moeny,
+        money,
         remark,
         createTime
     </sql>
