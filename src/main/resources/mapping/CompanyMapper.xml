@@ -57,4 +57,16 @@
     <select id="queryList" resultType="company" parameterType="company">
         select <include refid="query_all_fields"></include> from sys_company where deleteStatus = 0
     </select>
+
+    <!-- 插入公司菜单关联 -->
+    <insert id="insertCompanyMenu" parameterType="map">
+        insert into sys_company_menu(company_no,menu_id) values
+        <foreach collection="menu_ids" item="menu_id" separator=",">
+            (#{company_no},#{menu_id})
+        </foreach>
+    </insert>
+    <!-- 删除公司菜单关联 -->
+    <delete id="deleteCompanyMenu" parameterType="string">
+        delete from sys_company_menu where company_no = #{company_no}
+    </delete>
 </mapper>

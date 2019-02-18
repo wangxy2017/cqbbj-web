@@ -11,4 +11,12 @@ import com.cqbbj.entity.Company;
  * @date 2019/2/18 13:56
  */
 public interface ICompanyService extends BaseService<Company> {
+    /**
+     * 绑定菜单
+     *
+     * @param company_no
+     * @param menu_ids
+     * @return
+     */
+    int bindMenu(String company_no, Integer[] menu_ids);
 }

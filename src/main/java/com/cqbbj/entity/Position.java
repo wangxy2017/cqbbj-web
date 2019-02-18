@@ -22,6 +22,10 @@ public class Position extends BaseEntity {
      * 部门ID
      */
     private Integer dept_id;
+    /**
+     * 公司编号
+     */
+    private String company_no;
 
     public String getName() {
         return name;
@@ -45,5 +49,13 @@ public class Position extends BaseEntity {
 
     public void setDept_id(Integer dept_id) {
         this.dept_id = dept_id;
+    }
+
+    public String getCompany_no() {
+        return company_no;
+    }
+
+    public void setCompany_no(String company_no) {
+        this.company_no = company_no;
     }
 }
