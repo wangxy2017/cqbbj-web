@@ -7,6 +7,10 @@
         <!-- 打印查询语句 -->
         <setting name="logImpl" value="STDOUT_LOGGING"/>
     </settings>
+    <typeAliases>
+        <!-- 自定义别名 -->
+        <typeAlias type="com.cqbbj.entity.Menu" alias="menu"/>
+    </typeAliases>
     <plugins>
         <!-- 分页插件 -->
         <plugin interceptor="com.github.pagehelper.PageInterceptor">

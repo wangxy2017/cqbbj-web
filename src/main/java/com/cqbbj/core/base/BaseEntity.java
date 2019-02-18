@@ -21,6 +21,10 @@ public class BaseEntity {
      * 删除状态 0：未删除 1：已删除
      */
     private Integer deleteStatus;
+    /**
+     * 公司编号
+     */
+    private String company_no;
 
     public Integer getId() {
         return id;
@@ -44,5 +48,13 @@ public class BaseEntity {
 
     public void setDeleteStatus(Integer deleteStatus) {
         this.deleteStatus = deleteStatus;
+    }
+
+    public String getCompany_no() {
+        return company_no;
+    }
+
+    public void setCompany_no(String company_no) {
+        this.company_no = company_no;
     }
 }
