@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cqbbj.dao.EmployeeMapper">
+    <sql id="insert_all_fields">
+        createTime,
+        deleteStatus,
+        company_no,
+        name,
+        phone,
+        photo,
+        is_disabled,
+        emp_no,
+        dept_id,
+        position_id,
+        money
+    </sql>
+    <sql id="insert_all_values">
+        #{createTime},
+        #{deleteStatus},
+        #{company_no},
+        #{name},
+        #{phone},
+        #{photo},
+        #{is_disabled},
+        #{emp_no},
+        #{dept_id},
+        #{position_id},
+        #{money}
+    </sql>
+    <sql id="query_all_fields">
+        id,
+        name,
+        phone,
+        photo,
+        is_disabled,
+        emp_no,
+        dept_id,
+        position_id,
+        moeny,
+        createTime
+    </sql>
+    <!-- 保存员工 -->
+    <insert id="save" parameterType="employee" useGeneratedKeys="true" keyProperty="id">
+        insert into sys_employee(<include refid="insert_all_fields"/>) values(<include refid="insert_all_values"/>)
+    </insert>
+    <!-- 修改员工 -->
+    <update id="update" parameterType="employee">
+        update sys_employee
+        <set>
+            <if test="name != null and name != ''">name = #{name},</if>
+            <if test="phone != null and phone != ''">phone = #{phone},</if>
+            <if test="photo != null and photo != ''">photo = #{photo},</if>
+            <if test="is_disabled != null">is_disabled = #{is_disabled},</if>
+            <if test="dept_id != null">dept_id = #{dept_id},</if>
+            <if test="position_id != null">position_id = #{position_id},</if>
+            <if test="money != null">money = #{money},</if>
+        </set>
+        where id = #{id}
+    </update>
+    <!-- 删除员工 -->
+    <delete id="delete" parameterType="int">
+        delete from sys_employee where id = #{id}
+    </delete>
+    <!-- 查询员工列表 -->
+    <select id="queryList" resultType="employee" parameterType="employee">
+        select <include refid="query_all_fields"></include> from sys_employee where deleteStatus = 0
+    </select>
+</mapper>
