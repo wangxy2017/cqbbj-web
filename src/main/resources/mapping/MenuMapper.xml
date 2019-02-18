@@ -36,7 +36,7 @@
     </sql>
     <!-- 保存菜单 -->
     <insert id="save" parameterType="menu" useGeneratedKeys="true" keyProperty="id">
-        insert into sys_menu(<inclde refid="insert_all_fields"/>) values(<include refid="insert_all_values"/>)
+        insert into sys_menu(<include refid="insert_all_fields"/>) values(<include refid="insert_all_values"/>)
     </insert>
     <!-- 修改菜单 -->
     <update id="update" parameterType="menu">
