@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cqbbj.dao.PositionMapper">
+    <sql id="insert_all_fields">
+        createTime,
+        deleteStatus,
+        company_no,
+        name,
+        is_disabled,
+        dept_id
+    </sql>
+    <sql id="insert_all_values">
+        #{createTime},
+        #{deleteStatus},
+        #{company_no},
+        #{name},
+        #{is_disabled},
+        #{dept_id}
+    </sql>
+    <sql id="query_all_fields">
+        id,
+        name,
+        is_disabled,
+        createTime,
+        dept_id
+    </sql>
+    <!-- 保存职位 -->
+    <insert id="save" parameterType="position" useGeneratedKeys="true" keyProperty="id">
+        insert into sys_position(<include refid="insert_all_fields"/>) values(<include refid="insert_all_values"/>)
+    </insert>
+    <!-- 修改职位 -->
+    <update id="update" parameterType="position">
+        update sys_position
+        <set>
+            <if test="name != null and name != ''">name = #{name},</if>
+            <if test="is_disabled != null">is_disabled = #{is_disabled},</if>
+        </set>
+        where id = #{id}
+    </update>
+    <!-- 删除职位 -->
+    <delete id="delete" parameterType="int">
+        delete from sys_position where id = #{id}
+    </delete>
+    <!-- 查询职位列表 -->
+    <select id="queryList" resultType="position" parameterType="position">
+        select <include refid="query_all_fields"></include> from sys_position where deleteStatus = 0
+    </select>
+</mapper>

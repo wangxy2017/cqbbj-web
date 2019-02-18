@@ -12,6 +12,7 @@
         <typeAlias type="com.cqbbj.entity.Menu" alias="menu"/>
         <typeAlias type="com.cqbbj.entity.Company" alias="company"/>
         <typeAlias type="com.cqbbj.entity.Dept" alias="dept"/>
+        <typeAlias type="com.cqbbj.entity.Position" alias="position"/>
     </typeAliases>
     <plugins>
         <!-- 分页插件 -->
