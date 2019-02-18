@@ -57,8 +57,7 @@ public class CompanyServiceImpl implements ICompanyService {
         PageHelper.startPage(pageNum, pageSize);
         List<Company> list = companyMapper.queryList(company);
         PageInfo<Company> pageInfo = new PageInfo<>(list);
-        PageModel pageModel = new PageModel(pageInfo);
-        return pageModel;
+        return new PageModel(pageInfo);
     }
 
     @Override

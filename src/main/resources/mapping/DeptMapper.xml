@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cqbbj.dao.DeptMapper">
+    <sql id="insert_all_fields">
+        createTime,
+        deleteStatus,
+        company_no,
+        name,
+        is_disabled
+    </sql>
+    <sql id="insert_all_values">
+        #{createTime},
+        #{deleteStatus},
+        #{company_no},
+        #{name},
+        #{is_disabled}
+    </sql>
+    <sql id="query_all_fields">
+        id,
+        name,
+        is_disabled,
+        createTime
+    </sql>
+    <!-- 保存部门 -->
+    <insert id="save" parameterType="dept" useGeneratedKeys="true" keyProperty="id">
+        insert into sys_dept(<include refid="insert_all_fields"/>) values(<include refid="insert_all_values"/>)
+    </insert>
+    <!-- 修改部门 -->
+    <update id="update" parameterType="dept">
+        update sys_dept
+        <set>
+            <if test="name != null and name != ''">name = #{name},</if>
+            <if test="is_disabled != null">is_disabled = #{is_disabled},</if>
+        </set>
+        where id = #{id}
+    </update>
+    <!-- 删除部门 -->
+    <delete id="delete" parameterType="int">
+        delete from sys_dept where id = #{id}
+    </delete>
+    <!-- 查询部门列表 -->
+    <select id="queryList" resultType="dept" parameterType="dept">
+        select <include refid="query_all_fields"></include> from sys_dept where deleteStatus = 0
+    </select>
+</mapper>

@@ -24,16 +24,18 @@ public class MenuServiceTest {
 
     @Test
     public void save() {
-        Menu menu = new Menu();
-        menu.setCreateTime(new Date());
-        menu.setDeleteStatus(1);
-        menu.setCompany_no("123");
-        menu.setName("测试菜单");
-        menu.setPid(0);
-        menu.setIs_disabled(0);
-        menu.setSort(0);
-        menuService.saveEntity(menu);
-        System.out.println("保存成功：" + menu.getId());
+        for (int i = 0; i < 100; i++) {
+            Menu menu = new Menu();
+            menu.setCreateTime(new Date());
+            menu.setDeleteStatus(0);
+            menu.setCompany_no("123");
+            menu.setName("测试菜单" + i);
+            menu.setPid(0);
+            menu.setIs_disabled(0);
+            menu.setSort(0);
+            menuService.saveEntity(menu);
+            System.out.println("保存成功：" + menu.getId());
+        }
     }
 
     @Test
