@@ -16,6 +16,8 @@
         <typeAlias type="com.cqbbj.entity.Employee" alias="employee"/>
         <typeAlias type="com.cqbbj.entity.MoneyDetail" alias="moneyDetail"/>
         <typeAlias type="com.cqbbj.entity.Customer" alias="customer"/>
+        <typeAlias type="com.cqbbj.entity.OperationLog" alias="operationLog"/>
+        <typeAlias type="com.cqbbj.entity.MessageLog" alias="messageLog"/>
     </typeAliases>
     <plugins>
         <!-- 分页插件 -->

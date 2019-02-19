@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cqbbj.dao.OperationLogMapper">
+    <sql id="insert_all_fields">
+        createTime,
+        deleteStatus,
+        company_no,
+        name,
+        content,
+        ip
+    </sql>
+    <sql id="insert_all_values">
+        #{createTime},
+        #{deleteStatus},
+        #{company_no},
+        #{name},
+        #{content},
+        #{ip}
+    </sql>
+    <sql id="query_all_fields">
+        id,
+        name,
+        content,
+        ip,
+        createTime
+    </sql>
+    <!-- 保存操作日志 -->
+    <insert id="save" parameterType="operationLog" useGeneratedKeys="true" keyProperty="id">
+        insert into sys_operation_log(<include refid="insert_all_fields"/>) values(<include refid="insert_all_values"/>)
+    </insert>
+    <!-- 查询操作日志列表 -->
+    <select id="queryList" resultType="operationLog" parameterType="operationLog">
+        select <include refid="query_all_fields"></include> from sys_operation_log where deleteStatus = 0
+    </select>
+</mapper>
