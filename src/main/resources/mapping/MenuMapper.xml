@@ -55,4 +55,10 @@
     <delete id="delete" parameterType="int">
         delete from sys_menu where id = #{id}
     </delete>
+    <!-- 查询菜单列表 -->
+    <select id="queryList" parameterType="menu" resultType="menu">
+        select
+        <include refid="query_all_fields"/>
+        from sys_menu where deleteStatus = 0
+    </select>
 </mapper>

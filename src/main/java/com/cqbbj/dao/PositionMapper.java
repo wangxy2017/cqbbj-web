@@ -15,19 +15,4 @@ import java.util.Map;
  */
 @Repository
 public interface PositionMapper extends BaseMapper<Position> {
-
-    /**
-     * 插入职位菜单关联
-     *
-     * @param params
-     * @return
-     */
-    int insertPositionMenu(Map<String, Object> params);
-
-    /**
-     * 删除职位菜单关联
-     *
-     * @param position_id
-     */
-    void deletePositionMenu(Integer position_id);
 }

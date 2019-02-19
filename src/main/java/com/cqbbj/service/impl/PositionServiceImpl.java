@@ -66,18 +66,4 @@ public class PositionServiceImpl implements IPositionService {
     public Position queryById(Integer id) {
         return null;
     }
-
-    @Override
-    public int bindMenu(Integer position_id, Integer[] menu_ids) {
-        // 删除职位菜单关联
-        positionMapper.deletePositionMenu(position_id);
-        // 插入职位菜单关联
-        if (menu_ids != null && menu_ids.length > 0) {
-            Map<String, Object> params = new HashMap<>();
-            params.put("position_id", position_id);
-            params.put("menu_ids", menu_ids);
-            positionMapper.insertPositionMenu(params);
-        }
-        return 1;
-    }
 }

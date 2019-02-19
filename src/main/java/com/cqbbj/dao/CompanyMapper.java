@@ -16,33 +16,4 @@ import java.util.Map;
  */
 @Repository
 public interface CompanyMapper extends BaseMapper<Company> {
-
-    /**
-     * 插入公司菜单关联
-     *
-     * @param params
-     * @return
-     */
-    int insertCompanyMenu(Map<String, Object> params);
-
-    /**
-     * 删除公司菜单关联
-     *
-     * @param company_no
-     */
-    void deleteCompanyMenu(String company_no);
-
-    /**
-     * 保存公司配置
-     * @param companyConfig
-     * @return
-     */
-    int saveCompanyConfig(CompanyConfig companyConfig);
-
-    /**
-     * 修改公司配置
-     * @param companyConfig
-     * @return
-     */
-    int updateCompanyConfig(CompanyConfig companyConfig);
 }

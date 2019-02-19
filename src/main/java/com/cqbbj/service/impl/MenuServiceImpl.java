@@ -7,6 +7,8 @@ import com.cqbbj.service.IMenuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -46,7 +48,7 @@ public class MenuServiceImpl implements IMenuService {
 
     @Override
     public List<Menu> queryList(Menu menu) {
-        return null;
+        return menuMapper.queryList(menu);
     }
 
     @Override
@@ -57,5 +59,37 @@ public class MenuServiceImpl implements IMenuService {
     @Override
     public Menu queryById(Integer id) {
         return null;
+    }
+
+    /**
+     * 菜单排序
+     *
+     * @param list
+     * @return
+     */
+    private List<Menu> sortMenus(List<Menu> list) {
+        // 1.晒筛选出所有一级菜单
+        List<Menu> newList = new ArrayList<>();
+        for (Menu menu :
+                list) {
+            if (menu.getPid() == 0) {
+                newList.add(menu);
+            }
+        }
+        Collections.sort(newList);// 排序
+        // 2.筛选二级菜单，并追加到父节点
+        for (Menu menu :
+                newList) {
+            List<Menu> newList2 = new ArrayList<>();
+            for (Menu menu2 :
+                    list) {
+                if (menu2.getPid() == menu.getId()) {
+                    newList2.add(menu2);
+                }
+            }
+            Collections.sort(newList2);// 排序
+            menu.setChilds(newList2);
+        }
+        return newList;
     }
 }

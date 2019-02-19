@@ -66,18 +66,4 @@ public class CompanyServiceImpl implements ICompanyService {
     public Company queryById(Integer id) {
         return null;
     }
-
-    @Override
-    public int bindMenu(String company_no, Integer[] menu_ids) {
-        // 删除公司菜单关联
-        companyMapper.deleteCompanyMenu(company_no);
-        // 插入职位菜单关联
-        if (menu_ids != null && menu_ids.length > 0) {
-            Map<String, Object> params = new HashMap<>();
-            params.put("company_no", company_no);
-            params.put("menu_ids", menu_ids);
-            companyMapper.insertCompanyMenu(params);
-        }
-        return 1;
-    }
 }

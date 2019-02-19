@@ -4,6 +4,8 @@ import com.cqbbj.core.base.BaseMapper;
 import com.cqbbj.entity.Menu;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 /**
  * @author wangxy
  * @version 1.0
@@ -13,5 +15,4 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface MenuMapper extends BaseMapper<Menu> {
-
 }

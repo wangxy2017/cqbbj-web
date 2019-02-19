@@ -47,16 +47,4 @@
     <select id="queryList" resultType="position" parameterType="position">
         select <include refid="query_all_fields"></include> from sys_position where deleteStatus = 0
     </select>
-
-    <!-- 插入职位菜单关联 -->
-    <insert id="insertPositionMenu" parameterType="map">
-        insert into sys_position_menu(position_id,menu_id) values
-        <foreach collection="menu_ids" item="menu_id" separator=",">
-            (#{position_id},#{menu_id})
-        </foreach>
-    </insert>
-    <!-- 删除职位菜单关联 -->
-    <delete id="deletePositionMenu" parameterType="int">
-        delete from sys_position_menu where position_id = #{position_id}
-    </delete>
 </mapper>

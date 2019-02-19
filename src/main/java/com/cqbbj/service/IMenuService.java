@@ -3,6 +3,8 @@ package com.cqbbj.service;
 import com.cqbbj.core.base.BaseService;
 import com.cqbbj.entity.Menu;
 
+import java.util.List;
+
 /**
  * @author wangxy
  * @version 1.0
