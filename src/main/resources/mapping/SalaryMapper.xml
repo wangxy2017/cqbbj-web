@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cqbbj.dao.SalaryMapper">
+    <sql id="insert_all_fields">
+        createTime,
+        deleteStatus,
+        company_no,
+        emp_no,
+        base_money,
+        profit_money,
+        other_money,
+        real_money,
+        remark,
+        year,
+        month,
+        salary_no
+    </sql>
+    <sql id="insert_all_values">
+        #{createTime},
+        #{deleteStatus},
+        #{company_no},
+        #{emp_no},
+        #{base_money},
+        #{profit_money},
+        #{other_money},
+        #{real_money},
+        #{remark},
+        #{year},
+        #{month},
+        #{salary_no}
+    </sql>
+    <sql id="query_all_fields">
+        id,
+        emp_no,
+        base_money,
+        profit_money,
+        other_money,
+        real_money,
+        remark,
+        year,
+        month,
+        salary_no,
+        createTime
+    </sql>
+    <!-- 保存工资 -->
+    <insert id="save" parameterType="salary" useGeneratedKeys="true" keyProperty="id">
+        insert into sys_salary(<include refid="insert_all_fields"/>) values(<include refid="insert_all_values"/>)
+    </insert>
+    <!-- 修改工资 -->
+    <update id="update" parameterType="salary">
+        update sys_salary
+        <set>
+            <if test="base_money != null">base_money = #{base_money},</if>
+            <if test="profit_money != null">profit_money = #{profit_money},</if>
+            <if test="other_money != null">other_money = #{other_money},</if>
+            <if test="real_money != null">real_money = #{real_money},</if>
+            <if test="remark != null and remark !=''">remark = #{remark},</if>
+            <if test="year != null">year = #{year},</if>
+            <if test="month != null">month = #{month},</if>
+        </set>
+        where id = #{id}
+    </update>
+    <!-- 删除工资 -->
+    <delete id="delete" parameterType="int">
+        delete from sys_salary where id = #{id}
+    </delete>
+    <!-- 查询工资列表 -->
+    <select id="queryList" resultType="salary" parameterType="salary">
+        select <include refid="query_all_fields"></include> from sys_salary where deleteStatus = 0
+    </select>
+</mapper>

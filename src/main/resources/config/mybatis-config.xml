@@ -20,6 +20,9 @@
         <typeAlias type="com.cqbbj.entity.OperationLog" alias="operationLog"/>
         <typeAlias type="com.cqbbj.entity.MessageLog" alias="messageLog"/>
         <typeAlias type="com.cqbbj.entity.Order" alias="order"/>
+        <typeAlias type="com.cqbbj.entity.Car" alias="car"/>
+        <typeAlias type="com.cqbbj.entity.PayRecord" alias="payRecord"/>
+        <typeAlias type="com.cqbbj.entity.Salary" alias="salary"/>
     </typeAliases>
     <plugins>
         <!-- 分页插件 -->

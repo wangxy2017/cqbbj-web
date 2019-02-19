@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cqbbj.dao.PayRecordMapper">
+    <sql id="insert_all_fields">
+        createTime,
+        deleteStatus,
+        company_no,
+        order_no,
+        cust_no,
+        payWay,
+        payMoney,
+        payTime,
+        trans_no,
+        emp_no,
+        record_no
+    </sql>
+    <sql id="insert_all_values">
+        #{createTime},
+        #{deleteStatus},
+        #{company_no},
+        #{order_no},
+        #{cust_no},
+        #{payWay},
+        #{payMoney},
+        #{payTime},
+        #{trans_no},
+        #{emp_no},
+        #{record_no}
+    </sql>
+    <sql id="query_all_fields">
+        id,
+        order_no,
+        cust_no,
+        payWay,
+        payMoney,
+        payTime,
+        trans_no,
+        emp_no,
+        record_no
+    </sql>
+    <!-- 保存支付记录 -->
+    <insert id="save" parameterType="payRecord" useGeneratedKeys="true" keyProperty="id">
+        insert into sys_pay_record(<include refid="insert_all_fields"/>) values(<include refid="insert_all_values"/>)
+    </insert>
+    <!-- 删除支付记录 -->
+    <delete id="delete" parameterType="int">
+        delete from sys_pay_record where id = #{id}
+    </delete>
+    <!-- 逻辑删除支付记录 -->
+    <update id="deleteActive" parameterType="int">
+        update sys_pay_record set deleteStatus = 1 where id = #{id}
+    </update>
+    <!-- 查询支付记录列表 -->
+    <select id="queryList" resultType="payRecord" parameterType="payRecord">
+        select <include refid="query_all_fields"></include> from sys_pay_record where deleteStatus = 0
+    </select>
+</mapper>

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cqbbj.dao.CarMapper">
+    <sql id="insert_all_fields">
+        createTime,
+        deleteStatus,
+        company_no,
+        license,
+        brand,
+        engine,
+        vin,
+        insurance_date,
+        examined_date,
+        purchase_date,
+        carType,
+        status,
+        emp_no,
+        car_no
+    </sql>
+    <sql id="insert_all_values">
+        #{createTime},
+        #{deleteStatus},
+        #{company_no},
+        #{license},
+        #{brand},
+        #{engine},
+        #{vin},
+        #{insurance_date},
+        #{examined_date},
+        #{purchase_date},
+        #{carType},
+        #{status},
+        #{emp_no},
+        #{car_no}
+    </sql>
+    <sql id="query_all_fields">
+        id,
+        license,
+        brand,
+        engine,
+        vin,
+        insurance_date,
+        examined_date,
+        purchase_date,
+        carType,
+        status,
+        emp_no,
+        car_no
+    </sql>
+    <!-- 保存车辆 -->
+    <insert id="save" parameterType="car" useGeneratedKeys="true" keyProperty="id">
+        insert into sys_car(<include refid="insert_all_fields"/>) values(<include refid="insert_all_values"/>)
+    </insert>
+    <!-- 修改车辆 -->
+    <update id="update" parameterType="car">
+        update sys_car
+        <set>
+            <if test="license != null and license != ''">license = #{license},</if>
+            <if test="brand != null and brand != ''">brand = #{brand},</if>
+            <if test="engine != null and engine != ''">engine = #{engine},</if>
+            <if test="vin != null and vin != ''">vin = #{vin},</if>
+            <if test="insurance_date != null">insurance_date = #{insurance_date},</if>
+            <if test="examined_date != null">examined_date = #{examined_date},</if>
+            <if test="purchase_date != null">purchase_date = #{purchase_date},</if>
+            <if test="carType != null">carType = #{carType},</if>
+            <if test="status != null">status = #{status},</if>
+            <if test="emp_no != null and emp_no != ''">emp_no = #{emp_no},</if>
+        </set>
+        where id = #{id}
+    </update>
+    <!-- 删除车辆 -->
+    <delete id="delete" parameterType="int">
+        delete from sys_car where id = #{id}
+    </delete>
+    <!-- 查询车辆列表 -->
+    <select id="queryList" resultType="car" parameterType="car">
+        select <include refid="query_all_fields"></include> from sys_car where deleteStatus = 0
+    </select>
+</mapper>
