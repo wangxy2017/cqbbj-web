@@ -11,6 +11,7 @@
         <!-- 自定义别名 -->
         <typeAlias type="com.cqbbj.entity.Menu" alias="menu"/>
         <typeAlias type="com.cqbbj.entity.Company" alias="company"/>
+        <typeAlias type="com.cqbbj.entity.CompanyConfig" alias="companyConfig"/>
         <typeAlias type="com.cqbbj.entity.Dept" alias="dept"/>
         <typeAlias type="com.cqbbj.entity.Position" alias="position"/>
         <typeAlias type="com.cqbbj.entity.Employee" alias="employee"/>

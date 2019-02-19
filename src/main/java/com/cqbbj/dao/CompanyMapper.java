@@ -2,6 +2,7 @@ package com.cqbbj.dao;
 
 import com.cqbbj.core.base.BaseMapper;
 import com.cqbbj.entity.Company;
+import com.cqbbj.entity.CompanyConfig;
 import org.springframework.stereotype.Repository;
 
 import java.util.Map;
@@ -31,4 +32,17 @@ public interface CompanyMapper extends BaseMapper<Company> {
      */
     void deleteCompanyMenu(String company_no);
 
+    /**
+     * 保存公司配置
+     * @param companyConfig
+     * @return
+     */
+    int saveCompanyConfig(CompanyConfig companyConfig);
+
+    /**
+     * 修改公司配置
+     * @param companyConfig
+     * @return
+     */
+    int updateCompanyConfig(CompanyConfig companyConfig);
 }
