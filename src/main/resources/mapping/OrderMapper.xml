@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cqbbj.dao.OrderMapper">
+    <sql id="insert_all_fields">
+        createTime,
+        deleteStatus,
+        company_no,
+        name,
+        phone,
+        start,
+        end,
+        price,
+        beginTime,
+        content,
+        is_notice,
+        status,
+        startMap,
+        endMap,
+        order_no,
+        endTime
+    </sql>
+    <sql id="insert_all_values">
+        #{createTime},
+        #{deleteStatus},
+        #{company_no},
+        #{name},
+        #{phone},
+        #{start},
+        #{end},
+        #{price},
+        #{beginTime},
+        #{content},
+        #{is_notice},
+        #{status},
+        #{startMap},
+        #{endMap},
+        #{order_no},
+        #{endTime}
+    </sql>
+    <sql id="query_all_fields">
+        id,
+        name,
+        phone,
+        start,
+        end,
+        content,
+        price,
+        beginTime,
+        createTime,
+        is_notice,
+        status,
+        startMap,
+        endMap,
+        order_no,
+        endTime
+    </sql>
+    <!-- 保存订单 -->
+    <insert id="save" parameterType="order" useGeneratedKeys="true" keyProperty="id">
+        insert into sys_order(<include refid="insert_all_fields"/>) values(<include refid="insert_all_values"/>)
+    </insert>
+    <!-- 修改订单 -->
+    <update id="update" parameterType="order">
+        update sys_order
+        <set>
+            <if test="name != null and name != ''">name = #{name},</if>
+            <if test="phone != null and phone != ''">phone = #{phone},</if>
+            <if test="start != null and start != ''">start = #{start},</if>
+            <if test="end != null and end != ''">end = #{end},</if>
+            <if test="content != null and content != ''">content = #{content},</if>
+            <if test="price != null">price = #{price},</if>
+            <if test="beginTime != null">beginTime = #{beginTime},</if>
+            <if test="is_notice != null">is_notice = #{is_notice},</if>
+            <if test="status != null">status = #{status},</if>
+            <if test="startMap != null and startMap !=''">startMap = #{startMap},</if>
+            <if test="endMap != null and endMap !=''">endMap = #{endMap},</if>
+            <if test="endTime != null">endTime = #{endTime},</if>
+        </set>
+        where id = #{id}
+    </update>
+    <!-- 删除订单 -->
+    <delete id="delete" parameterType="int">
+        delete from sys_order where id = #{id}
+    </delete>
+    <!-- 逻辑删除订单 -->
+    <update id="deleteActive" parameterType="int">
+        update sys_order set deleteStatus = 1 where id = #{id}
+    </update>
+    <!-- 查询订单列表 -->
+    <select id="queryList" resultType="order" parameterType="order">
+        select <include refid="query_all_fields"></include> from sys_order where deleteStatus = 0
+    </select>
+    <!-- 根据ID查询 -->
+    <select id="queryById" parameterType="int" resultType="order">
+        select
+        <include refid="query_all_fields"/>
+        from sys_order where id = #{id}
+    </select>
+</mapper>

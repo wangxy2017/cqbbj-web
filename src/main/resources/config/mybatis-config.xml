@@ -19,6 +19,7 @@
         <typeAlias type="com.cqbbj.entity.Customer" alias="customer"/>
         <typeAlias type="com.cqbbj.entity.OperationLog" alias="operationLog"/>
         <typeAlias type="com.cqbbj.entity.MessageLog" alias="messageLog"/>
+        <typeAlias type="com.cqbbj.entity.Order" alias="order"/>
     </typeAliases>
     <plugins>
         <!-- 分页插件 -->
