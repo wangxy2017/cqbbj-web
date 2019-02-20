@@ -9,7 +9,9 @@ import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author wangxy
@@ -63,5 +65,19 @@ public class DeptServiceImpl implements IDeptService {
     @Override
     public Dept queryById(Integer id) {
         return null;
+    }
+
+    @Override
+    public int bindMenu(Integer dept_id, Integer[] menu_ids) {
+        // 清空部门菜单
+        deptMapper.deleteDeptMenu(dept_id);
+        // 绑定菜单
+        if (menu_ids != null && menu_ids.length > 0) {
+            Map<String, Object> params = new HashMap<>();
+            params.put("dept_id", dept_id);
+            params.put("menu_ids", menu_ids);
+            deptMapper.insertDeptMenu(params);
+        }
+        return 1;
     }
 }

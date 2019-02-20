@@ -7,6 +7,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author wangxy
@@ -50,5 +51,11 @@ public class MenuServiceTest {
     public void delete() {
         menuService.deleteEntity(1);
         System.out.println("删除成功");
+    }
+
+    @Test
+    public void queryAllMenu() {
+        List<Menu> menus = menuService.queryAllMenu();
+        System.out.println("查询结果：" + menus.size());
     }
 }

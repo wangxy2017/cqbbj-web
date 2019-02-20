@@ -4,6 +4,8 @@ import com.cqbbj.core.base.BaseMapper;
 import com.cqbbj.entity.Dept;
 import org.springframework.stereotype.Repository;
 
+import java.util.Map;
+
 /**
  * @author wangxy
  * @version 1.0
@@ -14,4 +16,18 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface DeptMapper extends BaseMapper<Dept> {
 
+    /**
+     * 删除部门菜单
+     *
+     * @param dept_id
+     */
+    void deleteDeptMenu(Integer dept_id);
+
+    /**
+     * 插入部门菜单
+     *
+     * @param params
+     * @return
+     */
+    int insertDeptMenu(Map<String, Object> params);
 }

@@ -11,4 +11,12 @@ import com.cqbbj.entity.Dept;
  * @date 2019/2/18 15:24
  */
 public interface IDeptService extends BaseService<Dept> {
+    /**
+     * 绑定菜单
+     *
+     * @param dept_id
+     * @param menu_ids
+     * @return
+     */
+    int bindMenu(Integer dept_id, Integer[] menu_ids);
 }

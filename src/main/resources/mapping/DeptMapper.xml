@@ -42,4 +42,17 @@
     <select id="queryList" resultType="dept" parameterType="dept">
         select <include refid="query_all_fields"></include> from sys_dept where deleteStatus = 0
     </select>
+
+    <!-- 插入部门菜单 -->
+    <insert id="insertDeptMenu" parameterType="map">
+        insert into sys_dept_menu(dept_id,menu_id) values
+        <foreach collection="menu_ids" item="menu_id" separator=",">
+            (#{dept},#{menu_id})
+        </foreach>
+    </insert>
+
+    <!-- 删除部门菜单 -->
+    <delete id="deleteDeptMenu" parameterType="int">
+        delete from sys_dept_menu where dept_id = #{dept_id}
+    </delete>
 </mapper>
