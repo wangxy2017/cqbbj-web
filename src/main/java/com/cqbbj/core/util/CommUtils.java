@@ -73,6 +73,36 @@ public class CommUtils {
     }
 
     /**
+     * 字符串转数组
+     *
+     * @param data
+     * @return
+     */
+    public static String[] toStringArray(String data) {
+        if (data == null || data.trim().length() == 0) {
+            return new String[0];
+        }
+        String[] split = data.split(",");
+        // 遍历空值个数
+        int count = 0;
+        for (int i = 0; i < split.length; i++) {
+            if ("".equals(split[i].trim())) {
+                count++;
+            }
+        }
+        // 创建数组容器
+        String[] temp = new String[split.length - count];
+        int index = 0;
+        for (int i = 0; i < split.length; i++) {
+            if (!"".equals(split[i].trim())) {
+                temp[index] = split[i].trim();
+                index++;
+            }
+        }
+        return temp;
+    }
+
+    /**
      * 获取指定长度的随机数
      *
      * @param length

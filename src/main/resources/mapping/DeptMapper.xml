@@ -47,7 +47,7 @@
     <insert id="insertDeptMenu" parameterType="map">
         insert into sys_dept_menu(dept_id,menu_id) values
         <foreach collection="menu_ids" item="menu_id" separator=",">
-            (#{dept},#{menu_id})
+            (#{dept_id},#{menu_id})
         </foreach>
     </insert>
 
