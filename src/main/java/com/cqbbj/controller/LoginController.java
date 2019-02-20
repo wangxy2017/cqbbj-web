@@ -32,6 +32,16 @@ public class LoginController {
     private IEmployeeService employeeService;// 员工业务层
 
     /**
+     * 跳转登录界面
+     *
+     * @return
+     */
+    @RequestMapping("/login")
+    public String login() {
+        return "login";
+    }
+
+    /**
      * 退出系统
      *
      * @param request
