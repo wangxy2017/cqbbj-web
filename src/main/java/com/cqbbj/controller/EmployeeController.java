@@ -34,6 +34,9 @@ public class EmployeeController {
     @RequestMapping("/save")
     @ResponseBody
     public Result save(Employee employee) {
+        employee.setIs_disabled(0);
+        employee.setEmp_no(CommUtils.getCode("EP"));
+        employee.setMoney(0.00D);
         return ResultUtils.success();
     }
 
@@ -46,19 +49,20 @@ public class EmployeeController {
     @RequestMapping("/update")
     @ResponseBody
     public Result update(Employee employee) {
+        employeeService.updateEntity(employee);
         return ResultUtils.success();
     }
 
     /**
-     * 删除员工
+     * 逻辑删除员工
      *
      * @param id
      * @return
      */
-    @RequestMapping("/delete")
+    @RequestMapping("/deleteActive")
     @ResponseBody
-    public Result delete(Integer id) {
-        employeeService.deleteEntity(id);
+    public Result deleteActive(Integer id) {
+        employeeService.deleteEntityActive(id);
         return ResultUtils.success();
     }
 

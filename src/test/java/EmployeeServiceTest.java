@@ -1,5 +1,6 @@
 import com.cqbbj.core.base.PageModel;
 import com.cqbbj.core.util.CommUtils;
+import com.cqbbj.core.util.MD5Utils;
 import com.cqbbj.entity.Employee;
 import com.cqbbj.service.IEmployeeService;
 import org.junit.Test;
@@ -30,8 +31,11 @@ public class EmployeeServiceTest {
             Employee employee = new Employee();
             employee.setCreateTime(new Date());
             employee.setDeleteStatus(0);
+            employee.setAccount("cs" + i);
+            employee.setPassword(MD5Utils.MD5Encode("123456"));
             employee.setName("测试员工" + i);
             employee.setPhone("110" + i);
+            employee.setSex(0);
             employee.setIs_disabled(0);
             employee.setEmp_no(CommUtils.getCode("EP"));
             employee.setDept_id(1);
@@ -58,8 +62,8 @@ public class EmployeeServiceTest {
     }
 
     @Test
-    public void queryPageList(){
+    public void queryPageList() {
         PageModel<Employee> pageModel = employeeService.queryPageList(null, 1, 20);
-        System.out.println("查询结果:"+pageModel.getList().size());
+        System.out.println("查询结果:" + pageModel.getList().size());
     }
 }

@@ -10,6 +10,15 @@ import com.cqbbj.core.base.BaseEntity;
  * @date 2019/2/18 16:57
  */
 public class Employee extends BaseEntity {
+
+    /**
+     * 账号
+     */
+    private String account;
+    /**
+     * 密码
+     */
+    private String password;
     /**
      * 员工姓名
      */
@@ -19,9 +28,9 @@ public class Employee extends BaseEntity {
      */
     private String phone;
     /**
-     * 头像
+     * 性别
      */
-    private String photo;
+    private Integer sex;
     /**
      * 是否禁用 0：启用 1：禁用
      */
@@ -57,14 +66,6 @@ public class Employee extends BaseEntity {
 
     public void setPhone(String phone) {
         this.phone = phone;
-    }
-
-    public String getPhoto() {
-        return photo;
-    }
-
-    public void setPhoto(String photo) {
-        this.photo = photo;
     }
 
     public Integer getIs_disabled() {
@@ -107,4 +108,27 @@ public class Employee extends BaseEntity {
         this.money = money;
     }
 
+    public String getAccount() {
+        return account;
+    }
+
+    public void setAccount(String account) {
+        this.account = account;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public Integer getSex() {
+        return sex;
+    }
+
+    public void setSex(Integer sex) {
+        this.sex = sex;
+    }
 }

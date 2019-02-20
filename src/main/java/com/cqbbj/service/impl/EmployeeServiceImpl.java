@@ -45,7 +45,7 @@ public class EmployeeServiceImpl implements IEmployeeService {
 
     @Override
     public void deleteEntityActive(Integer id) {
-
+        employeeMapper.deleteActive(id);
     }
 
     @Override

@@ -6,9 +6,11 @@
     <sql id="insert_all_fields">
         createTime,
         deleteStatus,
+        account,
+        password,
         name,
         phone,
-        photo,
+        sex,
         is_disabled,
         emp_no,
         dept_id,
@@ -18,9 +20,11 @@
     <sql id="insert_all_values">
         #{createTime},
         #{deleteStatus},
+        #{account},
+        #{password},
         #{name},
         #{phone},
-        #{photo},
+        #{sex},
         #{is_disabled},
         #{emp_no},
         #{dept_id},
@@ -29,9 +33,11 @@
     </sql>
     <sql id="query_all_fields">
         id,
+        account,
+        password,
         name,
         phone,
-        photo,
+        sex,
         is_disabled,
         emp_no,
         dept_id,
@@ -49,7 +55,6 @@
         <set>
             <if test="name != null and name != ''">name = #{name},</if>
             <if test="phone != null and phone != ''">phone = #{phone},</if>
-            <if test="photo != null and photo != ''">photo = #{photo},</if>
             <if test="is_disabled != null">is_disabled = #{is_disabled},</if>
             <if test="dept_id != null">dept_id = #{dept_id},</if>
             <if test="position_id != null">position_id = #{position_id},</if>
@@ -61,6 +66,10 @@
     <delete id="delete" parameterType="int">
         delete from sys_employee where id = #{id}
     </delete>
+    <!-- 逻辑删除员工 -->
+    <update id="deleteActive" parameterType="int">
+        update sys_employee set deleteStatus = 0 where id = #{id}
+    </update>
     <!-- 查询员工列表 -->
     <select id="queryList" resultType="employee" parameterType="employee">
         select <include refid="query_all_fields"></include> from sys_employee where deleteStatus = 0
