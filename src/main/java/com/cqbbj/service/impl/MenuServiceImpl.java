@@ -92,4 +92,16 @@ public class MenuServiceImpl implements IMenuService {
         }
         return newList;
     }
+
+    @Override
+    public List<Menu> queryAllMenu() {
+        List<Menu> menus = menuMapper.queryList(null);
+        return sortMenus(menus);
+    }
+
+    @Override
+    public List<Menu> queryMenuByDept(Integer dept_id) {
+        List<Menu> menus = menuMapper.queryMenuByDept(dept_id);
+        return sortMenus(menus);
+    }
 }

@@ -15,4 +15,11 @@ import java.util.List;
  */
 @Repository
 public interface MenuMapper extends BaseMapper<Menu> {
+
+    /**
+     * 根据部门ID查询菜单
+     * @param dept_id
+     * @return
+     */
+    List<Menu> queryMenuByDept(Integer dept_id);
 }

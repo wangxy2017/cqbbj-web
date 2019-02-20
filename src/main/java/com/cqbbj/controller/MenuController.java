@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author wangxy
@@ -64,5 +65,17 @@ public class MenuController {
     public Result delete(Integer id) {
         menuService.deleteEntity(id);
         return ResultUtils.success();
+    }
+
+    /**
+     * 查询所有菜单
+     *
+     * @return
+     */
+    @RequestMapping("/queryAllMenu")
+    @ResponseBody
+    public Result queryAllMenu() {
+        List<Menu> menus = menuService.queryAllMenu();
+        return ResultUtils.success(menus);
     }
 }

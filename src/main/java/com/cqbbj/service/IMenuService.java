@@ -13,4 +13,19 @@ import java.util.List;
  * @date 2019/2/18 13:56
  */
 public interface IMenuService extends BaseService<Menu> {
+    /**
+     * 查询所有菜单
+     *
+     * @return
+     */
+    List<Menu> queryAllMenu();
+
+    /**
+     * 查询部门菜单
+     *
+     * @param dept_id
+     * @return
+     */
+    List<Menu> queryMenuByDept(Integer dept_id);
+
 }

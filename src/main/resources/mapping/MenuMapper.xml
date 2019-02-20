@@ -59,4 +59,16 @@
         <include refid="query_all_fields"/>
         from sys_menu where deleteStatus = 0
     </select>
+    <!-- 查询部门菜单 -->
+    <select id="queryMenuByDept" parameterType="int" resultType="menu">
+        select
+        m.name,
+        m.url,
+        m.icon,
+        m.pid,
+        m.sort
+        from sys_menu m
+        left join sys_dept_menu dm on dm.menu_id = m.id
+        where dm.dept_id = #{dept_id}
+    </select>
 </mapper>
