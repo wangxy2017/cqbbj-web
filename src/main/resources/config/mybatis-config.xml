@@ -10,8 +10,6 @@
     <typeAliases>
         <!-- 自定义别名 -->
         <typeAlias type="com.cqbbj.entity.Menu" alias="menu"/>
-        <typeAlias type="com.cqbbj.entity.Company" alias="company"/>
-        <typeAlias type="com.cqbbj.entity.CompanyConfig" alias="companyConfig"/>
         <typeAlias type="com.cqbbj.entity.Dept" alias="dept"/>
         <typeAlias type="com.cqbbj.entity.Position" alias="position"/>
         <typeAlias type="com.cqbbj.entity.Employee" alias="employee"/>
@@ -23,6 +21,7 @@
         <typeAlias type="com.cqbbj.entity.Car" alias="car"/>
         <typeAlias type="com.cqbbj.entity.PayRecord" alias="payRecord"/>
         <typeAlias type="com.cqbbj.entity.Salary" alias="salary"/>
+        <typeAlias type="com.cqbbj.entity.CompanyInfo" alias="companyInfo"/>
     </typeAliases>
     <plugins>
         <!-- 分页插件 -->

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cqbbj.dao.CompanyInfoMapper">
+    <sql id="insert_all_fields">
+        createTime,
+        deleteStatus,
+        name,
+        address,
+        telephone,
+        logo,
+        msg_sign,
+        msg_count,
+        msg_open,
+        keyword
+    </sql>
+    <sql id="insert_all_values">
+        #{createTime},
+        #{deleteStatus},
+        #{name},
+        #{address},
+        #{telephone},
+        #{logo},
+        #{msg_sign},
+        #{msg_count},
+        #{msg_open},
+        #{keyword}
+    </sql>
+    <sql id="query_all_fields">
+        id,
+        name,
+        address,
+        telephone,
+        logo,
+        msg_sign,
+        msg_count,
+        msg_open,
+        keyword
+    </sql>
+    <!-- 保存公司信息 -->
+    <insert id="save" parameterType="companyInfo" useGeneratedKeys="true" keyProperty="id">
+        insert into sys_company_info(<include refid="insert_all_fields"/>) values(<include refid="insert_all_values"/>)
+    </insert>
+    <!-- 修改公司信息 -->
+    <update id="update" parameterType="companyInfo">
+        update sys_CompanyInfo
+        <set>
+            <if test="name != null and name != ''">name = #{name},</if>
+            <if test="address != null and address != ''">address = #{address},</if>
+            <if test="telephone != null and telephone != ''">telephone = #{telephone},</if>
+            <if test="logo != null and logo != ''">logo = #{logo},</if>
+            <if test="msg_sign != null and msg_sign != ''">msg_sign = #{msg_sign},</if>
+            <if test="msg_count != null">msg_count = #{msg_count},</if>
+            <if test="msg_open != null">msg_open = #{msg_open},</if>
+            <if test="keyword != null and keyword != ''">keyword = #{keyword},</if>
+        </set>
+        where id = #{id}
+    </update>
+    <!-- 根据ID查询 -->
+    <select id="queryById" parameterType="int" resultType="companyInfo">
+        select
+        <include refid="query_all_fields"/>
+        from sys_company_info where id = #{id}
+    </select>
+</mapper>
