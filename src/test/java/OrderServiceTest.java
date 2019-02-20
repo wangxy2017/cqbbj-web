@@ -40,7 +40,6 @@ public class OrderServiceTest {
 
             order.setCreateTime(new Date());
             order.setDeleteStatus(0);
-            order.setCompany_no("sdfsdfsdf");
             order.setStatus(0);
             order.setOrder_no(CommUtils.getCode("DT"));
 

@@ -14,10 +14,6 @@ import java.util.Date;
 public class PayRecord extends BaseEntity {
 
     /**
-     * 公司编号
-     */
-    private String company_no;
-    /**
      * 订单编号
      */
     private String order_no;
@@ -49,14 +45,6 @@ public class PayRecord extends BaseEntity {
      * 记录编号
      */
     private String record_no;
-
-    public String getCompany_no() {
-        return company_no;
-    }
-
-    public void setCompany_no(String company_no) {
-        this.company_no = company_no;
-    }
 
     public String getOrder_no() {
         return order_no;

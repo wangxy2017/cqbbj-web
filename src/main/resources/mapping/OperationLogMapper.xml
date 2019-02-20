@@ -6,7 +6,6 @@
     <sql id="insert_all_fields">
         createTime,
         deleteStatus,
-        company_no,
         name,
         content,
         ip
@@ -14,7 +13,6 @@
     <sql id="insert_all_values">
         #{createTime},
         #{deleteStatus},
-        #{company_no},
         #{name},
         #{content},
         #{ip}

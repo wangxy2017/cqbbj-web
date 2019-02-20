@@ -12,10 +12,6 @@ import com.cqbbj.core.base.BaseEntity;
 public class MoneyDetail extends BaseEntity {
 
     /**
-     * 公司编号
-     */
-    private String company_no;
-    /**
      * 员工编号
      */
     private String emp_no;
@@ -31,14 +27,6 @@ public class MoneyDetail extends BaseEntity {
      * 备注
      */
     private String remark;
-
-    public String getCompany_no() {
-        return company_no;
-    }
-
-    public void setCompany_no(String company_no) {
-        this.company_no = company_no;
-    }
 
     public String getEmp_no() {
         return emp_no;

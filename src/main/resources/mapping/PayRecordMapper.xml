@@ -6,7 +6,6 @@
     <sql id="insert_all_fields">
         createTime,
         deleteStatus,
-        company_no,
         order_no,
         cust_no,
         payWay,
@@ -19,7 +18,6 @@
     <sql id="insert_all_values">
         #{createTime},
         #{deleteStatus},
-        #{company_no},
         #{order_no},
         #{cust_no},
         #{payWay},

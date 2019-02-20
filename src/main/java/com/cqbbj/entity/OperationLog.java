@@ -12,10 +12,6 @@ import com.cqbbj.core.base.BaseEntity;
 public class OperationLog extends BaseEntity {
 
     /**
-     * 公司编号
-     */
-    private String company_no;
-    /**
      * 操作人
      */
     private String name;
@@ -27,14 +23,6 @@ public class OperationLog extends BaseEntity {
      * ip地址
      */
     private String ip;
-
-    public String getCompany_no() {
-        return company_no;
-    }
-
-    public void setCompany_no(String company_no) {
-        this.company_no = company_no;
-    }
 
     public String getName() {
         return name;

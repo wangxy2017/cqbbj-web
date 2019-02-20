@@ -30,7 +30,6 @@ public class MoneyDetailServiceTest {
             MoneyDetail moneyDetail = new MoneyDetail();
             moneyDetail.setCreateTime(new Date());
             moneyDetail.setDeleteStatus(0);
-            moneyDetail.setCompany_no("123");
             moneyDetail.setEmp_no("sdf");
             moneyDetail.setType(0);
             moneyDetail.setMoney(100.00D);

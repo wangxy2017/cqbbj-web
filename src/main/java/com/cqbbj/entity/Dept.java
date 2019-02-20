@@ -18,10 +18,6 @@ public class Dept extends BaseEntity {
      * 是否禁用 0：启用 1：禁用
      */
     private Integer is_disabled;
-    /**
-     * 公司编号
-     */
-    private String company_no;
 
     public String getName() {
         return name;
@@ -37,13 +33,5 @@ public class Dept extends BaseEntity {
 
     public void setIs_disabled(Integer is_disabled) {
         this.is_disabled = is_disabled;
-    }
-
-    public String getCompany_no() {
-        return company_no;
-    }
-
-    public void setCompany_no(String company_no) {
-        this.company_no = company_no;
     }
 }

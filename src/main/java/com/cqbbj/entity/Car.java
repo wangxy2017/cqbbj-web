@@ -12,11 +12,6 @@ import java.util.Date;
  * @date 2019/2/19 12:07
  */
 public class Car extends BaseEntity {
-
-    /**
-     * 公司编号
-     */
-    private String company_no;
     /**
      * 车牌号
      */
@@ -61,14 +56,6 @@ public class Car extends BaseEntity {
      * 车辆编号
      */
     private String car_no;
-
-    public String getCompany_no() {
-        return company_no;
-    }
-
-    public void setCompany_no(String company_no) {
-        this.company_no = company_no;
-    }
 
     public String getLicense() {
         return license;

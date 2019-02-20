@@ -30,7 +30,6 @@ public class EmployeeServiceTest {
             Employee employee = new Employee();
             employee.setCreateTime(new Date());
             employee.setDeleteStatus(0);
-            employee.setCompany_no("123");
             employee.setName("测试员工" + i);
             employee.setPhone("110" + i);
             employee.setIs_disabled(0);

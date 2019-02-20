@@ -11,10 +11,6 @@ import com.cqbbj.core.base.BaseEntity;
  */
 public class Customer extends BaseEntity {
     /**
-     * 公司编号
-     */
-    private String company_no;
-    /**
      * 客户名称
      */
     private String name;
@@ -26,14 +22,6 @@ public class Customer extends BaseEntity {
      * 客户编号
      */
     private String cust_no;
-
-    public String getCompany_no() {
-        return company_no;
-    }
-
-    public void setCompany_no(String company_no) {
-        this.company_no = company_no;
-    }
 
     public String getName() {
         return name;

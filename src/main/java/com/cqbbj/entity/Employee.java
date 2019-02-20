@@ -42,10 +42,6 @@ public class Employee extends BaseEntity {
      * 员工钱包
      */
     private Double money;
-    /**
-     * 公司编号
-     */
-    private String company_no;
 
     public String getName() {
         return name;
@@ -111,11 +107,4 @@ public class Employee extends BaseEntity {
         this.money = money;
     }
 
-    public String getCompany_no() {
-        return company_no;
-    }
-
-    public void setCompany_no(String company_no) {
-        this.company_no = company_no;
-    }
 }
