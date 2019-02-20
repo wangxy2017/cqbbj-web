@@ -15,18 +15,4 @@ import java.util.Map;
  */
 @Repository
 public interface OrderMapper extends BaseMapper<Order> {
-    /**
-     * 清除派单关联
-     *
-     * @param order_no
-     */
-    void deleteOrderEmployee(String order_no);
-
-    /**
-     * 插入派单关联
-     *
-     * @param params
-     * @return
-     */
-    int insertOrderEmployee(Map<String, Object> params);
 }

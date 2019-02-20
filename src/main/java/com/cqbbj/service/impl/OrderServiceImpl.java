@@ -66,18 +66,4 @@ public class OrderServiceImpl implements IOrderService {
     public Order queryById(Integer id) {
         return orderMapper.queryById(id);
     }
-
-    @Override
-    public int dispatchOrder(String order_no, String[] emp_nos) {
-        // 清空派单关联
-        orderMapper.deleteOrderEmployee(order_no);
-        // 插入派单关联
-        if(emp_nos != null && emp_nos.length > 0){
-            Map<String, Object> params = new HashMap<>();
-            params.put("order_no", order_no);
-            params.put("emp_nos", emp_nos);
-            orderMapper.insertOrderEmployee(params);
-        }
-        return 1;
-    }
 }

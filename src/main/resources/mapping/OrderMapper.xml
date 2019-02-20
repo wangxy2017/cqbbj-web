@@ -100,15 +100,4 @@
         <include refid="query_all_fields"/>
         from sys_order where id = #{id}
     </select>
-    <!-- 清除派单关联 -->
-    <delete id="deleteOrderEmployee" parameterType="string">
-        delete from sys_order_employee where order_no = #{order_no}
-    </delete>
-    <!-- 插入派单关联 -->
-    <insert id="insertOrderEmployee" parameterType="map">
-        insert into sys_order_employee(order_no,emp_no) values
-        <foreach collection="emp_nos" item="emp_no" separator=",">
-            (#{order_no},#{emp_no})
-        </foreach>
-    </insert>
 </mapper>

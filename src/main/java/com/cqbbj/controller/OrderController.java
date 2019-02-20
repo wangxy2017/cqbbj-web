@@ -87,18 +87,4 @@ public class OrderController {
         PageModel<Order> pageModel = orderService.queryPageList(order, pageNum, pageSize);
         return ResultUtils.success(pageModel);
     }
-
-    /**
-     * 派单
-     *
-     * @param order_no
-     * @param emp_nos
-     * @return
-     */
-    @RequestMapping("/dispatchOrder")
-    @ResponseBody
-    public Result dispatchOrder(String order_no, String emp_nos) {
-        orderService.dispatchOrder(order_no, CommUtils.toStringArray(emp_nos));
-        return ResultUtils.success();
-    }
 }
