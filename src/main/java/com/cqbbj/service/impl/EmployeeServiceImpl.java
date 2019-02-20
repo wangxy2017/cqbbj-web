@@ -65,4 +65,12 @@ public class EmployeeServiceImpl implements IEmployeeService {
     public Employee queryById(Integer id) {
         return null;
     }
+
+    @Override
+    public List<Employee> queryByAccount(String account) {
+        Employee employee = new Employee();
+        employee.setAccount(account);
+        List<Employee> list = employeeMapper.queryList(employee);
+        return list;
+    }
 }

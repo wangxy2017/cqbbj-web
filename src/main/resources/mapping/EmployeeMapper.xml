@@ -73,5 +73,6 @@
     <!-- 查询员工列表 -->
     <select id="queryList" resultType="employee" parameterType="employee">
         select <include refid="query_all_fields"></include> from sys_employee where deleteStatus = 0
+        <if test="account != null and account != ''">and account = #{account}</if>
     </select>
 </mapper>

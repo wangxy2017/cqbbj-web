@@ -3,6 +3,8 @@ package com.cqbbj.service;
 import com.cqbbj.core.base.BaseService;
 import com.cqbbj.entity.Employee;
 
+import java.util.List;
+
 /**
  * @author wangxy
  * @version 1.0
@@ -11,4 +13,11 @@ import com.cqbbj.entity.Employee;
  * @date 2019/2/18 17:13
  */
 public interface IEmployeeService extends BaseService<Employee> {
+    /**
+     * 根据账号查询
+     *
+     * @param account
+     * @return
+     */
+    List<Employee> queryByAccount(String account);
 }

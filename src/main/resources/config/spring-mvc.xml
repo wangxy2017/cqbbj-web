@@ -14,6 +14,10 @@ http://www.springframework.org/schema/mvc http://www.springframework.org/schema/
     <!-- 静态资源处理  css js imgs -->
     <mvc:resources location="/resources/" mapping="/resources/**"/>
     <mvc:resources location="/upload/" mapping="/upload/**"/>
+    <!-- 自定义拦截器（此配置方法拦截所有请求） -->
+    <mvc:interceptors>
+        <bean class="com.cqbbj.interceptor.LoginInterceptor"></bean>
+    </mvc:interceptors>
     <!-- 配置视图解析器 -->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <!-- 前缀 -->
