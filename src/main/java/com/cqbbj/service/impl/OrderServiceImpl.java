@@ -78,6 +78,8 @@ public class OrderServiceImpl implements IOrderService {
     @Override
     public int dispatchOrder(String order_no, String[] moneyEmps,
                              String[] driveEmps, String[] moveEmps, String[] airEmps) {
+        // 清空派单记录
+        sendOrderMapper.deleteSendOrder(order_no);
         // 保存收款人员
         List<SendOrder> list0 = createSendOrder(order_no, moneyEmps);
         sendOrderMapper.saveBatch(list0);
