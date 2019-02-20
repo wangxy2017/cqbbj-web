@@ -64,6 +64,10 @@ public class Order extends BaseEntity {
      * 订单编号
      */
     private String order_no;
+    /**
+     * 客户编号
+     */
+    private String cust_no;
 
     public String getName() {
         return name;
@@ -167,5 +171,13 @@ public class Order extends BaseEntity {
 
     public void setOrder_no(String order_no) {
         this.order_no = order_no;
+    }
+
+    public String getCust_no() {
+        return cust_no;
+    }
+
+    public void setCust_no(String cust_no) {
+        this.cust_no = cust_no;
     }
 }

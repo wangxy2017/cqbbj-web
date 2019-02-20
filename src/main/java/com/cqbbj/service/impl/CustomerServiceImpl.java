@@ -64,4 +64,11 @@ public class CustomerServiceImpl implements ICustomerService {
     public Customer queryById(Integer id) {
         return null;
     }
+
+    @Override
+    public Customer queryByPhone(String phone) {
+        Customer customer = new Customer();
+        customer.setPhone(phone);
+        return customerMapper.queryByProperties(customer);
+    }
 }

@@ -18,7 +18,8 @@
         startMap,
         endMap,
         order_no,
-        endTime
+        endTime,
+        cust_no
     </sql>
     <sql id="insert_all_values">
         #{createTime},
@@ -35,7 +36,8 @@
         #{startMap},
         #{endMap},
         #{order_no},
-        #{endTime}
+        #{endTime},
+        #{cust_no}
     </sql>
     <sql id="query_all_fields">
         id,
@@ -52,7 +54,8 @@
         startMap,
         endMap,
         order_no,
-        endTime
+        endTime,
+        cust_no
     </sql>
     <!-- 保存订单 -->
     <insert id="save" parameterType="order" useGeneratedKeys="true" keyProperty="id">
@@ -88,6 +91,8 @@
     <!-- 查询订单列表 -->
     <select id="queryList" resultType="order" parameterType="order">
         select <include refid="query_all_fields"></include> from sys_order where deleteStatus = 0
+        <if test="name != null and name != ''">and name = #{name}</if>
+        <if test="order_no != null and order_no != ''">and order_no = #{order_no}</if>
     </select>
     <!-- 根据ID查询 -->
     <select id="queryById" parameterType="int" resultType="order">

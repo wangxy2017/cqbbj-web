@@ -11,4 +11,12 @@ import com.cqbbj.entity.Customer;
  * @date 2019/2/19 9:57
  */
 public interface ICustomerService extends BaseService<Customer> {
+    /**
+     * 根据手机号查询
+     *
+     * @param phone
+     * @return
+     */
+    Customer queryByPhone(String phone);
+
 }
