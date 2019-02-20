@@ -6,6 +6,7 @@ import com.cqbbj.core.util.CommUtils;
 import com.cqbbj.core.util.ResultUtils;
 import com.cqbbj.entity.Customer;
 import com.cqbbj.entity.Order;
+import com.cqbbj.entity.SendOrder;
 import com.cqbbj.service.ICustomerService;
 import com.cqbbj.service.IOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -86,5 +87,27 @@ public class OrderController {
     public Result queryPageList(Order order, Integer pageNum, Integer pageSize) {
         PageModel<Order> pageModel = orderService.queryPageList(order, pageNum, pageSize);
         return ResultUtils.success(pageModel);
+    }
+
+    /**
+     * 派单
+     *
+     * @param order_no  订单编号
+     * @param moneyEmps 收款人
+     * @param driveEmps 司机
+     * @param moveEmps  搬运工
+     * @param airEmps   空调工
+     * @return
+     */
+    @RequestMapping("/dispatchOrder")
+    @ResponseBody
+    public Result dispatchOrder(String order_no, String moneyEmps, String driveEmps, String moveEmps, String airEmps) {
+        // 派单
+        orderService.dispatchOrder(order_no,
+                CommUtils.toStringArray(moneyEmps),
+                CommUtils.toStringArray(driveEmps),
+                CommUtils.toStringArray(moveEmps),
+                CommUtils.toStringArray(airEmps));
+        return ResultUtils.success();
     }
 }

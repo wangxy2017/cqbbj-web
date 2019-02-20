@@ -11,4 +11,17 @@ import com.cqbbj.entity.Order;
  * @date 2019/2/19 11:22
  */
 public interface IOrderService extends BaseService<Order> {
+
+    /**
+     * 派单
+     *
+     * @param order_no  订单编号
+     * @param moneyEmps 收款人员
+     * @param driveEmps 随车司机
+     * @param moveEmps  搬运工
+     * @param airEmps   空调工
+     * @return
+     */
+    int dispatchOrder(String order_no, String[] moneyEmps,
+                      String[] driveEmps, String[] moveEmps, String[] airEmps);
 }

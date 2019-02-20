@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cqbbj.dao.SendOrderMapper">
+    <sql id="insert_all_fields">
+        createTime,
+        deleteStatus,
+        order_no,
+        emp_no,
+        type
+    </sql>
+    <sql id="insert_all_values">
+        #{createTime},
+        #{deleteStatus},
+        #{order_no},
+        #{emp_no},
+        #{type}
+    </sql>
+    <!-- 保存派单 -->
+    <insert id="save" parameterType="sendOrder" useGeneratedKeys="true" keyProperty="id">
+        insert into sys_send_order(<include refid="insert_all_fields"/>) values(<include refid="insert_all_values"/>)
+    </insert>
+
+    <!-- 批量保存派单 -->
+    <insert id="saveBatch" parameterType="java.util.List">
+        insert into sys_send_order
+        (createTime,deleteStatus,order_no,emp_no,type)
+        values
+        <foreach collection="list" item="sendOrder" index="index" separator=",">
+            (
+            #{sendOrder.createTime},
+            #{sendOrder.deleteStatus},
+            #{sendOrder.order_no},
+            #{sendOrder.emp_no},
+            #{sendOrder.type}
+            )
+        </foreach>
+    </insert>
+    <!-- 清除派单 -->
+    <delete id="deleteSendOrder" parameterType="string">
+        delete from sys_send_order where order_no = #{order_no}
+    </delete>
+</mapper>

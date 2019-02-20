@@ -22,6 +22,7 @@
         <typeAlias type="com.cqbbj.entity.PayRecord" alias="payRecord"/>
         <typeAlias type="com.cqbbj.entity.Salary" alias="salary"/>
         <typeAlias type="com.cqbbj.entity.CompanyInfo" alias="companyInfo"/>
+        <typeAlias type="com.cqbbj.entity.SendOrder" alias="sendOrder"/>
     </typeAliases>
     <plugins>
         <!-- 分页插件 -->
