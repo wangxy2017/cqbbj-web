@@ -3,6 +3,7 @@ package com.cqbbj.entity;
 import com.cqbbj.core.base.BaseEntity;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author wangxy
@@ -68,6 +69,47 @@ public class Order extends BaseEntity {
      * 客户编号
      */
     private String cust_no;
+
+    /**
+     * 实际收款
+     */
+    private Double receiveMoney;
+
+    /**
+     * 收款备注
+     */
+    private Double receiveText;
+
+    /**
+     * 实际花费
+     */
+    private Double costMoney;
+
+    /**
+     * 回访记录
+     */
+    private String visit;
+
+    /**
+     * ============ 关联属性 =============
+     */
+
+    /**
+     * 收款人员
+     */
+    private List<SendOrder> moenyEmps;
+    /**
+     * 随车司机
+     */
+    private List<SendOrder> dirveEmps;
+    /**
+     * 随车搬运工
+     */
+    private List<SendOrder> moveEmps;
+    /**
+     * 随车空调工
+     */
+    private List<SendOrder> airEmps;
 
     public String getName() {
         return name;
@@ -179,5 +221,69 @@ public class Order extends BaseEntity {
 
     public void setCust_no(String cust_no) {
         this.cust_no = cust_no;
+    }
+
+    public List<SendOrder> getMoenyEmps() {
+        return moenyEmps;
+    }
+
+    public void setMoenyEmps(List<SendOrder> moenyEmps) {
+        this.moenyEmps = moenyEmps;
+    }
+
+    public List<SendOrder> getDirveEmps() {
+        return dirveEmps;
+    }
+
+    public void setDirveEmps(List<SendOrder> dirveEmps) {
+        this.dirveEmps = dirveEmps;
+    }
+
+    public List<SendOrder> getMoveEmps() {
+        return moveEmps;
+    }
+
+    public void setMoveEmps(List<SendOrder> moveEmps) {
+        this.moveEmps = moveEmps;
+    }
+
+    public List<SendOrder> getAirEmps() {
+        return airEmps;
+    }
+
+    public void setAirEmps(List<SendOrder> airEmps) {
+        this.airEmps = airEmps;
+    }
+
+    public Double getReceiveMoney() {
+        return receiveMoney;
+    }
+
+    public void setReceiveMoney(Double receiveMoney) {
+        this.receiveMoney = receiveMoney;
+    }
+
+    public Double getReceiveText() {
+        return receiveText;
+    }
+
+    public void setReceiveText(Double receiveText) {
+        this.receiveText = receiveText;
+    }
+
+    public Double getCostMoney() {
+        return costMoney;
+    }
+
+    public void setCostMoney(Double costMoney) {
+        this.costMoney = costMoney;
+    }
+
+    public String getVisit() {
+        return visit;
+    }
+
+    public void setVisit(String visit) {
+        this.visit = visit;
     }
 }

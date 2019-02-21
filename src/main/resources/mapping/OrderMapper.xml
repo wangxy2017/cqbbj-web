@@ -19,7 +19,11 @@
         endMap,
         order_no,
         endTime,
-        cust_no
+        cust_no,
+        receiveMoney,
+        receiveText,
+        costMoney,
+        visit
     </sql>
     <sql id="insert_all_values">
         #{createTime},
@@ -37,7 +41,11 @@
         #{endMap},
         #{order_no},
         #{endTime},
-        #{cust_no}
+        #{cust_no},
+        #{receiveMoney},
+        #{receiveText},
+        #{costMoney},
+        #{visit}
     </sql>
     <sql id="query_all_fields">
         id,
@@ -55,7 +63,11 @@
         endMap,
         order_no,
         endTime,
-        cust_no
+        cust_no,
+        receiveMoney,
+        receiveText,
+        costMoney,
+        visit
     </sql>
     <!-- 保存订单 -->
     <insert id="save" parameterType="order" useGeneratedKeys="true" keyProperty="id">
@@ -77,6 +89,10 @@
             <if test="startMap != null and startMap !=''">startMap = #{startMap},</if>
             <if test="endMap != null and endMap !=''">endMap = #{endMap},</if>
             <if test="endTime != null">endTime = #{endTime},</if>
+            <if test="receiveMoney != null">receiveMoney = #{receiveMoney},</if>
+            <if test="receiveText != null and receiveText != ''">receiveText = #{receiveText},</if>
+            <if test="costMoney != null">costMoney = #{costMoney},</if>
+            <if test="visit != null and visit != ''">visit = #{visit},</if>
         </set>
         where id = #{id}
     </update>

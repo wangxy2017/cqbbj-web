@@ -59,4 +59,11 @@ public class SendOrderServiceImpl implements ISendOrderService {
     public SendOrder queryById(Integer id) {
         return null;
     }
+
+    @Override
+    public List<SendOrder> queryByOrderNo(String order_no) {
+        SendOrder sendOrder = new SendOrder();
+        sendOrder.setOrder_no(order_no);
+        return sendOrderMapper.queryList(sendOrder);
+    }
 }
