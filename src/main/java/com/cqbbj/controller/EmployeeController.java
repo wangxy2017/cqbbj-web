@@ -1,5 +1,6 @@
 package com.cqbbj.controller;
 
+import com.cqbbj.core.base.BaseController;
 import com.cqbbj.core.base.PageModel;
 import com.cqbbj.core.base.Result;
 import com.cqbbj.core.util.CommUtils;
@@ -20,7 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  */
 @Controller
 @RequestMapping("/employee")
-public class EmployeeController {
+public class EmployeeController extends BaseController {
 
     @Autowired
     private IEmployeeService employeeService;// 员工业务

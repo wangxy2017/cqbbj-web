@@ -1,5 +1,6 @@
 package com.cqbbj.controller;
 
+import com.cqbbj.core.base.BaseController;
 import com.cqbbj.core.base.Result;
 import com.cqbbj.core.util.ResultUtils;
 import com.cqbbj.entity.Menu;
@@ -21,7 +22,7 @@ import java.util.List;
  */
 @Controller
 @RequestMapping("/menu")
-public class MenuController {
+public class MenuController extends BaseController {
 
     @Autowired
     private IMenuService menuService;// 菜单业务

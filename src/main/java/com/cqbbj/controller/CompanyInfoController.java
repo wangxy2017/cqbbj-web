@@ -1,5 +1,6 @@
 package com.cqbbj.controller;
 
+import com.cqbbj.core.base.BaseController;
 import com.cqbbj.core.base.Result;
 import com.cqbbj.core.util.ResultUtils;
 import com.cqbbj.entity.CompanyInfo;
@@ -18,7 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  */
 @Controller
 @RequestMapping("/company")
-public class CompanyInfoController {
+public class CompanyInfoController extends BaseController {
 
     @Autowired
     private ICompanyInfoService companyInfoService;// 商户配置

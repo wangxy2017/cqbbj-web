@@ -1,5 +1,6 @@
 package com.cqbbj.controller;
 
+import com.cqbbj.core.base.BaseController;
 import com.cqbbj.core.base.PageModel;
 import com.cqbbj.core.base.Result;
 import com.cqbbj.core.util.CommUtils;
@@ -22,7 +23,7 @@ import java.util.Date;
  */
 @Controller
 @RequestMapping("/dept")
-public class DeptController {
+public class DeptController extends BaseController {
 
     @Autowired
     private IDeptService deptService;// 部门业务

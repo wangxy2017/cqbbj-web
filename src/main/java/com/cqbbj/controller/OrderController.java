@@ -1,5 +1,6 @@
 package com.cqbbj.controller;
 
+import com.cqbbj.core.base.BaseController;
 import com.cqbbj.core.base.PageModel;
 import com.cqbbj.core.base.Result;
 import com.cqbbj.core.util.CommUtils;
@@ -28,7 +29,7 @@ import java.util.List;
  */
 @Controller
 @RequestMapping("/order")
-public class OrderController {
+public class OrderController extends BaseController {
 
     @Autowired
     private IOrderService orderService;// 订单业务
