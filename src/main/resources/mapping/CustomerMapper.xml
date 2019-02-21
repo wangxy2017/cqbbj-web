@@ -41,6 +41,10 @@
     <delete id="delete" parameterType="int">
         delete from sys_customer where id = #{id}
     </delete>
+    <!-- 逻辑删除客户 -->
+    <update id="deleteActive">
+        update sys_customer set deleteStatus = 1 where id = #{id}
+    </update>
     <!-- 查询客户列表 -->
     <select id="queryList" resultType="customer" parameterType="customer">
         select <include refid="query_all_fields"></include> from sys_customer where deleteStatus = 0

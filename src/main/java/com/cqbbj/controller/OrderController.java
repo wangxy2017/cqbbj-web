@@ -9,6 +9,7 @@ import com.cqbbj.entity.Customer;
 import com.cqbbj.entity.Order;
 import com.cqbbj.entity.SendOrder;
 import com.cqbbj.service.ICustomerService;
+import com.cqbbj.service.IOperationLogService;
 import com.cqbbj.service.IOrderService;
 import com.cqbbj.service.ISendOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -40,6 +42,9 @@ public class OrderController extends BaseController {
     @Autowired
     private ISendOrderService sendOrderService;// 派单
 
+    @Autowired
+    private IOperationLogService operationLogService;// 操作日志
+
     /**
      * 新增订单
      *
@@ -48,7 +53,7 @@ public class OrderController extends BaseController {
      */
     @RequestMapping("/save")
     @ResponseBody
-    public Result save(Order order) {
+    public Result save(HttpServletRequest request, Order order) {
         // 保存用户
         Customer customer = customerService.queryByPhone(order.getPhone());
         if (customer == null) {
@@ -67,7 +72,8 @@ public class OrderController extends BaseController {
         order.setOrder_no(CommUtils.getCode("DT"));
         order.setCust_no(customer.getCust_no());
         orderService.saveEntity(order);
-
+        // 记录日志
+        operationLogService.saveEntity(createLog(request, "新增订单：" + order.getOrder_no()));
         return ResultUtils.success();
     }
 
@@ -78,7 +84,9 @@ public class OrderController extends BaseController {
      */
     @RequestMapping("/update")
     @ResponseBody
-    public Result update(Order order, String moneyEmps, String driveEmps, String moveEmps, String airEmps) {
+    public Result update(HttpServletRequest request, Order order,
+                         String moneyEmps, String driveEmps, String moveEmps,
+                         String airEmps) {
         // 更新订单
         orderService.updateEntity(order);
         // 更新派单
@@ -88,6 +96,8 @@ public class OrderController extends BaseController {
                     CommUtils.toStringArray(driveEmps),
                     CommUtils.toStringArray(moveEmps),
                     CommUtils.toStringArray(airEmps));
+        // 记录日志
+        operationLogService.saveEntity(createLog(request, "修改订单：" + order.getOrder_no()));
         return ResultUtils.success();
     }
 
@@ -116,13 +126,17 @@ public class OrderController extends BaseController {
      */
     @RequestMapping("/dispatchOrder")
     @ResponseBody
-    public Result dispatchOrder(String order_no, String moneyEmps, String driveEmps, String moveEmps, String airEmps) {
+    public Result dispatchOrder(HttpServletRequest request, String order_no,
+                                String moneyEmps, String driveEmps, String moveEmps,
+                                String airEmps) {
         // 派单
         orderService.dispatchOrder(order_no,
                 CommUtils.toStringArray(moneyEmps),
                 CommUtils.toStringArray(driveEmps),
                 CommUtils.toStringArray(moveEmps),
                 CommUtils.toStringArray(airEmps));
+        // 记录日志
+        operationLogService.saveEntity(createLog(request, "派单：" + order_no));
         return ResultUtils.success();
     }
 
@@ -160,5 +174,23 @@ public class OrderController extends BaseController {
             }
         }
         return ResultUtils.success(order);
+    }
+
+    /**
+     * 辅助完成
+     *
+     * @param request
+     * @param order
+     * @return
+     */
+    @RequestMapping("/helpDone")
+    @ResponseBody
+    public Result helpDone(HttpServletRequest request, Order order) {
+        // 完成订单
+        order.setStatus(2);
+        orderService.updateEntity(order);
+        // 记录日志
+        operationLogService.saveEntity(createLog(request, "辅助完成订单：" + order.getOrder_no()));
+        return ResultUtils.success();
     }
 }

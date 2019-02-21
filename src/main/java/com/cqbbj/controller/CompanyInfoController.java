@@ -5,10 +5,13 @@ import com.cqbbj.core.base.Result;
 import com.cqbbj.core.util.ResultUtils;
 import com.cqbbj.entity.CompanyInfo;
 import com.cqbbj.service.ICompanyInfoService;
+import com.cqbbj.service.IOperationLogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * @author wangxy
@@ -24,6 +27,9 @@ public class CompanyInfoController extends BaseController {
     @Autowired
     private ICompanyInfoService companyInfoService;// 商户配置
 
+    @Autowired
+    private IOperationLogService operationLogService;// 操作日志
+
     /**
      * 修改商户配置
      *
@@ -32,8 +38,10 @@ public class CompanyInfoController extends BaseController {
      */
     @RequestMapping("/update")
     @ResponseBody
-    private Result update(CompanyInfo companyInfo) {
+    private Result update(HttpServletRequest request, CompanyInfo companyInfo) {
         companyInfoService.updateEntity(companyInfo);
+        // 记录日志
+        operationLogService.saveEntity(createLog(request, "修改商户配置"));
         return ResultUtils.success();
     }
 

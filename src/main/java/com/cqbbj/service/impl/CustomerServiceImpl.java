@@ -44,7 +44,7 @@ public class CustomerServiceImpl implements ICustomerService {
 
     @Override
     public void deleteEntityActive(Integer id) {
-
+        customerMapper.deleteActive(id);
     }
 
     @Override
