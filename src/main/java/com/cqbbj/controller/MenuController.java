@@ -2,6 +2,7 @@ package com.cqbbj.controller;
 
 import com.cqbbj.core.base.BaseController;
 import com.cqbbj.core.base.Result;
+import com.cqbbj.core.util.CommUtils;
 import com.cqbbj.core.util.ResultUtils;
 import com.cqbbj.entity.Menu;
 import com.cqbbj.service.IMenuService;
@@ -101,6 +102,21 @@ public class MenuController extends BaseController {
     @ResponseBody
     public Result delete(Integer id) {
         menuService.deleteEntity(id);
+        return ResultUtils.success();
+    }
+
+    /**
+     * 批量删除
+     *
+     * @param ids
+     * @return
+     */
+    @RequestMapping("/deleteBatch")
+    @ResponseBody
+    public Result deleteBatch(String ids) {
+        for (Integer id : CommUtils.toIntegerArray(ids)) {
+            menuService.deleteEntity(id);
+        }
         return ResultUtils.success();
     }
 
