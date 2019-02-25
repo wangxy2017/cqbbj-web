@@ -72,4 +72,10 @@
         left join sys_dept_menu dm on dm.menu_id = m.id
         where dm.dept_id = #{dept_id}
     </select>
+    <!-- 根据ID查询 -->
+    <select id="queryById" parameterType="int" resultType="menu">
+        select
+        <include refid="query_all_fields"/>
+        from sys_menu where id = #{id}
+    </select>
 </mapper>

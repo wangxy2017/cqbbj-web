@@ -58,7 +58,7 @@ public class MenuServiceImpl implements IMenuService {
 
     @Override
     public Menu queryById(Integer id) {
-        return null;
+        return menuMapper.queryById(id);
     }
 
     /**

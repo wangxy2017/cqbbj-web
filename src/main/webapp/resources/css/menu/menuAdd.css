@@ -1,17 +1,3 @@
-/* 公共样式存放 */
-.main {
-    padding: 5px;
-}
-
-i {
-    font-style: normal;
-}
-/* 暂无数据样式 */
-.no-data{
-    padding: 5px;
-    margin: 10px 0;
-}
-
 /* 更改layui样式*/
 .layui-form{
     margin-top: 40px !important;
