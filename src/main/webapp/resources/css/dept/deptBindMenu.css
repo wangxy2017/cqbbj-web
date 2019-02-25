@@ -21,6 +21,7 @@
 
 .menu-table .menu-table-list .menu-table-list-li {
     display: block;
+    padding-left: 12px;
     min-height: 60px;
     line-height: 30px;
     border-bottom: 1px solid #009688;

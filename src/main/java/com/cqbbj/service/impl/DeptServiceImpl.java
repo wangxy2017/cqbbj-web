@@ -51,7 +51,7 @@ public class DeptServiceImpl implements IDeptService {
 
     @Override
     public List<Dept> queryList(Dept dept) {
-        return null;
+        return deptMapper.queryList(dept);
     }
 
     @Override

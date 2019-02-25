@@ -149,4 +149,17 @@ public class DeptController extends BaseController {
         data.put("menus", menus);
         return ResultUtils.success(data);
     }
+
+    /**
+     * 查询部门
+     *
+     * @param dept
+     * @return
+     */
+    @RequestMapping("/queryList")
+    @ResponseBody
+    public Result queryList(Dept dept) {
+        List<Dept> list = deptService.queryList(dept);
+        return ResultUtils.success(list);
+    }
 }

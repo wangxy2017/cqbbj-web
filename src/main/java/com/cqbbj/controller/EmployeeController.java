@@ -4,13 +4,23 @@ import com.cqbbj.core.base.BaseController;
 import com.cqbbj.core.base.PageModel;
 import com.cqbbj.core.base.Result;
 import com.cqbbj.core.util.CommUtils;
+import com.cqbbj.core.util.MD5Utils;
 import com.cqbbj.core.util.ResultUtils;
+import com.cqbbj.entity.Dept;
 import com.cqbbj.entity.Employee;
+import com.cqbbj.service.IDeptService;
 import com.cqbbj.service.IEmployeeService;
+
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
+import java.util.HashMap;
 
 /**
  * @author wangxy
@@ -26,6 +36,42 @@ public class EmployeeController extends BaseController {
     @Autowired
     private IEmployeeService employeeService;// 员工业务
 
+    @Autowired
+    private IDeptService deptService;// 部门业务
+
+    /**
+     * 员工管理页面跳转
+     *
+     * @return
+     */
+    @RequestMapping("/employee")
+    public String employee() {
+        log.debug("跳转employee页面");
+        return "employee/employee";
+    }
+
+    /**
+     * 添加员工页面跳转
+     *
+     * @return
+     */
+    @RequestMapping("/employeeAdd")
+    public String employeeAdd() {
+        log.debug("跳转employeeAdd页面");
+        return "employee/employeeAdd";
+    }
+
+    /**
+     * 修改员工页面跳转
+     *
+     * @return
+     */
+    @RequestMapping("/employeeUpdate")
+    public String employeeUpdate() {
+        log.debug("跳转employeeUpdate页面");
+        return "employee/employeeUpdate";
+    }
+
     /**
      * 新增员工
      *
@@ -38,6 +84,9 @@ public class EmployeeController extends BaseController {
         employee.setIs_disabled(0);
         employee.setEmp_no(CommUtils.getCode("EP"));
         employee.setMoney(0.00D);
+        employee.setCreateTime(new Date());
+        employee.setDeleteStatus(0);
+        employeeService.saveEntity(employee);
         return ResultUtils.success();
     }
 
@@ -49,7 +98,9 @@ public class EmployeeController extends BaseController {
      */
     @RequestMapping("/update")
     @ResponseBody
-    public Result update(Employee employee) {
+    public Result update(Employee employee, String new_password) {
+        if (StringUtils.isNoneBlank(new_password))
+            employee.setPassword(MD5Utils.MD5Encode(new_password));
         employeeService.updateEntity(employee);
         return ResultUtils.success();
     }
@@ -80,5 +131,23 @@ public class EmployeeController extends BaseController {
     public Result queryPageList(Employee Employee, Integer pageNum, Integer pageSize) {
         PageModel<Employee> pageModel = employeeService.queryPageList(Employee, pageNum, pageSize);
         return ResultUtils.success(pageModel);
+    }
+
+    /**
+     * 查询员工信息
+     *
+     * @param id
+     * @return
+     */
+    @RequestMapping("/queryById")
+    @ResponseBody
+    public Result queryById(Integer id) {
+        Employee employee = employeeService.queryById(id);
+        // 查询部门列表
+        List<Dept> depts = deptService.queryList(null);
+        Map<String, Object> data = new HashMap<>();
+        data.put("employee", employee);
+        data.put("depts", depts);
+        return ResultUtils.success(data);
     }
 }

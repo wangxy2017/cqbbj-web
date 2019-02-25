@@ -63,7 +63,7 @@ public class EmployeeServiceImpl implements IEmployeeService {
 
     @Override
     public Employee queryById(Integer id) {
-        return null;
+        return employeeMapper.queryById(id);
     }
 
     @Override

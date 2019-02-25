@@ -55,6 +55,9 @@
         <set>
             <if test="name != null and name != ''">name = #{name},</if>
             <if test="phone != null and phone != ''">phone = #{phone},</if>
+            <if test="sex != null">sex = #{sex},</if>
+            <if test="account != null and account != ''">account = #{account},</if>
+            <if test="password != null and password != ''">password = #{password},</if>
             <if test="is_disabled != null">is_disabled = #{is_disabled},</if>
             <if test="dept_id != null">dept_id = #{dept_id},</if>
             <if test="position_id != null">position_id = #{position_id},</if>
@@ -74,5 +77,11 @@
     <select id="queryList" resultType="employee" parameterType="employee">
         select <include refid="query_all_fields"></include> from sys_employee where deleteStatus = 0
         <if test="account != null and account != ''">and account = #{account}</if>
+    </select>
+    <!-- 根据ID查询 -->
+    <select id="queryById" parameterType="int" resultType="employee">
+        select
+        <include refid="query_all_fields"/>
+        from sys_employee where id = #{id}
     </select>
 </mapper>
