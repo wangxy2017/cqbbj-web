@@ -63,9 +63,17 @@
             </div>
         </div>
         <div class="layui-form-item">
-            <label class="layui-form-label">所在部门</label>
+            <label class="layui-form-label">所属部门</label>
             <div class="layui-input-block">
                 <select name="dept_id" id="dept_id" lay-verify="required">
+                    <option value="">请选择</option>
+                </select>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">所属职位</label>
+            <div class="layui-input-block">
+                <select name="position_id" id="position_id" lay-verify="required">
                     <option value="">请选择</option>
                 </select>
             </div>

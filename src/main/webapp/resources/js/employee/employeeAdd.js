@@ -5,17 +5,21 @@ layui.use(["jquery", "form", "layer"], function () {
     var layer = layui.layer;
 
     $(function () {
-        // 查询所有角色
+        // 查询部门和职位
         $.ajax({
-            url: "/dept/queryList",
+            url: "/employee/addInfo",
             dataType: "json",
             data: {},
             type: "POST",
             success: function (result) {
-                console.log(result);
                 if (result.code == 1) {
-                    for (var i = 0; i < result.data.length; i++) {
-                        $("#dept_id").append("<option value='" + result.data[i].id + "'>" + result.data[i].name + "</option>");
+                    var depts = typeof result.data.depts == "undefined" ? [] : result.data.depts;
+                    var positions = typeof result.data.positions == "undefined" ? [] : result.data.positions;
+                    for (var i = 0; i < depts.length; i++) {
+                        $("#dept_id").append("<option value='" + depts[i].id + "'>" + depts[i].name + "</option>");
+                    }
+                    for (var i = 0; i < positions.length; i++) {
+                        $("#position_id").append("<option value='" + positions[i].id + "'>" + positions[i].name + "</option>");
                     }
                     form.render();
                 }

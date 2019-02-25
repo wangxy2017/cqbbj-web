@@ -26,7 +26,7 @@
         <%-- 菜单列表 --%>
         <div class="menu-table">
         <div class="menu-table-title">
-        权限管理
+        菜单设置
         </div>
         <ul class="menu-table-list" v-if="menus.length">
         <li class="menu-table-list-li" v-for="menu in menus">

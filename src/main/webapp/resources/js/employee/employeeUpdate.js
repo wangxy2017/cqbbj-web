@@ -7,7 +7,8 @@ layui.use(["form", "layer"], function () {
         el: "#main",
         data: {
             employee: null,
-            roles: []
+            depts: [],
+            positions: []
         },
         methods: {
             /**
@@ -38,6 +39,7 @@ layui.use(["form", "layer"], function () {
                 if (res.body.code == 1) {
                     main.employee = res.body.data.employee;
                     main.depts = res.body.data.depts;
+                    main.positions = res.body.data.positions;
                     this.$nextTick(function () {
                         // 重新渲染表单
                         form.render();

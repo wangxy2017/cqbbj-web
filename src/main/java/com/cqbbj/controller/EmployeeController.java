@@ -8,9 +8,11 @@ import com.cqbbj.core.util.MD5Utils;
 import com.cqbbj.core.util.ResultUtils;
 import com.cqbbj.entity.Dept;
 import com.cqbbj.entity.Employee;
+import com.cqbbj.entity.Position;
 import com.cqbbj.service.IDeptService;
 import com.cqbbj.service.IEmployeeService;
 
+import com.cqbbj.service.IPositionService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -38,6 +40,9 @@ public class EmployeeController extends BaseController {
 
     @Autowired
     private IDeptService deptService;// 部门业务
+
+    @Autowired
+    private IPositionService positionService;// 职位业务
 
     /**
      * 员工管理页面跳转
@@ -145,9 +150,30 @@ public class EmployeeController extends BaseController {
         Employee employee = employeeService.queryById(id);
         // 查询部门列表
         List<Dept> depts = deptService.queryList(null);
+        // 查询职位列表
+        List<Position> positions = positionService.queryList(null);
         Map<String, Object> data = new HashMap<>();
         data.put("employee", employee);
         data.put("depts", depts);
+        data.put("positions", positions);
+        return ResultUtils.success(data);
+    }
+
+    /**
+     * 查询添加信息
+     *
+     * @return
+     */
+    @RequestMapping("/addInfo")
+    @ResponseBody
+    public Result addInfo() {
+        // 查询部门列表
+        List<Dept> depts = deptService.queryList(null);
+        // 查询职位列表
+        List<Position> positions = positionService.queryList(null);
+        Map<String, Object> data = new HashMap<>();
+        data.put("depts", depts);
+        data.put("positions", positions);
         return ResultUtils.success(data);
     }
 }

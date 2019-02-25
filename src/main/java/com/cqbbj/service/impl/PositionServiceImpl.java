@@ -51,7 +51,7 @@ public class PositionServiceImpl implements IPositionService {
 
     @Override
     public List<Position> queryList(Position position) {
-        return null;
+        return positionMapper.queryList(position);
     }
 
     @Override

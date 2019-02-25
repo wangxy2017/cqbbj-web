@@ -13,26 +13,22 @@
     <title>Title</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/plugin/layui/css/layui.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/dept/dept.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/position/position.css">
 </head>
 <body>
 <div class="main" id="main">
     <%-- 工具栏 --%>
     <div class="layui-btn-container">
-        <button class="layui-btn" @click="addDept">添加部门</button>
-        <button class="layui-btn layui-btn-normal" @click="updateDept">修改部门</button>
-        <button class="layui-btn layui-btn-danger" @click="deleteDept">删除部门</button>
+        <button class="layui-btn" @click="addPosition">添加职位</button>
+        <button class="layui-btn layui-btn-normal" @click="updatePosition">修改职位</button>
+        <button class="layui-btn layui-btn-danger" @click="deletePosition">删除职位</button>
     </div>
-    <table id="deptList" lay-filter="deptList"></table>
-    <%-- 工具条存放区域--%>
-    <script type="text/html" id="options">
-        <a class="layui-btn layui-btn-xs" lay-event="bindMenu">设置权限</a>
-    </script>
+    <table id="positionList" lay-filter="positionList"></table>
 </div>
 <script src="${pageContext.request.contextPath}/resources/plugin/layui/layui.js"></script>
 <script src="${pageContext.request.contextPath}/resources/plugin/vue/vue.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/plugin/vue/vue-resource.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/common.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/dept/dept.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/position/position.js"></script>
 </body>
 </html>
