@@ -11,18 +11,3 @@ i {
     padding: 5px;
     margin: 10px 0;
 }
-
-/* 更改layui样式*/
-.layui-form{
-    margin-top: 40px !important;
-}
-.layui-input, .layui-textarea{
-    width: 320px !important;
-}
-.layui-form-select{
-    width: 320px !important;
-}
-.go-back{
-    padding-left: 5px !important;
-    padding-right: 15px !important;
-}

@@ -3,6 +3,8 @@ package com.cqbbj.service;
 import com.cqbbj.core.base.BaseService;
 import com.cqbbj.entity.Dept;
 
+import java.util.List;
+
 /**
  * @author wangxy
  * @version 1.0
@@ -19,4 +21,12 @@ public interface IDeptService extends BaseService<Dept> {
      * @return
      */
     int bindMenu(Integer dept_id, Integer[] menu_ids);
+
+    /**
+     * 查询已经绑定的菜单
+     *
+     * @param id
+     * @return
+     */
+    List<Integer> queryBindMenu(Integer id);
 }

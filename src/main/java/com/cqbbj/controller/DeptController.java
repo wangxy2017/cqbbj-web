@@ -6,13 +6,18 @@ import com.cqbbj.core.base.Result;
 import com.cqbbj.core.util.CommUtils;
 import com.cqbbj.core.util.ResultUtils;
 import com.cqbbj.entity.Dept;
+import com.cqbbj.entity.Menu;
 import com.cqbbj.service.IDeptService;
+import com.cqbbj.service.IMenuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @author wangxy
@@ -27,6 +32,31 @@ public class DeptController extends BaseController {
 
     @Autowired
     private IDeptService deptService;// 部门业务
+
+    @Autowired
+    private IMenuService menuService;// 菜单业务
+
+    /**
+     * 跳转部门管理界面
+     *
+     * @return
+     */
+    @RequestMapping("/dept")
+    public String dept() {
+        log.debug("跳转dept页面");
+        return "dept/dept";
+    }
+
+    /**
+     * 部门绑定菜单页面跳转
+     *
+     * @return
+     */
+    @RequestMapping("/deptBindMenu")
+    public String deptBindMenu() {
+        log.debug("跳转deptBindMenu页面");
+        return "dept/deptBindMenu";
+    }
 
     /**
      * 新增部门
@@ -96,5 +126,27 @@ public class DeptController extends BaseController {
         Integer[] ids = CommUtils.toIntegerArray(menu_ids);
         deptService.bindMenu(dept_id, ids);
         return ResultUtils.success();
+    }
+
+    /**
+     * 查询绑定的菜单
+     *
+     * @param id
+     * @return
+     */
+    @RequestMapping("/queryBindMenu")
+    @ResponseBody
+    public Result queryBindMenu(Integer id) {
+        if (id == null) {
+            return ResultUtils.error();
+        }
+        // 查询已经绑定的菜单
+        List<Integer> menu_ids = deptService.queryBindMenu(id);
+        // 查询所有菜单
+        List<Menu> menus = menuService.queryAllMenu();
+        Map<String, Object> data = new HashMap<>();
+        data.put("menu_ids", menu_ids);
+        data.put("menus", menus);
+        return ResultUtils.success(data);
     }
 }

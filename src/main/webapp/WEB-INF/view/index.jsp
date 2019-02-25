@@ -40,7 +40,7 @@
         <div class="layui-side-scroll">
             <!-- 左侧导航区域 -->
             <ul class="layui-nav layui-nav-tree" lay-filter="menu" lay-shrink="all" v-if="menus.length">
-                <li class="layui-nav-item" v-for="menu in menus">
+                <li class="layui-nav-item" :class="index == 0 ?'layui-nav-itemed':''" v-for="(menu,index) in menus">
                     <a class="" href="javascript:;" :key="menu.id">{{ menu.name }}</a>
                     <dl class="layui-nav-child" v-for="child in menu.childs">
                         <dd><a href="javascript:;" :data-url="child.url" :key="child.id">{{ child.name }}</a></dd>

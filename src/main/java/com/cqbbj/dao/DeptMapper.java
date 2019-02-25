@@ -4,6 +4,7 @@ import com.cqbbj.core.base.BaseMapper;
 import com.cqbbj.entity.Dept;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -30,4 +31,12 @@ public interface DeptMapper extends BaseMapper<Dept> {
      * @return
      */
     int insertDeptMenu(Map<String, Object> params);
+
+    /**
+     * 查询已绑定的菜单
+     *
+     * @param id 角色ID
+     * @return
+     */
+    List<Integer> queryBindMenu(Integer id);
 }

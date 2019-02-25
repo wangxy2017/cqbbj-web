@@ -55,4 +55,9 @@
     <delete id="deleteDeptMenu" parameterType="int">
         delete from sys_dept_menu where dept_id = #{dept_id}
     </delete>
+
+    <!-- 查询已经绑定的菜单 -->
+    <select id="queryBindMenu" parameterType="int" resultType="int">
+        select menu_id from sys_dept_menu where dept_id = #{id}
+    </select>
 </mapper>
