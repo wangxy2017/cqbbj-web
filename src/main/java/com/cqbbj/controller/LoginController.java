@@ -12,7 +12,9 @@ import com.cqbbj.core.base.Result;
 import com.cqbbj.core.util.MD5Utils;
 import com.cqbbj.core.util.ResultUtils;
 import com.cqbbj.entity.Employee;
+import com.cqbbj.entity.Menu;
 import com.cqbbj.service.IEmployeeService;
+import com.cqbbj.service.IMenuService;
 import com.cqbbj.service.IOperationLogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -31,6 +33,29 @@ public class LoginController extends BaseController {
 
     @Autowired
     private IOperationLogService operationLogService;// 操作日志
+
+    @Autowired
+    private IMenuService menuService;// 菜单业务
+
+    /**
+     * 跳转首页
+     *
+     * @return
+     */
+    @RequestMapping("/index")
+    public String index() {
+        return "index";
+    }
+
+    /**
+     * 跳转欢迎界面
+     *
+     * @return
+     */
+    @RequestMapping("/welcome")
+    public String welcome() {
+        return "welcome";
+    }
 
     /**
      * 跳转登录界面
@@ -87,5 +112,19 @@ public class LoginController extends BaseController {
             operationLogService.saveEntity(createLog(request, "登录系统"));
         }
         return ResultUtils.success();
+    }
+
+    /**
+     * 查询登录信息
+     *
+     * @param request
+     * @return
+     */
+    @RequestMapping("/loginInfo")
+    @ResponseBody
+    public Result loginInfo(HttpServletRequest request) {
+        Employee loginUser = getLoginUser(request);
+        List<Menu> menus = menuService.queryMenuByDept(loginUser.getDept_id());
+        return ResultUtils.success(menus);
     }
 }

@@ -62,6 +62,7 @@
     <!-- 查询部门菜单 -->
     <select id="queryMenuByDept" parameterType="int" resultType="menu">
         select
+        m.id,
         m.name,
         m.url,
         m.icon,

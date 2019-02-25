@@ -1,0 +1,78 @@
+.login-bg {
+    z-index: -1;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: #2E363F;
+}
+
+.login-box {
+    z-index: 1;
+    position: absolute;
+    top: 200px;
+    left: calc(50% - 200px);
+    width: 400px;
+    background-color: #2E363F;
+}
+
+.login-box .login-text {
+    color: #808080;
+    text-align: center;
+    padding: 10px;
+}
+
+.login-box .login-text h1 {
+    color: #B2DFEE;
+    margin: 10px;
+}
+
+.login-box .login-form {
+    border-top: 1px solid #616161;
+    border-bottom: 1px solid #616161;
+    padding: 10px 5px;
+}
+
+.login-box .login-form .group {
+    margin-bottom: 10px;
+}
+
+.login-box .login-form .group label {
+    display: block;
+    color: #B2DFEE;
+}
+
+.login-box .login-form .group .input-box {
+    margin-top: 5px;
+    height: 36px;
+}
+
+.login-box .login-form .group .input-box span {
+    float: left;
+    display: block;
+    width: 40px;
+    height: 36px;
+    line-height: 36px;
+    text-align: center;
+    color: #fff;
+    font-size: 18px;
+}
+
+.login-box .login-form .group .input-box input {
+    float: left;
+    width: 324px;
+    height: 36px;
+    line-height: 36px;
+    border: none;
+    outline: none;
+    padding: 0 12px;
+}
+
+.login-box .login-form .actions {
+    margin: 10px 0;
+}
+
+.error {
+    color: red;
+}
