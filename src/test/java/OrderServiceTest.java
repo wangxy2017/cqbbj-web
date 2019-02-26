@@ -34,7 +34,6 @@ public class OrderServiceTest {
             order.setPrice(1000.00D);
             order.setBeginTime(new Date());
             order.setContent("武当" + i + "侠");
-            order.setIs_notice(1);
             order.setStartMap("123" + i);
             order.setEndMap("213" + i);
 

@@ -87,7 +87,7 @@ public class OrderController extends BaseController {
         // 记录日志
         operationLogService.saveEntity(createLog(request, "新增订单：" + order.getOrder_no()));
         if (isNotice != null && isNotice == 1) {
-            // 发送短信
+            log.debug("发送短信");
         }
         return ResultUtils.success();
     }
