@@ -22,7 +22,7 @@
         name,
         phone,
         createTime,
-        cust_No
+        cust_no
     </sql>
     <!-- 保存客户 -->
     <insert id="save" parameterType="customer" useGeneratedKeys="true" keyProperty="id">
@@ -46,7 +46,7 @@
         update sys_customer set deleteStatus = 1 where id = #{id}
     </update>
     <!-- 查询客户列表 -->
-    <select id="queryList" resultType="customer" parameterType="customer">
+    <select id="queryList" resultType="customer" >
         select <include refid="query_all_fields"></include> from sys_customer where deleteStatus = 0
     </select>
     <!-- 根据对象属性查询 -->

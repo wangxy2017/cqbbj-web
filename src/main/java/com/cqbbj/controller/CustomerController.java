@@ -30,6 +30,12 @@ public class CustomerController extends BaseController {
     @Autowired
     private IOperationLogService operationLogService;// 操作日志
 
+
+    @RequestMapping("/customer")
+    public  String  customer(){
+        //logger.debug("跳转customer页面");
+        return "/customer/customer";
+    }
     /**
      * 修改客户
      *
@@ -41,8 +47,7 @@ public class CustomerController extends BaseController {
     public Result update(HttpServletRequest request, Customer customer) {
         customerService.updateEntity(customer);
         // 记录日志
-        operationLogService.saveEntity(
-                createLog(request, "修改客户【" + customer.getName() + "】信息"));
+        operationLogService.saveEntity(createLog(request, "修改客户【" + customer.getName() + "】信息"));
         return ResultUtils.success();
     }
 
