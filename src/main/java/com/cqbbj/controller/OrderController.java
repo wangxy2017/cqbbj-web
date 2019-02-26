@@ -5,13 +5,11 @@ import com.cqbbj.core.base.PageModel;
 import com.cqbbj.core.base.Result;
 import com.cqbbj.core.util.CommUtils;
 import com.cqbbj.core.util.ResultUtils;
+import com.cqbbj.entity.CompanyInfo;
 import com.cqbbj.entity.Customer;
 import com.cqbbj.entity.Order;
 import com.cqbbj.entity.SendOrder;
-import com.cqbbj.service.ICustomerService;
-import com.cqbbj.service.IOperationLogService;
-import com.cqbbj.service.IOrderService;
-import com.cqbbj.service.ISendOrderService;
+import com.cqbbj.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -44,6 +42,20 @@ public class OrderController extends BaseController {
 
     @Autowired
     private IOperationLogService operationLogService;// 操作日志
+
+    @Autowired
+    private ICompanyInfoService companyInfoService;// 配置信息
+
+
+    /**
+     * 添加订单界面跳转
+     *
+     * @return
+     */
+    @RequestMapping("/orderAdd")
+    public String orderAdd() {
+        return "/order/orderAdd";
+    }
 
     /**
      * 新增订单
@@ -192,5 +204,17 @@ public class OrderController extends BaseController {
         // 记录日志
         operationLogService.saveEntity(createLog(request, "辅助完成订单：" + order.getOrder_no()));
         return ResultUtils.success();
+    }
+
+    /**
+     * 查询配置信息
+     *
+     * @return
+     */
+    @RequestMapping("/queryConfig")
+    @ResponseBody
+    public Result addInfo() {
+        CompanyInfo companyInfo = companyInfoService.queryById(1);
+        return ResultUtils.success(companyInfo);
     }
 }

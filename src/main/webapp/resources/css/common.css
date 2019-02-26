@@ -11,3 +11,8 @@ i {
     padding: 5px;
     margin: 10px 0;
 }
+/* 必填样式 */
+.required{
+    color: red;
+    margin-right: 5px;
+}
