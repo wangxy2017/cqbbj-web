@@ -36,7 +36,7 @@ layui.use(["form", "layer"], function () {
                 // console.log(res.body);
                 // 加载数据
                 if (res.body.code == 1) {
-                    main.customer = res.body.customer;
+                    main.customer = res.body.data;
                     this.$nextTick(function () {
                         // 重新渲染表单
                         form.render();
