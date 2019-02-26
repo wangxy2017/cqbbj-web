@@ -20,15 +20,21 @@
     <%-- 工具栏 --%>
     <div class="layui-btn-container">
 
-        <button class="layui-btn layui-btn-normal" @click="updateCustomer">修改客户信息</button>
-        <button class="layui-btn layui-btn-danger" @click="deleteCustomer">删除客户信息</button>
+        <button class="layui-btn layui-btn-normal" @click="updateCustomer">修改客户</button>
+        <button class="layui-btn layui-btn-danger" @click="deleteCustomer">删除客户</button>
     </div>
         <div class="search-tools">
-
+            客户账号：
             <div class="layui-inline">
-                客户账号： <input class="layui-input" name="searchNo"autocomplete="off"  v-model="searchNo">
-                姓名： <input class="layui-input" name="searchName"autocomplete="off"  v-model="searchName">
-                微信名称： <input class="layui-input" name="searchWX"autocomplete="off"  v-model="searchWX">
+                <input class="layui-input" name="searchNo"autocomplete="off"  v-model="searchNo">
+            </div>
+            姓名：
+            <div class="layui-inline">
+                 <input class="layui-input" name="searchName"autocomplete="off"  v-model="searchName">
+            </div>
+            微信名称：
+            <div class="layui-inline">
+                 <input class="layui-input" name="searchWX"autocomplete="off"  v-model="searchWX">
             </div>
             <button class="layui-btn" @click="search">搜索</button>
         </div>

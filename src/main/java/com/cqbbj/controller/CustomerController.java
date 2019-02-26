@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * @author wangxy
@@ -30,11 +31,38 @@ public class CustomerController extends BaseController {
     @Autowired
     private IOperationLogService operationLogService;// 操作日志
 
-
+    /**
+     * 跳转customer页面
+     * @return
+     */
     @RequestMapping("/customer")
     public  String  customer(){
         //logger.debug("跳转customer页面");
         return "/customer/customer";
+    }
+
+    /**
+     * 跳转customer修改页面
+     * @param id
+     * @return
+     */
+    @RequestMapping("/customerUpdate")
+    public  String customerUpdate(String id){
+
+        return "/customer/customerUpdate";
+    }
+
+    /**
+     * 根据ID查询客户信息
+     * @param id
+     * @return
+     */
+    @RequestMapping("/queryById")
+    @ResponseBody
+    public  Result queryById(Integer id){
+      Customer customer= customerService.queryById(id);
+
+        return   ResultUtils.success(customer);
     }
     /**
      * 修改客户

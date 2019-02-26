@@ -13,7 +13,7 @@
     <title>Title</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/plugin/layui/css/layui.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/employee/customerUpdate.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/customer/customerUpdate.css">
 </head>
 <body>
 <div class="main" id="main" data-id="<%= request.getParameter("id")%>">
@@ -22,7 +22,7 @@
         <i class="layui-icon">&#xe603;</i>返回
     </a>
     <%-- 表单区域 --%>
-    <form class="layui-form" action="" v-if="employee">
+    <form class="layui-form" action="" v-if="customer">
         <div class="layui-form-item layui-hide">
             <%-- 表单隐藏区域 --%>
             <input type="hidden" name="id" v-model="customer.id">
@@ -55,7 +55,7 @@
         <div class="layui-form-item">
             <label class="layui-form-label">客户账号</label>
             <div class="layui-input-block">
-                <input type="text" name="account" required lay-verify="required" placeholder="请设置账号"
+                <input type="text" name="account" required lay-verify="required" placeholder="请客户账号"
                        autocomplete="off"
                        class="layui-input" v-model="customer.cust_no">
             </div>
@@ -72,7 +72,7 @@
     <script src="${pageContext.request.contextPath}/resources/plugin/layui/layui.js"></script>
     <script src="${pageContext.request.contextPath}/resources/plugin/vue/vue.min.js"></script>
     <script src="${pageContext.request.contextPath}/resources/plugin/vue/vue-resource.min.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/js/employee/employeeUpdate.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/js/customer/customerUpdate.js"></script>
 </div>
 </body>
 </html>

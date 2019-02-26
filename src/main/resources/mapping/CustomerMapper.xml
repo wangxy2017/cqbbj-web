@@ -49,6 +49,10 @@
     <select id="queryList" resultType="customer" >
         select <include refid="query_all_fields"></include> from sys_customer where deleteStatus = 0
     </select>
+    <!-- 查询客户列表 -->
+    <select id="queryById" resultType="customer"  parameterType="int">
+        select <include refid="query_all_fields"></include> from sys_customer where id=#{id}
+    </select>
     <!-- 根据对象属性查询 -->
     <select id="queryByProperties" parameterType="customer" resultType="customer">
         select * from sys_customer where deleteStatus = 0
