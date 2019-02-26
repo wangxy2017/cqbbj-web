@@ -21,11 +21,11 @@
 
 /* 选项样式 */
 .item {
-    width: 80px;
+    width: 60px;
     display: block;
-    height: 38px;
-    line-height: 38px;
-    padding: 0 18px;
+    height: 36px;
+    line-height: 36px;
+    padding: 0 10px;
     white-space: nowrap;
     text-align: center;
     font-size: 14px;

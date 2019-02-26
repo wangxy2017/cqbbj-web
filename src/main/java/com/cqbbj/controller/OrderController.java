@@ -65,7 +65,7 @@ public class OrderController extends BaseController {
      */
     @RequestMapping("/save")
     @ResponseBody
-    public Result save(HttpServletRequest request, Order order) {
+    public Result save(HttpServletRequest request, Order order, Integer isNotice) {
         // 保存用户
         Customer customer = customerService.queryByPhone(order.getPhone());
         if (customer == null) {
@@ -86,6 +86,9 @@ public class OrderController extends BaseController {
         orderService.saveEntity(order);
         // 记录日志
         operationLogService.saveEntity(createLog(request, "新增订单：" + order.getOrder_no()));
+        if (isNotice != null && isNotice == 1) {
+            // 发送短信
+        }
         return ResultUtils.success();
     }
 

@@ -60,15 +60,15 @@ To change this template use File | Settings | File Templates.
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">搬运备注</label>
-            <div class="layui-input-inline" style="width: 520px;">
-                <textarea id="remark" name="remark" placeholder="请输入内容" class="layui-textarea"></textarea>
+            <div class="layui-input-inline" style="width: 500px;">
+                <textarea id="content" name="content" placeholder="请输入内容" class="layui-textarea"></textarea>
                 <div id="items" style=""></div>
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">短信提醒</label>
             <div class="layui-input-inline">
-                <input type="checkbox" name="is_notice" title="是否发送短信，提醒客户" lay-skin="primary">
+                <input type="checkbox" name="isNotice" value="1" title="是否发送短信，提醒客户" lay-skin="primary">
             </div>
         </div>
         <div class="layui-form-item">

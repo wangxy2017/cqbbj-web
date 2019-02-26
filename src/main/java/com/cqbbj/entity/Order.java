@@ -42,10 +42,6 @@ public class Order extends BaseEntity {
      */
     private String content;
     /**
-     * 短信提醒 0：提醒 1：不提醒
-     */
-    private Integer is_notice;
-    /**
      * 订单状态 0：未派单 1：已派单 2：已完成 3：已取消
      */
     private Integer status;
@@ -165,14 +161,6 @@ public class Order extends BaseEntity {
 
     public void setContent(String content) {
         this.content = content;
-    }
-
-    public Integer getIs_notice() {
-        return is_notice;
-    }
-
-    public void setIs_notice(Integer is_notice) {
-        this.is_notice = is_notice;
     }
 
     public Integer getStatus() {

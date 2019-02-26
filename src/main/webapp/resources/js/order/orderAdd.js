@@ -24,15 +24,15 @@ layui.use(["jquery", "form", "layer", "laydate"], function () {
                     // 绑定点击事件
                     $("#items .item").on("click", function () {
                         var text = $(this).text() + "/";
-                        var remark = $("#remark").val();
+                        var content = $("#content").val();
                         if ($(this).hasClass("active")) {
                             $(this).removeClass("active");
-                            if (remark.indexOf(text) != -1)
-                                $("#remark").val(remark.replace(text, ""));
+                            if (content.indexOf(text) != -1)
+                                $("#content").val(content.replace(text, ""));
                         } else {
                             $(this).addClass("active");
-                            if (remark.indexOf(text) == -1)
-                                $("#remark").val(remark + text);
+                            if (content.indexOf(text) == -1)
+                                $("#content").val(content + text);
                         }
                     });
                 }
