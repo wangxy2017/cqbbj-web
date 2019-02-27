@@ -34,14 +34,22 @@ To change this template use File | Settings | File Templates.
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label"><i class="required">*</i>搬出地址</label>
-            <div class="layui-input-inline">
-                <input type="text" name="start" required lay-verify="required" placeholder="模糊地址检索" autocomplete="off"
+            <div class="layui-input-inline" style="position: relative">
+                <input type="text" id="start" name="start" required lay-verify="required" placeholder="模糊地址检索"
+                       autocomplete="off"
                        class="layui-input">
+                <dl id="startResult" class="search-list">
+                </dl>
+                <input type="hidden" id="startMap" name="startMap">
             </div>
             <label class="layui-form-label"><i class="required">*</i>搬入地址</label>
-            <div class="layui-input-inline">
-                <input type="text" name="end" required lay-verify="required" placeholder="模糊地址检索" autocomplete="off"
+            <div class="layui-input-inline" style="position: relative">
+                <input type="text" id="end" name="end" required lay-verify="required" placeholder="模糊地址检索"
+                       autocomplete="off"
                        class="layui-input">
+                <dl id="endResult" class="search-list">
+                </dl>
+                <input type="hidden" id="endMap" name="endMap">
             </div>
         </div>
         <div class="layui-form-item">
@@ -78,7 +86,10 @@ To change this template use File | Settings | File Templates.
             </div>
         </div>
     </form>
+    <div id="baiduMap"></div>
     <script src="${pageContext.request.contextPath}/resources/plugin/layui/layui.js"></script>
+    <script type="text/javascript"
+            src="http://api.map.baidu.com/api?v=3.0&ak=aRGbzueRRGEY2RRS1RQTPIzVz16lnjkn"></script>
     <script src="${pageContext.request.contextPath}/resources/js/order/orderAdd.js"></script>
 </div>
 </body>

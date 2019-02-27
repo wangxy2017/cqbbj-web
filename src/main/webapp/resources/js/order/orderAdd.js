@@ -69,7 +69,62 @@ layui.use(["jquery", "form", "layer", "laydate"], function () {
      */
     laydate.render({
         elem: '#beginTime',
-        type:'datetime',
+        type: 'datetime',
         btns: ['clear', 'confirm']
     });
+    // 百度地图API功能
+    var map = new BMap.Map("baiduMap");
+    map.centerAndZoom(new BMap.Point(116.404, 39.915), 11);
+
+    initSearchMap(map, $("#start"), $("#startResult"), $("#startMap"));
+    initSearchMap(map, $("#end"), $("#endResult"), $("#endMap"));
+
+    /**
+     * 初始化搜索控件
+     * @param map
+     * @param input
+     * @param result
+     */
+    function initSearchMap(map, input, result, inputMap) {
+        var _map = map;
+        var _input = $(input);
+        var _result = $(result);
+        var _inputMap = $(inputMap);
+        var local = new BMap.LocalSearch(_map, {
+            onSearchComplete: function (results) {
+                // 判断状态是否正确
+                if (local.getStatus() == BMAP_STATUS_SUCCESS) {
+                    var html = "";
+                    for (var i = 0; i < results.getCurrentNumPois(); i++) {
+                        var position = results.getPoi(i);
+                        // console.log(position);
+                        html += "<dd class='search-result' data-lng='" + position.point.lng + "' data-lat='" + position.point.lat + "'><span>" + position.title + "</span><i>" + position.address + "</i></dd>";
+                    }
+                    _result.empty().append(html).show();
+                    // 绑定点击事件
+                    _result.find("dd").on("click", function () {
+                        var _this = $(this);
+                        _input.val(_this.find("span").text());
+                        _inputMap.val(_this.attr("data-lng") + "," + _this.attr("data-lat"));
+                        _result.hide();
+                    });
+                }
+            }
+        });
+        // 绑定搜索
+        var flag = true;
+        _input.on("compositionstart", function () {
+            flag = false;
+        });
+        _input.on("compositionend", function () {
+            flag = true;
+        });
+        _input.on("input", function () {
+            setTimeout(function () {
+                if (flag) {
+                    local.search("重庆市" + _input.val());
+                }
+            }, 0);
+        });
+    }
 });
