@@ -267,4 +267,24 @@ public class OrderController extends BaseController {
         operationLogService.saveEntity(log);
         return ResultUtils.success();
     }
+
+    /**
+     * 恢复订单
+     *
+     * @param request
+     * @param id
+     * @return
+     */
+    @RequestMapping("/recover")
+    @ResponseBody
+    public Result recover(HttpServletRequest request, Integer id) {
+        // 恢复订单
+        Order order = orderService.queryById(id);
+        order.setStatus(0);
+        orderService.updateEntity(order);
+        // 记录日志
+        OperationLog log = createLog(request, "恢复订单：" + order.getOrder_no());
+        operationLogService.saveEntity(log);
+        return ResultUtils.success();
+    }
 }
