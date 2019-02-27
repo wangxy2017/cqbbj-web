@@ -65,7 +65,7 @@ public class OrderController extends BaseController {
      */
     @RequestMapping("/save")
     @ResponseBody
-    public Result save(HttpServletRequest request, Order order, Integer isNotice) {
+    public Result save(HttpServletRequest request, Order order, Integer isNotice) throws Exception {
         // 保存用户
         Customer customer = customerService.queryByPhone(order.getPhone());
         if (customer == null) {
