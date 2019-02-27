@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * @author wangxy
@@ -31,6 +32,38 @@ public class CustomerController extends BaseController {
     private IOperationLogService operationLogService;// 操作日志
 
     /**
+     * 跳转customer页面
+     * @return
+     */
+    @RequestMapping("/customer")
+    public  String  customer(){
+        //logger.debug("跳转customer页面");
+        return "/customer/customer";
+    }
+
+    /**
+     * 跳转customer修改页面
+     * @param id
+     * @return
+     */
+    @RequestMapping("/customerUpdate")
+    public  String customerUpdate(String id){
+        return "/customer/customerUpdate";
+    }
+
+    /**
+     * 根据ID查询客户信息
+     * @param id
+     * @return
+     */
+    @RequestMapping("/queryById")
+    @ResponseBody
+    public  Result queryById(Integer id){
+      Customer customer= customerService.queryById(id);
+      System.out.println(customer);
+        return   ResultUtils.success(customer);
+    }
+    /**
      * 修改客户
      *
      * @param customer
@@ -41,8 +74,7 @@ public class CustomerController extends BaseController {
     public Result update(HttpServletRequest request, Customer customer) {
         customerService.updateEntity(customer);
         // 记录日志
-        operationLogService.saveEntity(
-                createLog(request, "修改客户【" + customer.getName() + "】信息"));
+        operationLogService.saveEntity(createLog(request, "修改客户【" + customer.getName() + "】信息"));
         return ResultUtils.success();
     }
 
@@ -69,8 +101,23 @@ public class CustomerController extends BaseController {
      */
     @RequestMapping("/deleteActive")
     @ResponseBody
-    public Result deleteActive(HttpServletRequest request, Integer id) {
+    public Result deleteActive(HttpServletRequest request,  Integer id) {
         customerService.deleteEntityActive(id);
+        // 记录日志
+        operationLogService.saveEntity(
+                createLog(request, "删除客户"));
+        return ResultUtils.success();
+    }
+    /**
+     * 批量逻辑删除客户
+     *
+     * @param ids
+     * @return
+     */
+    @RequestMapping("/deleteActiveBatch")
+    @ResponseBody
+    public Result deleteActiveBatch(HttpServletRequest request,  String ids) {
+        customerService.deleteEntityBatch(ids);
         // 记录日志
         operationLogService.saveEntity(
                 createLog(request, "删除客户"));

@@ -19,4 +19,9 @@ public interface ICustomerService extends BaseService<Customer> {
      */
     Customer queryByPhone(String phone);
 
+    /**
+     * 批量删除
+     * @param id
+     */
+    void deleteEntityBatch(String ids);
 }
