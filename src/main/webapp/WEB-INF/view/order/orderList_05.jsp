@@ -13,7 +13,7 @@
     <title>Title</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/plugin/layui/css/layui.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/order/orderList_02.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/order/orderList_05.css">
 </head>
 <body>
 <div class="main" id="main">
@@ -39,15 +39,13 @@
     <table id="orderList" lay-filter="orderList"></table>
     <%-- 工具条存放区域--%>
     <script type="text/html" id="options">
-        <a class="layui-btn layui-btn-xs" lay-event="dispatch">派单</a>
-        <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="update">修改</a>
-        <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="cancel">取消</a>
+        <a class="layui-btn layui-btn-warm layui-btn-xs" lay-event="recover">恢复</a>
     </script>
 </div>
 <script src="${pageContext.request.contextPath}/resources/plugin/layui/layui.js"></script>
 <script src="${pageContext.request.contextPath}/resources/plugin/vue/vue.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/plugin/vue/vue-resource.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/common.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/order/orderList_02.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/order/orderList_05.js"></script>
 </body>
 </html>

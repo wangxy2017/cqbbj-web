@@ -10,10 +10,16 @@ layui.use(["table", "layer", "laydate"], function () {
         data: {
             order_no: "",
             name: "",
-            beginTime1: "",
-            beginTime2: ""
+            createTime1: "",
+            createTime2: ""
         },
         methods: {
+            /**
+             * 添加员工
+             */
+            addOrder: function () {
+                window.location.href = "/order/orderAdd";
+            },
             /**
              * 搜索
              */
@@ -22,8 +28,8 @@ layui.use(["table", "layer", "laydate"], function () {
                     where: {
                         "name": main.name,
                         "order_no": main.order_no,
-                        "beginTime1": main.beginTime1,
-                        "beginTime2": main.beginTime2
+                        "createTime1": main.createTime1,
+                        "createTime2": main.createTime2
                     }
                 });
             },
@@ -62,19 +68,19 @@ layui.use(["table", "layer", "laydate"], function () {
                         , {field: 'content', title: '备注'}
                         , {field: 'price', title: '预估起价'}
                         , {
-                            field: 'beginTime', title: '预约时间', templet: function (d) {
-                                return formatDateTime(d.beginTime);
+                            field: 'createTime', title: '下单时间', templet: function (d) {
+                                return formatDateTime(d.createTime);
                             }
                         }
-                        , {title: '操作', fixed: 'right', align: 'center', toolbar: '#options',width:160}
+                        , {title: '操作', fixed: 'right', align: 'center', toolbar: '#options', width: 120}
                     ]]
                 });
                 // 初始化时间插件
                 laydate.render({
-                    elem: '#beginTime1'
+                    elem: '#createTime1'
                 });
                 laydate.render({
-                    elem: '#beginTime2'
+                    elem: '#createTime2'
                 });
                 // 监听工具条
                 table.on('tool(orderList)', function (obj) {
