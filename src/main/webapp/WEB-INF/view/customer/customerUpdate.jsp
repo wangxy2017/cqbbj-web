@@ -47,7 +47,7 @@
         <div class="layui-form-item">
             <label class="layui-form-label">客户账号</label>
             <div class="layui-input-block">
-                <input type="text" name="account" required lay-verify="required" placeholder="请客户账号"
+                <input type="text" name="cust_no" required lay-verify="required" placeholder="请客户账号"
                        autocomplete="off"
                        class="layui-input" v-model="customer.cust_no">
             </div>
