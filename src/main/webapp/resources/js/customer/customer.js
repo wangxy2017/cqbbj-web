@@ -34,22 +34,24 @@ layui.use(["table", "layer"], function () {
             deleteCustomer: function () {
                 // 获取选中行数据
                 var checkStatus = table.checkStatus("customerList");
+
                 if (checkStatus.data.length == 0) {
-                    layer.msg("请选择一行数据");
+                    layer.msg("请至少选择一行数据");
                     return;
                 }
-                if (checkStatus.data.length > 1) {
-                    layer.msg("请单独选择一条进行删除");
-                    return;
+                var item="";
+                for(var i=0;i<checkStatus.data.length;i++){
+                    item = item+checkStatus.data[i].id+",";
                 }
+
                 layer.confirm("删除客户将放入回收站，确认删除吗？", function () {
                     // 请求后台，删除数据
-                    main.$http.post('/customer/deleteActive', {"id": checkStatus.data[0].id}, {emulateJSON: true}).then(function (res) {
+                    main.$http.post('/customer/deleteActiveBatch', {"ids": item.substring(0,item.length-1)}, {emulateJSON: true}).then(function (res) {
                         console.log(res.body);
                         if (res.body.code == 1) {
                             layer.msg("删除成功");
                             // 刷新列表
-                            table.reload("employeeList");
+                            table.reload("customerList");
                         } else {
                             layer.msg("删除失败");
                         }
@@ -91,7 +93,6 @@ layui.use(["table", "layer"], function () {
             , {field: 'phone', title: '客户电话'}
             , {field: 'wxname', title: '微信昵称'}
             , {field: 'name', title: '客户姓名'}
-            , {field: 'sex', title: '性别'}
             , {
                 field: 'createTime', title: '注册时间', sort: true, templet: function (d) {
                     return formatDateTime(d.createTime);

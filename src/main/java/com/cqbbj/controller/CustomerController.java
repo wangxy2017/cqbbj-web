@@ -48,7 +48,6 @@ public class CustomerController extends BaseController {
      */
     @RequestMapping("/customerUpdate")
     public  String customerUpdate(String id){
-
         return "/customer/customerUpdate";
     }
 
@@ -61,7 +60,7 @@ public class CustomerController extends BaseController {
     @ResponseBody
     public  Result queryById(Integer id){
       Customer customer= customerService.queryById(id);
-
+      System.out.println(customer);
         return   ResultUtils.success(customer);
     }
     /**
@@ -102,8 +101,23 @@ public class CustomerController extends BaseController {
      */
     @RequestMapping("/deleteActive")
     @ResponseBody
-    public Result deleteActive(HttpServletRequest request, Integer id) {
+    public Result deleteActive(HttpServletRequest request,  Integer id) {
         customerService.deleteEntityActive(id);
+        // 记录日志
+        operationLogService.saveEntity(
+                createLog(request, "删除客户"));
+        return ResultUtils.success();
+    }
+    /**
+     * 批量逻辑删除客户
+     *
+     * @param ids
+     * @return
+     */
+    @RequestMapping("/deleteActiveBatch")
+    @ResponseBody
+    public Result deleteActiveBatch(HttpServletRequest request,  String ids) {
+        customerService.deleteEntityBatch(ids);
         // 记录日志
         operationLogService.saveEntity(
                 createLog(request, "删除客户"));

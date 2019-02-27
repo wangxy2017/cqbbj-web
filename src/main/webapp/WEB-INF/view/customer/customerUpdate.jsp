@@ -43,15 +43,7 @@
                        class="layui-input" v-model="customer.phone">
             </div>
         </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label">性别</label>
-            <div class="layui-input-block">
-                <input type="radio" name="sex" value="0" title="男" v-model="customer.sex">
-                <input type="radio" name="sex" value="1" title="女" v-model="customer.sex">
-            </div>
-            <span v-text="text"></span>
-            <div v-html="html"></div>
-        </div>
+
         <div class="layui-form-item">
             <label class="layui-form-label">客户账号</label>
             <div class="layui-input-block">

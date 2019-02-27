@@ -6,7 +6,7 @@ layui.use(["form", "layer"], function () {
     var main = new Vue({
         el: "#main",
         data: {
-        customer:""
+        customer:null
 
         },
         methods: {
@@ -33,7 +33,7 @@ layui.use(["form", "layer"], function () {
         },
         mounted: function () {
             this.$http.post("/customer/queryById", {"id": document.getElementById("main").getAttribute("data-id")}, {emulateJSON: true}).then(function (res) {
-                // console.log(res.body);
+                console.log(res.body);
                 // 加载数据
                 if (res.body.code == 1) {
                     main.customer = res.body.data;

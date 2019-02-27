@@ -34,7 +34,7 @@
             </div>
             微信名称：
             <div class="layui-inline">
-                 <input class="layui-input" name="searchWX"autocomplete="off"  v-model="searchWX">
+                 <input class="layui-input" name="searchWX" autocomplete="off"  v-model="searchWX">
             </div>
             <button class="layui-btn" @click="search">搜索</button>
         </div>

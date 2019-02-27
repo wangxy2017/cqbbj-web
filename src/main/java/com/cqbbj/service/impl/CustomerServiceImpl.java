@@ -62,7 +62,7 @@ public class CustomerServiceImpl implements ICustomerService {
 
     @Override
     public Customer queryById(Integer id) {
-        return null;
+        return customerMapper.queryById(id);
     }
 
     @Override
@@ -70,5 +70,11 @@ public class CustomerServiceImpl implements ICustomerService {
         Customer customer = new Customer();
         customer.setPhone(phone);
         return customerMapper.queryByProperties(customer);
+    }
+
+    @Override
+    public void deleteEntityBatch(String ids) {
+       String[] array=ids.split(",");
+        customerMapper.deleteActiveBatch(array);
     }
 }

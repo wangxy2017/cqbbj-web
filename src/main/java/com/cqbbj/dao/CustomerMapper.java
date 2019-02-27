@@ -14,4 +14,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface CustomerMapper extends BaseMapper<Customer> {
 
+    void deleteActiveBatch(String[] id);
 }

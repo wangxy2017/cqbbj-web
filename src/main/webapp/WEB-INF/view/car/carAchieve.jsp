@@ -19,35 +19,20 @@
 <div class="main" id="main">
     <%-- 工具栏 --%>
     <div class="layui-btn-container">
-        <button class="layui-btn" @click="addCar">增加汽车</button>
-        <button class="layui-btn layui-btn-normal" @click="updateCar">修改汽车</button>
-        <button class="layui-btn layui-btn-danger" @click="deleteCar">删除汽车</button>
+        <button class="layui-btn" @click="addDept">增加客户</button>
+        <button class="layui-btn layui-btn-normal" @click="updateDept">修改客户</button>
+        <button class="layui-btn layui-btn-danger" @click="deleteDept">删除客户</button>
     </div>
-</div>
-<div class="search-tools">
-    车牌号：
-    <div class="layui-inline">
-        <input class="layui-input" name="searchNo"autocomplete="off"  v-model="searchNo">
-    </div>
-    品牌型号：
-    <div class="layui-inline">
-        <input class="layui-input" name="searchName"autocomplete="off"  v-model="searchName">
-    </div>
-    车辆编号：
-    <div class="layui-inline">
-        <input class="layui-input" name="searchWX" autocomplete="off"  v-model="searchWX">
-    </div>
-    <button class="layui-btn" @click="search">搜索</button>
-
-    <table id="carList" lay-filter="carList"></table>
+    <table id="deptList" lay-filter="deptList"></table>
     <%-- 工具条存放区域--%>
-
-</div>
+    <script type="text/html" id="options">
+        <a class="layui-btn layui-btn-xs" lay-event="bindMenu">设置权限</a>
+    </script>
 </div>
 <script src="${pageContext.request.contextPath}/resources/plugin/layui/layui.js"></script>
 <script src="${pageContext.request.contextPath}/resources/plugin/vue/vue.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/plugin/vue/vue-resource.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/common.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/car/car.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/dept/car.js"></script>
 </body>
 </html>

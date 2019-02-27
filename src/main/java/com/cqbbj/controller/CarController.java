@@ -33,6 +33,36 @@ public class CarController extends BaseController {
     private IOperationLogService operationLogService;// 操作日志
 
     /**
+     * 车辆页面
+     * @param
+     * @param
+     * @return
+     */
+    @RequestMapping("/car")
+    public String car(){
+        return "/car/car";
+    }
+    /**
+     * 车辆修改页面
+     * @param
+     * @param
+     * @return
+     */
+    @RequestMapping("/carUpdate")
+    public String carUpdate(){
+        return "/car/carUpdate";
+    }
+    /**
+     * 车辆修改页面
+     * @param
+     * @param
+     * @return
+     */
+    @RequestMapping("/carAchieve")
+    public String carAchieve(){
+        return "/car/carAchieve";
+    }
+    /**
      * 新增车辆
      *
      * @param car

@@ -9,13 +9,13 @@ layui.use(["table", "layer"], function () {
         data: {},
         methods: {
             // 添加员工
-            addEmployee: function () {
-                window.location.href = "/employee/employeeAdd";
+            addCar: function () {
+                window.location.href = "/car/carAdd";
             },
             // 修改员工
-            updateEmployee: function () {
+            updateCar: function () {
                 // 获取选中行数据
-                var checkStatus = table.checkStatus('employeeList');
+                var checkStatus = table.checkStatus('carList');
                 if (checkStatus.data.length == 0) {
                     layer.msg("请选择一行进行修改");
                     return;
@@ -25,12 +25,12 @@ layui.use(["table", "layer"], function () {
                     return;
                 }
                 // 跳转修改界面
-                window.location.href = "/employee/employeeUpdate?id=" + checkStatus.data[0].id;
+                window.location.href = "/car/carUpdate?id=" + checkStatus.data[0].id;
             },
             // 删除员工
-            deleteEmployee: function () {
+            deleteCar: function () {
                 // 获取选中行数据
-                var checkStatus = table.checkStatus("employeeList");
+                var checkStatus = table.checkStatus("carList");
                 if (checkStatus.data.length == 0) {
                     layer.msg("请选择一行数据");
                     return;
@@ -41,12 +41,12 @@ layui.use(["table", "layer"], function () {
                 }
                 layer.confirm("删除员工将放入回收站，确认删除吗？", function () {
                     // 请求后台，删除数据
-                    main.$http.post('/employee/deleteActive', {"id": checkStatus.data[0].id}, {emulateJSON: true}).then(function (res) {
+                    main.$http.post('/car/deleteActive', {"id": checkStatus.data[0].id}, {emulateJSON: true}).then(function (res) {
                         console.log(res.body);
                         if (res.body.code == 1) {
                             layer.msg("删除成功");
                             // 刷新列表
-                            table.reload("employeeList");
+                            table.reload("carList");
                         } else {
                             layer.msg("删除失败");
                         }
@@ -62,9 +62,9 @@ layui.use(["table", "layer"], function () {
      * 加载数据
      */
     table.render({
-        elem: "#employeeList",
-        id: "employeeList",
-        url: "/employee/queryPageList",
+        elem: "#carList",
+        id: "carList",
+        url: "/car/queryPageList",
         page: true,
         where: {},
         parseData: function (res) {
@@ -84,14 +84,23 @@ layui.use(["table", "layer"], function () {
         },
         cols: [[
             {type: 'checkbox'}
-            , {field: 'name', title: '员工姓名'}
-            , {field: 'phone', title: '手机号'}
-            , {field: 'account', title: '登录账号'}
-            , {field: 'password', title: '密码'}
-            , {field: 'sex', title: '性别'}
-            , {field: 'is_disabled', title: '启用状态'}
-            , {field: 'dept_id', title: '所属部门'}
-            , {field: 'position_id', title: '所属职位'}
+            , {field: 'license', title: '车牌号'}
+            , {field: 'brand', title: 'brand'}
+            , {field: 'vin', title: '车架号'}
+            , {field: 'car_no', title: '车辆编号'}
+            , {field: 'emp_no', title: '默认司机'}
+            , {field: 'status', title: '车辆状态'}
+            , {field: 'carType', title: '车辆类型'}
+            , {field: 'engine', title: '发动机号'}
+            , {field: 'purchase_date', title: '采购日期', sort: true, templet: function (d) {
+                    return formatDateTime(d.examined_date);
+                }}
+            , {field: 'insurance_date', title: '保险到期', sort: true, templet: function (d) {
+                    return formatDateTime(d.insurance_date);
+                }}
+            , {field: 'examined_date', title: '年审到期', sort: true, templet: function (d) {
+                    return formatDateTime(d.examined_date);
+                }}
             , {
                 field: 'createTime', title: '创建时间', sort: true, templet: function (d) {
                     return formatDateTime(d.createTime);
