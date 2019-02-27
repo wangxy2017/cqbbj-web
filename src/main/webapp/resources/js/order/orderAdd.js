@@ -55,7 +55,7 @@ layui.use(["jquery", "form", "layer", "laydate"], function () {
                 // console.log(result);
                 // 保存成功，跳转页面
                 if (result.code == 1) {
-                    window.location.href = "/order/order";
+                    window.location.href = "/order/orderList?page=1";
                 }
             },
             error: function () {

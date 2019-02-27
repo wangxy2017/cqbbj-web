@@ -10,10 +10,16 @@ layui.use(["table", "layer", "laydate"], function () {
         data: {
             order_no: "",
             name: "",
-            beginTime1: "",
-            beginTime2: ""
+            createTime1: "",
+            createTime2: ""
         },
         methods: {
+            /**
+             * 添加员工
+             */
+            addOrder: function () {
+                window.location.href = "/order/orderAdd";
+            },
             /**
              * 搜索
              */
@@ -22,8 +28,8 @@ layui.use(["table", "layer", "laydate"], function () {
                     where: {
                         "name": main.name,
                         "order_no": main.order_no,
-                        "beginTime1": main.beginTime1,
-                        "beginTime2": main.beginTime2
+                        "createTime1": main.createTime1,
+                        "createTime2": main.createTime2
                     }
                 });
             },
@@ -36,7 +42,7 @@ layui.use(["table", "layer", "laydate"], function () {
                     id: "orderList",
                     url: "/order/queryPageList",
                     page: true,
-                    where: {"status": 3},
+                    where: {"status": 0},
                     parseData: function (res) {
                         return {
                             "code": res.code,
@@ -62,7 +68,7 @@ layui.use(["table", "layer", "laydate"], function () {
                         , {field: 'content', title: '备注'}
                         , {field: 'price', title: '预估起价'}
                         , {
-                            field: 'beginTime', title: '预约时间', templet: function (d) {
+                            field: 'createTime', title: '下单时间', templet: function (d) {
                                 return formatDateTime(d.createTime);
                             }
                         }
@@ -71,10 +77,10 @@ layui.use(["table", "layer", "laydate"], function () {
                 });
                 // 初始化时间插件
                 laydate.render({
-                    elem: '#beginTime1'
+                    elem: '#createTime1'
                 });
                 laydate.render({
-                    elem: '#beginTime2'
+                    elem: '#createTime2'
                 });
                 // 监听工具条
                 table.on('tool(orderList)', function (obj) {
@@ -82,10 +88,10 @@ layui.use(["table", "layer", "laydate"], function () {
                     var layEvent = obj.event; // 获得 lay-event 对应的值
 
                     // 取消订单
-                    if (layEvent === 'recover') {
-                        layer.confirm("确认恢复订单吗？", function () {
+                    if (layEvent === 'cancel') {
+                        layer.confirm("确认取消订单吗？", function () {
                             // 请求后台，取消订单
-                            main.$http.post('/order/recover', {"id": data.id}, {emulateJSON: true}).then(function (res) {
+                            main.$http.post('/order/cancel', {"id": data.id}, {emulateJSON: true}).then(function (res) {
                                 console.log(res.body);
                                 if (res.body.code == 1) {
                                     layer.msg("操作成功");
@@ -98,6 +104,10 @@ layui.use(["table", "layer", "laydate"], function () {
                                 layer.msg("服务器请求异常");
                             });
                         });
+                    }
+                    // 修改订单
+                    if (layEvent === 'update') {
+                        window.location.href = "/order/orderUpdate?id=" + data.id;
                     }
                 });
             }

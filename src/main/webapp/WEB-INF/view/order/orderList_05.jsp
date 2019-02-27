@@ -28,11 +28,11 @@
         </div>
         预约时间：
         <div class="layui-inline">
-            <input class="layui-input" id="time1" name="time1"autocomplete="off" placeholder="YYYY-MM-DD" v-model="time1">
+            <input class="layui-input" id="beginTime1" name="beginTime1"autocomplete="off" placeholder="YYYY-MM-DD" v-model="beginTime1">
         </div>
         至
         <div class="layui-inline">
-            <input class="layui-input" id="time2" name="time2"autocomplete="off" placeholder="YYYY-MM-DD" v-model="time2">
+            <input class="layui-input" id="beginTime2" name="beginTime2"autocomplete="off" placeholder="YYYY-MM-DD" v-model="beginTime2">
         </div>
         <button class="layui-btn" @click="search">搜索</button>
     </div>
