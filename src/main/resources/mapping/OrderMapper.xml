@@ -105,6 +105,7 @@
         select <include refid="query_all_fields"></include> from sys_order where deleteStatus = 0
         <if test="name != null and name != ''">and name = #{name}</if>
         <if test="order_no != null and order_no != ''">and order_no = #{order_no}</if>
+        <if test="status != null">and status = #{status}</if>
     </select>
     <!-- 根据ID查询 -->
     <select id="queryById" parameterType="int" resultType="order">

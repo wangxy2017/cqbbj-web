@@ -5,10 +5,7 @@ import com.cqbbj.core.base.PageModel;
 import com.cqbbj.core.base.Result;
 import com.cqbbj.core.util.CommUtils;
 import com.cqbbj.core.util.ResultUtils;
-import com.cqbbj.entity.CompanyInfo;
-import com.cqbbj.entity.Customer;
-import com.cqbbj.entity.Order;
-import com.cqbbj.entity.SendOrder;
+import com.cqbbj.entity.*;
 import com.cqbbj.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -46,6 +43,35 @@ public class OrderController extends BaseController {
     @Autowired
     private ICompanyInfoService companyInfoService;// 配置信息
 
+
+    /**
+     * 订单列表页面跳转
+     *
+     * @param page 页面控制
+     * @return
+     */
+    @RequestMapping("/orderList")
+    public String orderList(String page) {
+        // 添加订单
+        if ("1".equals(page))
+            return "order/orderList_01";
+        // 未派订单
+        if ("2".equals(page))
+            return "order/orderList_02";
+        // 已派订单
+        if ("3".equals(page))
+            return "order/orderList_03";
+        // 完成订单
+        if ("4".equals(page))
+            return "order/orderList_04";
+        // 作废订单
+        if ("5".equals(page))
+            return "order/orderList_05";
+        // 订单查询
+        if ("6".equals(page))
+            return "order/orderList_06";
+        return "";
+    }
 
     /**
      * 添加订单界面跳转
@@ -219,5 +245,26 @@ public class OrderController extends BaseController {
     public Result addInfo() {
         CompanyInfo companyInfo = companyInfoService.queryById(1);
         return ResultUtils.success(companyInfo);
+    }
+
+
+    /**
+     * 取消订单
+     *
+     * @param request
+     * @param id
+     * @return
+     */
+    @RequestMapping("/cancel")
+    @ResponseBody
+    public Result cancel(HttpServletRequest request, Integer id) {
+        // 取消订单
+        Order order = orderService.queryById(id);
+        order.setStatus(3);
+        orderService.updateEntity(order);
+        // 记录日志
+        OperationLog log = createLog(request, "取消订单：" + order.getOrder_no());
+        operationLogService.saveEntity(log);
+        return ResultUtils.success();
     }
 }
