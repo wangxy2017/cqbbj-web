@@ -80,7 +80,17 @@ public class OrderController extends BaseController {
      */
     @RequestMapping("/orderAdd")
     public String orderAdd() {
-        return "/order/orderAdd";
+        return "order/orderAdd";
+    }
+
+    /**
+     * 修改订单跳转
+     *
+     * @return
+     */
+    @RequestMapping("/orderUpdate")
+    public String orderUpdate() {
+        return "order/orderUpdate";
     }
 
     /**
@@ -286,5 +296,18 @@ public class OrderController extends BaseController {
         OperationLog log = createLog(request, "恢复订单：" + order.getOrder_no());
         operationLogService.saveEntity(log);
         return ResultUtils.success();
+    }
+
+    /**
+     * 根据ID查询
+     *
+     * @param id
+     * @return
+     */
+    @RequestMapping("/queryById")
+    @ResponseBody
+    public Result queryById(Integer id) {
+        Order order = orderService.queryById(id);
+        return ResultUtils.success(order);
     }
 }

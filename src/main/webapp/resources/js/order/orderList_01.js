@@ -72,7 +72,7 @@ layui.use(["table", "layer", "laydate"], function () {
                                 return formatDateTime(d.createTime);
                             }
                         }
-                        , {title: '操作', fixed: 'right', align: 'center', toolbar: '#options'}
+                        , {title: '操作', fixed: 'right', align: 'center', toolbar: '#options', width: 120}
                     ]]
                 });
                 // 初始化时间插件
