@@ -139,7 +139,7 @@ layui.use(["jquery", "form", "layer", "laydate"], function () {
                 });
                 _input.on("input", function () {
                     setTimeout(function () {
-                        if (flag) {
+                        if (flag && _input.val() != "") {
                             local.search("重庆市" + _input.val());
                         }
                     }, 0);
