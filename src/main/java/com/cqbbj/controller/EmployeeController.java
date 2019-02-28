@@ -86,6 +86,7 @@ public class EmployeeController extends BaseController {
     @RequestMapping("/save")
     @ResponseBody
     public Result save(Employee employee) {
+        employee.setPassword(MD5Utils.MD5Encode(employee.getPassword()));
         employee.setIs_disabled(0);
         employee.setEmp_no(CommUtils.getCode("EP"));
         employee.setMoney(0.00D);

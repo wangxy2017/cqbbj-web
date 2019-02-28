@@ -43,6 +43,16 @@ public class CarController extends BaseController {
         return "/car/car";
     }
     /**
+     * 车辆新增页面
+     * @param
+     * @param
+     * @return
+     */
+    @RequestMapping("/carAdd")
+    public String carAdd(){
+        return "/car/carAdd";
+    }
+    /**
      * 车辆修改页面
      * @param
      * @param
