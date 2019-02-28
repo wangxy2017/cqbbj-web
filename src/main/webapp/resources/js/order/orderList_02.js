@@ -66,7 +66,7 @@ layui.use(["table", "layer", "laydate"], function () {
                                 return formatDateTime(d.beginTime);
                             }
                         }
-                        , {title: '操作', fixed: 'right', align: 'center', toolbar: '#options',width:160}
+                        , {title: '操作', fixed: 'right', align: 'center', toolbar: '#options', width: 160}
                     ]]
                 });
                 // 初始化时间插件
@@ -81,6 +81,17 @@ layui.use(["table", "layer", "laydate"], function () {
                     var data = obj.data; // 获得当前行数据
                     var layEvent = obj.event; // 获得 lay-event 对应的值
 
+                    // 派单
+                    if (layEvent === 'dispatch') {
+                        console.log(layEvent);
+                        layer.open({
+                            type: 2,
+                            title: "派单",
+                            content: "/order/dispatch?order_no=" + data.order_no,
+                            area: ["700px", "500px"],
+                            maxmin: true
+                        });
+                    }
                     // 取消订单
                     if (layEvent === 'cancel') {
                         layer.confirm("确认取消订单吗？", function () {

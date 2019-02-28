@@ -13,9 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 /**
  * @author wangxy
@@ -42,6 +40,8 @@ public class OrderController extends BaseController {
 
     @Autowired
     private ICompanyInfoService companyInfoService;// 配置信息
+    @Autowired
+    private IEmployeeService employeeService;// 员工
 
 
     /**
@@ -92,6 +92,17 @@ public class OrderController extends BaseController {
     public String orderUpdate() {
         return "order/orderUpdate";
     }
+
+    /**
+     * 跳转派单界面
+     *
+     * @return
+     */
+    @RequestMapping("/dispatch")
+    public String dispatch() {
+        return "order/dispatch";
+    }
+
 
     /**
      * 新增订单

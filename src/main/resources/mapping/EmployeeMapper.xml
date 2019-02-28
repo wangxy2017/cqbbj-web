@@ -79,8 +79,27 @@
     </update>
     <!-- 查询员工列表 -->
     <select id="queryList" resultType="employee" parameterType="employee">
-        select <include refid="query_all_fields"></include> from sys_employee where deleteStatus = 0
-        <if test="account != null and account != ''">and account = #{account}</if>
+        select
+        e.id,
+        e.account,
+        e.password,
+        e.name,
+        e.phone,
+        e.sex,
+        e.is_disabled,
+        e.emp_no,
+        e.dept_id,
+        e.position_id,
+        e.money,
+        e.is_onjob,
+        e.createTime,
+        d.name as deptName,
+        p.name as positionName
+        from sys_employee e
+        left join sys_dept d on d.id = e.dept_id
+        left join sys_position p on p.id = e.position_id
+        where e.deleteStatus = 0
+        <if test="account != null and account != ''">and e.account = #{account}</if>
     </select>
     <!-- 根据ID查询 -->
     <select id="queryById" parameterType="int" resultType="employee">
