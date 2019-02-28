@@ -51,6 +51,10 @@ public class Employee extends BaseEntity {
      * 员工钱包
      */
     private Double money;
+    /**
+     * 是否在职 0：在职 1：离职
+     */
+    private Integer is_onjob;
 
     public String getName() {
         return name;
@@ -130,5 +134,13 @@ public class Employee extends BaseEntity {
 
     public void setSex(Integer sex) {
         this.sex = sex;
+    }
+
+    public Integer getIs_onjob() {
+        return is_onjob;
+    }
+
+    public void setIs_onjob(Integer is_onjob) {
+        this.is_onjob = is_onjob;
     }
 }

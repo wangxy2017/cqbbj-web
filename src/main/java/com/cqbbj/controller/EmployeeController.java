@@ -91,6 +91,7 @@ public class EmployeeController extends BaseController {
         employee.setMoney(0.00D);
         employee.setCreateTime(new Date());
         employee.setDeleteStatus(0);
+        employee.setIs_onjob(0);
         employeeService.saveEntity(employee);
         return ResultUtils.success();
     }
