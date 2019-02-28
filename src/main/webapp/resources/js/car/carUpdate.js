@@ -1,12 +1,13 @@
 // JavaScript代码区域
-layui.use(["form", "layer"], function () {
+layui.use(["form", "layer", "laydate"], function () {
     var form = layui.form;
     var layer = layui.layer;
+    var laydate = layui.laydate;
 
     var main = new Vue({
         el: "#main",
         data: {
-        car:null
+            car: {}
 
         },
         methods: {
@@ -29,15 +30,42 @@ layui.use(["form", "layer"], function () {
                     });
                     return false;// 阻止表单跳转
                 });
+            },
+            /**
+             * 初始化日历
+             */
+            initCalander: function () {
+                //保险到期
+                laydate.render({
+                    elem: '#insurance_date',
+                    type: "datetime",
+                    value: new Date(main.car.insurance_date)
+                });
+                //年审到期
+                laydate.render({
+                    elem: '#examined_date',
+                    type: "datetime",
+                    value: new Date(main.car.examined_date)
+                });
+                //采购日期
+                laydate.render({
+                    elem: '#purchase_date',
+                    type: "datetime",
+                    value: new Date(main.car.purchase_date)
+                });
             }
         },
         mounted: function () {
-            this.$http.post("/car/queryById", {"id": document.getElementById("main").getAttribute("data-id")}, {emulateJSON: true}).then(function (res) {
+            var that = this;
+            that.$http.post("/car/queryById", {"id": document.getElementById("main").getAttribute("data-id")}, {emulateJSON: true}).then(function (res) {
                 console.log(res.body);
                 // 加载数据
                 if (res.body.code == 1) {
-                    main.customer = res.body.data;
-                    this.$nextTick(function () {
+                    that.car = res.body.data;
+                    console.log(that.car.id);
+                    that.$nextTick(function () {
+                        // 初始化日历
+                        that.initCalander();
                         // 重新渲染表单
                         form.render();
                         // 监听表单提交

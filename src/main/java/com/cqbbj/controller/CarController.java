@@ -72,6 +72,20 @@ public class CarController extends BaseController {
     public String carAchieve(){
         return "/car/carAchieve";
     }
+
+    /**
+     * 根据ID查询车辆信息
+     * @param
+     * @param
+     * @return
+     */
+    @RequestMapping("/queryById")
+    @ResponseBody
+    public Result queryById(Integer id){
+        Car car=carService.queryById(id);
+        return ResultUtils.success(car);
+    }
+
     /**
      * 新增车辆
      *

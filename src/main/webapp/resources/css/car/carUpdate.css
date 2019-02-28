@@ -1,48 +1,14 @@
 /* 更改layui样式*/
-.go-back {
+.layui-form{
+    margin-top: 40px !important;
+}
+.layui-input, .layui-textarea{
+    width: 320px !important;
+}
+.layui-form-select{
+    width: 320px !important;
+}
+.go-back{
     padding-left: 5px !important;
     padding-right: 15px !important;
-}
-
-/* 菜单列表 */
-.menu-table {
-    border: 1px solid #009688;
-    width: 800px;
-    border-radius: 2px;
-}
-
-.menu-table .menu-table-title {
-    height: 24px;
-    line-height: 24px;
-    padding: 5px;
-    background-color: #009688;
-    color: white;
-}
-
-.menu-table .menu-table-list .menu-table-list-li {
-    display: block;
-    padding-left: 12px;
-    min-height: 60px;
-    line-height: 30px;
-    border-bottom: 1px solid #009688;
-}
-
-.menu-table .menu-table-list {
-    padding: 5px;
-}
-
-.menu-table .menu-table-list .menu-table-list-li:last-child {
-    border-bottom: none;
-}
-
-.menu-table label {
-    margin-right: 10px;
-    user-select: none;
-    cursor: pointer;
-}
-
-.menu-actions {
-    text-align: right;
-    width: 800px;
-    margin-top: 10px;
 }
