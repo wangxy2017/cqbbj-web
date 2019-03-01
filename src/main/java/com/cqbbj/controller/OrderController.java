@@ -103,6 +103,15 @@ public class OrderController extends BaseController {
         return "order/dispatch";
     }
 
+    /**
+     * 选择员工界面跳转
+     *
+     * @return
+     */
+    @RequestMapping("/searchEmpList")
+    public String searchEmpList() {
+        return "order/searchEmpList";
+    }
 
     /**
      * 新增订单

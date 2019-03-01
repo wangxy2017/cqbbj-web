@@ -33,38 +33,29 @@
                 <input type="text" name="empName" placeholder="指定收款人员" autocomplete="off"
                        class="layui-input" v-model="moneyEmp.name" disabled>
             </div>
-            <button type="button" class="layui-btn layui-btn-sm" @click="queryEmpList">选择员工</button>
+            <button type="button" class="layui-btn layui-btn-sm" @click="queryEmpList('money')">选择员工</button>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">司机：</label>
             <div class="layui-input-block">
-                <label class="check-min" v-for="item in driveEmps">
-                    <input type="checkbox" name="emp_no" :value="item.emp_no" :key="item.id" lay-ignore>
-                    <span v-text="item.name"></span>
-                </label>
-                <button type="button" class="layui-btn layui-btn-normal layui-btn-sm" @click="queryEmpList">选择员工
+                <span class="item" v-for="item in driveEmps" v-text="item.name" :key="item.id"></span>
+                <button type="button" class="layui-btn layui-btn-sm" @click="queryEmpList('drive')">选择员工
                 </button>
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">搬运工：</label>
             <div class="layui-input-block">
-                <label class="check-min" v-for="item in moveEmps">
-                    <input type="checkbox" name="emp_no" :value="item.emp_no" :key="item.id" lay-ignore>
-                    <span v-text="item.name"></span>
-                </label>
-                <button type="button" class="layui-btn layui-btn-danger layui-btn-sm" @click="queryEmpList">选择员工
+                <span class="item" v-for="item in moveEmps" v-text="item.name" :key="item.id"></span>
+                <button type="button" class="layui-btn layui-btn-sm" @click="queryEmpList('move')">选择员工
                 </button>
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">空调工：</label>
             <div class="layui-input-block">
-                <label class="check-min" v-for="item in airEmps">
-                    <input type="checkbox" name="emp_no" :value="item.emp_no" :key="item.id" lay-ignore>
-                    <span v-text="item.name"></span>
-                </label>
-                <button type="button" class="layui-btn layui-btn-warm layui-btn-sm" @click="queryEmpList">选择员工</button>
+                <span class="item" v-for="item in airEmps" v-text="item.name" :key="item.id"></span>
+                <button type="button" class="layui-btn layui-btn-sm" @click="queryEmpList('air')">选择员工</button>
             </div>
         </div>
         <div class="layui-form-item">
@@ -75,6 +66,7 @@
         </div>
     </form>
 </div>
+
 <script src="${pageContext.request.contextPath}/resources/plugin/layui/layui.js"></script>
 <script src="${pageContext.request.contextPath}/resources/plugin/vue/vue.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/plugin/vue/vue-resource.min.js"></script>

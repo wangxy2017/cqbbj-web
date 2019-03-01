@@ -44,3 +44,28 @@
     background-position: 56px -1px;
     background-size: 30%;
 }
+
+/* 选项样式 */
+.item {
+    width: 60px;
+    display: block;
+    height: 36px;
+    line-height: 36px;
+    padding: 0 10px;
+    white-space: nowrap;
+    text-align: center;
+    font-size: 14px;
+    border-radius: 2px;
+    cursor: pointer;
+    float: left;
+    margin-bottom: 10px;
+    margin-right: 10px;
+    border: 1px solid #009688;
+    background-color: #fff;
+    user-select: none;
+    color: #009688;
+    background-image: url("/resources/images/check.png");
+    background-repeat: no-repeat;
+    background-position: 56px -1px;
+    background-size: 30%;
+}

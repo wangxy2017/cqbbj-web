@@ -1,4 +1,5 @@
 // JavaScript代码区域
+var checkedEmps = [];// 选择的员工
 layui.use(["table", "layer", "laydate"], function () {
     var table = layui.table;
     var layer = layui.layer;

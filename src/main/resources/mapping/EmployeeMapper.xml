@@ -100,6 +100,10 @@
         left join sys_position p on p.id = e.position_id
         where e.deleteStatus = 0
         <if test="account != null and account != ''">and e.account = #{account}</if>
+        <if test="name != null and name != ''">and e.name like concat("%",#{name},"%")</if>
+        <if test="phone != null and phone != ''">and e.phone like concat("%",#{phone},"%")</if>
+        <if test="is_onjob != null">and e.is_onjob = #{is_onjob}</if>
+        <if test="deptName != null and deptName != ''">and d.name like concat("%",#{deptName},"%")</if>
     </select>
     <!-- 根据ID查询 -->
     <select id="queryById" parameterType="int" resultType="employee">

@@ -40,7 +40,7 @@
     <%-- 工具条存放区域--%>
     <script type="text/html" id="options">
         <a class="layui-btn layui-btn-xs" lay-event="dispatch">派单</a>
-        <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="update">修改</a>
+        <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="update">修改</a>
         <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="cancel">取消</a>
     </script>
 </div>

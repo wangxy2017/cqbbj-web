@@ -6,13 +6,26 @@
 i {
     font-style: normal;
 }
+
 /* 暂无数据样式 */
-.no-data{
+.no-data {
     padding: 5px;
     margin: 10px 0;
 }
+
 /* 必填样式 */
-.required{
+.required {
     color: red;
     margin-right: 5px;
+}
+
+/* 列表搜索工具 */
+.search-tools {
+    overflow: hidden;
+}
+
+.search-tools .search-item {
+    float: left;
+    margin-right: 10px;
+    margin-bottom: 10px;
 }

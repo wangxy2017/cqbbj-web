@@ -16,14 +16,37 @@ layui.use(["form", "layer"], function () {
             /**
              * 选择员工
              */
-            queryEmpList: function () {
-                console.log(123);
+            queryEmpList: function (type) {
+                parent.layer.open({
+                    type: 2,
+                    title: "选择员工",
+                    content: "/order/searchEmpList",
+                    area: ["980px", "450px"],
+                    maxmin: true,
+                    end: function () {
+                        // 关闭弹层回调
+                        console.log(type);
+                        // console.log(parent.checkedEmps);
+                        if (type == "money") {
+                            main.moneyEmp = parent.checkedEmps[0];
+                        }
+                        if (type == "drive") {
+                            main.driveEmps = parent.checkedEmps;
+                        }
+                        if (type == "move") {
+                            main.moveEmps = parent.checkedEmps;
+                        }
+                        if (type == "air") {
+                            main.airEmps = parent.checkedEmps;
+                        }
+                    }
+                });
             },
             /**
              * 重置表单
              */
             resetForm: function () {
-                main.moneyEmp = null;
+                main.moneyEmp = {};
                 main.driveEmps = [];
                 main.moveEmps = [];
                 main.airEmps = [];
