@@ -22,6 +22,7 @@ To change this template use File | Settings | File Templates.
     <form class="layui-form" action="" v-if="order">
         <div class="layui-form-item layui-hide">
             <input type="hidden" name="id" v-model="order.id">
+            <input type="hidden" name="order_no" v-model="order.order_no">
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label"><i class="required">*</i>客户姓名</label>

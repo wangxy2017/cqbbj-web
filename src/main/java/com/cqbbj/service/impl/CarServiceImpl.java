@@ -67,4 +67,10 @@ public class CarServiceImpl implements ICarService {
     public Car queryById(Integer id) {
         return carMapper.queryById(id);
     }
+
+    @Override
+    public void deleteActiveBatch(String ids) {
+        String[] array=ids.split(",");
+        carMapper.deleteActiveBatch(array);
+    }
 }
