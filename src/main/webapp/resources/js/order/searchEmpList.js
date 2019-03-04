@@ -4,6 +4,16 @@ layui.use(["table", "jquery"], function () {
     var $ = layui.$;
 
     $(function () {
+        $("#deptName").on("change",function () {
+            table.reload("empList", {
+                where: {
+                    "is_onjob": 0,
+                    "name": $("#name").val(),
+                    "phone": $("#phone").val(),
+                    "deptName": $("#deptName").val()
+                }
+            });
+        });
         /**
          * 搜索按钮
          */

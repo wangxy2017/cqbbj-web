@@ -19,6 +19,17 @@
 <div class="main">
     <div class="search-tools">
         <div class="search-item">
+            部门：
+            <select id="deptName">
+                <option value="">请选择</option>
+                <option value="搬运部">搬运部</option>
+                <option value="调度部">调度部</option>
+                <option value="运输部">运输部</option>
+                <option value="财务部">财务部</option>
+                <option value="行政部">行政部</option>
+            </select>
+        </div>
+        <div class="search-item">
             员工姓名：
             <div class="layui-inline">
                 <input class="layui-input" id="name" autocomplete="off" placeholder="输入员工姓名">
@@ -28,12 +39,6 @@
             手机号：
             <div class="layui-inline">
                 <input class="layui-input" id="phone" autocomplete="off" placeholder="输入手机号">
-            </div>
-        </div>
-        <div class="search-item">
-            部门名称：
-            <div class="layui-inline">
-                <input class="layui-input" id="deptName" autocomplete="off" placeholder="输入部门名称">
             </div>
         </div>
         <div class="search-item">

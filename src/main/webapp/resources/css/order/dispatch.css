@@ -47,10 +47,10 @@
 
 /* 选项样式 */
 .item {
-    width: 60px;
+    width: 52px;
     display: block;
-    height: 36px;
-    line-height: 36px;
+    height: 30px;
+    line-height: 30px;
     padding: 0 10px;
     white-space: nowrap;
     text-align: center;
@@ -64,8 +64,8 @@
     background-color: #fff;
     user-select: none;
     color: #009688;
-    background-image: url("/resources/images/check.png");
+    background-image: url(/resources/images/check.png);
     background-repeat: no-repeat;
-    background-position: 56px -1px;
-    background-size: 30%;
+    background-position: 55px -1px;
+    background-size: 24%;
 }
