@@ -31,6 +31,16 @@ public class CompanyInfoController extends BaseController {
     private IOperationLogService operationLogService;// 操作日志
 
     /**
+     * 商户配置页面跳转
+     *
+     * @return
+     */
+    @RequestMapping("/companyInfo")
+    public String companyInfo() {
+        return "company/companyInfo";
+    }
+
+    /**
      * 修改商户配置
      *
      * @param companyInfo
@@ -63,9 +73,9 @@ public class CompanyInfoController extends BaseController {
      *
      * @return
      */
-    @RequestMapping("/companyInfo")
+    @RequestMapping("/queryInfo")
     @ResponseBody
-    private Result companyInfo() {
+    private Result queryInfo() {
         CompanyInfo companyInfo = companyInfoService.queryById(1);
         return ResultUtils.success(companyInfo);
     }
