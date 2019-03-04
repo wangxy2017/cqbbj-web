@@ -34,34 +34,66 @@ public class CarController extends BaseController {
 
     /**
      * 车辆页面
+     *
      * @param
      * @param
      * @return
      */
     @RequestMapping("/car")
-    public String car(){
+    public String car() {
         return "/car/car";
     }
+
+    /**
+     * 车辆新增页面
+     *
+     * @param
+     * @param
+     * @return
+     */
+    @RequestMapping("/carAdd")
+    public String carAdd() {
+        return "/car/carAdd";
+    }
+
     /**
      * 车辆修改页面
+     *
      * @param
      * @param
      * @return
      */
     @RequestMapping("/carUpdate")
-    public String carUpdate(){
+    public String carUpdate() {
         return "/car/carUpdate";
     }
+
     /**
      * 车辆修改页面
+     *
      * @param
      * @param
      * @return
      */
     @RequestMapping("/carAchieve")
-    public String carAchieve(){
+    public String carAchieve() {
         return "/car/carAchieve";
     }
+
+    /**
+     * 根据ID查询车辆信息
+     *
+     * @param
+     * @param
+     * @return
+     */
+    @RequestMapping("/queryById")
+    @ResponseBody
+    public Result queryById(Integer id) {
+        Car car = carService.queryById(id);
+        return ResultUtils.success(car);
+    }
+
     /**
      * 新增车辆
      *
@@ -95,6 +127,23 @@ public class CarController extends BaseController {
         // 记录日志
         operationLogService.saveEntity(
                 createLog(request, "修改车辆信息：" + car.getCar_no()));
+        return ResultUtils.success();
+    }
+
+    /**
+     * 批量逻辑删除车辆
+     */
+    @RequestMapping("/deleteActiveBatch")
+    @ResponseBody
+    public Result deleteActiveBatch(HttpServletRequest request, String ids) {
+        carService.deleteActiveBatch(ids);
+        // 记录日志
+        String[] array=ids.split(",");
+        for(int i=0;i<array.length;i++){
+          Car car=  carService.queryById(Integer.parseInt(array[i]));
+            operationLogService.saveEntity(
+                    createLog(request, "删除车辆信息：" +car.getCar_no() ));
+        }
         return ResultUtils.success();
     }
 

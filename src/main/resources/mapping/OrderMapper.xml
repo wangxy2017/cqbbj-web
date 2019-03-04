@@ -113,4 +113,11 @@
         <include refid="query_all_fields"/>
         from sys_order where id = #{id}
     </select>
+    <!-- 根据属性查询 -->
+    <select id="queryByProperties" parameterType="order" resultType="order">
+        select
+        <include refid="query_all_fields"/>
+        from sys_order where
+        <if test="order_no != null and order_no != ''">order_no = #{order_no}</if>
+    </select>
 </mapper>

@@ -26,15 +26,15 @@
         <div class="search-tools">
             客户账号：
             <div class="layui-inline">
-                <input class="layui-input" name="searchNo"autocomplete="off"  v-model="searchNo">
+                <input class="layui-input" name="cust_no" autocomplete="off"  v-model="cust_no">
             </div>
             姓名：
             <div class="layui-inline">
-                 <input class="layui-input" name="searchName"autocomplete="off"  v-model="searchName">
+                 <input class="layui-input" name="name"autocomplete="off"  v-model="name">
             </div>
             微信名称：
             <div class="layui-inline">
-                 <input class="layui-input" name="searchWX" autocomplete="off"  v-model="searchWX">
+                 <input class="layui-input" name="wxname" autocomplete="off"  v-model="wxname">
             </div>
             <button class="layui-btn" @click="search">搜索</button>
         </div>

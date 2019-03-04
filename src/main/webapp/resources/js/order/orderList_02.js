@@ -1,4 +1,5 @@
 // JavaScript代码区域
+var checkedEmps = [];// 选择的员工
 layui.use(["table", "layer", "laydate"], function () {
     var table = layui.table;
     var layer = layui.layer;
@@ -10,8 +11,8 @@ layui.use(["table", "layer", "laydate"], function () {
         data: {
             order_no: "",
             name: "",
-            time1: "",
-            time2: ""
+            beginTime1: "",
+            beginTime2: ""
         },
         methods: {
             /**
@@ -22,8 +23,8 @@ layui.use(["table", "layer", "laydate"], function () {
                     where: {
                         "name": main.name,
                         "order_no": main.order_no,
-                        "time1": main.time1,
-                        "time2": main.time2
+                        "beginTime1": main.beginTime1,
+                        "beginTime2": main.beginTime2
                     }
                 });
             },
@@ -63,24 +64,35 @@ layui.use(["table", "layer", "laydate"], function () {
                         , {field: 'price', title: '预估起价'}
                         , {
                             field: 'beginTime', title: '预约时间', templet: function (d) {
-                                return formatDateTime(d.createTime);
+                                return formatDateTime(d.beginTime);
                             }
                         }
-                        , {title: '操作', fixed: 'right', align: 'center', toolbar: '#options'}
+                        , {title: '操作', fixed: 'right', align: 'center', toolbar: '#options', width: 160}
                     ]]
                 });
                 // 初始化时间插件
                 laydate.render({
-                    elem: '#time1',
+                    elem: '#beginTime1'
                 });
                 laydate.render({
-                    elem: '#time2',
+                    elem: '#beginTime2'
                 });
                 // 监听工具条
                 table.on('tool(orderList)', function (obj) {
                     var data = obj.data; // 获得当前行数据
                     var layEvent = obj.event; // 获得 lay-event 对应的值
 
+                    // 派单
+                    if (layEvent === 'dispatch') {
+                        console.log(layEvent);
+                        layer.open({
+                            type: 2,
+                            title: "派单",
+                            content: "/order/dispatch?order_no=" + data.order_no,
+                            area: ["700px", "500px"],
+                            maxmin: true
+                        });
+                    }
                     // 取消订单
                     if (layEvent === 'cancel') {
                         layer.confirm("确认取消订单吗？", function () {

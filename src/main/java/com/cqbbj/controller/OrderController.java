@@ -13,9 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 /**
  * @author wangxy
@@ -42,6 +40,8 @@ public class OrderController extends BaseController {
 
     @Autowired
     private ICompanyInfoService companyInfoService;// 配置信息
+    @Autowired
+    private IEmployeeService employeeService;// 员工
 
 
     /**
@@ -80,7 +80,37 @@ public class OrderController extends BaseController {
      */
     @RequestMapping("/orderAdd")
     public String orderAdd() {
-        return "/order/orderAdd";
+        return "order/orderAdd";
+    }
+
+    /**
+     * 修改订单跳转
+     *
+     * @return
+     */
+    @RequestMapping("/orderUpdate")
+    public String orderUpdate() {
+        return "order/orderUpdate";
+    }
+
+    /**
+     * 跳转派单界面
+     *
+     * @return
+     */
+    @RequestMapping("/dispatch")
+    public String dispatch() {
+        return "order/dispatch";
+    }
+
+    /**
+     * 选择员工界面跳转
+     *
+     * @return
+     */
+    @RequestMapping("/searchEmpList")
+    public String searchEmpList() {
+        return "order/searchEmpList";
     }
 
     /**
@@ -229,6 +259,7 @@ public class OrderController extends BaseController {
     public Result helpDone(HttpServletRequest request, Order order) {
         // 完成订单
         order.setStatus(2);
+        order.setEndTime(new Date());
         orderService.updateEntity(order);
         // 记录日志
         operationLogService.saveEntity(createLog(request, "辅助完成订单：" + order.getOrder_no()));
@@ -266,5 +297,38 @@ public class OrderController extends BaseController {
         OperationLog log = createLog(request, "取消订单：" + order.getOrder_no());
         operationLogService.saveEntity(log);
         return ResultUtils.success();
+    }
+
+    /**
+     * 恢复订单
+     *
+     * @param request
+     * @param id
+     * @return
+     */
+    @RequestMapping("/recover")
+    @ResponseBody
+    public Result recover(HttpServletRequest request, Integer id) {
+        // 恢复订单
+        Order order = orderService.queryById(id);
+        order.setStatus(0);
+        orderService.updateEntity(order);
+        // 记录日志
+        OperationLog log = createLog(request, "恢复订单：" + order.getOrder_no());
+        operationLogService.saveEntity(log);
+        return ResultUtils.success();
+    }
+
+    /**
+     * 根据ID查询
+     *
+     * @param id
+     * @return
+     */
+    @RequestMapping("/queryById")
+    @ResponseBody
+    public Result queryById(Integer id) {
+        Order order = orderService.queryById(id);
+        return ResultUtils.success(order);
     }
 }

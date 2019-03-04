@@ -54,7 +54,16 @@ public class EmployeeController extends BaseController {
         log.debug("跳转employee页面");
         return "employee/employee";
     }
-
+    /**
+     * 离职员工管理页面跳转
+     *
+     * @return
+     */
+    @RequestMapping("/resignedEmployee")
+    public String resignedEmployee() {
+        log.debug("跳转离职employee页面");
+        return "employee/resignedEmployee";
+    }
     /**
      * 添加员工页面跳转
      *
@@ -86,11 +95,13 @@ public class EmployeeController extends BaseController {
     @RequestMapping("/save")
     @ResponseBody
     public Result save(Employee employee) {
+        employee.setPassword(MD5Utils.MD5Encode(employee.getPassword()));
         employee.setIs_disabled(0);
         employee.setEmp_no(CommUtils.getCode("EP"));
         employee.setMoney(0.00D);
         employee.setCreateTime(new Date());
         employee.setDeleteStatus(0);
+        employee.setIs_onjob(0);
         employeeService.saveEntity(employee);
         return ResultUtils.success();
     }

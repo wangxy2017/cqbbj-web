@@ -50,7 +50,7 @@ public class EmployeeServiceImpl implements IEmployeeService {
 
     @Override
     public List<Employee> queryList(Employee employee) {
-        return null;
+        return employeeMapper.queryList(employee);
     }
 
     @Override

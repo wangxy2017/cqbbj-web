@@ -13,5 +13,5 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface CarMapper extends BaseMapper<Car> {
-
+    void deleteActiveBatch(String[] id);
 }

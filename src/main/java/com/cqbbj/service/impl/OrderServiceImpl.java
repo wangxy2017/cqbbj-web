@@ -78,20 +78,33 @@ public class OrderServiceImpl implements IOrderService {
     @Override
     public int dispatchOrder(String order_no, String[] moneyEmps,
                              String[] driveEmps, String[] moveEmps, String[] airEmps) {
-        // 清空派单记录
-        sendOrderMapper.deleteSendOrder(order_no);
-        // 保存收款人员
-        List<SendOrder> list0 = createSendOrder(order_no, moneyEmps);
-        sendOrderMapper.saveBatch(list0);
-        // 保存随车司机
-        List<SendOrder> list1 = createSendOrder(order_no, driveEmps);
-        sendOrderMapper.saveBatch(list1);
-        // 保存随车搬运工
-        List<SendOrder> list2 = createSendOrder(order_no, moveEmps);
-        sendOrderMapper.saveBatch(list2);
-        // 保存随车空调工
-        List<SendOrder> list3 = createSendOrder(order_no, airEmps);
-        sendOrderMapper.saveBatch(list3);
+        // 查询订单
+        Order order = new Order();
+        order.setOrder_no(order_no);
+        Order order1 = orderMapper.queryByProperties(order);
+        if (order1 != null) {
+            // 清空派单记录
+            sendOrderMapper.deleteSendOrder(order1.getOrder_no());
+            // 保存收款人员
+            List<SendOrder> list0 = createSendOrder(order1.getOrder_no(), moneyEmps, 0);
+            if (!list0.isEmpty())
+                sendOrderMapper.saveBatch(list0);
+            // 保存随车司机
+            List<SendOrder> list1 = createSendOrder(order1.getOrder_no(), driveEmps, 1);
+            if (!list1.isEmpty())
+                sendOrderMapper.saveBatch(list1);
+            // 保存随车搬运工
+            List<SendOrder> list2 = createSendOrder(order1.getOrder_no(), moveEmps, 2);
+            if (!list2.isEmpty())
+                sendOrderMapper.saveBatch(list2);
+            // 保存随车空调工
+            List<SendOrder> list3 = createSendOrder(order1.getOrder_no(), airEmps, 3);
+            if (!list3.isEmpty())
+                sendOrderMapper.saveBatch(list3);
+            // 更改订单状态
+            order1.setStatus(1);
+            orderMapper.update(order1);
+        }
         return 1;
     }
 
@@ -102,7 +115,7 @@ public class OrderServiceImpl implements IOrderService {
      * @param emps
      * @return
      */
-    private List<SendOrder> createSendOrder(String order_no, String[] emps) {
+    private List<SendOrder> createSendOrder(String order_no, String[] emps, Integer type) {
         List<SendOrder> list = new ArrayList<>();
         for (int i = 0; i < emps.length; i++) {
             SendOrder so = new SendOrder();
@@ -110,7 +123,7 @@ public class OrderServiceImpl implements IOrderService {
             so.setDeleteStatus(0);
             so.setOrder_no(order_no);
             so.setEmp_no(emps[i]);
-            so.setType(0);
+            so.setType(type);
             list.add(so);
         }
         return list;

@@ -1,6 +1,7 @@
 package com.cqbbj.service.impl;
 
 import com.cqbbj.core.base.PageModel;
+import com.cqbbj.core.util.CommUtils;
 import com.cqbbj.dao.CarMapper;
 import com.cqbbj.entity.Car;
 import com.cqbbj.service.ICarService;
@@ -34,6 +35,8 @@ public class CarServiceImpl implements ICarService {
 
     @Override
     public int updateEntity(Car car) {
+
+
         return carMapper.update(car);
     }
 
@@ -62,6 +65,12 @@ public class CarServiceImpl implements ICarService {
 
     @Override
     public Car queryById(Integer id) {
-        return null;
+        return carMapper.queryById(id);
+    }
+
+    @Override
+    public void deleteActiveBatch(String ids) {
+        String[] array=ids.split(",");
+        carMapper.deleteActiveBatch(array);
     }
 }

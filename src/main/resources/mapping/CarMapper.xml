@@ -72,8 +72,25 @@
     <delete id="delete" parameterType="int">
         delete from sys_car where id = #{id}
     </delete>
+
+    <!--批量逻辑删除车辆-->
+    <update id="deleteActiveBatch" parameterType="string">
+        update sys_car set deleteStatus=1 where id in
+        <foreach collection="array" index="index" item="item"
+                 open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </update>
     <!-- 查询车辆列表 -->
     <select id="queryList" resultType="car" parameterType="car">
         select <include refid="query_all_fields"></include> from sys_car where deleteStatus = 0
+            <if test="license!=null and license!=''">and license = #{license}</if>
+            <if test="engine!=null and engine!=''">and engine = #{engine}</if>
+            <if test="vin!=null and vin!=''">and vin = #{vin}</if>
+
+    </select>
+    <!-- 根据Id查询车辆 -->
+    <select id="queryById" resultType="car" parameterType="int">
+        select <include refid="query_all_fields"></include> from sys_car where id =#{id}
     </select>
 </mapper>

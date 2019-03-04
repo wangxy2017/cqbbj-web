@@ -31,5 +31,7 @@
     <!-- 查询操作日志列表 -->
     <select id="queryList" resultType="operationLog" parameterType="operationLog">
         select <include refid="query_all_fields"></include> from sys_operation_log where deleteStatus = 0
+        <if test="name != null and name != ''">and name like concat("%",#{name},"%")</if>
+        <if test="content != null and content != ''">and content like concat("%",#{content},"%")</if>
     </select>
 </mapper>

@@ -7,13 +7,22 @@ layui.use(["table", "layer"], function () {
     var main = new Vue({
         el: "#main",
         data: {
-            searchNo:"",
-            searchName:"",
-            searchWX:""
+            cust_no:"",
+            name:"",
+            wxname:""
         },
         methods: {
+            /**
+             * 搜索
+             */
             search:function(){
-
+                table.reload("customerList", {
+                    where: {
+                        "cust_no": main.cust_no,
+                        "name": main.name,
+                        "wxname":main.wxname
+                    }
+                });
             },
             // 修改Customer信息
             updateCustomer: function () {
@@ -30,7 +39,7 @@ layui.use(["table", "layer"], function () {
                 // 跳转修改界面
                 window.location.href = "/customer/customerUpdate?id=" + checkStatus.data[0].id;
             },
-            // 删除员工
+            // 删除客户
             deleteCustomer: function () {
                 // 获取选中行数据
                 var checkStatus = table.checkStatus("customerList");
@@ -91,7 +100,7 @@ layui.use(["table", "layer"], function () {
             {type: 'checkbox'}
             , {field: 'cust_no', title: '客户编号'}
             , {field: 'phone', title: '客户电话'}
-            , {field: 'wxname', title: '微信昵称'}
+            , {field: 'wxname', title: '微信名称'}
             , {field: 'name', title: '客户姓名'}
             , {
                 field: 'createTime', title: '注册时间', sort: true, templet: function (d) {

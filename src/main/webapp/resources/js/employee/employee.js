@@ -66,7 +66,9 @@ layui.use(["table", "layer"], function () {
         id: "employeeList",
         url: "/employee/queryPageList",
         page: true,
-        where: {},
+        where: {
+            deleteStatus:0
+        },
         parseData: function (res) {
             return {
                 "code": res.code,

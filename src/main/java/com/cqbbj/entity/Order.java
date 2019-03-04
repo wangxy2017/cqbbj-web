@@ -56,7 +56,7 @@ public class Order extends BaseEntity {
     /**
      * 完成时间
      */
-    private String endTime;
+    private Date endTime;
     /**
      * 订单编号
      */
@@ -187,11 +187,11 @@ public class Order extends BaseEntity {
         this.endMap = endMap;
     }
 
-    public String getEndTime() {
+    public Date getEndTime() {
         return endTime;
     }
 
-    public void setEndTime(String endTime) {
+    public void setEndTime(Date endTime) {
         this.endTime = endTime;
     }
 

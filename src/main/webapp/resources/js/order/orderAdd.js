@@ -55,7 +55,7 @@ layui.use(["jquery", "form", "layer", "laydate"], function () {
                 // console.log(result);
                 // 保存成功，跳转页面
                 if (result.code == 1) {
-                    window.location.href = "/order/order";
+                    window.location.href = "/order/orderList?page=1";
                 }
             },
             error: function () {
@@ -121,7 +121,7 @@ layui.use(["jquery", "form", "layer", "laydate"], function () {
         });
         _input.on("input", function () {
             setTimeout(function () {
-                if (flag) {
+                if (flag && _input.val() != "") {
                     local.search("重庆市" + _input.val());
                 }
             }, 0);

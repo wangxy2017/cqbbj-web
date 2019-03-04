@@ -18,21 +18,29 @@
 <body>
 <div class="main" id="main">
     <%-- 工具栏 --%>
-    <div class="layui-btn-container">
-        <button class="layui-btn" @click="addDept">增加客户</button>
-        <button class="layui-btn layui-btn-normal" @click="updateDept">修改客户</button>
-        <button class="layui-btn layui-btn-danger" @click="deleteDept">删除客户</button>
-    </div>
-    <table id="deptList" lay-filter="deptList"></table>
+        <div class="search-tools">
+            车牌号：
+            <div class="layui-inline">
+                <input class="layui-input" name="license" autocomplete="off" v-model="license">
+            </div>
+            发动号：
+            <div class="layui-inline">
+                <input class="layui-input" name="engine" autocomplete="off" v-model="engine">
+            </div>
+            车架号：
+            <div class="layui-inline">
+                <input class="layui-input" name="vin" autocomplete="off" v-model="vin">
+            </div>
+            <button class="layui-btn" @click="search">搜索</button>
+        </div>
+    <table id="AchieveList" lay-filter="AchieveList"></table>
     <%-- 工具条存放区域--%>
-    <script type="text/html" id="options">
-        <a class="layui-btn layui-btn-xs" lay-event="bindMenu">设置权限</a>
-    </script>
+
 </div>
 <script src="${pageContext.request.contextPath}/resources/plugin/layui/layui.js"></script>
 <script src="${pageContext.request.contextPath}/resources/plugin/vue/vue.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/plugin/vue/vue-resource.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/common.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/dept/car.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/car/carAchieve.js"></script>
 </body>
 </html>
