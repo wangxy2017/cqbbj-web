@@ -67,7 +67,7 @@ layui.use(["table", "layer"], function () {
         url: "/employee/queryPageList",
         page: true,
         where: {
-            deleteStatus:0
+            is_onjob:0
         },
         parseData: function (res) {
             return {
