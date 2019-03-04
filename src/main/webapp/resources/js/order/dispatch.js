@@ -102,6 +102,8 @@ layui.use(["form", "layer"], function () {
                         //关闭自身
                         var index = parent.layer.getFrameIndex(window.name);
                         parent.layer.close(index);
+                        // 刷新列表
+                        parent.table.reload("orderList");
                     } else {
                         parent.layer.msg("派单失败");
                     }

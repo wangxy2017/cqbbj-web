@@ -30,10 +30,12 @@
         <div class="layui-form-item">
             <label class="layui-form-label">收款人员：</label>
             <div class="layui-input-inline">
-                <input type="text" name="empName" placeholder="指定收款人员" autocomplete="off"
-                       class="layui-input" v-model="moneyEmp.name" disabled>
+                <input type="text" name="empName" required lay-verify="required" placeholder="指定收款人员" autocomplete="off"
+                       class="layui-input" v-model="moneyEmp.name">
             </div>
-            <button type="button" style="margin-top: 4px;" class="layui-btn layui-btn-sm" @click="queryEmpList('money')">选择员工</button>
+            <button type="button" style="margin-top: 4px;" class="layui-btn layui-btn-sm"
+                    @click="queryEmpList('money')">选择员工
+            </button>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">司机：</label>
