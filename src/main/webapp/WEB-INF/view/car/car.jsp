@@ -17,33 +17,34 @@
 </head>
 <body>
 <div class="main" id="main">
+
+
     <%-- 工具栏 --%>
     <div class="layui-btn-container">
         <button class="layui-btn" @click="addCar">增加汽车</button>
         <button class="layui-btn layui-btn-normal" @click="updateCar">修改汽车</button>
         <button class="layui-btn layui-btn-danger" @click="deleteCar">删除汽车</button>
     </div>
-</div>
-<div class="search-tools">
-    车牌号：
-    <div class="layui-inline">
-        <input class="layui-input" name="license"autocomplete="off"  v-model="license">
-    </div>
-    发动号：
-    <div class="layui-inline">
-        <input class="layui-input" name="engine"autocomplete="off"  v-model="engine">
-    </div>
-    车架号：
-    <div class="layui-inline">
-        <input class="layui-input" name="vin" autocomplete="off"  v-model="vin">
-    </div>
-    <button class="layui-btn" @click="search">搜索</button>
 
+    <div class="search-tools">
+        车牌号：
+        <div class="layui-inline">
+            <input class="layui-input" name="license" autocomplete="off" v-model="license">
+        </div>
+        发动号：
+        <div class="layui-inline">
+            <input class="layui-input" name="engine" autocomplete="off" v-model="engine">
+        </div>
+        车架号：
+        <div class="layui-inline">
+            <input class="layui-input" name="vin" autocomplete="off" v-model="vin">
+        </div>
+        <button class="layui-btn" @click="search">搜索</button>
+    </div>
     <table id="carList" lay-filter="carList"></table>
     <%-- 工具条存放区域--%>
+</div>
 
-</div>
-</div>
 <script src="${pageContext.request.contextPath}/resources/plugin/layui/layui.js"></script>
 <script src="${pageContext.request.contextPath}/resources/plugin/vue/vue.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/plugin/vue/vue-resource.min.js"></script>

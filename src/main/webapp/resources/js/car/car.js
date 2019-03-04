@@ -6,8 +6,24 @@ layui.use(["table", "layer"], function () {
     // 创建vue实例
     var main = new Vue({
         el: "#main",
-        data: {},
+        data: {
+            license:"",
+            engine:"",
+            vin:""
+        },
         methods: {
+            /**
+             * 搜索
+             */
+            search:function(){
+                table.reload("carList", {
+                    where: {
+                        "license": main.license,
+                        "engine": main.engine,
+                        "vin":main.vin
+                    }
+                });
+            },
             // 添加车辆
             addCar: function () {
                 window.location.href = "/car/carAdd";
@@ -39,10 +55,9 @@ layui.use(["table", "layer"], function () {
                 for(var i=0;i<checkStatus.data.length;i++){
                     item = item+checkStatus.data[i].id+",";
                 }
-
                 layer.confirm("删除员工将放入回收站，确认删除吗？", function () {
                     // 请求后台，删除数据
-                    main.$http.post('/car/deleteActive', {"ids": item.substring(0,item.length-1)}, {emulateJSON: true}).then(function (res) {
+                    main.$http.post('/car/deleteActiveBatch', {"ids": item.substring(0,item.length-1)}, {emulateJSON: true}).then(function (res) {
                         console.log(res.body);
                         if (res.body.code == 1) {
                             layer.msg("删除成功");

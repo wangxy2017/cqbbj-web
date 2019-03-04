@@ -11,4 +11,5 @@ import com.cqbbj.entity.Car;
  * @date 2019/2/19 14:02
  */
 public interface ICarService extends BaseService<Car> {
+    void deleteActiveBatch(String ids);
 }

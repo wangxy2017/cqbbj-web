@@ -1,6 +1,6 @@
 <%--
   Created by IntelliJ IDEA.
-  User: 王孝元
+  User: liulei
   Date: 2019/1/18
   Time: 15:01
   To change this template use File | Settings | File Templates.
@@ -26,6 +26,7 @@
         <div class="layui-form-item layui-hide">
             <%-- 表单隐藏区域 --%>
             <input type="hidden" name="id" v-model="car.id">
+                <input type="hidden" name="car_no" v-model="car.car_no">
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">车牌号</label>

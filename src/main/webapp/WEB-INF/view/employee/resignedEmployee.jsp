@@ -1,7 +1,7 @@
 <%--
   Created by IntelliJ IDEA.
-  User: liulei
-  Date: 2019/2/26
+  User: 王孝元
+  Date: 2019/1/18
   Time: 9:36
   To change this template use File | Settings | File Templates.
 --%>
@@ -13,34 +13,39 @@
     <title>Title</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/plugin/layui/css/layui.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/car/car.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/employee/resignedEmployee.css">
 </head>
 <body>
 <div class="main" id="main">
     <%-- 工具栏 --%>
         <div class="search-tools">
-            车牌号：
+            姓名：
             <div class="layui-inline">
-                <input class="layui-input" name="license" autocomplete="off" v-model="license">
+                <input class="layui-input" name="name" autocomplete="off" v-model="name">
             </div>
-            发动号：
+            电话：
             <div class="layui-inline">
-                <input class="layui-input" name="engine" autocomplete="off" v-model="engine">
+                <input class="layui-input" name="phone" autocomplete="off" v-model="phone">
             </div>
-            车架号：
+            员工分类：
             <div class="layui-inline">
-                <input class="layui-input" name="vin" autocomplete="off" v-model="vin">
+                <select class="layui-input" name="position_id"  v-model="position_id">
+                    <option value="">请选择</option>
+                    <option value="2">普通司机</option>
+                    <option value="3">中级司机</option>
+                    <option value="4">高级司机</option>
+                    <option value="1">搬用工</option>
+                    <option value="5">空调工</option>
+                </select>
             </div>
             <button class="layui-btn" @click="search">搜索</button>
         </div>
-    <table id="AchieveList" lay-filter="AchieveList"></table>
-    <%-- 工具条存放区域--%>
-
+    <table id="resignedEmployeeList" lay-filter="resignedEmployeeList"></table>
 </div>
 <script src="${pageContext.request.contextPath}/resources/plugin/layui/layui.js"></script>
 <script src="${pageContext.request.contextPath}/resources/plugin/vue/vue.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/plugin/vue/vue-resource.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/common.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/car/carAchieve.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/employee/resignedEmployee.js"></script>
 </body>
 </html>
