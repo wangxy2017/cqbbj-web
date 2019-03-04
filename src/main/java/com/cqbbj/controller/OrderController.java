@@ -259,6 +259,7 @@ public class OrderController extends BaseController {
     public Result helpDone(HttpServletRequest request, Order order) {
         // 完成订单
         order.setStatus(2);
+        order.setEndTime(new Date());
         orderService.updateEntity(order);
         // 记录日志
         operationLogService.saveEntity(createLog(request, "辅助完成订单：" + order.getOrder_no()));
