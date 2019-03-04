@@ -8,7 +8,7 @@ layui.use(["form", "layer"], function () {
         data: {
             error: "",
             system: "重庆棒棒军后台管理系统",
-            support: "重庆汇普科技有限公司"
+            support: "重庆棒棒军服务有限公司"
         },
         methods: {
             /**

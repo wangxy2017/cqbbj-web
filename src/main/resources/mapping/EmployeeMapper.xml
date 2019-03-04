@@ -15,7 +15,8 @@
         emp_no,
         dept_id,
         position_id,
-        money
+        money,
+        is_onjob
     </sql>
     <sql id="insert_all_values">
         #{createTime},
@@ -29,7 +30,8 @@
         #{emp_no},
         #{dept_id},
         #{position_id},
-        #{money}
+        #{money},
+        #{is_onjob}
     </sql>
     <sql id="query_all_fields">
         id,
@@ -43,6 +45,7 @@
         dept_id,
         position_id,
         money,
+        is_onjob,
         createTime
     </sql>
     <!-- 保存员工 -->
@@ -62,6 +65,7 @@
             <if test="dept_id != null">dept_id = #{dept_id},</if>
             <if test="position_id != null">position_id = #{position_id},</if>
             <if test="money != null">money = #{money},</if>
+            <if test="is_onjob != null">is_onjob = #{is_onjob},</if>
         </set>
         where id = #{id}
     </update>
@@ -98,9 +102,9 @@
         <if test="account != null and account != ''">and e.account = #{account}</if>
         <if test="name != null and name != ''">and e.name like concat("%",#{name},"%")</if>
         <if test="phone != null and phone != ''">and e.phone like concat("%",#{phone},"%")</if>
-        <if test="is_onjob != null">and e.is_onjob = #{is_onjob}</if>
+        <if test="is_onjob != null ">and e.is_onjob = #{is_onjob}</if>
         <if test="deptName != null and deptName != ''">and d.name like concat("%",#{deptName},"%")</if>
-        <if test="position_id != null and position_id != ''">and position_id = #{position_id}</if>
+        <if test="position_id != null">and e.position_id = #{position_id}</if>
     </select>
     <!-- 根据ID查询 -->
     <select id="queryById" parameterType="int" resultType="employee">
