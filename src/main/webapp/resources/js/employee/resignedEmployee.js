@@ -6,27 +6,23 @@ layui.use(["table", "layer"], function () {
     // 创建vue实例
     var main = new Vue({
         el: "#main",
-        data: {},
+        data: {
+            phone:"",
+            name:"",
+            position_id:""
+        },
         methods: {
-            // 添加员工
-            addEmployee: function () {
-                window.location.href = "/employee/employeeAdd";
-            },
-            // 修改员工
-            updateEmployee: function () {
-                // 获取选中行数据
-                var checkStatus = table.checkStatus('employeeList');
-                if (checkStatus.data.length == 0) {
-                    layer.msg("请选择一行进行修改");
-                    return;
-                }
-                if (checkStatus.data.length > 1) {
-                    layer.msg("只能同时操作一行数据");
-                    return;
-                }
-                // 跳转修改界面
-                window.location.href = "/employee/employeeUpdate?id=" + checkStatus.data[0].id;
-            },
+
+            search:function(){
+                table.reload("resignedEmployeeList", {
+                    where: {
+                        "name": main.name,
+                        "phone": main.phone,
+                        "position_id":main.position_id,
+                        deleteStatus:1
+                    }
+                });
+                },
             // 删除员工
             deleteEmployee: function () {
                 // 获取选中行数据
@@ -62,12 +58,12 @@ layui.use(["table", "layer"], function () {
      * 加载数据
      */
     table.render({
-        elem: "#employeeList",
-        id: "employeeList",
+        elem: "#resignedEmployeeList",
+        id: "resignedEmployeeList",
         url: "/employee/queryPageList",
         page: true,
         where: {
-            deleteStatus:0
+            deleteStatus:1
         },
         parseData: function (res) {
             return {

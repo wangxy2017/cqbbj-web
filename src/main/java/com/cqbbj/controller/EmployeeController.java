@@ -54,7 +54,16 @@ public class EmployeeController extends BaseController {
         log.debug("跳转employee页面");
         return "employee/employee";
     }
-
+    /**
+     * 离职员工管理页面跳转
+     *
+     * @return
+     */
+    @RequestMapping("/resignedEmployee")
+    public String resignedEmployee() {
+        log.debug("跳转离职employee页面");
+        return "employee/resignedEmployee";
+    }
     /**
      * 添加员工页面跳转
      *

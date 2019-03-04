@@ -75,8 +75,13 @@
     </update>
     <!-- 查询员工列表 -->
     <select id="queryList" resultType="employee" parameterType="employee">
-        select <include refid="query_all_fields"></include> from sys_employee where deleteStatus = 0
+        select <include refid="query_all_fields"></include> from sys_employee where 1=1
+
+        <if test="deleteStatus != null and deleteStatus != ''">and deleteStatus = #{deleteStatus}</if>
         <if test="account != null and account != ''">and account = #{account}</if>
+        <if test="name != null and name != ''">and name = #{name}</if>
+        <if test="phone != null and phone != ''">and phone = #{phone}</if>
+        <if test="position_id != null and position_id != ''">and position_id = #{position_id}</if>
     </select>
     <!-- 根据ID查询 -->
     <select id="queryById" parameterType="int" resultType="employee">
