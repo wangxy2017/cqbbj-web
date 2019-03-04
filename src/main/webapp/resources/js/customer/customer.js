@@ -7,17 +7,20 @@ layui.use(["table", "layer"], function () {
     var main = new Vue({
         el: "#main",
         data: {
-            searchNo:"",
-            searchName:"",
-            searchWX:""
+            cust_no:"",
+            name:"",
+            wxname:""
         },
         methods: {
+            /**
+             * 搜索
+             */
             search:function(){
                 table.reload("customerList", {
                     where: {
-                        "searchNo": main.searchNo,
-                        "searchName": main.searchName,
-                        "searchWX": main.searchWX
+                        "cust_no": main.cust_no,
+                        "name": main.name,
+                        "wxname":main.wxname
                     }
                 });
             },

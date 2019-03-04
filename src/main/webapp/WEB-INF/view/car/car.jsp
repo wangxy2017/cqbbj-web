@@ -27,15 +27,15 @@
 <div class="search-tools">
     车牌号：
     <div class="layui-inline">
-        <input class="layui-input" name="searchNo"autocomplete="off"  v-model="searchNo">
+        <input class="layui-input" name="license"autocomplete="off"  v-model="license">
     </div>
-    品牌型号：
+    发动号：
     <div class="layui-inline">
-        <input class="layui-input" name="searchName"autocomplete="off"  v-model="searchName">
+        <input class="layui-input" name="engine"autocomplete="off"  v-model="engine">
     </div>
-    车辆编号：
+    车架号：
     <div class="layui-inline">
-        <input class="layui-input" name="searchWX" autocomplete="off"  v-model="searchWX">
+        <input class="layui-input" name="vin" autocomplete="off"  v-model="vin">
     </div>
     <button class="layui-btn" @click="search">搜索</button>
 

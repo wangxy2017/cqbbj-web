@@ -1,3 +1,6 @@
+.layui-table-view .layui-form-checkbox{
+    top:5px !important;
+}
 /* 更改layui样式*/
 .go-back {
     padding-left: 5px !important;

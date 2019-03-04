@@ -43,6 +43,16 @@ public class CarController extends BaseController {
         return "/car/car";
     }
     /**
+     * 车辆新增页面
+     * @param
+     * @param
+     * @return
+     */
+    @RequestMapping("/carAdd")
+    public String carAdd(){
+        return "/car/carAdd";
+    }
+    /**
      * 车辆修改页面
      * @param
      * @param
@@ -62,6 +72,20 @@ public class CarController extends BaseController {
     public String carAchieve(){
         return "/car/carAchieve";
     }
+
+    /**
+     * 根据ID查询车辆信息
+     * @param
+     * @param
+     * @return
+     */
+    @RequestMapping("/queryById")
+    @ResponseBody
+    public Result queryById(Integer id){
+        Car car=carService.queryById(id);
+        return ResultUtils.success(car);
+    }
+
     /**
      * 新增车辆
      *

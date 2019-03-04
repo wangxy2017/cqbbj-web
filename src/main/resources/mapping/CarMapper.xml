@@ -75,5 +75,14 @@
     <!-- 查询车辆列表 -->
     <select id="queryList" resultType="car" parameterType="car">
         select <include refid="query_all_fields"></include> from sys_car where deleteStatus = 0
+        <set>
+            <if test="brand!=null and brand!=''"> and brand = #{brand}</if>
+            <if test="engine!=null and engine!=''"> and engine = #{engine}</if>
+            <if test="vin!=null and vin!=''"> and vin = #{vin}</if>
+        </set>
+    </select>
+    <!-- 根据Id查询车辆 -->
+    <select id="queryById" resultType="car" parameterType="int">
+        select <include refid="query_all_fields"></include> from sys_car where id =#{id}
     </select>
 </mapper>

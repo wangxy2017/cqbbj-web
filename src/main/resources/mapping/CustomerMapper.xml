@@ -50,7 +50,7 @@
         </foreach>
     </update>
     <!-- 查询客户列表 -->
-    <select id="queryList" resultType="customer">
+    <select id="queryList" resultType="customer" parameterType="customer">
         select <include refid="query_all_fields"></include> from sys_customer where deleteStatus = 0
         <if test="cust_no != null and cust_no != ''">and cust_no = #{cust_no}</if>
         <if test="name != null and name != ''">and name like concat('%', #{name},'%')</if>
