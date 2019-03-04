@@ -19,7 +19,7 @@ layui.use(["table", "layer"], function () {
                         "name": main.name,
                         "phone": main.phone,
                         "position_id":main.position_id,
-                        deleteStatus:1
+                        is_onjob:1
                     }
                 });
                 },
@@ -63,7 +63,7 @@ layui.use(["table", "layer"], function () {
         url: "/employee/queryPageList",
         page: true,
         where: {
-            deleteStatus:1
+            is_onjob:1
         },
         parseData: function (res) {
             return {
