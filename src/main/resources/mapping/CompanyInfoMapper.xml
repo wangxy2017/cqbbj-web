@@ -44,7 +44,7 @@
     </insert>
     <!-- 修改公司信息 -->
     <update id="update" parameterType="companyInfo">
-        update sys_CompanyInfo
+        update sys_company_info
         <set>
             <if test="name != null and name != ''">name = #{name},</if>
             <if test="address != null and address != ''">address = #{address},</if>
