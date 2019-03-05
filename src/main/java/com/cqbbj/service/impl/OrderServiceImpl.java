@@ -1,10 +1,16 @@
 package com.cqbbj.service.impl;
 
 import com.cqbbj.core.base.PageModel;
+import com.cqbbj.core.util.SmsUtils;
+import com.cqbbj.dao.CompanyInfoMapper;
+import com.cqbbj.dao.EmployeeMapper;
 import com.cqbbj.dao.OrderMapper;
 import com.cqbbj.dao.SendOrderMapper;
+import com.cqbbj.entity.CompanyInfo;
+import com.cqbbj.entity.Employee;
 import com.cqbbj.entity.Order;
 import com.cqbbj.entity.SendOrder;
+import com.cqbbj.service.IEmployeeService;
 import com.cqbbj.service.IOrderService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -36,6 +42,18 @@ public class OrderServiceImpl implements IOrderService {
      */
     @Autowired
     private SendOrderMapper sendOrderMapper;
+
+    /**
+     * 系统配置
+     */
+    @Autowired
+    private CompanyInfoMapper companyInfoMapper;
+
+    /**
+     * 员工Mapper
+     */
+    @Autowired
+    private EmployeeMapper employeeMapper;
 
     @Override
     public int saveEntity(Order order) {
@@ -85,25 +103,31 @@ public class OrderServiceImpl implements IOrderService {
         if (order1 != null) {
             // 清空派单记录
             sendOrderMapper.deleteSendOrder(order1.getOrder_no());
-            // 保存收款人员
-            List<SendOrder> list0 = createSendOrder(order1.getOrder_no(), moneyEmps, 0);
-            if (!list0.isEmpty())
-                sendOrderMapper.saveBatch(list0);
-            // 保存随车司机
-            List<SendOrder> list1 = createSendOrder(order1.getOrder_no(), driveEmps, 1);
-            if (!list1.isEmpty())
-                sendOrderMapper.saveBatch(list1);
-            // 保存随车搬运工
-            List<SendOrder> list2 = createSendOrder(order1.getOrder_no(), moveEmps, 2);
-            if (!list2.isEmpty())
-                sendOrderMapper.saveBatch(list2);
-            // 保存随车空调工
-            List<SendOrder> list3 = createSendOrder(order1.getOrder_no(), airEmps, 3);
-            if (!list3.isEmpty())
-                sendOrderMapper.saveBatch(list3);
+            // 创建派单记录
+            List<SendOrder> list = new ArrayList<>();
+            list.addAll(createSendOrder(order1.getOrder_no(), moneyEmps, 0));
+            list.addAll(createSendOrder(order1.getOrder_no(), driveEmps, 1));
+            list.addAll(createSendOrder(order1.getOrder_no(), moveEmps, 2));
+            list.addAll(createSendOrder(order1.getOrder_no(), airEmps, 3));
+            // 保存派单记录
+            if (!list.isEmpty())
+                sendOrderMapper.saveBatch(list);
             // 更改订单状态
             order1.setStatus(1);
             orderMapper.update(order1);
+            // 发送短信
+            CompanyInfo companyInfo = companyInfoMapper.queryById(1);
+            if (companyInfo != null && companyInfo.getMsg_open() == 0) {
+                List<String> phones = new ArrayList<>();
+                for (SendOrder so : list) {
+                    Employee employee = new Employee();
+                    employee.setEmp_no(so.getEmp_no());
+                    employee = employeeMapper.queryByProperties(employee);
+                    if (employee != null)
+                        phones.add(employee.getPhone());
+                }
+                SmsUtils.sendSmsBatch(phones, "师傅您好，您有新的派单消息，请前往微信公众号查看");
+            }
         }
         return 1;
     }

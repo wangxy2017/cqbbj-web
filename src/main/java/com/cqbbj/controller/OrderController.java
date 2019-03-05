@@ -5,6 +5,7 @@ import com.cqbbj.core.base.PageModel;
 import com.cqbbj.core.base.Result;
 import com.cqbbj.core.util.CommUtils;
 import com.cqbbj.core.util.ResultUtils;
+import com.cqbbj.core.util.SmsUtils;
 import com.cqbbj.entity.*;
 import com.cqbbj.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -144,6 +145,7 @@ public class OrderController extends BaseController {
         operationLogService.saveEntity(createLog(request, "新增订单：" + order.getOrder_no()));
         if (isNotice != null && isNotice == 1) {
             log.debug("发送短信");
+            SmsUtils.sendSms(order.getPhone(), "您好，您的订单" + order.getOrder_no() + "已生效，可前往[微信公众号-会员中心-我的订单]查看");
         }
         return ResultUtils.success();
     }
