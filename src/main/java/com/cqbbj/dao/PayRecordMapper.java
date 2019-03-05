@@ -1,6 +1,7 @@
 package com.cqbbj.dao;
 
 import com.cqbbj.core.base.BaseMapper;
+import com.cqbbj.core.base.PageModel;
 import com.cqbbj.entity.PayRecord;
 import org.springframework.stereotype.Repository;
 
@@ -13,5 +14,7 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface PayRecordMapper extends BaseMapper<PayRecord> {
+
+    public PageModel<PayRecord> queryPageList(PayRecord payRecord, String startTime, String endTime, int pageNum, int pageSize);
 
 }

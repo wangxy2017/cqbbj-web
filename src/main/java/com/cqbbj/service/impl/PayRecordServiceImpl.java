@@ -54,6 +54,11 @@ public class PayRecordServiceImpl implements IPayRecordService {
 
     @Override
     public PageModel<PayRecord> queryPageList(PayRecord payRecord, int pageNum, int pageSize) {
+        return null;
+    }
+
+    @Override
+    public PageModel<PayRecord> queryPageList(PayRecord payRecord, String startTime, String endTime, int pageNum, int pageSize) {
         PageHelper.startPage(pageNum, pageSize);
         List<PayRecord> list = payRecordMapper.queryList(payRecord);
         PageInfo<PayRecord> pageInfo = new PageInfo<>(list);
