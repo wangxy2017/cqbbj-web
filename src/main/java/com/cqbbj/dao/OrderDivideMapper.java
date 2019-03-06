@@ -1,8 +1,7 @@
 package com.cqbbj.dao;
 
 import com.cqbbj.core.base.BaseMapper;
-import com.cqbbj.core.base.PageModel;
-import com.cqbbj.entity.PayRecord;
+import com.cqbbj.entity.OrderDivide;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -16,10 +15,10 @@ import java.util.Map;
  * @date 2019/2/18 11:49
  */
 @Repository
-public interface PayRecordMapper extends BaseMapper<PayRecord> {
+public interface OrderDivideMapper extends BaseMapper<OrderDivide> {
 
 
-    List<PayRecord> queryList(Map map);
+    List<OrderDivide> queryList(Map map);
 
 
 

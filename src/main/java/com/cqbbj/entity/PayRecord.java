@@ -46,6 +46,8 @@ public class PayRecord extends BaseEntity {
      */
     private String record_no;
 
+
+
     public String getOrder_no() {
         return order_no;
     }
