@@ -9,7 +9,11 @@ import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author wangxy
@@ -26,6 +30,9 @@ public class PayRecordServiceImpl implements IPayRecordService {
      */
     @Autowired
     private PayRecordMapper payRecordMapper;
+
+
+
 
     @Override
     public int saveEntity(PayRecord payRecord) {
@@ -58,9 +65,17 @@ public class PayRecordServiceImpl implements IPayRecordService {
     }
 
     @Override
-    public PageModel<PayRecord> queryPageList(PayRecord payRecord, String startTime, String endTime, int pageNum, int pageSize) {
+    public PageModel<PayRecord> queryPageList(PayRecord payRecord, Date startTime, Date endTime, int pageNum, int pageSize) {
         PageHelper.startPage(pageNum, pageSize);
-        List<PayRecord> list = payRecordMapper.queryList(payRecord);
+        Map map=new HashMap();
+        SimpleDateFormat format=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        map.put("order_no",payRecord.getOrder_no());
+        map.put("trans_no",payRecord.getTrans_no());
+        map.put("payWay",payRecord.getPayWay());
+        map.put("startTime",startTime==null?null:format.format(startTime));
+        //System.out.println("**************开始时间为"+ map.get("startTime"));
+        map.put("endTime",endTime==null?null:format.format(endTime));
+        List<PayRecord> list = payRecordMapper.queryList(map);
         PageInfo<PayRecord> pageInfo = new PageInfo<>(list);
         return new PageModel(pageInfo);
     }

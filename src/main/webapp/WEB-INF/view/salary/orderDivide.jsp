@@ -13,7 +13,7 @@
     <title>Title</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/plugin/layui/css/layui.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/salary/payRecord.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/salary/orderDivide.css">
 </head>
 <body>
 <div class="main" id="main">
@@ -23,20 +23,23 @@
             <div class="layui-inline">
                 <input class="layui-input" name="order_no" autocomplete="off" v-model="order_no">
             </div>
-            交易号：
+            员工名称：
             <div class="layui-inline">
-                <input class="layui-input" name="trans_no" autocomplete="off" v-model="trans_no">
+                <input class="layui-input" name="emp_name" autocomplete="off" v-model="emp_name">
             </div>
-            支付类型：
+            员工类型：
             <div class="layui-inline">
-                <select class="layui-input" name="payWay"  v-model="payWay">
+                <select class="layui-input" name="emp_pos"  v-model="emp_pos">
                     <option value="">全部</option>
-                    <option value="0">现金</option>
-                    <option value="1">微信</option>
-                    <option value="2">签单</option>
+                    <option value="1">搬运工</option>
+                    <option value="2">空调工</option>
+                    <option value="3">初级司机</option>
+                    <option value="4">中级司机</option>
+                    <option value="5">高级司机</option>
                 </select>
             </div>
-            支付时间：
+
+            结算时间：
             <div class="layui-inline">
                 <input type="text" class="layui-input" name="startTime" id="startTime" autocomplete="off">
             </div>
@@ -46,12 +49,12 @@
             </div>
             <button class="layui-btn" @click="search">搜索</button>
         </div>
-    <table id="payRecordList" lay-filter="payRecordList"></table>
+    <table id="orderDivideList" lay-filter="orderDivideList"></table>
 </div>
 <script src="${pageContext.request.contextPath}/resources/plugin/layui/layui.js"></script>
 <script src="${pageContext.request.contextPath}/resources/plugin/vue/vue.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/plugin/vue/vue-resource.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/common.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/salary/payRecord.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/salary/orderDivide.js"></script>
 </body>
 </html>

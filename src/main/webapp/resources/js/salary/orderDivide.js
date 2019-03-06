@@ -9,8 +9,8 @@ layui.use(["table", "layer", "laydate","jquery"], function () {
         el: "#main",
         data: {
             order_no: "",
-            trans_no: "",
-            payWay: "",
+            emp_name: "",
+            emp_pos: "",
         },
         methods: {
             /**
@@ -29,11 +29,11 @@ layui.use(["table", "layer", "laydate","jquery"], function () {
                 });
             },
             search: function () {
-                table.reload("payRecordList", {
+                table.reload("orderDivideList", {
                     where: {
                         "order_no": main.order_no,
-                        "trans_no": main.trans_no,
-                        "payWay": main.payWay,
+                        "name": main.emp_name,
+                        "position_id": main.emp_pos,
                         "startTime": $("#startTime").val(),
                         "endTime": $("#endTime").val()
                     }
@@ -47,9 +47,9 @@ layui.use(["table", "layer", "laydate","jquery"], function () {
                  * 加载数据
                  */
                 table.render({
-                    elem: "#payRecordList",
-                    id: "payRecordList",
-                    url: "/payRecord/queryPageList",
+                    elem: "#orderDivideList",
+                    id: "orderDivideList",
+                    url: "/orderDivide/queryPageList",
                     page: true,
                     where: {},
                     parseData: function (res) {
@@ -70,16 +70,24 @@ layui.use(["table", "layer", "laydate","jquery"], function () {
                     cols: [[
                         {type: 'checkbox'}
                         , {field: 'order_no', title: '订单号'}
-                        , {field: 'cust_no', title: '客户名称'}
-                        , {field: 'payWay', title: '支付类型'}
-                        , {field: 'payMoney', title: '支付金额'}
-                        , {field: 'trans_no', title: '交易号'}
-                        , {field: 'emp_no', title: '收款人'}
+                        , {field: 'start', title: '搬出地址'}
+                        , {field: 'end', title: '搬入地址'}
                         , {
-                            field: 'payTime', title: '支付时间', sort: true, templet: function (d) {
-                                return formatDateTime(d.payTime);
+                            field: 'endTime', title: '完成时间', sort: true, templet: function (d) {
+                                return formatDateTime(d.endTime);
                             }
                         }
+                        , {field: 'emp_name', title: '员工姓名'}
+                        , {field: 'order_price', title: '订单金额'}
+
+                        , {field: 'type', title: '提成比例'}
+                        , {field: 'money', title: '提成金额'}
+                        , {
+                            field: 'clean_time', title: '结算时间', sort: true, templet: function (d) {
+                                return formatDateTime(d.clean_time);
+                            }
+                        }
+                        , {field: 'operator_name', title: '操作人'}
                     ]]
                 });
             }

@@ -32,7 +32,7 @@ public class PayRecordController extends BaseController {
 
     @RequestMapping("/queryPageList")
     @ResponseBody
-    public Result queryPageList(PayRecord payRecord, String startTime,String endTime, Integer pageNum, Integer pageSize) {
+    public Result queryPageList(PayRecord payRecord, Date startTime,Date endTime, Integer pageNum, Integer pageSize) {
         PageModel<PayRecord> pageModel = payRecordService.queryPageList(payRecord,startTime,endTime, pageNum, pageSize);
         return ResultUtils.success(pageModel);
     }
