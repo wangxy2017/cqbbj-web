@@ -23,6 +23,8 @@
         <typeAlias type="com.cqbbj.entity.Salary" alias="salary"/>
         <typeAlias type="com.cqbbj.entity.CompanyInfo" alias="companyInfo"/>
         <typeAlias type="com.cqbbj.entity.SendOrder" alias="sendOrder"/>
+        <typeAlias type="com.cqbbj.entity.DivideModel" alias="divideModel"/>
+        <typeAlias type="com.cqbbj.entity.DivideModelDetails" alias="divideModelDetails"/>
     </typeAliases>
     <plugins>
         <!-- 分页插件 -->

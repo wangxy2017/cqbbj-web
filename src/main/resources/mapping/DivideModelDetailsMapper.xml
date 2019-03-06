@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cqbbj.dao.DivideModelMapper">
+    <sql id="insert_all_fields">
+        createTime,
+        deleteStatus,
+        name,
+        type,
+        value,
+        isAll,
+        model_no
+    </sql>
+    <sql id="insert_all_values">
+        #{createTime},
+        #{deleteStatus},
+        #{name},
+        #{type},
+        #{value},
+        #{isAll},
+        #{model_no}
+    </sql>
+    <!-- 保存结算模式 -->
+    <insert id="save" parameterType="divideModelDetails" useGeneratedKeys="true" keyProperty="id">
+        insert into sys_divide_model_details(<include refid="insert_all_fields"/>)
+        values(<include refid="insert_all_values"/>)
+    </insert>
+    <!-- 修改结算模式 -->
+    <update id="update" parameterType="divideModelDetails">
+        update sys_divide_model_details
+        <set>
+            <if test="name != null and name != ''">name = #{name},</if>
+            <if test="type != null">type = #{type},</if>
+            <if test="value != null">value = #{value},</if>
+            <if test="isAll != null">isAll = #{isAll},</if>
+        </set>
+    </update>
+    <!-- 删除结算模式 -->
+    <delete id="delete" parameterType="int">
+        delete from sys_divide_model_details where id = #{id}
+    </delete>
+</mapper>
