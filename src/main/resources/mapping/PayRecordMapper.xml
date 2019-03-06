@@ -53,5 +53,11 @@
     <!-- 查询支付记录列表 -->
     <select id="queryList" resultType="payRecord" parameterType="payRecord">
         select <include refid="query_all_fields"></include> from sys_pay_record where deleteStatus = 0
+        <if test="order_no!=null and order_no!=''">and order_no=#{order_no}</if>
+        <if test="record_no!=null and record_no!=''">and record_no=#{record_no}</if>
+        <if test="payWay!=null and payWay!=''">and payWay=#{payWay}</if>
+        <if test="startTime!=null and startTime!=''"><![CDATA[and payTime >= #{startTime}]]></if>
+        <if test="endTime!=null and endTime!=''"><![CDATA[ and payTime  <= #{endTime}]]>
+        </if>
     </select>
 </mapper>

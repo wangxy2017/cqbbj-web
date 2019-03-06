@@ -1,6 +1,7 @@
 package com.cqbbj.service;
 
 import com.cqbbj.core.base.BaseService;
+import com.cqbbj.core.base.PageModel;
 import com.cqbbj.entity.PayRecord;
 
 /**
@@ -11,4 +12,5 @@ import com.cqbbj.entity.PayRecord;
  * @date 2019/2/19 14:02
  */
 public interface IPayRecordService extends BaseService<PayRecord> {
+    public PageModel<PayRecord> queryPageList(PayRecord payRecord, String startTime, String endTime, int pageNum, int pageSize);
 }
