@@ -1,12 +1,8 @@
 package com.cqbbj.dao;
 
 import com.cqbbj.core.base.BaseMapper;
-import com.cqbbj.entity.Car;
 import com.cqbbj.entity.DivideModel;
-import com.cqbbj.entity.DivideModelDetails;
 import org.springframework.stereotype.Repository;
-
-import java.util.List;
 
 /**
  * @author wangxy
@@ -17,13 +13,5 @@ import java.util.List;
  */
 @Repository
 public interface DivideModelMapper extends BaseMapper<DivideModel> {
-    /**
-     * 保存提成详情
-     *
-     * @param list
-     * @return
-     */
-    int saveDetails(List<DivideModelDetails> list);
-
 
 }

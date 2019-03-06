@@ -34,4 +34,34 @@
     <delete id="delete" parameterType="int">
         delete from sys_divide_model where id = #{id}
     </delete>
+    <!-- 查询列表 -->
+    <resultMap type="divideModel" id="queryListResultMap">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="is_disabled" column="is_disabled"/>
+        <!-- 配置一对多的关系 -->
+        <collection property="details" javaType="list" ofType="divideModelDetails">
+            <!-- 配置主键，是关联Order的唯一标识 -->
+            <id property="model_no" column="model_no"/>
+            <result property="id" column="did"/>
+            <result property="dname" column="dname"/>
+            <result property="type" column="dtype"/>
+            <result property="dvalue" column="dvalue"/>
+            <result property="isAll" column="disAll"/>
+        </collection>
+    </resultMap>
+    <select id="queryList" parameterType="divideModel" resultMap="queryListResultMap">
+        select
+        dm.id,
+        dm.name,
+        dm.is_disabled,
+        dmd.id as did,
+        dmd.name as dname,
+        dmd.type as dtype,
+        dmd.value as dvalue,
+        dmd.isAll as disAll
+        from sys_divide_model dm
+        left join sys_divide_model_details dmd on dmd.model_no = dm.model_no
+        where dm.deleteStatus = 0
+    </select>
 </mapper>

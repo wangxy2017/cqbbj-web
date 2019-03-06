@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.cqbbj.dao.DivideModelMapper">
+<mapper namespace="com.cqbbj.dao.DivideModelDetailsMapper">
     <sql id="insert_all_fields">
         createTime,
         deleteStatus,
@@ -21,12 +21,12 @@
         #{isAll},
         #{model_no}
     </sql>
-    <!-- 保存结算模式 -->
+    <!-- 保存结算详情 -->
     <insert id="save" parameterType="divideModelDetails" useGeneratedKeys="true" keyProperty="id">
         insert into sys_divide_model_details(<include refid="insert_all_fields"/>)
         values(<include refid="insert_all_values"/>)
     </insert>
-    <!-- 修改结算模式 -->
+    <!-- 修改结算详情 -->
     <update id="update" parameterType="divideModelDetails">
         update sys_divide_model_details
         <set>
@@ -36,7 +36,7 @@
             <if test="isAll != null">isAll = #{isAll},</if>
         </set>
     </update>
-    <!-- 删除结算模式 -->
+    <!-- 删除结算详情 -->
     <delete id="delete" parameterType="int">
         delete from sys_divide_model_details where id = #{id}
     </delete>
