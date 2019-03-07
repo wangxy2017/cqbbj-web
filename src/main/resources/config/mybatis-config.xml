@@ -26,6 +26,7 @@
         <typeAlias type="com.cqbbj.entity.OrderDivide" alias="orderDivide"/>
         <typeAlias type="com.cqbbj.entity.DivideModel" alias="divideModel"/>
         <typeAlias type="com.cqbbj.entity.DivideModelDetails" alias="divideModelDetails"/>
+        <typeAlias type="com.cqbbj.entity.SignBill" alias="signBill"/>
     </typeAliases>
     <plugins>
         <!-- 分页插件 -->

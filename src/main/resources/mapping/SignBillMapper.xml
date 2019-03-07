@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cqbbj.dao.SignBillMapper">
+
+
+    <sql id="insert_all_fields">
+
+    </sql>
+    <sql id="insert_all_values">
+
+    </sql>
+
+    <!-- 保存提成记录 -->
+    <insert id="save" parameterType="signBill" useGeneratedKeys="true" keyProperty="id">
+        insert into sys_sign_bill(<include refid="insert_all_fields"/>) values(<include refid="insert_all_values"/>)
+    </insert>
+    <!-- 删除提成记录 -->
+    <delete id="delete" parameterType="int">
+        delete from sys_sign_bill where id = #{id}
+    </delete>
+    <!-- 逻辑删除提成记录 -->
+    <update id="deleteActive" parameterType="int">
+        update sys_sign_bill set deleteStatus = 1 where id = #{id}
+    </update>
+
+
+    <!-- 查询提成记录列表 -->
+    <select id="queryList" resultType="signBill" parameterType="map">
+        select
+        s.id,
+        s.createTime,
+        s.deleteStatus,
+        s.`name`,
+        s.phone,
+        s.`start`,
+        s.`end`,
+        s.content,
+        s.beginTime,
+        s.price,
+        s.endTime,
+        s.receiveMoney,
+        s.costMoney,
+        s.emp_no,
+        s.`status`,
+        s.order_no,
+        s.customer_no,
+        s.bill_no,
+        e.`name` emp_name
+        from sys_sign_bill s
+        left join sys_employee e on s.emp_no=e.emp_no
+        where s.deleteStatus=0 and e.deleteStatus=0
+        <if test="name!=null and name!=''">and s.name=#{name}</if>
+        <if test="status!=null and status!=''">and s.status=#{status}</if>
+        <if test="order_no!=null and order_no!=''">and s.order_no=#{order_no}</if>
+        <if test="startTime!=null and startTime!=''"><![CDATA[and s.endTime >= #{startTime}]]></if>
+        <if test="finishTime!=null and finishTime!=''"><![CDATA[ and s.finishTime  <= #{finishTime}]]>
+        </if>
+    </select>
+</mapper>
