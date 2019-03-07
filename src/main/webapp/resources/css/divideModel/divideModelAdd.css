@@ -21,15 +21,13 @@
 }
 
 .divide {
-    padding: 8px 10px;
-    border: 1px solid #e6e6e6;
-    border-radius: 2px;
     padding: 8px 0;
+    margin-top: 0px !important;
 }
 
 .divide .divide-dl {
     overflow: hidden;
-    margin-left: 10px;
+    margin-left: 20px;
 }
 
 .divide .divide-dl .divide-dt {

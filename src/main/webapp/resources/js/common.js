@@ -33,3 +33,16 @@ function formatDate(timeStamp) {
     d = d < 10 ? ('0' + d) : d;
     return y + '-' + m + '-' + d;
 };
+
+/**
+ * 验证空对象
+ * @param obj
+ * @returns {boolean}
+ */
+function isEmptyObject(obj) {
+    for (var key in obj) {
+        return false
+    }
+    ;
+    return true
+};

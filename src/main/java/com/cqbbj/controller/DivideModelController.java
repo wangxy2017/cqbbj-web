@@ -1,8 +1,10 @@
 package com.cqbbj.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.cqbbj.core.base.BaseController;
 import com.cqbbj.core.base.PageModel;
 import com.cqbbj.core.base.Result;
+import com.cqbbj.core.util.CommUtils;
 import com.cqbbj.core.util.ResultUtils;
 import com.cqbbj.entity.DivideModel;
 import com.cqbbj.entity.DivideModelDetails;
@@ -12,6 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.Date;
 
 /**
  * @author wangxy
@@ -57,12 +61,34 @@ public class DivideModelController extends BaseController {
      */
     @RequestMapping("/save")
     @ResponseBody
-    public Result save(DivideModel divideModel, DivideModelDetails drive, DivideModelDetails move, DivideModelDetails air) {
+    public Result save(DivideModel divideModel, String drive, String move, String air) {
+        divideModel.setIs_disabled(0);
+        divideModel.setModel_no(CommUtils.getCode("DM"));
+        divideModel.setCreateTime(new Date());
+        divideModel.setDeleteStatus(0);
         divideModelService.saveEntity(divideModel);
         // 保存提成详情
-        divideModelDetailsService.saveEntity(drive);
-        divideModelDetailsService.saveEntity(move);
-        divideModelDetailsService.saveEntity(air);
+        if (!"{}".equals(drive)) {
+            DivideModelDetails driveDMD = JSON.parseObject(drive, DivideModelDetails.class);
+            driveDMD.setCreateTime(new Date());
+            driveDMD.setDeleteStatus(0);
+            driveDMD.setModel_no(divideModel.getModel_no());
+            divideModelDetailsService.saveEntity(driveDMD);
+        }
+        if (!"{}".equals(move)) {
+            DivideModelDetails moveDMD = JSON.parseObject(move, DivideModelDetails.class);
+            moveDMD.setCreateTime(new Date());
+            moveDMD.setDeleteStatus(0);
+            moveDMD.setModel_no(divideModel.getModel_no());
+            divideModelDetailsService.saveEntity(moveDMD);
+        }
+        if (!"{}".equals(air)) {
+            DivideModelDetails airDMD = JSON.parseObject(air, DivideModelDetails.class);
+            airDMD.setCreateTime(new Date());
+            airDMD.setDeleteStatus(0);
+            airDMD.setModel_no(divideModel.getModel_no());
+            divideModelDetailsService.saveEntity(airDMD);
+        }
         return ResultUtils.success();
     }
 
@@ -77,12 +103,12 @@ public class DivideModelController extends BaseController {
      */
     @RequestMapping("/update")
     @ResponseBody
-    public Result update(DivideModel divideModel, DivideModelDetails drive, DivideModelDetails move, DivideModelDetails air) {
+    public Result update(DivideModel divideModel, String drive, String move, String air) {
         divideModelService.updateEntity(divideModel);
         // 保存提成详情
-        divideModelDetailsService.updateEntity(drive);
-        divideModelDetailsService.updateEntity(move);
-        divideModelDetailsService.updateEntity(air);
+        divideModelDetailsService.updateEntity(JSON.parseObject(drive, DivideModelDetails.class));
+        divideModelDetailsService.updateEntity(JSON.parseObject(move, DivideModelDetails.class));
+        divideModelDetailsService.updateEntity(JSON.parseObject(air, DivideModelDetails.class));
         return ResultUtils.success();
     }
 
@@ -99,6 +125,19 @@ public class DivideModelController extends BaseController {
     public Result queryPageList(DivideModel divideModel, Integer pageNum, Integer pageSize) {
         PageModel<DivideModel> pageModel = divideModelService.queryPageList(divideModel, pageNum, pageSize);
         return ResultUtils.success(pageModel);
+    }
+
+    /**
+     * 删除模板
+     *
+     * @param id
+     * @return
+     */
+    @RequestMapping("/delete")
+    @ResponseBody
+    public Result delete(Integer id) {
+        divideModelService.deleteEntity(id);
+        return ResultUtils.success();
     }
 
 }

@@ -39,14 +39,15 @@
         <id property="id" column="id"/>
         <result property="name" column="name"/>
         <result property="is_disabled" column="is_disabled"/>
+        <result property="createTime" column="createTime"/>
         <!-- 配置一对多的关系 -->
         <collection property="details" javaType="list" ofType="divideModelDetails">
             <!-- 配置主键，是关联Order的唯一标识 -->
             <id property="model_no" column="model_no"/>
             <result property="id" column="did"/>
-            <result property="dname" column="dname"/>
+            <result property="name" column="dname"/>
             <result property="type" column="dtype"/>
-            <result property="dvalue" column="dvalue"/>
+            <result property="value" column="dvalue"/>
             <result property="isAll" column="disAll"/>
         </collection>
     </resultMap>
@@ -55,6 +56,7 @@
         dm.id,
         dm.name,
         dm.is_disabled,
+        dm.createTime,
         dmd.id as did,
         dmd.name as dname,
         dmd.type as dtype,

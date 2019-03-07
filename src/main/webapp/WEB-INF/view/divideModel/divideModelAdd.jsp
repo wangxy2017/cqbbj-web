@@ -27,32 +27,35 @@ To change this template use File | Settings | File Templates.
             <label class="layui-form-label"><i class="required">*</i>模板名称：</label>
             <div class="layui-input-inline">
                 <input type="text" name="name" required lay-verify="required" placeholder="请输入模板名称" autocomplete="off"
-                       class="layui-input">
+                       class="layui-input" v-model="name">
             </div>
         </div>
         <div class="layui-form-item">
-            <label class="layui-form-label"><i class="required">*</i>司机提成设置：</label>
+            <label class="layui-form-label">司机提成设置：</label>
             <div class="layui-input-inline">
-                <input type="text" name="name" required lay-verify="required" placeholder="请设置提成方式" autocomplete="off"
-                       class="layui-input" readonly>
+                <input type="text" name="driveInfo" placeholder="请设置提成方式"
+                       autocomplete="off"
+                       class="layui-input" readonly v-model="driveInfo">
             </div>
-            <button class="layui-btn" type="button">设置提成</button>
+            <button class="layui-btn" type="button" @click="setting('drive')">设置提成</button>
         </div>
         <div class="layui-form-item">
-            <label class="layui-form-label"><i class="required">*</i>搬运工提成设置：</label>
+            <label class="layui-form-label">搬运工提成设置：</label>
             <div class="layui-input-inline">
-                <input type="text" name="name" required lay-verify="required" placeholder="请设置提成方式" autocomplete="off"
-                       class="layui-input" readonly>
+                <input type="text" name="moveInfo" placeholder="请设置提成方式"
+                       autocomplete="off"
+                       class="layui-input" readonly v-model="moveInfo">
             </div>
-            <button class="layui-btn" type="button">设置提成</button>
+            <button class="layui-btn" type="button" @click="setting('move')">设置提成</button>
         </div>
         <div class="layui-form-item">
-            <label class="layui-form-label"><i class="required">*</i>空调工提成设置：</label>
+            <label class="layui-form-label">空调工提成设置：</label>
             <div class="layui-input-inline">
-                <input type="text" name="name" required lay-verify="required" placeholder="请设置提成方式" autocomplete="off"
-                       class="layui-input" readonly>
+                <input type="text" name="airInfo" placeholder="请设置提成方式"
+                       autocomplete="off"
+                       class="layui-input" readonly v-model="airInfo">
             </div>
-            <button class="layui-btn" type="button">设置提成</button>
+            <button class="layui-btn" type="button" @click="setting('air')">设置提成</button>
         </div>
         <div class="layui-form-item">
             <div class="layui-input-block">
@@ -61,42 +64,43 @@ To change this template use File | Settings | File Templates.
             </div>
         </div>
     </form>
-    <script src="${pageContext.request.contextPath}/resources/plugin/layui/layui.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/plugin/vue/vue.min.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/plugin/vue/vue-resource.min.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/js/divideModel/divideModelAdd.js"></script>
+    <%-- 提成配置 --%>
+    <form class="layui-form divide" id="divide" style="display: none">
+        <dl class="divide-dl">
+            <dt class="divide-dt">提成方式：</dt>
+            <dd class="divide-dd">
+                <div class="layui-input-inline">
+                    <input type="radio" name="type" value="0" title="工时提成" checked>
+                    <input type="radio" name="type" value="1" title="比例提成">
+                </div>
+            </dd>
+        </dl>
+        <dl class="divide-dl">
+            <dt class="divide-dt">提成数值：</dt>
+            <dd class="divide-dd">
+                <div class="layui-input-inline" style="width: 222px; float: left;margin-right: 10px;">
+                    <input type="text" name="value" required lay-verify="required" placeholder="请输入提成数值"
+                           autocomplete="off"
+                           class="layui-input">
+                </div>
+                <div class="layui-form-mid layui-word-aux">直接输入比例数字，如：15</div>
+            </dd>
+        </dl>
+        <dl class="divide-dl">
+            <dt class="divide-dt">提成额度：</dt>
+            <dd class="divide-dd">
+                <div class="layui-input-inline">
+                    <input type="radio" name="isAll" value="0" title="全额提成">
+                    <input type="radio" name="isAll" value="1" title="扣除开支提成" checked>
+                </div>
+            </dd>
+        </dl>
+    </form>
 </div>
-<%-- 提成配置 --%>
-<div class="layui-form divide" id="divide" style="display: none">
-    <dl class="divide-dl">
-        <dt class="divide-dt">提成方式：</dt>
-        <dd class="divide-dd">
-            <div class="layui-input-inline">
-                <input type="radio" name="type" value="0" title="工时提成" checked>
-                <input type="radio" name="type" value="1" title="比例提成">
-            </div>
-        </dd>
-    </dl>
-    <dl class="divide-dl">
-        <dt class="divide-dt">提成数值：</dt>
-        <dd class="divide-dd">
-            <div class="layui-input-inline" style="width: 222px; float: left;margin-right: 10px;">
-                <input type="text" name="value" required lay-verify="required" placeholder="请输入提成数值"
-                       autocomplete="off"
-                       class="layui-input">
-            </div>
-            <div class="layui-form-mid layui-word-aux">直接输入比例数字，如：15</div>
-        </dd>
-    </dl>
-    <dl class="divide-dl">
-        <dt class="divide-dt">提成额度：</dt>
-        <dd class="divide-dd">
-            <div class="layui-input-inline">
-                <input type="radio" name="isAll" value="0" title="全额提成" checked>
-                <input type="radio" name="isAll" value="1" title="扣除工资提成">
-            </div>
-        </dd>
-    </dl>
-</div>
+<script src="${pageContext.request.contextPath}/resources/plugin/layui/layui.js"></script>
+<script src="${pageContext.request.contextPath}/resources/plugin/vue/vue.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/plugin/vue/vue-resource.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/common.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/divideModel/divideModelAdd.js"></script>
 </body>
 </html>

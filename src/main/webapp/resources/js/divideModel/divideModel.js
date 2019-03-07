@@ -53,7 +53,23 @@ layui.use(["table", "layer"], function () {
                     cols: [[
                         {type: 'checkbox'}
                         , {field: 'name', title: '模式名称'}
-                        , {field: 'content', title: '详情', width: 400, align: 'center'}
+                        , {
+                            field: 'content',
+                            title: '详情',
+                            align: 'center',
+                            templet: function (d) {
+                                var html = "";
+                                for (var i = 0; i < d.details.length; i++) {
+                                    var detail = d.details[i];
+                                    html += "【" + detail.name + "：";
+                                    html += detail.type == 0 ? "工时提成 - " + detail.value + "元/小时" : "比例提成 - " + detail.value + "%";
+                                    html += " ：";
+                                    html += detail.isAll == 0 ? "全额提成" : "扣除开支提成";
+                                    html += "】";
+                                }
+                                return html;
+                            }
+                        }
                         , {field: 'is_disabled', title: '是否启用'}
                         , {
                             field: 'createTime', title: '创建时间', templet: function (d) {
@@ -68,7 +84,7 @@ layui.use(["table", "layer"], function () {
                     var data = obj.data; // 获得当前行数据
                     var layEvent = obj.event; // 获得 lay-event 对应的值
 
-                    // 取消订单
+                    // 删除模板
                     if (layEvent === 'delete') {
                         layer.confirm("确认删除模板吗？", function () {
                             // 请求后台，取消订单
