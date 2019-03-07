@@ -3,6 +3,7 @@ package com.cqbbj.service;
 import com.cqbbj.core.base.BaseService;
 import com.cqbbj.core.base.PageModel;
 import com.cqbbj.entity.OrderDivide;
+import com.cqbbj.entity.SignBill;
 
 import java.util.Date;
 
@@ -13,6 +14,6 @@ import java.util.Date;
  * @Description: 提成业务层接口(这里用一句话描述这个类的作用)
  * @date 2019/2/19 14:02
  */
-public interface IOrderDivideService extends BaseService<OrderDivide> {
-    PageModel<OrderDivide> queryPageList(OrderDivide orderDivide, Integer position_id, String name, Date startTime, Date endTime, int pageNum, int pageSize);
+public interface ISignBillService extends BaseService<SignBill> {
+    PageModel<SignBill> queryPageList(SignBill signBill, Date startTime, Date finishTime, int pageNum, int pageSize);
 }

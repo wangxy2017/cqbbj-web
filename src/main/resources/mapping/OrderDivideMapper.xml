@@ -47,10 +47,10 @@
         o.`end`,
         o.endTime
         from sys_order_divide d
-        left JOIN  sys_employee e on e.emp_no=d.emp_no
+        left JOIN sys_employee e on e.emp_no=d.emp_no
         LEFT JOIN sys_employee m on d.operator_no=m.emp_no
         left join sys_order o on d.order_no=o.order_no
-        where  d.deleteStatus = 0
+        where d.deleteStatus = 0
         <if test="name!=null and name!=''">and d.name=#{name}</if>
         <if test="position_id!=null and position_id!=''">and e.position_id=#{position_id}</if>
         <if test="order_no!=null and order_no!=''">and d.order_no=#{order_no}</if>

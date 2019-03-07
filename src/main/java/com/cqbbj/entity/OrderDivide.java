@@ -94,6 +94,16 @@ public class OrderDivide extends BaseEntity {
      */
     private String end;
 
+    private Date endTime;
+
+    public Date getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(Date endTime) {
+        this.endTime = endTime;
+    }
+
     public String getEmp_no() {
         return emp_no;
     }
