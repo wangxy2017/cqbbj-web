@@ -73,7 +73,7 @@ layui.use(["table", "layer", "laydate","jquery"], function () {
                         , {field: 'name', title: '客户名称'}
                         , {field: 'start', title: '搬出地址'}
                         , {field: 'end', title: '搬入地址'}
-                        , {field: 'price', title: '预估起价'}
+                        , {field: 'price', title: '订单价格'}
                         , {field: 'receiveMoney', title: '实际收款'}
                         , {field: 'costMoney', title: '支出金额'}
                         , {field: 'emp_name', title: '收款人'}

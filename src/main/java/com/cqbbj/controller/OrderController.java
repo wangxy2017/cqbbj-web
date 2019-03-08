@@ -95,6 +95,16 @@ public class OrderController extends BaseController {
     }
 
     /**
+     * 查看订单
+     *
+     * @return
+     */
+    @RequestMapping("/orderView")
+    public String orderView() {
+        return "order/orderView";
+    }
+
+    /**
      * 跳转派单界面
      *
      * @return

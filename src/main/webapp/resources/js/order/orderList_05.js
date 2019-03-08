@@ -60,7 +60,7 @@ layui.use(["table", "layer", "laydate"], function () {
                         , {field: 'start', title: '搬出地址'}
                         , {field: 'end', title: '搬入地址'}
                         , {field: 'content', title: '备注'}
-                        , {field: 'price', title: '预估起价'}
+                        , {field: 'price', title: '订单价格'}
                         , {
                             field: 'beginTime', title: '预约时间', templet: function (d) {
                                 return formatDateTime(d.createTime);

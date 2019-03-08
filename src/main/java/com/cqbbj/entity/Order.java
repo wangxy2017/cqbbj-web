@@ -107,6 +107,23 @@ public class Order extends BaseEntity {
      */
     private List<SendOrder> airEmps;
 
+
+    /**
+     * ============= 范围筛选属性 ==============
+     */
+
+    /**
+     * 创建时间筛选
+     */
+    private Date createTime1;
+    private Date createTime2;
+
+    /**
+     * 预约时间筛选
+     */
+    private Date beginTime1;
+    private Date beginTime2;
+
     public String getName() {
         return name;
     }
@@ -273,5 +290,37 @@ public class Order extends BaseEntity {
 
     public void setVisit(String visit) {
         this.visit = visit;
+    }
+
+    public Date getCreateTime1() {
+        return createTime1;
+    }
+
+    public void setCreateTime1(Date createTime1) {
+        this.createTime1 = createTime1;
+    }
+
+    public Date getCreateTime2() {
+        return createTime2;
+    }
+
+    public void setCreateTime2(Date createTime2) {
+        this.createTime2 = createTime2;
+    }
+
+    public Date getBeginTime1() {
+        return beginTime1;
+    }
+
+    public void setBeginTime1(Date beginTime1) {
+        this.beginTime1 = beginTime1;
+    }
+
+    public Date getBeginTime2() {
+        return beginTime2;
+    }
+
+    public void setBeginTime2(Date beginTime2) {
+        this.beginTime2 = beginTime2;
     }
 }

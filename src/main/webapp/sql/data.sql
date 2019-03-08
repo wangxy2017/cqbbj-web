@@ -272,7 +272,7 @@ CREATE TABLE `sys_order` (
   `phone` varchar(20) NOT NULL COMMENT '客户电话',
   `start` varchar(100) NOT NULL COMMENT '搬出地址',
   `end` varchar(100) NOT NULL COMMENT '搬入地址',
-  `price` double(10,2) NOT NULL COMMENT '预估起价',
+  `price` double(10,2) NOT NULL COMMENT '订单价格',
   `beginTime` datetime NOT NULL COMMENT '预约时间',
   `content` varchar(255) DEFAULT NULL COMMENT '搬运备注',
   `status` int(1) NOT NULL COMMENT '订单状态 0：未派单 1：已派单 2：已完成 3：已取消',

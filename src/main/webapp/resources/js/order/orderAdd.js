@@ -98,7 +98,7 @@ layui.use(["jquery", "form", "layer", "laydate"], function () {
                     for (var i = 0; i < results.getCurrentNumPois(); i++) {
                         var position = results.getPoi(i);
                         // console.log(position);
-                        html += "<dd class='search-result' data-lng='" + position.point.lng + "' data-lat='" + position.point.lat + "'><span>" + position.title + "</span><i>" + position.address + "</i></dd>";
+                        html += "<dd class='search-result' data-lng='" + position.point.lng + "' data-lat='" + position.point.lat + "'><span>" + position.city + position.title + "</span><i>" + position.address + "</i></dd>";
                     }
                     _result.empty().append(html).show();
                     // 绑定点击事件
@@ -126,5 +126,10 @@ layui.use(["jquery", "form", "layer", "laydate"], function () {
                 }
             }, 0);
         });
+        _input.on("blur", function () {
+            setTimeout(function () {
+                _result.hide();
+            }, 100);
+        })
     }
 });

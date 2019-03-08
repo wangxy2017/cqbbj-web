@@ -34,7 +34,7 @@ public class SignBill extends BaseEntity {
      */
     private Date beginTime;
     /**
-     * 预估起价
+     * 订单价格
      */
     private Double price;
     /**

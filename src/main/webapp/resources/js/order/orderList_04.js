@@ -59,8 +59,8 @@ layui.use(["table", "layer", "laydate"], function () {
                         , {field: 'phone', title: '客户电话'}
                         , {field: 'start', title: '搬出地址'}
                         , {field: 'end', title: '搬入地址'}
-                        , {field: 'price', title: '预估费用'}
-                        , {field: 'receiveMoney', title: '实际费用'}
+                        , {field: 'price', title: '订单价格'}
+                        , {field: 'receiveMoney', title: '实际收款'}
                         , {
                             field: 'endTime', title: '完成时间', templet: function (d) {
                                 return formatDateTime(d.endTime);

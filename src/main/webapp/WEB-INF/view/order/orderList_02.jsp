@@ -20,19 +20,19 @@
     <div class="search-tools">
         订单编号：
         <div class="layui-inline">
-            <input class="layui-input" name="order_no"autocomplete="off" placeholder="输入订单编号" v-model="order_no">
+            <input class="layui-input" name="order_no" autocomplete="off" placeholder="输入订单编号" v-model="order_no">
         </div>
         客户名称：
         <div class="layui-inline">
-            <input class="layui-input" name="name"autocomplete="off" placeholder="输入客户名称" v-model="name">
+            <input class="layui-input" name="name" autocomplete="off" placeholder="输入客户名称" v-model="name">
         </div>
         预约时间：
         <div class="layui-inline">
-            <input class="layui-input" id="beginTime1" name="beginTime1"autocomplete="off" placeholder="YYYY-MM-DD" v-model="beginTime1">
+            <input class="layui-input" id="beginTime1" name="beginTime1" autocomplete="off" placeholder="选择开始时间">
         </div>
         至
         <div class="layui-inline">
-            <input class="layui-input" id="beginTime2" name="beginTime2"autocomplete="off" placeholder="YYYY-MM-DD" v-model="beginTime2">
+            <input class="layui-input" id="beginTime2" name="beginTime2" autocomplete="off" placeholder="选择结束时间">
         </div>
         <button class="layui-btn" @click="search">搜索</button>
     </div>

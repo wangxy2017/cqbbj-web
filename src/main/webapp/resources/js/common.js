@@ -4,6 +4,9 @@
  * @returns {string}
  */
 function formatDateTime(timeStamp) {
+    if (typeof timeStamp == "undefined" || timeStamp == "") {
+        return "";
+    }
     var date = new Date(timeStamp);
     var y = date.getFullYear();
     var m = date.getMonth() + 1;
@@ -25,6 +28,9 @@ function formatDateTime(timeStamp) {
  * @returns {string}
  */
 function formatDate(timeStamp) {
+    if (typeof timeStamp == "undefined" || timeStamp == "") {
+        return "";
+    }
     var date = new Date(timeStamp);
     var y = date.getFullYear();
     var m = date.getMonth() + 1;

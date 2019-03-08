@@ -57,9 +57,9 @@ To change this template use File | Settings | File Templates.
             </div>
         </div>
         <div class="layui-form-item">
-            <label class="layui-form-label"><i class="required">*</i>预估起价</label>
+            <label class="layui-form-label"><i class="required">*</i>订单价格</label>
             <div class="layui-input-inline">
-                <input type="text" name="price" required lay-verify="required" placeholder="请输入预估起价" autocomplete="off"
+                <input type="text" name="price" required lay-verify="required" placeholder="请输入订单价格" autocomplete="off"
                        class="layui-input" v-model="order.price">
             </div>
             <label class="layui-form-label"><i class="required">*</i>预约时间</label>
