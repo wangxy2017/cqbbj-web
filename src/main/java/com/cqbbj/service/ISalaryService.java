@@ -1,6 +1,7 @@
 package com.cqbbj.service;
 
 import com.cqbbj.core.base.BaseService;
+import com.cqbbj.core.base.PageModel;
 import com.cqbbj.entity.Salary;
 
 /**
@@ -11,4 +12,7 @@ import com.cqbbj.entity.Salary;
  * @date 2019/2/19 14:02
  */
 public interface ISalaryService extends BaseService<Salary> {
+
+
+
 }

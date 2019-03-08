@@ -66,6 +66,26 @@
     </delete>
     <!-- 查询工资列表 -->
     <select id="queryList" resultType="salary" parameterType="salary">
-        select <include refid="query_all_fields"></include> from sys_salary where deleteStatus = 0
+        select
+        s.id,
+        s.emp_no,
+        s.base_money,
+        s.profit_money,
+        s.other_money,
+        s.real_money,
+        s.remark,
+        s.`year`,
+        s.`month`,
+        s.salary_no,
+        s.createTime,
+        e.`name` emp_name,
+        p.`name` emp_pos
+        from sys_salary s
+        LEFT JOIN sys_employee e ON s.emp_no=e.emp_no
+        LEFT JOIN sys_position p on e.position_id=p.id
+        where s.deleteStatus = 0
+        <if test="emp_name!=null and  emp_name!=''">and  e.name=#{emp_name}</if>
+        <if test="year!=null ">and s.`year`=#{year}</if>
+        <if test="year!=null and month!=null ">and s.`month` =#{month}</if>
     </select>
 </mapper>
