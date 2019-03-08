@@ -41,7 +41,9 @@
             <label class="layui-form-label">司机：</label>
             <div class="layui-input-block">
                 <span class="item" v-for="item in driveEmps" v-text="item.name" :key="item.id"></span>
-                <button type="button" class="layui-btn layui-btn-sm" @click="queryEmpList('drive')">选择员工
+                <button type="button" class="layui-btn layui-btn-sm" @click="queryEmpList('drive')">选择员工</button>
+                <button v-show="driveEmps.length" type="button" class="layui-btn layui-btn-danger layui-btn-sm"
+                        @click="deleteEmp('drive')">删除
                 </button>
             </div>
         </div>
@@ -49,7 +51,9 @@
             <label class="layui-form-label">搬运工：</label>
             <div class="layui-input-block">
                 <span class="item" v-for="item in moveEmps" v-text="item.name" :key="item.id"></span>
-                <button type="button" class="layui-btn layui-btn-sm" @click="queryEmpList('move')">选择员工
+                <button type="button" class="layui-btn layui-btn-sm" @click="queryEmpList('move')">选择员工</button>
+                <button v-show="moveEmps.length" type="button" class="layui-btn layui-btn-danger layui-btn-sm"
+                        @click="deleteEmp('move')">删除
                 </button>
             </div>
         </div>
@@ -58,6 +62,9 @@
             <div class="layui-input-block">
                 <span class="item" v-for="item in airEmps" v-text="item.name" :key="item.id"></span>
                 <button type="button" class="layui-btn layui-btn-sm" @click="queryEmpList('air')">选择员工</button>
+                <button v-if="airEmps.length" type="button" class="layui-btn layui-btn-danger layui-btn-sm"
+                        @click="deleteEmp('air')">删除
+                </button>
             </div>
         </div>
         <div class="layui-form-item">

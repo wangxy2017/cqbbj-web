@@ -81,8 +81,13 @@ layui.use(["table", "layer", "laydate", "jquery"], function () {
                     var data = obj.data; // 获得当前行数据
                     var layEvent = obj.event; // 获得 lay-event 对应的值
                     // 打印
-                    if (layEvent === 'print') {
-                        console.log(layEvent);
+                    if (layEvent === 'view') {
+                        layer.open({
+                            type: 2,
+                            content: "/order/orderView?id=" + data.id,
+                            area: ["700px", "550px"],
+                            title: "订单详情"
+                        });
                     }
                     // 取消订单
                     if (layEvent === 'cancel') {

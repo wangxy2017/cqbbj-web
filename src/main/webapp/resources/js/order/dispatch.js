@@ -43,6 +43,21 @@ layui.use(["form", "layer"], function () {
         },
         methods: {
             /**
+             * 删除
+             */
+            deleteEmp: function (type) {
+                if (type == "drive") {
+                    main.driveEmps.splice(main.driveEmps.length - 1, 1)
+                }
+                if (type == "move") {
+                    main.moveEmps.splice(main.moveEmps.length - 1, 1)
+                }
+                if (type == "air") {
+                    main.airEmps.splice(main.airEmps.length - 1, 1)
+                }
+
+            },
+            /**
              * 选择员工
              */
             queryEmpList: function (type) {
@@ -52,21 +67,21 @@ layui.use(["form", "layer"], function () {
                     content: "/order/searchEmpList",
                     area: ["980px", "450px"],
                     maxmin: true,
+                    moveOut: true,
                     end: function () {
                         // 关闭弹层回调
-                        console.log(type);
                         // console.log(parent.checkedEmps);
                         if (type == "money") {
                             main.moneyEmp = parent.checkedEmps[0];
                         }
                         if (type == "drive") {
-                            main.driveEmps = parent.checkedEmps;
+                            main.margeEmps(parent.checkedEmps, main.driveEmps);
                         }
                         if (type == "move") {
-                            main.moveEmps = parent.checkedEmps;
+                            main.margeEmps(parent.checkedEmps, main.moveEmps);
                         }
                         if (type == "air") {
-                            main.airEmps = parent.checkedEmps;
+                            main.margeEmps(parent.checkedEmps, main.airEmps);
                         }
                     }
                 });
@@ -79,6 +94,33 @@ layui.use(["form", "layer"], function () {
                 main.driveEmps = [];
                 main.moveEmps = [];
                 main.airEmps = [];
+            },
+            /**
+             * 合并员工数组
+             *
+             * @param checkedEmps 选择的员工
+             * @param dispatchEmps 派单员工数组
+             */
+            margeEmps: function (checkedEmps, dispatchEmps) {
+                // 去重
+                var tempArr = [];
+                for (var i = 0; i < checkedEmps.length; i++) {
+                    var check = checkedEmps[i];
+                    var isPush = true
+                    for (var j = 0; j < dispatchEmps.length; j++) {
+                        var emp = dispatchEmps[j];
+                        if (emp.emp_no == check.emp_no) {
+                            isPush = false;
+                        }
+                    }
+                    if (isPush) {
+                        tempArr.push(check);
+                    }
+                }
+                // 追加
+                for (var i = 0; i < tempArr.length; i++) {
+                    dispatchEmps.push(tempArr[i]);
+                }
             }
         },
         mounted: function () {
@@ -102,8 +144,6 @@ layui.use(["form", "layer"], function () {
                         //关闭自身
                         var index = parent.layer.getFrameIndex(window.name);
                         parent.layer.close(index);
-                        // 刷新列表
-                        parent.table.reload("orderList");
                     } else {
                         parent.layer.msg("派单失败");
                     }

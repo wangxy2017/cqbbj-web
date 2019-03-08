@@ -129,7 +129,7 @@ layui.use(["jquery", "form", "layer", "laydate"], function () {
         _input.on("blur", function () {
             setTimeout(function () {
                 _result.hide();
-            }, 100);
+            }, 500);
         })
     }
 });

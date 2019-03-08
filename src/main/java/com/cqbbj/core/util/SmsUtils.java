@@ -9,6 +9,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.security.MessageDigest;
 import java.util.List;
+import java.util.Set;
 
 /**
  * @author wangxy
@@ -26,7 +27,7 @@ public class SmsUtils {
      * @param phones
      * @param content
      */
-    public static void sendSmsBatch(List<String> phones, String content) {
+    public static void sendSmsBatch(Set<String> phones, String content) {
         if (!phones.isEmpty() && StringUtils.isNotBlank(content)) {
             String text = "";
             for (String phone : phones) {

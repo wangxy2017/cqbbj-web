@@ -17,9 +17,7 @@ import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 /**
  * @author wangxy
@@ -126,7 +124,10 @@ public class OrderServiceImpl implements IOrderService {
                     if (employee != null)
                         phones.add(employee.getPhone());
                 }
-                SmsUtils.sendSmsBatch(phones, "师傅您好，您有新的派单消息，请前往微信公众号查看");
+                // 去重
+                Set set = new HashSet();
+                set.addAll(phones);
+                SmsUtils.sendSmsBatch(set, "师傅您好，您有新的派单消息，请前往微信公众号查看");
             }
         }
         return 1;

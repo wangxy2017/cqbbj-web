@@ -99,6 +99,15 @@ layui.use(["table", "layer", "laydate"], function () {
                             });
                         });
                     }
+                    // 查看
+                    if(layEvent === 'view'){
+                        layer.open({
+                            type: 2,
+                            content: "/order/orderView?id=" + data.id,
+                            area: ["700px", "550px"],
+                            title: "订单详情"
+                        });
+                    }
                 });
             }
         },

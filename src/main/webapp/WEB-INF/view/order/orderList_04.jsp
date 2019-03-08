@@ -41,6 +41,7 @@
     <table id="orderList" lay-filter="orderList"></table>
     <%-- 工具条存放区域--%>
     <script type="text/html" id="options">
+        <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="view">查看</a>
         <a class="layui-btn layui-btn-xs" lay-event="visit">回访</a>
     </script>
 </div>

@@ -34,7 +34,7 @@ To change this template use File | Settings | File Templates.
         </p>
         <p>
             <label class="order-item">订单价格：￥{{order.price}}</label>
-            <label class="order-item">实际收款：{{order.receiveMoney == 0.00?"未收款":order.receiveMoney}}</label>
+            <label class="order-item">实际收款：{{isEmpty(order.receiveMoney) == true?"未收款":order.receiveMoney}}</label>
         </p>
         <p>
             <label class="order-item">收款备注：{{order.receiveText}}</label>

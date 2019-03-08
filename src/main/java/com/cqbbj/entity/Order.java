@@ -74,7 +74,7 @@ public class Order extends BaseEntity {
     /**
      * 收款备注
      */
-    private Double receiveText;
+    private String receiveText;
 
     /**
      * 实际花费
@@ -268,11 +268,11 @@ public class Order extends BaseEntity {
         this.receiveMoney = receiveMoney;
     }
 
-    public Double getReceiveText() {
+    public String getReceiveText() {
         return receiveText;
     }
 
-    public void setReceiveText(Double receiveText) {
+    public void setReceiveText(String receiveText) {
         this.receiveText = receiveText;
     }
 

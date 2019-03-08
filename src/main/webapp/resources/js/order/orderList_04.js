@@ -85,6 +85,15 @@ layui.use(["table", "layer", "laydate"], function () {
                     if (layEvent === 'visit') {
                         console.log("回访");
                     }
+                    // 查看
+                    if (layEvent === 'view') {
+                        layer.open({
+                            type: 2,
+                            content: "/order/orderView?id=" + data.id,
+                            area: ["700px", "550px"],
+                            title: "订单详情"
+                        });
+                    }
                 });
             }
         },

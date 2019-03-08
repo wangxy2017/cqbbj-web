@@ -11,7 +11,7 @@ layui.use(["layer", "jquery"], function () {
             statusName: ""
         },
         mounted: function () {
-            this.$http.post("/order/queryById", {"id": $("#main").attr("data-id")}, {emulateJSON: true}).then(function (res) {
+            this.$http.post("/order/orderDetail", {"id": $("#main").attr("data-id")}, {emulateJSON: true}).then(function (res) {
                 // console.log(res.body);
                 // 加载数据
                 if (res.body.code == 1) {

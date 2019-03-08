@@ -52,3 +52,12 @@ function isEmptyObject(obj) {
     ;
     return true
 };
+
+/**
+ * 验证为空
+ * @param obj
+ * @returns {boolean}
+ */
+function isEmpty(obj) {
+    return typeof obj == "undefined" || obj == null || obj == "" || obj == "null";
+}

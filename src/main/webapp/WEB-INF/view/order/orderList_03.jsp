@@ -41,8 +41,8 @@
     <table id="orderList" lay-filter="orderList"></table>
     <%-- 工具条存放区域--%>
     <script type="text/html" id="options">
-        <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="helpDone">辅助完成</a>
-        <a class="layui-btn layui-btn-xs" lay-event="print">打印</a>
+        <a class="layui-btn layui-btn-xs" lay-event="helpDone">辅助完成</a>
+        <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="view">查看</a>
         <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="update">修改</a>
         <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="cancel">取消</a>
     </script>
