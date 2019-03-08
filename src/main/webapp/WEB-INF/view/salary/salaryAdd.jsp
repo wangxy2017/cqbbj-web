@@ -31,7 +31,7 @@
         <div class="layui-form-item">
             <label class="layui-form-label">员工姓名：</label>
             <div class="layui-input-inline">
-                <input type="text" name="emp_name" required lay-verify="required" placeholder="请输入员工姓名"
+                <input type="text" name="emp_name" id="emp_name" required lay-verify="required" placeholder="请输入员工姓名"
                        autocomplete="off"
                        class="layui-input">
                 <input type="button" class="layui-btn layui-btn-normal" value="选择员工" id="chooseEmployee">
