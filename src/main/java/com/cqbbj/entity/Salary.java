@@ -21,7 +21,7 @@ public class Salary extends BaseEntity {
     /**
      * 提成工资
      */
-    private Double profit_moeny;
+    private Double profit_money;
     /**
      * 其他开支
      */
@@ -29,7 +29,7 @@ public class Salary extends BaseEntity {
     /**
      * 实发薪资
      */
-    private Double real_moeny;
+    private Double real_money;
     /**
      * 备注
      */
@@ -47,6 +47,33 @@ public class Salary extends BaseEntity {
      */
     private String salary_no;
 
+    /**
+     * 员工姓名
+     * @return
+     */
+    private String emp_name;
+
+    public String getEmp_pos() {
+        return emp_pos;
+    }
+
+    public void setEmp_pos(String emp_pos) {
+        this.emp_pos = emp_pos;
+    }
+
+    /**
+     * 员工职位
+     */
+    private String emp_pos;
+
+    public String getEmp_name() {
+        return emp_name;
+    }
+
+    public void setEmp_name(String emp_name) {
+        this.emp_name = emp_name;
+    }
+
     public String getEmp_no() {
         return emp_no;
     }
@@ -63,13 +90,8 @@ public class Salary extends BaseEntity {
         this.base_money = base_money;
     }
 
-    public Double getProfit_moeny() {
-        return profit_moeny;
-    }
 
-    public void setProfit_moeny(Double profit_moeny) {
-        this.profit_moeny = profit_moeny;
-    }
+
 
     public Double getOther_money() {
         return other_money;
@@ -79,12 +101,20 @@ public class Salary extends BaseEntity {
         this.other_money = other_money;
     }
 
-    public Double getReal_moeny() {
-        return real_moeny;
+    public Double getProfit_money() {
+        return profit_money;
     }
 
-    public void setReal_moeny(Double real_moeny) {
-        this.real_moeny = real_moeny;
+    public void setProfit_money(Double profit_money) {
+        this.profit_money = profit_money;
+    }
+
+    public Double getReal_money() {
+        return real_money;
+    }
+
+    public void setReal_money(Double real_money) {
+        this.real_money = real_money;
     }
 
     public String getRemark() {

@@ -1,5 +1,5 @@
 // JavaScript代码区域
-layui.use(["table", "layer", "laydate","jquery"], function () {
+layui.use(["table", "layer", "laydate", "jquery"], function () {
     var table = layui.table;
     var layer = layui.layer;
     var laydate = layui.laydate;
@@ -8,34 +8,21 @@ layui.use(["table", "layer", "laydate","jquery"], function () {
     var main = new Vue({
         el: "#main",
         data: {
-            order_no: "",
-            name: "",
-            status: "",
+            emp_name: "",
+            year: "",
+            month: ""
         },
         methods: {
-            /**
-             * 初始化日历
-             */
-            initCalander: function () {
-                //开始时间
-                laydate.render({
-                    elem: '#startTime',
-                    type: "datetime"
-                });
-                //结束时间
-                laydate.render({
-                    elem: '#endTime',
-                    type: "datetime"
-                });
+            addHesuan: function () {
+                window.location.href = "/salary/addSalary";
+
             },
             search: function () {
-                table.reload("signBillList", {
+                table.reload("salaryList", {
                     where: {
-                        "order_no": main.order_no,
-                        "name": main.name,
-                        "status": main.status,
-                        "startTime": $("#startTime").val(),
-                        "endTime": $("#finishTime").val()
+                        "emp_name": main.emp_name,
+                        "year": main.year,
+                        "month": main.month
                     }
                 });
             },
@@ -47,9 +34,9 @@ layui.use(["table", "layer", "laydate","jquery"], function () {
                  * 加载数据
                  */
                 table.render({
-                    elem: "#signBillList",
-                    id: "signBillList",
-                    url: "/signBill/queryPageList",
+                    elem: "#salaryList",
+                    id: "salaryList",
+                    url: "/salary/queryPageList",
                     page: true,
                     where: {},
                     parseData: function (res) {
@@ -69,31 +56,29 @@ layui.use(["table", "layer", "laydate","jquery"], function () {
                     },
                     cols: [[
                         {type: 'checkbox'}
-                        , {field: 'order_no', title: '订单号'}
-                        , {field: 'name', title: '客户名称'}
-                        , {field: 'start', title: '搬出地址'}
-                        , {field: 'end', title: '搬入地址'}
-                        , {field: 'price', title: '订单价格'}
-                        , {field: 'receiveMoney', title: '实际收款'}
-                        , {field: 'costMoney', title: '支出金额'}
-                        , {field: 'emp_name', title: '收款人'}
-
+                        , {field: 'id', title: 'ID编号'}
+                        , {field: 'emp_pos', title: '员工类型'}
+                        , {field: 'emp_name', title: '员工姓名'}
+                        , {field: 'real_money', title: '实发工资'}
+                        , {field: 'base_money', title: '基本工资'}
+                        , {field: 'profit_money', title: '提成工资'}
+                        , {field: 'other_money', title: '其它开支'}
                         , {
-                            field: 'endTime', title: '完成时间', sort: true, templet: function (d) {
-                                return formatDateTime(d.endTime);
+                            field: 'month', title: '月份', templet: function (d) {
+                                return d.year + " - " + d.month;
                             }
                         }
-                        , {field: 'status', title: '状态'}
+
                     ]]
                 });
             }
 
-        },
+        }
+        ,
         mounted: function () {
             // 初始化表格
             this.initTable();
-            // 初始化日历插件
-            this.initCalander();
+
         }
     });
 });

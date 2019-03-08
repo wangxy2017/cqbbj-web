@@ -29,6 +29,7 @@ public class SalaryServiceImpl implements ISalaryService {
 
     @Override
     public int saveEntity(Salary salary) {
+
         return salaryMapper.save(salary);
     }
 
@@ -64,4 +65,6 @@ public class SalaryServiceImpl implements ISalaryService {
     public Salary queryById(Integer id) {
         return null;
     }
+
+
 }
