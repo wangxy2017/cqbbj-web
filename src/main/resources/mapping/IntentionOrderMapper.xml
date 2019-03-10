@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cqbbj.dao.IntentionOrderMapper">
+    <sql id="insert_all_fields">
+        createTime,
+        deleteStatus,
+        name,
+        phone,
+        type,
+        source,
+        start,
+        end,
+        beginTime,
+        is_follow,
+        followInfo,
+        status,
+        inten_no,
+        emp_no,
+        content,
+        reason
+    </sql>
+    <sql id="insert_all_values">
+        #{createTime},
+        #{deleteStatus},
+        #{name},
+        #{phone},
+        #{type},
+        #{source},
+        #{start},
+        #{end},
+        #{beginTime},
+        #{is_follow},
+        #{followInfo},
+        #{status},
+        #{inten_no},
+        #{emp_no},
+        #{content},
+        #{reason}
+    </sql>
+    <sql id="query_all_fields">
+        id,
+        name,
+        phone,
+        type,
+        source,
+        start,
+        end,
+        beginTime,
+        is_follow,
+        followInfo,
+        status,
+        inten_no,
+        emp_no,
+        content,
+        reason,
+        createTime
+    </sql>
+    <!-- 保存意向订单 -->
+    <insert id="save" parameterType="intentionOrder" useGeneratedKeys="true" keyProperty="id">
+        insert into sys_intention_order(<include refid="insert_all_fields"/>) values(
+        <include refid="insert_all_values"/>
+        )
+    </insert>
+    <!-- 修改意向订单 -->
+    <update id="update" parameterType="intentionOrder">
+        update sys_intention_order
+        <set>
+            <if test="name != null and name != ''">name = #{name},</if>
+            <if test="phone != null and phone != ''">phone = #{phone},</if>
+            <if test="type != null">type = #{type},</if>
+            <if test="source != null">source = #{source},</if>
+            <if test="start != null and start != ''">start = #{start},</if>
+            <if test="end != null and end != ''">end = #{end},</if>
+            <if test="beginTime != null">beginTime = #{beginTime},</if>
+            <if test="is_follow != null">is_follow = #{is_follow},</if>
+            <if test="followInfo != null and followInfo != ''">followInfo = #{followInfo},</if>
+            <if test="status != null">status = #{status},</if>
+            <if test="emp_no != null and emp_no != ''">emp_no = #{emp_no},</if>
+            <if test="content != null and content != ''">content = #{content},</if>
+            <if test="reason != null and reason != ''">reason = #{reason},</if>
+        </set>
+        where id = #{id}
+    </update>
+    <!-- 删除意向订单 -->
+    <delete id="delete" parameterType="int">
+        delete from sys_intention_order where id = #{id}
+    </delete>
+
+    <!-- 查询意向订单列表 -->
+    <select id="queryList" resultType="intentionOrder" parameterType="intentionOrder">
+        select <include refid="query_all_fields"></include> from sys_intention_order where deleteStatus = 0
+        order by createTime desc
+    </select>
+    <!-- 根据Id查询意向订单 -->
+    <select id="queryById" resultType="intentionOrder" parameterType="int">
+        select <include refid="query_all_fields"></include> from sys_intention_order where id =#{id}
+    </select>
+</mapper>

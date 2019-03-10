@@ -8,7 +8,7 @@ layui.use(["jquery", "form", "layer", "laydate"], function () {
     var main = new Vue({
         el: "#main",
         data: {
-            order: null
+            order: {}
         },
         methods: {
             /**
@@ -57,11 +57,11 @@ layui.use(["jquery", "form", "layer", "laydate"], function () {
              */
             initForm: function () {
                 //监听提交
-                form.on('submit(updateOrder)', function (data) {
+                form.on('submit(updateIntention)', function (data) {
                     // console.log(data.field);
                     // 请求后台保存数据
                     $.ajax({
-                        url: "/order/update",
+                        url: "/intentionOrder/update",
                         dataType: "json",
                         data: data.field,
                         type: "POST",
@@ -69,7 +69,7 @@ layui.use(["jquery", "form", "layer", "laydate"], function () {
                             // console.log(result);
                             // 保存成功，跳转页面
                             if (result.code == 1) {
-                                window.location.href = "/order/orderList?page=2";
+                                window.location.href = "/intentionOrder/intentionOrder";
                             }
                         },
                         error: function () {
@@ -82,7 +82,6 @@ layui.use(["jquery", "form", "layer", "laydate"], function () {
                 laydate.render({
                     elem: '#beginTime',
                     type: 'datetime',
-                    btns: ['clear', 'confirm'],
                     value: new Date(main.order.beginTime)
                 });
             },
@@ -153,8 +152,8 @@ layui.use(["jquery", "form", "layer", "laydate"], function () {
 
         },
         mounted: function () {
-            this.$http.post("/order/queryById", {"id": $("#main").attr("data-id")}, {emulateJSON: true}).then(function (res) {
-                // console.log(res.body);
+            this.$http.post("/intentionOrder/queryById", {"id": $("#main").attr("data-id")}, {emulateJSON: true}).then(function (res) {
+                console.log(res.body);
                 // 加载数据
                 if (res.body.code == 1) {
                     main.order = res.body.data;

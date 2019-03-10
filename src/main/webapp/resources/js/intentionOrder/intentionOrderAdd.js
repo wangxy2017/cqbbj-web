@@ -43,11 +43,11 @@ layui.use(["jquery", "form", "layer", "laydate"], function () {
         });
     });
     //监听提交
-    form.on('submit(addOrder)', function (data) {
+    form.on('submit(addIntention)', function (data) {
         // console.log(data.field);
         // 请求后台保存数据
         $.ajax({
-            url: "/order/save",
+            url: "/intentionOrder/save",
             dataType: "json",
             data: data.field,
             type: "POST",
@@ -55,7 +55,7 @@ layui.use(["jquery", "form", "layer", "laydate"], function () {
                 // console.log(result);
                 // 保存成功，跳转页面
                 if (result.code == 1) {
-                    window.location.href = "/order/orderList?page=1";
+                    window.location.href = "/intentionOrder/intentionOrder";
                 }
             },
             error: function () {
@@ -69,8 +69,7 @@ layui.use(["jquery", "form", "layer", "laydate"], function () {
      */
     laydate.render({
         elem: '#beginTime',
-        type: 'datetime',
-        btns: ['clear', 'confirm']
+        type: 'datetime'
     });
     // 百度地图API功能
     var map = new BMap.Map("baiduMap");
