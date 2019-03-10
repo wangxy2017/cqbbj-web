@@ -65,5 +65,6 @@
         from sys_divide_model dm
         left join sys_divide_model_details dmd on dmd.model_no = dm.model_no
         where dm.deleteStatus = 0
+        order by dm.createTime desc
     </select>
 </mapper>

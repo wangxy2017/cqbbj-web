@@ -46,5 +46,6 @@
     <select id="queryList" parameterType="sendOrder" resultType="sendOrder">
         select * from sys_send_order where deleteStatus = 0
         <if test="order_no != null and order_no != ''">and order_no = #{order_no}</if>
+        order by createTime desc
     </select>
 </mapper>

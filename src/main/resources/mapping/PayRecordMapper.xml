@@ -59,7 +59,7 @@
         <if test="order_no!=null and order_no!=''">and order_no=#{order_no}</if>
         <if test="payWay!=null and payWay!=''">and payWay=#{payWay}</if>
         <if test="startTime!=null and startTime!=''"><![CDATA[and payTime >= #{startTime}]]></if>
-        <if test="endTime!=null and endTime!=''"><![CDATA[ and payTime  <= #{endTime}]]>
-        </if>
+        <if test="endTime!=null and endTime!=''"><![CDATA[ and payTime  <= #{endTime}]]></if>
+        order by createTime desc
     </select>
 </mapper>

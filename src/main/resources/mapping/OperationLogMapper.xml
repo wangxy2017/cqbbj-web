@@ -33,5 +33,6 @@
         select <include refid="query_all_fields"></include> from sys_operation_log where deleteStatus = 0
         <if test="name != null and name != ''">and name like concat("%",#{name},"%")</if>
         <if test="content != null and content != ''">and content like concat("%",#{content},"%")</if>
+        order by createTime desc
     </select>
 </mapper>

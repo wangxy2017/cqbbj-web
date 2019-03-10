@@ -55,7 +55,7 @@
         <if test="position_id!=null and position_id!=''">and e.position_id=#{position_id}</if>
         <if test="order_no!=null and order_no!=''">and d.order_no=#{order_no}</if>
         <if test="startTime!=null and startTime!=''"><![CDATA[and d.clean_time >= #{startTime}]]></if>
-        <if test="endTime!=null and endTime!=''"><![CDATA[ and d.clean_time  <= #{endTime}]]>
-        </if>
+        <if test="endTime!=null and endTime!=''"><![CDATA[ and d.clean_time  <= #{endTime}]]></if>
+        order by d.createTime desc
     </select>
 </mapper>

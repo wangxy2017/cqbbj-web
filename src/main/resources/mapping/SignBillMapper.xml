@@ -55,7 +55,7 @@
         <if test="status!=null and status!=''">and s.status=#{status}</if>
         <if test="order_no!=null and order_no!=''">and s.order_no=#{order_no}</if>
         <if test="startTime!=null and startTime!=''"><![CDATA[and s.endTime >= #{startTime}]]></if>
-        <if test="finishTime!=null and finishTime!=''"><![CDATA[ and s.finishTime  <= #{finishTime}]]>
-        </if>
+        <if test="finishTime!=null and finishTime!=''"><![CDATA[ and s.finishTime  <= #{finishTime}]]></if>
+        order by s.createTime desc
     </select>
 </mapper>

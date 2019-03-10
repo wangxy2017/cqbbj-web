@@ -87,5 +87,6 @@
         <if test="emp_name!=null and  emp_name!=''">and  e.name=#{emp_name}</if>
         <if test="year!=null ">and s.`year`=#{year}</if>
         <if test="year!=null and month!=null ">and s.`month` =#{month}</if>
+        order by s.createTime desc
     </select>
 </mapper>
