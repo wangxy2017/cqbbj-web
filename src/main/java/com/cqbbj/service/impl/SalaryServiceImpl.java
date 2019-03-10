@@ -1,6 +1,7 @@
 package com.cqbbj.service.impl;
 
 import com.cqbbj.core.base.PageModel;
+import com.cqbbj.core.util.CommUtils;
 import com.cqbbj.dao.SalaryMapper;
 import com.cqbbj.entity.Salary;
 import com.cqbbj.service.ISalaryService;
@@ -9,6 +10,7 @@ import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -30,6 +32,9 @@ public class SalaryServiceImpl implements ISalaryService {
     @Override
     public int saveEntity(Salary salary) {
 
+        //salary.setDeleteStatus(0);
+        //salary.setCreateTime(new Date());
+        salary.setSalary_no(CommUtils.getCode("SA"));
         return salaryMapper.save(salary);
     }
 

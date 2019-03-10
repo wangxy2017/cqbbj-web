@@ -17,8 +17,10 @@ layui.use(["form", "laydate", "jquery"], function () {
                 end: function () {
                     // 关闭弹层回调
                     console.log(checkedEmps);
-                    document.getElementById("emp_name").value=
+                     document.getElementById("emp_name").value=checkedEmps[0].name;
+                     document.getElementById("emp_no").value=checkedEmps[0].emp_no;
                 }
+
             });
         });
     });

@@ -12,8 +12,8 @@
         other_money,
         real_money,
         remark,
-        year,
-        month,
+        `year`,
+        `month`,
         salary_no
     </sql>
     <sql id="insert_all_values">

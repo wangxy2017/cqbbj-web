@@ -39,6 +39,7 @@ public class SalaryController extends BaseController {
      * 保存salary
      */
     @RequestMapping("/save")
+    @ResponseBody
     public Result save(Salary salary){
         salaryService.saveEntity(salary);
         return ResultUtils.success();
