@@ -105,6 +105,7 @@
         <if test="is_onjob != null ">and e.is_onjob = #{is_onjob}</if>
         <if test="deptName != null and deptName != ''">and d.name like concat("%",#{deptName},"%")</if>
         <if test="position_id != null">and e.position_id = #{position_id}</if>
+        order by e.createTime desc
     </select>
     <!-- 根据ID查询 -->
     <select id="queryById" parameterType="int" resultType="employee">
