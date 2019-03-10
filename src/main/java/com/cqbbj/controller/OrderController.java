@@ -343,4 +343,21 @@ public class OrderController extends BaseController {
         Order order = orderService.queryById(id);
         return ResultUtils.success(order);
     }
+
+    /**
+     * 回访
+     *
+     * @param request
+     * @param order
+     * @return
+     */
+    @RequestMapping("/visit")
+    @ResponseBody
+    public Result visit(HttpServletRequest request, Order order) {
+        orderService.updateEntity(order);
+        // 记录日志
+        OperationLog log = createLog(request, "回访订单：" + order.getOrder_no());
+        operationLogService.saveEntity(log);
+        return ResultUtils.success();
+    }
 }
