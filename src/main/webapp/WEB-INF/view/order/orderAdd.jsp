@@ -33,6 +33,24 @@ To change this template use File | Settings | File Templates.
             </div>
         </div>
         <div class="layui-form-item">
+            <label class="layui-form-label"><i class="required">*</i>客户来源</label>
+            <div class="layui-input-inline">
+                <select name="source" lay-verify="required">
+                    <option value="">请选择</option>
+                    <option value="0">电话</option>
+                    <option value="1">网络</option>
+                </select>
+            </div>
+            <label class="layui-form-label"><i class="required">*</i>客户类型</label>
+            <div class="layui-input-inline">
+                <select name="type" lay-verify="required">
+                    <option value="">请选择</option>
+                    <option value="0">个人</option>
+                    <option value="1">公司</option>
+                </select>
+            </div>
+        </div>
+        <div class="layui-form-item">
             <label class="layui-form-label"><i class="required">*</i>搬出地址</label>
             <div class="layui-input-inline" style="position: relative">
                 <input type="text" id="start" name="start" required lay-verify="required" placeholder="模糊地址检索"

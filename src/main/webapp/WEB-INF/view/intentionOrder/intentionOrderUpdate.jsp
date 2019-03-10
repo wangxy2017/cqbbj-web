@@ -13,11 +13,12 @@ To change this template use File | Settings | File Templates.
     <title>Title</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/plugin/layui/css/layui.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/order/orderUpdate.css">
+    <link rel="stylesheet"
+          href="${pageContext.request.contextPath}/resources/css/intentionOrder/intentionOrderUpdate.css">
 </head>
 <body>
 <div class="main" id="main" data-id="<%=request.getParameter("id")%>">
-    <p class="page-title">修改订单</p>
+    <p class="page-title">修改意向订单</p>
     <%-- 表单区域 --%>
     <form class="layui-form" action="" v-if="order">
         <div class="layui-form-item layui-hide">
@@ -75,11 +76,6 @@ To change this template use File | Settings | File Templates.
             </div>
         </div>
         <div class="layui-form-item">
-            <label class="layui-form-label"><i class="required">*</i>订单价格</label>
-            <div class="layui-input-inline">
-                <input type="text" name="price" required lay-verify="required" placeholder="请输入订单价格" autocomplete="off"
-                       class="layui-input" v-model="order.price">
-            </div>
             <label class="layui-form-label"><i class="required">*</i>预约时间</label>
             <div class="layui-input-inline">
                 <input type="text" id="beginTime" name="beginTime" required lay-verify="required"
@@ -97,8 +93,19 @@ To change this template use File | Settings | File Templates.
             </div>
         </div>
         <div class="layui-form-item">
+            <label class="layui-form-label"><i class="required">*</i>状态</label>
+            <div class="layui-input-inline">
+                <select name="status" lay-verify="required" v-model="order.status">
+                    <option value="">请选择</option>
+                    <option value="0">询问</option>
+                    <option value="1">有意向</option>
+                    <option value="2">成交</option>
+                </select>
+            </div>
+        </div>
+        <div class="layui-form-item">
             <div class="layui-input-block">
-                <button class="layui-btn" lay-submit lay-filter="updateOrder">立即提交</button>
+                <button class="layui-btn" lay-submit lay-filter="updateIntention">立即提交</button>
                 <button type="reset" class="layui-btn layui-btn-primary">重置</button>
             </div>
         </div>
@@ -110,7 +117,7 @@ To change this template use File | Settings | File Templates.
     <script src="${pageContext.request.contextPath}/resources/plugin/vue/vue-resource.min.js"></script>
     <script type="text/javascript"
             src="http://api.map.baidu.com/api?v=3.0&ak=aRGbzueRRGEY2RRS1RQTPIzVz16lnjkn"></script>
-    <script src="${pageContext.request.contextPath}/resources/js/order/orderUpdate.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/js/intentionOrder/intentionOrderUpdate.js"></script>
 </div>
 </body>
 </html>

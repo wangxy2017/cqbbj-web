@@ -121,8 +121,7 @@ layui.use(["table", "layer", "laydate"], function () {
                                     layer.msg("服务器请求异常");
                                 });
                             }
-                        )
-                        ;
+                        );
                     }
                     // 查看
                     if (layEvent === 'view') {

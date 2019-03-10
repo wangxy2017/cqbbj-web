@@ -22,7 +22,9 @@
         receiveMoney,
         receiveText,
         costMoney,
-        visit
+        visit,
+        source,
+        type
     </sql>
     <sql id="insert_all_values">
         #{createTime},
@@ -43,7 +45,9 @@
         #{receiveMoney},
         #{receiveText},
         #{costMoney},
-        #{visit}
+        #{visit},
+        #{source},
+        #{type}
     </sql>
     <sql id="query_all_fields">
         id,
@@ -64,7 +68,9 @@
         receiveMoney,
         receiveText,
         costMoney,
-        visit
+        visit,
+        source,
+        type
     </sql>
     <!-- 保存订单 -->
     <insert id="save" parameterType="order" useGeneratedKeys="true" keyProperty="id">
@@ -89,6 +95,8 @@
             <if test="receiveText != null and receiveText != ''">receiveText = #{receiveText},</if>
             <if test="costMoney != null">costMoney = #{costMoney},</if>
             <if test="visit != null and visit != ''">visit = #{visit},</if>
+            <if test="source != null">source = #{source},</if>
+            <if test="type != null">type = #{type},</if>
         </set>
         where id = #{id}
     </update>

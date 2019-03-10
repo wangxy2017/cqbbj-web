@@ -13,33 +13,30 @@ To change this template use File | Settings | File Templates.
     <title>Title</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/plugin/layui/css/layui.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/order/orderUpdate.css">
+    <link rel="stylesheet"
+          href="${pageContext.request.contextPath}/resources/css/intentionOrder/intentionOrderAdd.css">
 </head>
 <body>
-<div class="main" id="main" data-id="<%=request.getParameter("id")%>">
-    <p class="page-title">修改订单</p>
+<div class="main">
+    <p class="page-title">新增意向</p>
     <%-- 表单区域 --%>
-    <form class="layui-form" action="" v-if="order">
-        <div class="layui-form-item layui-hide">
-            <input type="hidden" name="id" v-model="order.id">
-            <input type="hidden" name="order_no" v-model="order.order_no">
-        </div>
+    <form class="layui-form" action="">
         <div class="layui-form-item">
             <label class="layui-form-label"><i class="required">*</i>客户姓名</label>
             <div class="layui-input-inline">
                 <input type="text" name="name" required lay-verify="required" placeholder="请输入客户姓名" autocomplete="off"
-                       class="layui-input" v-model="order.name">
+                       class="layui-input">
             </div>
             <label class="layui-form-label"><i class="required">*</i>客户电话</label>
             <div class="layui-input-inline">
                 <input type="text" name="phone" required lay-verify="required" placeholder="请输入客户电话" autocomplete="off"
-                       class="layui-input" v-model="order.phone">
+                       class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label"><i class="required">*</i>客户来源</label>
             <div class="layui-input-inline">
-                <select name="source" lay-verify="required" v-model="order.source">
+                <select name="source" lay-verify="required">
                     <option value="">请选择</option>
                     <option value="0">电话</option>
                     <option value="1">网络</option>
@@ -47,7 +44,7 @@ To change this template use File | Settings | File Templates.
             </div>
             <label class="layui-form-label"><i class="required">*</i>客户类型</label>
             <div class="layui-input-inline">
-                <select name="type" lay-verify="required" v-model="order.type">
+                <select name="type" lay-verify="required">
                     <option value="">请选择</option>
                     <option value="0">个人</option>
                     <option value="1">公司</option>
@@ -59,58 +56,60 @@ To change this template use File | Settings | File Templates.
             <div class="layui-input-inline" style="position: relative">
                 <input type="text" id="start" name="start" required lay-verify="required" placeholder="模糊地址检索"
                        autocomplete="off"
-                       class="layui-input" v-model="order.start">
+                       class="layui-input">
                 <dl id="startResult" class="search-list">
                 </dl>
-                <input type="hidden" id="startMap" name="startMap" v-model="order.startMap">
+                <input type="hidden" id="startMap" name="startMap">
             </div>
             <label class="layui-form-label"><i class="required">*</i>搬入地址</label>
             <div class="layui-input-inline" style="position: relative">
                 <input type="text" id="end" name="end" required lay-verify="required" placeholder="模糊地址检索"
                        autocomplete="off"
-                       class="layui-input" v-model="order.end">
+                       class="layui-input">
                 <dl id="endResult" class="search-list">
                 </dl>
-                <input type="hidden" id="endMap" name="endMap" v-model="order.endMap">
+                <input type="hidden" id="endMap" name="endMap">
             </div>
         </div>
         <div class="layui-form-item">
-            <label class="layui-form-label"><i class="required">*</i>订单价格</label>
-            <div class="layui-input-inline">
-                <input type="text" name="price" required lay-verify="required" placeholder="请输入订单价格" autocomplete="off"
-                       class="layui-input" v-model="order.price">
-            </div>
             <label class="layui-form-label"><i class="required">*</i>预约时间</label>
             <div class="layui-input-inline">
                 <input type="text" id="beginTime" name="beginTime" required lay-verify="required"
                        placeholder="请选择预约时间"
                        autocomplete="off"
-                       class="layui-input" v-model="order.beginTime">
+                       class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">搬运备注</label>
             <div class="layui-input-inline" style="width: 500px;">
-                <textarea id="content" name="content" placeholder="请输入内容" class="layui-textarea"
-                          v-model="order.content"></textarea>
+                <textarea id="content" name="content" placeholder="请输入内容" class="layui-textarea"></textarea>
                 <div id="items" style=""></div>
             </div>
         </div>
         <div class="layui-form-item">
+            <label class="layui-form-label"><i class="required">*</i>状态</label>
+            <div class="layui-input-inline">
+                <select name="status" lay-verify="required">
+                    <option value="">请选择</option>
+                    <option value="0">询问</option>
+                    <option value="1">有意向</option>
+                    <option value="2">成交</option>
+                </select>
+            </div>
+        </div>
+        <div class="layui-form-item">
             <div class="layui-input-block">
-                <button class="layui-btn" lay-submit lay-filter="updateOrder">立即提交</button>
+                <button class="layui-btn" lay-submit lay-filter="addIntention">立即提交</button>
                 <button type="reset" class="layui-btn layui-btn-primary">重置</button>
             </div>
         </div>
     </form>
-    <p class="no-data" v-else>【暂无数据】</p>
     <div id="baiduMap"></div>
     <script src="${pageContext.request.contextPath}/resources/plugin/layui/layui.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/plugin/vue/vue.min.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/plugin/vue/vue-resource.min.js"></script>
     <script type="text/javascript"
             src="http://api.map.baidu.com/api?v=3.0&ak=aRGbzueRRGEY2RRS1RQTPIzVz16lnjkn"></script>
-    <script src="${pageContext.request.contextPath}/resources/js/order/orderUpdate.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/js/intentionOrder/intentionOrderAdd.js"></script>
 </div>
 </body>
 </html>
