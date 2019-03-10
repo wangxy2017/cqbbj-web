@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cqbbj.dao.IntentionFollowMapper">
+    <sql id="insert_all_fields">
+        createTime,
+        deleteStatus,
+        content,
+        time,
+        inten_no
+    </sql>
+    <sql id="insert_all_values">
+        #{createTime},
+        #{deleteStatus},
+        #{content},
+        #{time},
+        #{inten_no}
+    </sql>
+    <sql id="query_all_fields">
+        id,
+        content,
+        time,
+        inten_no
+    </sql>
+    <!-- 保存意向订单 -->
+    <insert id="save" parameterType="intentionFollow" useGeneratedKeys="true" keyProperty="id">
+        insert into sys_intention_follow(<include refid="insert_all_fields"/>) values(
+        <include refid="insert_all_values"/>
+        )
+    </insert>
+    <!-- 删除意向订单 -->
+    <delete id="delete" parameterType="int">
+        delete from sys_intention_follow where id = #{id}
+    </delete>
+    <!-- 查询意向订单列表 -->
+    <select id="queryList" resultType="intentionFollow" parameterType="intentionFollow">
+        select <include refid="query_all_fields"></include> from sys_intention_follow where deleteStatus = 0
+        <if test="inten_no != null and inten_no != ''">inten_no = #{inten_no}</if>
+    </select>
+    <!-- 根据Id查询意向订单 -->
+    <select id="queryById" resultType="intentionFollow" parameterType="int">
+        select <include refid="query_all_fields"></include> from sys_intention_follow where id =#{id}
+    </select>
+</mapper>
