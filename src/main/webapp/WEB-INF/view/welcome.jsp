@@ -14,7 +14,7 @@
     <script type="text/javascript" src="/resources/plugin/echarts/echarts.min.js"></script>
     <link rel="stylesheet" href="/resources/css/welcome.css">
 </head>
-<body>
+<body style="display: none">
 <header>
     <span>系统提示</span>
     <img src="/resources/images/guangbo.png" alt="">
@@ -73,6 +73,6 @@
         <p>独有的行业订单软件、安全、便捷、高效</p>
     </div>
 </aside>
-<script src="/resources/js/welcome.js"></script>
+<%--<script src="/resources/js/welcome.js"></script>--%>
 </body>
 </html>
