@@ -19,6 +19,10 @@ To change this template use File | Settings | File Templates.
 <div class="main" id="main" data-id="<%=request.getParameter("id")%>">
     <div class="order-info">
         <p>
+            <label class="order-item">客户来源：{{order.source == 0?"电话":"网络"}}</label>
+            <label class="order-item">客户类型：{{order.type == 0?"个人":"公司"}}</label>
+        </p>
+        <p>
             <label class="order-item">客户名称：{{order.name}}</label>
             <label class="order-item">电话：{{order.phone}}</label>
             <label class="order-item">预约时间：{{formatDateTime(order.beginTime)}}</label>

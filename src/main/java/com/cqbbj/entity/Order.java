@@ -87,6 +87,16 @@ public class Order extends BaseEntity {
     private String visit;
 
     /**
+     * 订单来源 0：电话 1：网络
+     */
+    private Integer source;
+
+    /**
+     * 订单类型 0：个人 1：企业
+     */
+    private Integer type;
+
+    /**
      * ============ 关联属性 =============
      */
 
@@ -322,5 +332,21 @@ public class Order extends BaseEntity {
 
     public void setBeginTime2(Date beginTime2) {
         this.beginTime2 = beginTime2;
+    }
+
+    public Integer getSource() {
+        return source;
+    }
+
+    public void setSource(Integer source) {
+        this.source = source;
+    }
+
+    public Integer getType() {
+        return type;
+    }
+
+    public void setType(Integer type) {
+        this.type = type;
     }
 }
