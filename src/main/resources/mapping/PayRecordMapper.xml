@@ -54,12 +54,26 @@
 
     <!-- 查询支付记录列表 -->
     <select id="queryList" resultType="payRecord" parameterType="map">
-        select <include refid="query_all_fields"></include> from sys_pay_record where deleteStatus = 0
-        <if test="trans_no!=null and trans_no!=''">and trans_no=#{trans_no}</if>
-        <if test="order_no!=null and order_no!=''">and order_no=#{order_no}</if>
-        <if test="payWay!=null and payWay!=''">and payWay=#{payWay}</if>
-        <if test="startTime!=null and startTime!=''"><![CDATA[and payTime >= #{startTime}]]></if>
-        <if test="endTime!=null and endTime!=''"><![CDATA[ and payTime  <= #{endTime}]]></if>
-        order by createTime desc
+        select
+        pr.id,
+        pr.order_no,
+        c.name as custName,
+        pr.payWay,
+        pr.payMoney,
+        pr.payTime,
+        pr.trans_no,
+        e.name as empName,
+        pr.record_no,
+        pr.createTime
+        from sys_pay_record pr
+        left join sys_customer c on c.cust_no = pr.cust_no
+        left join sys_employee e on e.emp_no = pr.emp_no
+        where pr.deleteStatus = 0
+        <if test="trans_no!=null and trans_no!=''">and pr.trans_no=#{trans_no}</if>
+        <if test="order_no!=null and order_no!=''">and pr.order_no=#{order_no}</if>
+        <if test="payWay!=null">and pr.payWay=#{payWay}</if>
+        <if test="startTime!=null and startTime!=''"><![CDATA[and pr.payTime >= #{startTime}]]></if>
+        <if test="endTime!=null and endTime!=''"><![CDATA[ and pr.payTime  <= #{endTime}]]></if>
+        order by pr.createTime desc
     </select>
 </mapper>

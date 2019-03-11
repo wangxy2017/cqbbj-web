@@ -1,5 +1,5 @@
 // JavaScript代码区域
-layui.use(["table", "layer", "laydate","jquery"], function () {
+layui.use(["table", "layer", "laydate", "jquery"], function () {
     var table = layui.table;
     var layer = layui.layer;
     var laydate = layui.laydate;
@@ -70,11 +70,27 @@ layui.use(["table", "layer", "laydate","jquery"], function () {
                     cols: [[
                         {type: 'checkbox'}
                         , {field: 'order_no', title: '订单号'}
-                        , {field: 'cust_no', title: '客户名称'}
-                        , {field: 'payWay', title: '支付类型'}
+                        , {field: 'custName', title: '客户名称'}
+                        , {
+                            field: 'payWay', title: '支付类型', templet: function (d) {
+                                var text = "";
+                                switch (d.payWay) {
+                                    case 0:
+                                        text = "现金";
+                                        break;
+                                    case 1:
+                                        text = "微信";
+                                        break;
+                                    case 2:
+                                        text = "签单";
+                                        break;
+                                }
+                                return text;
+                            }
+                        }
                         , {field: 'payMoney', title: '支付金额'}
                         , {field: 'trans_no', title: '交易号'}
-                        , {field: 'emp_no', title: '收款人'}
+                        , {field: 'empName', title: '收款人'}
                         , {
                             field: 'payTime', title: '支付时间', sort: true, templet: function (d) {
                                 return formatDateTime(d.payTime);

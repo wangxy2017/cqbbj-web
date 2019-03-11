@@ -116,27 +116,27 @@ layui.use(["table", "layer", "laydate", "jquery", "form"], function () {
                             }
                         }
                         , {
-                            field: 'status', title: '意向程度', templet: function (d) {
+                            field: 'status', title: '意向程度', align: "center", templet: function (d) {
                                 var text = "";
                                 switch (d.status) {
                                     case 0:
-                                        text = "只询问";
+                                        text = "<span style='color: #1E9FFF'>只询问</span>";
                                         break;
                                     case 1:
-                                        text = "有意向";
+                                        text = "<span style='color: #FF5722'>有意向</span>";
                                         break;
                                     case 2:
-                                        text = "能成交";
+                                        text = "<span style='color: #009688'>成交</span>";
                                         break;
                                     case 3:
-                                        text = "已放弃";
+                                        text = "<span style='color: #393D49'>放弃</span>";
                                         break;
                                 }
                                 return text;
                             }
                         }
                         , {
-                            field: 'is_follow', title: '跟进状态', templet: function (d) {
+                            field: 'is_follow', title: '跟进状态', align: "center", templet: function (d) {
                                 var text = "";
                                 if (d.is_follow == 0) {
                                     text = "<span style='color: #FF5722'>未跟进</span>";

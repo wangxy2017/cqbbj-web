@@ -46,6 +46,18 @@ public class PayRecord extends BaseEntity {
      */
     private String record_no;
 
+    /**
+     * ============ 关联字段 ==============
+     */
+
+    /**
+     * 客户姓名
+     */
+    private String custName;
+    /**
+     * 收款人姓名
+     */
+    private String empName;
 
 
     public String getOrder_no() {
@@ -110,5 +122,21 @@ public class PayRecord extends BaseEntity {
 
     public void setRecord_no(String record_no) {
         this.record_no = record_no;
+    }
+
+    public String getCustName() {
+        return custName;
+    }
+
+    public void setCustName(String custName) {
+        this.custName = custName;
+    }
+
+    public String getEmpName() {
+        return empName;
+    }
+
+    public void setEmpName(String empName) {
+        this.empName = empName;
     }
 }
