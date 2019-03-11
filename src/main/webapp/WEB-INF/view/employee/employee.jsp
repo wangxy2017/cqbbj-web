@@ -22,6 +22,7 @@
         <button class="layui-btn" @click="addEmployee">添加员工</button>
         <button class="layui-btn layui-btn-normal" @click="updateEmployee">修改员工</button>
         <button class="layui-btn layui-btn-danger" @click="deleteEmployee">删除员工</button>
+        <button class="layui-btn" style="background-color: #2F4056;" @click="leave">设置离职</button>
     </div>
     <table id="employeeList" lay-filter="employeeList"></table>
 </div>

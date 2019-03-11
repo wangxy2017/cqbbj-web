@@ -16,7 +16,8 @@
         dept_id,
         position_id,
         money,
-        is_onjob
+        is_onjob,
+        reason
     </sql>
     <sql id="insert_all_values">
         #{createTime},
@@ -31,7 +32,8 @@
         #{dept_id},
         #{position_id},
         #{money},
-        #{is_onjob}
+        #{is_onjob},
+        #{reason}
     </sql>
     <sql id="query_all_fields">
         id,
@@ -46,6 +48,7 @@
         position_id,
         money,
         is_onjob,
+        reason,
         createTime
     </sql>
     <!-- 保存员工 -->
@@ -66,6 +69,7 @@
             <if test="position_id != null">position_id = #{position_id},</if>
             <if test="money != null">money = #{money},</if>
             <if test="is_onjob != null">is_onjob = #{is_onjob},</if>
+            <if test="reason != null and reason != ''">reason = #{reason},</if>
         </set>
         where id = #{id}
     </update>
@@ -92,6 +96,7 @@
         e.position_id,
         e.money,
         e.is_onjob,
+        e.reason,
         e.createTime,
         d.name as deptName,
         p.name as positionName

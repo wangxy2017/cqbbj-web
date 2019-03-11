@@ -46,8 +46,8 @@
         <div class="layui-form-item">
             <label class="layui-form-label">性别</label>
             <div class="layui-input-block">
-                <input type="radio" name="sex" value="0" title="男" v-model="employee.sex">
-                <input type="radio" name="sex" value="1" title="女" v-model="employee.sex">
+                <input type="radio" name="sex" value="1" title="男" v-model="employee.sex">
+                <input type="radio" name="sex" value="2" title="女" v-model="employee.sex">
             </div>
         </div>
         <div class="layui-form-item">
@@ -78,17 +78,10 @@
         <div class="layui-form-item">
             <label class="layui-form-label">所属职位</label>
             <div class="layui-input-block">
-                <select name="dept_id" lay-verify="required" v-model="employee.position_id">
+                <select name="position_id" lay-verify="required" v-model="employee.position_id">
                     <option value="">请选择</option>
                     <option v-for="item in positions" :value="item.id" v-text="item.name" :key="item.id"></option>
                 </select>
-            </div>
-        </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label">是否禁用</label>
-            <div class="layui-input-block">
-                <input type="radio" name="is_disabled" value="0" title="启用" v-model="employee.is_disabled">
-                <input type="radio" name="is_disabled" value="1" title="禁用" v-model="employee.is_disabled">
             </div>
         </div>
         <div class="layui-form-item">
