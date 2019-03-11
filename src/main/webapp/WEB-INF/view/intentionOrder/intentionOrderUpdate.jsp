@@ -93,7 +93,7 @@ To change this template use File | Settings | File Templates.
             </div>
         </div>
         <div class="layui-form-item">
-            <label class="layui-form-label"><i class="required">*</i>状态</label>
+            <label class="layui-form-label"><i class="required">*</i>意向程度</label>
             <div class="layui-input-inline">
                 <select name="status" lay-verify="required" v-model="order.status">
                     <option value="">请选择</option>

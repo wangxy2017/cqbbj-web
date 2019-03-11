@@ -5,8 +5,8 @@ import com.cqbbj.core.base.PageModel;
 import com.cqbbj.core.base.Result;
 import com.cqbbj.core.util.CommUtils;
 import com.cqbbj.core.util.ResultUtils;
-import com.cqbbj.entity.IntentionOrder;
-import com.cqbbj.entity.OperationLog;
+import com.cqbbj.entity.*;
+import com.cqbbj.service.IIntentionFollowService;
 import com.cqbbj.service.IIntentionOrderService;
 import com.cqbbj.service.IOperationLogService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author wangxy
@@ -31,6 +33,8 @@ public class IntentionOrderController extends BaseController {
     @Autowired
     private IIntentionOrderService intentionOrderService;// 意向订单业务层
     @Autowired
+    private IIntentionFollowService intentionFollowService;// 跟进订单
+    @Autowired
     private IOperationLogService operationLogService;// 操作日志
 
     /**
@@ -43,6 +47,16 @@ public class IntentionOrderController extends BaseController {
     @RequestMapping("/intentionOrder")
     public String IntentionOrder() {
         return "/intentionOrder/intentionOrder";
+    }
+
+    /**
+     * 意向订单详情
+     *
+     * @return
+     */
+    @RequestMapping("/orderView")
+    public String orderView() {
+        return "/intentionOrder/intentionOrderView";
     }
 
     /**
@@ -152,5 +166,22 @@ public class IntentionOrderController extends BaseController {
         OperationLog log = createLog(request, "作废订单" + intentionOrder.getInten_no());
         operationLogService.saveEntity(log);
         return ResultUtils.success();
+    }
+
+    /**
+     * 查询详情
+     *
+     * @param id
+     * @return
+     */
+    @RequestMapping("/orderDetail")
+    @ResponseBody
+    public Result orderDetail(Integer id) {
+        IntentionOrder order = intentionOrderService.queryById(id);
+        // 查询跟进详情
+        IntentionFollow follow = new IntentionFollow();
+        follow.setInten_no(order.getInten_no());
+        order.setFollows(intentionFollowService.queryList(follow));
+        return ResultUtils.success(order);
     }
 }

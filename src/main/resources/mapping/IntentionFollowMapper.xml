@@ -36,7 +36,7 @@
     <!-- 查询意向订单列表 -->
     <select id="queryList" resultType="intentionFollow" parameterType="intentionFollow">
         select <include refid="query_all_fields"></include> from sys_intention_follow where deleteStatus = 0
-        <if test="inten_no != null and inten_no != ''">inten_no = #{inten_no}</if>
+        <if test="inten_no != null and inten_no != ''">and inten_no = #{inten_no}</if>
     </select>
     <!-- 根据Id查询意向订单 -->
     <select id="queryById" resultType="intentionFollow" parameterType="int">

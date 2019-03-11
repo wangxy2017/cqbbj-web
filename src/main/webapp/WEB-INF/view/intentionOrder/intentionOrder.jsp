@@ -49,6 +49,32 @@
         <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="cancel">作废</a>
     </script>
 </div>
+<%-- 跟进表单 --%>
+<form class="layui-form" action="" id="intentionFollow" style="display: none">
+    <div class="layui-form-item layui-hide">
+        <input type="hidden" name="inten_no" id="inten_no">
+        <input type="hidden" name="inten_id" id="inten_id">
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">跟进时间</label>
+        <div class="layui-input-inline">
+            <input type="text" class="layui-input" id="time" name="time" required lay-verify="required"
+                   placeholder="选择跟进时间" autocomplete="off">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">跟进内容</label>
+        <div class="layui-input-inline" style="width: 300px;">
+            <textarea name="content" placeholder="请输入内容" lay-verify="required" class="layui-textarea"></textarea>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn" lay-submit lay-filter="addFollow">立即提交</button>
+            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+        </div>
+    </div>
+</form>
 <script src="${pageContext.request.contextPath}/resources/plugin/layui/layui.js"></script>
 <script src="${pageContext.request.contextPath}/resources/plugin/vue/vue.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/plugin/vue/vue-resource.min.js"></script>

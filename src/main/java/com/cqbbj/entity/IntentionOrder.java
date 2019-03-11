@@ -3,6 +3,7 @@ package com.cqbbj.entity;
 import com.cqbbj.core.base.BaseEntity;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author wangxy
@@ -69,6 +70,8 @@ public class IntentionOrder extends BaseEntity {
      * 作废原因
      */
     private String reason;
+
+    private List<IntentionFollow> follows;
 
     public String getName() {
         return name;
@@ -180,5 +183,13 @@ public class IntentionOrder extends BaseEntity {
 
     public void setReason(String reason) {
         this.reason = reason;
+    }
+
+    public List<IntentionFollow> getFollows() {
+        return follows;
+    }
+
+    public void setFollows(List<IntentionFollow> follows) {
+        this.follows = follows;
     }
 }

@@ -1,8 +1,9 @@
 // JavaScript代码区域
-layui.use(["table", "layer", "laydate", "jquery"], function () {
+layui.use(["table", "layer", "laydate", "jquery", "form"], function () {
     var table = layui.table;
     var layer = layui.layer;
     var laydate = layui.laydate;
+    var form = layui.form;
     var $ = layui.$;
 
     // 创建vue实例
@@ -47,6 +48,35 @@ layui.use(["table", "layer", "laydate", "jquery"], function () {
                 });
             },
             /**
+             * 初始化跟进表单
+             */
+            initForm: function () {
+                laydate.render({
+                    elem: '#time',
+                    type: "datetime"
+                });
+                //监听提交
+                form.on('submit(addFollow)', function (data) {
+                    // 请求后台，跟进订单
+                    main.$http.post('/intentionFollow/save', data.field, {emulateJSON: true}).then(function (res) {
+                        // console.log(res.body);
+                        if (res.body.code == 1) {
+                            layer.msg("跟进成功");
+                            //关闭自身
+                            var index = layer.getFrameIndex(window.name);
+                            layer.close(index);
+                            // 刷新列表
+                            table.reload("orderList");
+                        } else {
+                            layer.msg("跟进失败");
+                        }
+                    }, function (res) {
+                        layer.msg("服务器请求异常");
+                    });
+                    return false;
+                });
+            },
+            /**
              * 初始化表格
              */
             initTable: function () {
@@ -72,6 +102,7 @@ layui.use(["table", "layer", "laydate", "jquery"], function () {
                     },
                     cols: [[
                         {type: 'checkbox'}
+                        , {field: 'inten_no', title: '订单编号'}
                         , {field: 'name', title: '客户名称'}
                         , {field: 'phone', title: '客户电话'}
                         , {
@@ -85,7 +116,7 @@ layui.use(["table", "layer", "laydate", "jquery"], function () {
                             }
                         }
                         , {
-                            field: 'status', title: '状态', templet: function (d) {
+                            field: 'status', title: '意向程度', templet: function (d) {
                                 var text = "";
                                 switch (d.status) {
                                     case 0:
@@ -139,10 +170,27 @@ layui.use(["table", "layer", "laydate", "jquery"], function () {
 
                     // 查看订单
                     if (layEvent === 'view') {
-                        console.log("查看订单");
+                        layer.open({
+                            type: 2,
+                            content: "/intentionOrder/orderView?id=" + data.id,
+                            area: ["700px", "550px"],
+                            title: "意向订单详情"
+                        });
                     }
+                    // 跟进
                     if (layEvent === 'follow') {
-                        console.log("跟进");
+                        layer.open({
+                            type: 1,
+                            title: "跟进",
+                            content: $('#intentionFollow'),
+                            area: ["470px", "300px"],
+                            success: function () {
+                                // 初始化表单
+                                $("#intentionFollow")[0].reset();
+                                $("#inten_no").val(data.inten_no);
+                                $("#inten_id").val(data.id);
+                            }
+                        });
                     }
                     // 作废订单
                     if (layEvent === 'cancel') {
@@ -180,6 +228,7 @@ layui.use(["table", "layer", "laydate", "jquery"], function () {
             var that = this;
             // 初始化表格
             that.initTable();
+            that.initForm();
         }
     });
 });
