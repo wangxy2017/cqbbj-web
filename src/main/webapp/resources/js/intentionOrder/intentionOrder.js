@@ -10,7 +10,7 @@ layui.use(["table", "layer", "laydate", "jquery", "form"], function () {
     var main = new Vue({
         el: "#main",
         data: {
-            order_no: "",
+            inten_no: "",
             name: ""
         },
         methods: {
@@ -41,7 +41,7 @@ layui.use(["table", "layer", "laydate", "jquery", "form"], function () {
                 table.reload("orderList", {
                     where: {
                         "name": main.name,
-                        "order_no": main.order_no,
+                        "inten_no": main.inten_no,
                         "createTime1": $("#createTime1").val(),
                         "createTime2": $("#createTime2").val()
                     }

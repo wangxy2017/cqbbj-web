@@ -71,7 +71,20 @@ public class IntentionOrder extends BaseEntity {
      */
     private String reason;
 
+    /**
+     * 跟进记录
+     */
     private List<IntentionFollow> follows;
+
+    /**
+     * ========== 范围筛选 ===============
+     */
+
+    /**
+     * 创建时间筛选
+     */
+    private Date createTime1;
+    private Date createTime2;
 
     public String getName() {
         return name;
@@ -191,5 +204,21 @@ public class IntentionOrder extends BaseEntity {
 
     public void setFollows(List<IntentionFollow> follows) {
         this.follows = follows;
+    }
+
+    public Date getCreateTime1() {
+        return createTime1;
+    }
+
+    public void setCreateTime1(Date createTime1) {
+        this.createTime1 = createTime1;
+    }
+
+    public Date getCreateTime2() {
+        return createTime2;
+    }
+
+    public void setCreateTime2(Date createTime2) {
+        this.createTime2 = createTime2;
     }
 }

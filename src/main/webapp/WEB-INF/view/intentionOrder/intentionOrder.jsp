@@ -25,7 +25,7 @@
     <div class="search-tools">
         订单编号：
         <div class="layui-inline">
-            <input class="layui-input" name="order_no" autocomplete="off" placeholder="输入订单编号" v-model="order_no">
+            <input class="layui-input" name="inten_no" autocomplete="off" placeholder="输入订单编号" v-model="inten_no">
         </div>
         客户名称：
         <div class="layui-inline">

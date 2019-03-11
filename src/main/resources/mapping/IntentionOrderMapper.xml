@@ -91,6 +91,10 @@
     <!-- 查询意向订单列表 -->
     <select id="queryList" resultType="intentionOrder" parameterType="intentionOrder">
         select <include refid="query_all_fields"></include> from sys_intention_order where deleteStatus = 0
+        <if test="inten_no != null and inten_no != ''">and inten_no = #{inten_no}</if>
+        <if test="name != null and name != ''">and name like concat("%",#{name},"%")</if>
+        <if test="createTime1 != null"><![CDATA[and createTime >= #{createTime1}]]></if>
+        <if test="createTime2 != null"><![CDATA[and createTime <= #{createTime2}]]></if>
         order by createTime desc
     </select>
     <!-- 根据Id查询意向订单 -->
