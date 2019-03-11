@@ -230,36 +230,46 @@ public class EmployeeController extends BaseController {
      * 离职
      *
      * @param request
-     * @param employee
+     * @param id
+     * @param reason
      * @return
      */
     @RequestMapping("/leave")
     @ResponseBody
-    public Result leave(HttpServletRequest request, Employee employee) {
-        employee.setIs_onjob(1);
-        employeeService.updateEntity(employee);
-        // 记录日志
-        OperationLog log = createLog(request, "设置员工离职：" + employee.getName()
-                + "离职原因：" + employee.getReason());
-        operationLogService.saveEntity(log);
-        return ResultUtils.success();
+    public Result leave(HttpServletRequest request, Integer id, String reason) {
+        Employee employee = employeeService.queryById(id);
+        if (employee != null) {
+            employee.setIs_onjob(1);
+            employee.setReason(reason);
+            employeeService.updateEntity(employee);
+            // 记录日志
+            OperationLog log = createLog(request, "设置员工离职：" + employee.getName()
+                    + "离职原因：" + employee.getReason());
+            operationLogService.saveEntity(log);
+            return ResultUtils.success();
+        }
+        return ResultUtils.error();
     }
 
     /**
      * 恢复在职
      *
      * @param request
-     * @param employee
+     * @param id
      * @return
      */
     @RequestMapping("/reLeave")
     @ResponseBody
-    public Result reLeave(HttpServletRequest request, Employee employee) {
-        employee.setIs_onjob(0);
-        employeeService.updateEntity(employee);
-        // 记录日志
-        OperationLog log = createLog(request, "恢复员工职位状态为在职：" + employee.getName());
-        operationLogService.saveEntity(log);
-        return ResultUtils.success();
+    public Result reLeave(HttpServletRequest request, Integer id) {
+        Employee employee = employeeService.queryById(id);
+        if (employee != null) {
+            employee.setIs_onjob(0);
+            employeeService.updateEntity(employee);
+            // 记录日志
+            OperationLog log = createLog(request, "恢复员工职位状态为在职：" + employee.getName());
+            operationLogService.saveEntity(log);
+            return ResultUtils.success();
+        }
+        return ResultUtils.error();
     }
 }
