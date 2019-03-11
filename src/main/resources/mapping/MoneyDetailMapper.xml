@@ -20,8 +20,9 @@
         #{remark}
     </sql>
     <sql id="query_all_fields">
+        id,
         emp_no,
-        type,
+        `type`,
         money,
         remark,
         createTime
@@ -33,6 +34,7 @@
     <!-- 查询收支明细列表 -->
     <select id="queryList" resultType="moneyDetail" parameterType="moneyDetail">
         select <include refid="query_all_fields"></include> from sys_money_detail where deleteStatus = 0
+        and emp_no=#{emp_no}
         order by createTime desc
     </select>
 </mapper>

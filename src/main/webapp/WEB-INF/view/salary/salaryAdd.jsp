@@ -26,7 +26,7 @@
     <form class="layui-form" action="/salary/save" method="post">
         <div class="layui-form-item layui-hide">
             <%-- 表单隐藏区域 --%>
-            <input type="hidden" name="emp_no">
+            <input type="hidden" name="emp_no" id="emp_no">
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">员工姓名：</label>

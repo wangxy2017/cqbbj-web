@@ -2,6 +2,7 @@ package com.cqbbj.service.impl;
 
 import com.cqbbj.core.base.PageModel;
 import com.cqbbj.dao.MoneyDetailMapper;
+import com.cqbbj.entity.Employee;
 import com.cqbbj.entity.MoneyDetail;
 import com.cqbbj.service.IMoneyDetailService;
 import com.github.pagehelper.PageHelper;
@@ -54,14 +55,22 @@ public class MoneyDetailServiceImpl implements IMoneyDetailService {
 
     @Override
     public PageModel<MoneyDetail> queryPageList(MoneyDetail moneyDetail, int pageNum, int pageSize) {
-        PageHelper.startPage(pageNum, pageSize);
-        List<MoneyDetail> list = moneyDetailMapper.queryList(moneyDetail);
-        PageInfo<MoneyDetail> pageInfo = new PageInfo<>(list);
-        return new PageModel(pageInfo);
+
+
+        return null;
     }
 
     @Override
     public MoneyDetail queryById(Integer id) {
         return null;
+    }
+
+    @Override
+    public PageModel<MoneyDetail> queryPageList(Employee employee, MoneyDetail moneyDetail, int pageNum, int pageSize) {
+        PageHelper.startPage(pageNum, pageSize);
+        moneyDetail.setEmp_no(employee.getEmp_no());
+        List<MoneyDetail> list = moneyDetailMapper.queryList(moneyDetail);
+        PageInfo<MoneyDetail> pageInfo = new PageInfo<>(list);
+        return new PageModel(pageInfo);
     }
 }
