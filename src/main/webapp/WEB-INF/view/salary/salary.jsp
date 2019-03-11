@@ -18,51 +18,53 @@
 <body>
 <div class="main" id="main">
     <%-- 工具栏 --%>
-        <div class="search-tools">
-
-           员工名称：
-            <div class="layui-inline">
-                <input class="layui-input" name="emp_name" autocomplete="off" v-model="emp_name">
-            </div>
-           月份：
-            <div class="layui-inline">
-                <select class="layui-input" name="year"  v-model="year">
-                    <option value="">请选择年</option>
-                    <option value="2017">2017 年</option>
-                    <option value="2018">2018 年</option>
-                    <option value="2019">2019 年</option>
-                    <option value="2020">2020 年</option>
-                    <option value="2021">2021 年</option>
-                    <option value="2022">2022 年</option>
-                    <option value="2023">2023 年</option>
-
-                </select>
-            </div>
-            <div class="layui-inline">
-                <select class="layui-input" name="month"  v-model="month">
-                    <option value="">请选择月</option>
-                    <option value="1">1 月</option>
-                    <option value="2">2 月</option>
-                    <option value="3">3 月</option>
-                    <option value="4">4 月</option>
-                    <option value="5">5 月</option>
-                    <option value="6">6 月</option>
-                    <option value="7">7 月</option>
-                    <option value="8">8 月</option>
-                    <option value="9">9 月</option>
-                    <option value="10">10 月</option>
-                    <option value="11">11 月</option>
-                    <option value="12">12 月</option>
-                </select>
-            </div>
-            <button class="layui-btn" @click="search">搜索</button>
+    <div class="layui-btn-container">
+        <button class="layui-btn" @click="addHesuan">新增核算</button>
+    </div>
+    <div class="search-tools">
+        员工名称：
+        <div class="layui-inline">
+            <input class="layui-input" name="emp_name" autocomplete="off" v-model="emp_name">
         </div>
+        月份：
+        <div class="layui-inline" style="width: 70px;">
+            <select class="layui-input" name="year" v-model="year">
+                <option value="">请选择</option>
+                <option value="2017">2017 年</option>
+                <option value="2018">2018 年</option>
+                <option value="2019">2019 年</option>
+                <option value="2020">2020 年</option>
+                <option value="2021">2021 年</option>
+                <option value="2022">2022 年</option>
+                <option value="2023">2023 年</option>
 
-
-        <button class="layui-btn layui-btn-normal" @click="addHesuan">新增核算</button>
-
-
+            </select>
+        </div>
+        <div class="layui-inline" style="width: 70px;">
+            <select class="layui-input" name="month" v-model="month">
+                <option value="">请选择</option>
+                <option value="1">1 月</option>
+                <option value="2">2 月</option>
+                <option value="3">3 月</option>
+                <option value="4">4 月</option>
+                <option value="5">5 月</option>
+                <option value="6">6 月</option>
+                <option value="7">7 月</option>
+                <option value="8">8 月</option>
+                <option value="9">9 月</option>
+                <option value="10">10 月</option>
+                <option value="11">11 月</option>
+                <option value="12">12 月</option>
+            </select>
+        </div>
+        <button class="layui-btn" @click="search">搜索</button>
+    </div>
     <table id="salaryList" lay-filter="salaryList"></table>
+    <%-- 工具条存放区域--%>
+    <script type="text/html" id="options">
+        <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="update">修改</a>
+        <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="delete">删除</a>
+    </script>
 </div>
 <script src="${pageContext.request.contextPath}/resources/plugin/layui/layui.js"></script>
 <script src="${pageContext.request.contextPath}/resources/plugin/vue/vue.min.js"></script>

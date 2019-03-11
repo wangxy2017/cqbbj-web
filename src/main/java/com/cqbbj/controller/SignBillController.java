@@ -20,14 +20,15 @@ public class SignBillController extends BaseController {
     ISignBillService signBillService;
 
     @RequestMapping("/signBill")
-    public String signBill(){
-        return "/salary/SignBill";
+    public String signBill() {
+        return "salary/signBill";
     }
+
     @RequestMapping("/queryPageList")
     @ResponseBody
-    public Result queryPageList(SignBill signBill, Date startTime, Date finishTime, int pageNum, int pageSize){
+    public Result queryPageList(SignBill signBill, Date startTime, Date finishTime, int pageNum, int pageSize) {
 
-        PageModel<SignBill> pageModel=  signBillService.queryPageList(signBill,startTime,finishTime,pageNum,pageSize);
+        PageModel<SignBill> pageModel = signBillService.queryPageList(signBill, startTime, finishTime, pageNum, pageSize);
 
         return ResultUtils.success(pageModel);
     }

@@ -64,12 +64,24 @@ layui.use(["table", "layer", "laydate", "jquery"], function () {
                         , {field: 'profit_money', title: '提成工资'}
                         , {field: 'other_money', title: '其它开支'}
                         , {
-                            field: 'month', title: '月份', templet: function (d) {
-                                return d.year + " - " + d.month;
+                            field: 'month', title: '月份', align: "center", templet: function (d) {
+                                return d.year + "年" + d.month + "月";
                             }
                         }
-
+                        , {title: '操作', fixed: 'right', align: 'center', toolbar: '#options', width: 120}
                     ]]
+                });
+                // 监听工具条
+                table.on('tool(salaryList)', function (obj) {
+                    var data = obj.data; // 获得当前行数据
+                    var layEvent = obj.event; // 获得 lay-event 对应的值
+
+                    // 修改
+                    if (layEvent === 'update') {
+                    }
+                    // 删除
+                    if (layEvent === 'delete') {
+                    }
                 });
             }
 
