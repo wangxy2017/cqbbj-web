@@ -21,7 +21,9 @@ public interface ICustomerService extends BaseService<Customer> {
 
     /**
      * 批量删除
-     * @param id
+     * @param ids
      */
     void deleteEntityBatch(String ids);
+
+
 }

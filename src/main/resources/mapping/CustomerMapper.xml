@@ -65,4 +65,9 @@
         select * from sys_customer where deleteStatus = 0
         <if test="phone != null and phone != ''">and phone = #{phone}</if>
     </select>
+    <!--根据手机号查找客户-->
+    <select id="queryByPhone" parameterType="string"  resultType="customer">
+        select <include refid="query_all_fields"/> from sys_customer where deleteStatus = 0
+        <if test="phone != null and phone != ''">and phone = #{phone}</if>
+    </select>
 </mapper>

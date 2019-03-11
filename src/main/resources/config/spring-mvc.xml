@@ -9,6 +9,7 @@ http://www.springframework.org/schema/mvc http://www.springframework.org/schema/
 
     <!-- 自动扫描 -->
     <context:component-scan base-package="com.cqbbj.controller"/>
+    <context:component-scan base-package="com.cqbbj.wx"/>
     <!-- 处理器映射器 -->
     <mvc:annotation-driven/>
     <!-- 静态资源处理  css js imgs -->

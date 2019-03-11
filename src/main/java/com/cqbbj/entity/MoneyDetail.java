@@ -2,6 +2,8 @@ package com.cqbbj.entity;
 
 import com.cqbbj.core.base.BaseEntity;
 
+import java.util.Date;
+
 /**
  * @author wangxy
  * @version 1.0
@@ -27,6 +29,48 @@ public class MoneyDetail extends BaseEntity {
      * 备注
      */
     private String remark;
+
+    /**
+     * 可用余额
+     * @return
+     */
+    public double restMoney;
+
+    /**
+     * 开始时间
+     * @return
+     */
+    public Date startTime;
+
+    /**
+     * 结束时间
+     * @return
+     */
+    public Date endTime;
+
+    public Date getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(Date startTime) {
+        this.startTime = startTime;
+    }
+
+    public Date getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(Date endTime) {
+        this.endTime = endTime;
+    }
+
+    public double getRestMoney() {
+        return restMoney;
+    }
+
+    public void setRestMoney(double restMoney) {
+        this.restMoney = restMoney;
+    }
 
     public String getEmp_no() {
         return emp_no;

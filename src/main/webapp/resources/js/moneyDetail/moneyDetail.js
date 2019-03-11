@@ -34,7 +34,6 @@ layui.use(["table", "layer","jquery","laydate"], function () {
                     where: {
                         "startTime": $("#startTime").val(),
                         "endTime": $("#endTime").val()
-
                     }
                 });
             }
@@ -77,10 +76,11 @@ layui.use(["table", "layer","jquery","laydate"], function () {
             , {field: 'emp_no', title: '员工编号'}
             , {field: 'type', title: '收支类型'}
             , {field: 'money', title: '金额'}
+            , {field: 'restMoney', title: '可用金额'}
             , {field: 'remark', title: '备注'}
 
             , {
-                field: 'createTime', title: '创建时间', sort: true, templet: function (d) {
+                field: 'createTime', title: '修改时间', sort: true, templet: function (d) {
                     return formatDateTime(d.createTime);
                 }
             }

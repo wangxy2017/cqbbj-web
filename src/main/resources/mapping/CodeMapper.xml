@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cqbbj.dao.CodeMapper">
+    <sql id="insert_all_fields">
+        createTime,
+        deleteStatus,
+        phone,
+        code,
+        endTime
+    </sql>
+    <sql id="insert_all_values">
+        #{createTime},
+        #{deleteStatus},
+        #{phone},
+        #{code},
+        #{endTime}
+    </sql>
+
+    <!-- 新增验证码 -->
+    <insert id="save" parameterType="code" useGeneratedKeys="true" keyProperty="id">
+        insert into sys_code(<include refid="insert_all_fields"/>) values(<include refid="insert_all_values"/>)
+    </insert>
+
+    <!-- 查询验证码-->
+    <select id="queryByPhone" parameterType="string" resultType="code">
+        select phone,code,endTime from sys_code where phone = #{phone} and endTime > now()
+    </select>
+</mapper>
