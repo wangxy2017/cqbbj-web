@@ -23,7 +23,7 @@
 
 
     <div class="search-tools">
-        开始时间：
+        修改时间：
         <div class="layui-inline">
             <input class="layui-input" name="startTime" id="startTime" autocomplete="off" >
         </div>
