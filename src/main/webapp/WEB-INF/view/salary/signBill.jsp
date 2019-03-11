@@ -19,33 +19,42 @@
 <div class="main" id="main">
     <%-- 工具栏 --%>
     <div class="search-tools">
-        订单号：
-        <div class="layui-inline">
-            <input class="layui-input" name="order_no" autocomplete="off" v-model="order_no">
+        <div class="search-item">
+            订单号：
+            <div class="layui-input-inline">
+                <input class="layui-input" name="order_no" autocomplete="off" v-model="order_no">
+            </div>
         </div>
-        客户名称：
-        <div class="layui-inline">
-            <input class="layui-input" name="name" autocomplete="off" v-model="name">
+        <div class="search-item">
+            客户名称：
+            <div class="layui-input-inline">
+                <input class="layui-input" name="name" autocomplete="off" v-model="name">
+            </div>
         </div>
-        员工类型：
-        <div class="layui-inline" style="width: 66px;">
-            <select class="layui-input" name="status" v-model="status">
-                <option value="">全部</option>
-                <option value="0">未付款</option>
-                <option value="1">已付款</option>
+        <div class="search-item">
+            员工类型：
+            <div class="layui-input-inline" style="width: 66px;">
+                <select class="layui-input" name="status" v-model="status">
+                    <option value="">全部</option>
+                    <option value="0">未付款</option>
+                    <option value="1">已付款</option>
 
-            </select>
+                </select>
+            </div>
         </div>
-
-        结算时间：
-        <div class="layui-inline">
-            <input type="text" class="layui-input" name="startTime" id="startTime" autocomplete="off">
+        <div class="search-item">
+            结算时间：
+            <div class="layui-input-inline">
+                <input type="text" class="layui-input" name="startTime" id="startTime" autocomplete="off">
+            </div>
+            至
+            <div class="layui-input-inline">
+                <input class="layui-input" name="finishTime" id="finishTime" autocomplete="off">
+            </div>
         </div>
-        至
-        <div class="layui-inline">
-            <input class="layui-input" name="finishTime" id="finishTime" autocomplete="off">
+        <div class="search-item">
+            <button class="layui-btn" @click="search">搜索</button>
         </div>
-        <button class="layui-btn" @click="search">搜索</button>
     </div>
     <table id="signBillList" lay-filter="signBillList"></table>
 </div>

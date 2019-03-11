@@ -23,23 +23,31 @@
         <button class="layui-btn layui-btn-normal" @click="updateOrder">修改订单</button>
     </div>
     <div class="search-tools">
-        订单编号：
-        <div class="layui-inline">
-            <input class="layui-input" name="inten_no" autocomplete="off" placeholder="输入订单编号" v-model="inten_no">
+        <div class="search-item">
+            订单编号：
+            <div class="layui-input-inline">
+                <input class="layui-input" name="inten_no" autocomplete="off" placeholder="输入订单编号" v-model="inten_no">
+            </div>
         </div>
-        客户名称：
-        <div class="layui-inline">
-            <input class="layui-input" name="name" autocomplete="off" placeholder="输入客户名称" v-model="name">
+        <div class="search-item">
+            客户名称：
+            <div class="layui-input-inline">
+                <input class="layui-input" name="name" autocomplete="off" placeholder="输入客户名称" v-model="name">
+            </div>
         </div>
-        创建时间：
-        <div class="layui-inline">
-            <input class="layui-input" id="createTime1" name="createTime1" autocomplete="off" placeholder="选择开始时间">
+        <div class="search-item">
+            创建时间：
+            <div class="layui-input-inline">
+                <input class="layui-input" id="createTime1" name="createTime1" autocomplete="off" placeholder="选择开始时间">
+            </div>
+            至
+            <div class="layui-input-inline">
+                <input class="layui-input" id="createTime2" name="createTime2" autocomplete="off" placeholder="选择结束时间">
+            </div>
         </div>
-        至
-        <div class="layui-inline">
-            <input class="layui-input" id="createTime2" name="createTime2" autocomplete="off" placeholder="选择结束时间">
+        <div class="search-item">
+            <button class="layui-btn" @click="search">搜索</button>
         </div>
-        <button class="layui-btn" @click="search">搜索</button>
     </div>
     <table id="orderList" lay-filter="orderList"></table>
     <%-- 工具条存放区域--%>

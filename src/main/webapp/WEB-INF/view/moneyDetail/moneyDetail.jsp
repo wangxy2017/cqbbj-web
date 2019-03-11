@@ -16,29 +16,25 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/moneyDetail/moneyDetail.css">
 </head>
 <body>
-
 <div class="main" id="main">
-
-
-
-
     <div class="search-tools">
-        修改时间：
-        <div class="layui-inline">
-            <input class="layui-input" name="startTime" id="startTime" autocomplete="off" >
+        <div class="search-item">
+            修改时间：
+            <div class="layui-input-inline">
+                <input class="layui-input" name="startTime" id="startTime" autocomplete="off">
+            </div>
+            至：
+            <div class="layui-input-inline">
+                <input class="layui-input" name="endTime" id="endTime" autocomplete="off">
+            </div>
         </div>
-        至：
-        <div class="layui-inline">
-            <input class="layui-input" name="endTime" id="endTime" autocomplete="off" >
+        <div class="search-item">
+            <button class="layui-btn" @click="search">搜索</button>
         </div>
-
-        <button class="layui-btn" @click="search">搜索</button>
     </div>
     <table id="moneyDetailList" lay-filter="moneyDetailList"></table>
     <%-- 工具条存放区域--%>
 </div>
-
-
 <script src="${pageContext.request.contextPath}/resources/plugin/layui/layui.js"></script>
 <script src="${pageContext.request.contextPath}/resources/plugin/vue/vue.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/plugin/vue/vue-resource.min.js"></script>

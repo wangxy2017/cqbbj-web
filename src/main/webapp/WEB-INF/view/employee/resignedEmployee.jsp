@@ -19,26 +19,34 @@
 <div class="main" id="main">
     <%-- 工具栏 --%>
     <div class="search-tools">
-        姓名：
-        <div class="layui-inline">
-            <input class="layui-input" name="name" autocomplete="off" v-model="name">
+        <div class="search-item">
+            姓名：
+            <div class="layui-input-inline">
+                <input class="layui-input" name="name" autocomplete="off" v-model="name">
+            </div>
         </div>
-        电话：
-        <div class="layui-inline">
-            <input class="layui-input" name="phone" autocomplete="off" v-model="phone">
+        <div class="search-item">
+            电话：
+            <div class="layui-input-inline">
+                <input class="layui-input" name="phone" autocomplete="off" v-model="phone">
+            </div>
         </div>
-        员工分类：
-        <div class="layui-inline">
-            <select class="layui-input" name="position_id" v-model="position_id">
-                <option value="">请选择</option>
-                <option value="2">普通司机</option>
-                <option value="3">中级司机</option>
-                <option value="4">高级司机</option>
-                <option value="1">搬用工</option>
-                <option value="5">空调工</option>
-            </select>
+        <div class="search-item">
+            员工分类：
+            <div class="layui-input-inline" style="width: 80px;">
+                <select class="layui-input" name="position_id" v-model="position_id">
+                    <option value="">请选择</option>
+                    <option value="2">普通司机</option>
+                    <option value="3">中级司机</option>
+                    <option value="4">高级司机</option>
+                    <option value="1">搬用工</option>
+                    <option value="5">空调工</option>
+                </select>
+            </div>
         </div>
-        <button class="layui-btn" @click="search">搜索</button>
+        <div class="search-item">
+            <button class="layui-btn" @click="search">搜索</button>
+        </div>
     </div>
     <table id="resignedEmployeeList" lay-filter="resignedEmployeeList"></table>
     <%-- 工具条存放区域--%>

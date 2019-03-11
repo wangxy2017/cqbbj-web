@@ -19,35 +19,44 @@
 <div class="main" id="main">
     <%-- 工具栏 --%>
         <div class="search-tools">
-            订单号：
-            <div class="layui-inline">
-                <input class="layui-input" name="order_no" autocomplete="off" v-model="order_no">
+            <div class="search-item">
+                订单号：
+                <div class="layui-input-inline">
+                    <input class="layui-input" name="order_no" autocomplete="off" v-model="order_no">
+                </div>
             </div>
-            员工名称：
-            <div class="layui-inline">
-                <input class="layui-input" name="emp_name" autocomplete="off" v-model="emp_name">
+            <div class="search-item">
+                员工名称：
+                <div class="layui-input-inline">
+                    <input class="layui-input" name="emp_name" autocomplete="off" v-model="emp_name">
+                </div>
             </div>
-            员工类型：
-            <div class="layui-inline">
-                <select class="layui-input" name="emp_pos"  v-model="emp_pos">
-                    <option value="">全部</option>
-                    <option value="1">搬运工</option>
-                    <option value="2">空调工</option>
-                    <option value="3">初级司机</option>
-                    <option value="4">中级司机</option>
-                    <option value="5">高级司机</option>
-                </select>
+            <div class="search-item">
+                员工类型：
+                <div class="layui-input-inline">
+                    <select class="layui-input" name="emp_pos"  v-model="emp_pos">
+                        <option value="">全部</option>
+                        <option value="1">搬运工</option>
+                        <option value="2">空调工</option>
+                        <option value="3">初级司机</option>
+                        <option value="4">中级司机</option>
+                        <option value="5">高级司机</option>
+                    </select>
+                </div>
             </div>
-
-            结算时间：
-            <div class="layui-inline">
-                <input type="text" class="layui-input" name="startTime" id="startTime" autocomplete="off">
+            <div class="search-item">
+                结算时间：
+                <div class="layui-input-inline">
+                    <input type="text" class="layui-input" name="startTime" id="startTime" autocomplete="off">
+                </div>
+                至
+                <div class="layui-input-inline">
+                    <input class="layui-input" name="endTime" id="endTime" autocomplete="off">
+                </div>
             </div>
-            至
-            <div class="layui-inline">
-                <input class="layui-input" name="endTime" id="endTime" autocomplete="off">
+            <div class="search-item">
+                <button class="layui-btn" @click="search">搜索</button>
             </div>
-            <button class="layui-btn" @click="search">搜索</button>
         </div>
     <table id="orderDivideList" lay-filter="orderDivideList"></table>
 </div>

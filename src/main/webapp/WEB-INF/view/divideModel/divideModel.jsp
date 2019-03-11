@@ -22,11 +22,15 @@
         <button class="layui-btn" @click="addDivide">新增模板</button>
     </div>
     <div class="search-tools">
-        模式名称：
-        <div class="layui-inline">
-            <input class="layui-input" name="name" autocomplete="off" placeholder="模式名称" v-model="name">
+        <div class="search-item">
+            模式名称：
+            <div class="layui-input-inline">
+                <input class="layui-input" name="name" autocomplete="off" placeholder="模式名称" v-model="name">
+            </div>
         </div>
-        <button class="layui-btn" @click="search">搜索</button>
+        <div class="search-item">
+            <button class="layui-btn" @click="search">搜索</button>
+        </div>
     </div>
     <table id="divideList" lay-filter="divideList"></table>
     <%-- 工具条存放区域--%>

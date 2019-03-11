@@ -22,42 +22,47 @@
         <button class="layui-btn" @click="addHesuan">新增核算</button>
     </div>
     <div class="search-tools">
-        员工名称：
-        <div class="layui-inline">
-            <input class="layui-input" name="emp_name" autocomplete="off" v-model="emp_name">
+        <div class="search-item">
+            员工名称：
+            <div class="layui-input-inline">
+                <input class="layui-input" name="emp_name" autocomplete="off" v-model="emp_name">
+            </div>
         </div>
-        月份：
-        <div class="layui-inline" style="width: 70px;">
-            <select class="layui-input" name="year" v-model="year">
-                <option value="">请选择</option>
-                <option value="2017">2017 年</option>
-                <option value="2018">2018 年</option>
-                <option value="2019">2019 年</option>
-                <option value="2020">2020 年</option>
-                <option value="2021">2021 年</option>
-                <option value="2022">2022 年</option>
-                <option value="2023">2023 年</option>
-
-            </select>
+        <div class="search-item">
+            月份：
+            <div class="layui-input-inline" style="width: 70px;">
+                <select class="layui-input" name="year" v-model="year">
+                    <option value="">请选择</option>
+                    <option value="2017">2017 年</option>
+                    <option value="2018">2018 年</option>
+                    <option value="2019">2019 年</option>
+                    <option value="2020">2020 年</option>
+                    <option value="2021">2021 年</option>
+                    <option value="2022">2022 年</option>
+                    <option value="2023">2023 年</option>
+                </select>
+            </div>
+            <div class="layui-input-inline" style="width: 70px;">
+                <select class="layui-input" name="month" v-model="month">
+                    <option value="">请选择</option>
+                    <option value="1">1 月</option>
+                    <option value="2">2 月</option>
+                    <option value="3">3 月</option>
+                    <option value="4">4 月</option>
+                    <option value="5">5 月</option>
+                    <option value="6">6 月</option>
+                    <option value="7">7 月</option>
+                    <option value="8">8 月</option>
+                    <option value="9">9 月</option>
+                    <option value="10">10 月</option>
+                    <option value="11">11 月</option>
+                    <option value="12">12 月</option>
+                </select>
+            </div>
         </div>
-        <div class="layui-inline" style="width: 70px;">
-            <select class="layui-input" name="month" v-model="month">
-                <option value="">请选择</option>
-                <option value="1">1 月</option>
-                <option value="2">2 月</option>
-                <option value="3">3 月</option>
-                <option value="4">4 月</option>
-                <option value="5">5 月</option>
-                <option value="6">6 月</option>
-                <option value="7">7 月</option>
-                <option value="8">8 月</option>
-                <option value="9">9 月</option>
-                <option value="10">10 月</option>
-                <option value="11">11 月</option>
-                <option value="12">12 月</option>
-            </select>
+        <div class="search-item">
+            <button class="layui-btn" @click="search">搜索</button>
         </div>
-        <button class="layui-btn" @click="search">搜索</button>
     </div>
     <table id="salaryList" lay-filter="salaryList"></table>
     <%-- 工具条存放区域--%>
