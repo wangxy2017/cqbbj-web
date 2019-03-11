@@ -6,10 +6,28 @@
 
 
     <sql id="insert_all_fields">
-
+    createTime,
+    deleteStatus,
+    emp_no,
+    order_no,
+    order_price,
+    type,
+    money,
+    clean_time,
+    operator_no,
+    divide_no
     </sql>
     <sql id="insert_all_values">
-
+    #{createTime},
+    #{deleteStatus},
+    #{emp_no},
+    #{order_no},
+    #{order_price},
+    #{type},
+    #{money},
+    #{clean_time},
+    #{operator_no},
+    #{divide_no}
     </sql>
 
     <!-- 保存提成记录 -->
@@ -42,16 +60,18 @@
         d.divide_no,
         e.`name` emp_name,
         e.position_id,
+        p.name as deptName,
         m.`name` operator_name,
         o.start,
         o.`end`,
         o.endTime
         from sys_order_divide d
-        left JOIN sys_employee e on e.emp_no=d.emp_no
-        LEFT JOIN sys_employee m on d.operator_no=m.emp_no
+        left join sys_employee e on e.emp_no=d.emp_no
+        left join sys_position p on p.id = e.position_id
+        left join sys_employee m on d.operator_no=m.emp_no
         left join sys_order o on d.order_no=o.order_no
         where d.deleteStatus = 0
-        <if test="name!=null and name!=''">and d.name=#{name}</if>
+        <if test="name!=null and name!=''">and e.name like concat("%",#{name},"%")</if>
         <if test="position_id!=null and position_id!=''">and e.position_id=#{position_id}</if>
         <if test="order_no!=null and order_no!=''">and d.order_no=#{order_no}</if>
         <if test="startTime!=null and startTime!=''"><![CDATA[and d.clean_time >= #{startTime}]]></if>

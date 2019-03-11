@@ -41,25 +41,4 @@ public class PayRecordServiceTest {
             System.out.println("保存成功：" + payRecord.getId());
         }
     }
-
-    @Test
-    public void update() {
-        PayRecord PayRecord = new PayRecord();
-        PayRecord.setId(1);
-//        PayRecord.setName("修改员工");
-        payRecordService.updateEntity(PayRecord);
-        System.out.println("修改成功");
-    }
-
-    @Test
-    public void delete() {
-        payRecordService.deleteEntity(1);
-        System.out.println("删除成功");
-    }
-
-    @Test
-    public void queryPageList() {
-        PageModel<PayRecord> pageModel = payRecordService.queryPageList(null, 1, 20);
-        System.out.println("查询结果:" + pageModel.getList().size());
-    }
 }

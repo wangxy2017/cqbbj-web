@@ -1,5 +1,5 @@
 // JavaScript代码区域
-layui.use(["table", "layer", "laydate","jquery"], function () {
+layui.use(["table", "layer", "laydate", "jquery"], function () {
     var table = layui.table;
     var layer = layui.layer;
     var laydate = layui.laydate;
@@ -77,17 +77,17 @@ layui.use(["table", "layer", "laydate","jquery"], function () {
                                 return formatDateTime(d.endTime);
                             }
                         }
-                        , {field: 'emp_name', title: '员工姓名'}
                         , {field: 'order_price', title: '订单金额'}
-
-                        , {field: 'type', title: '提成比例'}
+                        , {field: 'emp_name', title: '提成员工'}
+                        , {field: 'deptName', title: '职业'}
                         , {field: 'money', title: '提成金额'}
+                        , {field: 'type', title: '提成方式'}
                         , {
                             field: 'clean_time', title: '结算时间', sort: true, templet: function (d) {
                                 return formatDateTime(d.clean_time);
                             }
                         }
-                        , {field: 'operator_name', title: '操作人'}
+                        , {field: 'operator_name', title: '结算人'}
                     ]]
                 });
             }

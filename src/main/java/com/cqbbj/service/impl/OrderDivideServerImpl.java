@@ -38,7 +38,7 @@ public class OrderDivideServerImpl implements IOrderDivideService {
 
     @Override
     public int saveEntity(OrderDivide orderDivide) {
-        return 0;
+        return orderDivideMapper.save(orderDivide);
     }
 
     @Override

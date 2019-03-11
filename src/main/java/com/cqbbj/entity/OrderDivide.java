@@ -15,7 +15,7 @@ public class OrderDivide extends BaseEntity {
     /**
      * 员工编号
      */
-    private  String emp_no;
+    private String emp_no;
     /**
      * 订单号
      */
@@ -25,11 +25,11 @@ public class OrderDivide extends BaseEntity {
      */
     private double order_price;
     /**
-     *提成比例
+     * 提成方式：比例提成，工时提成说明
      */
     private String type;
     /**
-     * 提成比例
+     * 提成金额
      */
     private double money;
     /**
@@ -40,18 +40,43 @@ public class OrderDivide extends BaseEntity {
      * 操作人
      */
     private String operator_no;
+    /**
+     * 提成编号
+     */
+    private String divide_no;
 
     /**
-     *员工姓名
+     * =============== 关联字段 ================
+     */
+
+    /**
+     * 员工姓名
+     *
      * @return
      */
     private String emp_name;
+    /**
+     * 职业
+     */
+    private String deptName;
 
     /**
      * 操作人
+     *
      * @return
      */
     private String operator_name;
+
+    /**
+     * 搬出地址
+     */
+    private String start;
+    /**
+     * 搬入地址
+     */
+    private String end;
+
+    private Date endTime;
 
     public String getEmp_name() {
         return emp_name;
@@ -84,17 +109,6 @@ public class OrderDivide extends BaseEntity {
     public void setEnd(String end) {
         this.end = end;
     }
-
-    /**
-     * 搬出地址
-     */
-    private String start;
-    /**
-     *搬入地址
-     */
-    private String end;
-
-    private Date endTime;
 
     public Date getEndTime() {
         return endTime;
@@ -158,5 +172,21 @@ public class OrderDivide extends BaseEntity {
 
     public void setOperator_no(String operator_no) {
         this.operator_no = operator_no;
+    }
+
+    public String getDivide_no() {
+        return divide_no;
+    }
+
+    public void setDivide_no(String divide_no) {
+        this.divide_no = divide_no;
+    }
+
+    public String getDeptName() {
+        return deptName;
+    }
+
+    public void setDeptName(String deptName) {
+        this.deptName = deptName;
     }
 }
