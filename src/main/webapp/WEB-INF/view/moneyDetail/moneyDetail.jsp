@@ -19,7 +19,7 @@
 <div class="main" id="main">
     <div class="search-tools">
         <div class="search-item">
-            修改时间：
+            交易时间：
             <div class="layui-input-inline">
                 <input class="layui-input" name="startTime" id="startTime" autocomplete="off">
             </div>

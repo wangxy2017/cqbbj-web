@@ -55,22 +55,14 @@ public class MoneyDetailServiceImpl implements IMoneyDetailService {
 
     @Override
     public PageModel<MoneyDetail> queryPageList(MoneyDetail moneyDetail, int pageNum, int pageSize) {
-
-
-        return null;
+        PageHelper.startPage(pageNum, pageSize);
+        List<MoneyDetail> list = moneyDetailMapper.queryList(moneyDetail);
+        PageInfo<MoneyDetail> pageInfo = new PageInfo<>(list);
+        return new PageModel(pageInfo);
     }
 
     @Override
     public MoneyDetail queryById(Integer id) {
         return null;
-    }
-
-    @Override
-    public PageModel<MoneyDetail> queryPageList(Employee employee, MoneyDetail moneyDetail, int pageNum, int pageSize) {
-        PageHelper.startPage(pageNum, pageSize);
-        moneyDetail.setEmp_no(employee.getEmp_no());
-        List<MoneyDetail> list = moneyDetailMapper.queryList(moneyDetail);
-        PageInfo<MoneyDetail> pageInfo = new PageInfo<>(list);
-        return new PageModel(pageInfo);
     }
 }

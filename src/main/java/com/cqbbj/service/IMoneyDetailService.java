@@ -16,5 +16,4 @@ import javax.servlet.http.HttpServletRequest;
  * @date 2019/2/18 15:24
  */
 public interface IMoneyDetailService extends BaseService<MoneyDetail> {
-    PageModel<MoneyDetail> queryPageList(Employee employee, MoneyDetail moneyDetail, int pageNum, int pageSize);
 }

@@ -32,45 +32,33 @@ public class MoneyDetail extends BaseEntity {
 
     /**
      * 可用余额
+     *
      * @return
      */
-    public double restMoney;
+    private Double restMoney;
+
+    /**
+     * 收支编号
+     */
+    private String money_no;
+
+    /**
+     * ============ 关联字段 ==============
+     */
 
     /**
      * 开始时间
+     *
      * @return
      */
-    public Date startTime;
+    private Date startTime;
 
     /**
      * 结束时间
+     *
      * @return
      */
-    public Date endTime;
-
-    public Date getStartTime() {
-        return startTime;
-    }
-
-    public void setStartTime(Date startTime) {
-        this.startTime = startTime;
-    }
-
-    public Date getEndTime() {
-        return endTime;
-    }
-
-    public void setEndTime(Date endTime) {
-        this.endTime = endTime;
-    }
-
-    public double getRestMoney() {
-        return restMoney;
-    }
-
-    public void setRestMoney(double restMoney) {
-        this.restMoney = restMoney;
-    }
+    private Date endTime;
 
     public String getEmp_no() {
         return emp_no;
@@ -102,5 +90,37 @@ public class MoneyDetail extends BaseEntity {
 
     public void setRemark(String remark) {
         this.remark = remark;
+    }
+
+    public Double getRestMoney() {
+        return restMoney;
+    }
+
+    public void setRestMoney(Double restMoney) {
+        this.restMoney = restMoney;
+    }
+
+    public Date getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(Date startTime) {
+        this.startTime = startTime;
+    }
+
+    public Date getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(Date endTime) {
+        this.endTime = endTime;
+    }
+
+    public String getMoney_no() {
+        return money_no;
+    }
+
+    public void setMoney_no(String money_no) {
+        this.money_no = money_no;
     }
 }

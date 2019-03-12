@@ -16,40 +16,43 @@ import javax.servlet.http.HttpServletRequest;
 
 @Controller
 @RequestMapping("/moneyDetail")
-public class moneyDetailController extends BaseController {
+public class MoneyDetailController extends BaseController {
 
     @Autowired
     private IMoneyDetailService moneyDetailService;
+
     /**
      * 进入我的钱包
+     *
      * @return
      */
     @RequestMapping("/myWallet")
-    public String myWallet(){
+    public String myWallet() {
         return "/moneyDetail/myWallet";
     }
 
     /**
      * 进入收支明细
+     *
      * @return
      */
     @RequestMapping("/moneyDetail")
-    public String moneyDetail(){
+    public String moneyDetail() {
         return "/moneyDetail/moneyDetail";
     }
 
     @RequestMapping("/queryResult")
     @ResponseBody
-    public Result queryResult(HttpServletRequest request){
-       Employee e=getLoginUser(request);
-    return ResultUtils.success(e);
+    public Result queryResult(HttpServletRequest request) {
+        Employee e = getLoginUser(request);
+        return ResultUtils.success(e);
     }
 
     @RequestMapping("/queryPageList")
     @ResponseBody
-    public Result queryPageList(HttpServletRequest request,MoneyDetail moneyDetail,int pageNum, int pageSize){
-
-        PageModel<MoneyDetail> pageModel= moneyDetailService.queryPageList(getLoginUser(request),moneyDetail,pageNum,pageSize);
+    public Result queryPageList(HttpServletRequest request, MoneyDetail moneyDetail, int pageNum, int pageSize) {
+        moneyDetail.setEmp_no(getLoginUser(request).getEmp_no());
+        PageModel<MoneyDetail> pageModel = moneyDetailService.queryPageList(moneyDetail, pageNum, pageSize);
         return ResultUtils.success(pageModel);
     }
 
