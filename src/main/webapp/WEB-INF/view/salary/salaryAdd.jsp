@@ -33,7 +33,7 @@
             <div class="layui-input-inline">
                 <input type="text" name="emp_name" id="emp_name" required lay-verify="required" placeholder="请输入员工姓名"
                        autocomplete="off"
-                       class="layui-input">
+                       class="layui-input" readonly>
             </div>
             <button type="button" class="layui-btn" id="chooseEmployee">选择员工</button>
         </div>
@@ -85,6 +85,8 @@
                     <option value="2023">2023 年</option>
                 </select>
             </div>
+        </div>
+        <div class="layui-form-item">
             <label class="layui-form-label">月：</label>
             <div class="layui-input-inline">
                 <select class="layui-input" name="month">

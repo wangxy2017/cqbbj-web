@@ -84,7 +84,7 @@
         LEFT JOIN sys_employee e ON s.emp_no=e.emp_no
         LEFT JOIN sys_position p on e.position_id=p.id
         where s.deleteStatus = 0
-        <if test="emp_name!=null and  emp_name!=''">and  e.name=#{emp_name}</if>
+        <if test="emp_name!=null and  emp_name!=''">and e.name like concat ("%",#{emp_name},"%")</if>
         <if test="year!=null ">and s.`year`=#{year}</if>
         <if test="year!=null and month!=null ">and s.`month` =#{month}</if>
         order by s.createTime desc

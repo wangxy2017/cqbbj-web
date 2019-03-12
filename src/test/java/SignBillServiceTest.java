@@ -43,7 +43,7 @@ public class SignBillServiceTest {
             signBill.setStatus(1);
             signBill.setOrder_no("DT201903101543537460528");
             signBill.setCustomer_no("CO201903101548241810463");
-            signBill.setBill_no("SG");
+            signBill.setBill_no(CommUtils.getCode("SG"));
             signBillService.saveEntity(signBill);
             System.out.println("保存成功：" + signBill.getId());
         }

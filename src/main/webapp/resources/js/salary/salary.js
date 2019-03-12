@@ -56,13 +56,12 @@ layui.use(["table", "layer", "laydate", "jquery"], function () {
                     },
                     cols: [[
                         {type: 'checkbox'}
-                        , {field: 'id', title: 'ID编号'}
                         , {field: 'emp_pos', title: '员工类型'}
-                        , {field: 'emp_name', title: '员工姓名'}
-                        , {field: 'real_money', title: '实发工资'}
-                        , {field: 'base_money', title: '基本工资'}
-                        , {field: 'profit_money', title: '提成工资'}
-                        , {field: 'other_money', title: '其它开支'}
+                        , {field: 'emp_name', title: '员工姓名', align: "center"}
+                        , {field: 'real_money', title: '实发工资', align: "center"}
+                        , {field: 'base_money', title: '基本工资', align: "center"}
+                        , {field: 'profit_money', title: '提成工资', align: "center"}
+                        , {field: 'other_money', title: '其它开支', align: "center"}
                         , {
                             field: 'month', title: '月份', align: "center", templet: function (d) {
                                 return d.year + "年" + d.month + "月";
