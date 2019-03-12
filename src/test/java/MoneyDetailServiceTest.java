@@ -1,3 +1,4 @@
+import com.cqbbj.core.util.ConstantUtils;
 import com.cqbbj.core.base.PageModel;
 import com.cqbbj.core.util.CommUtils;
 import com.cqbbj.entity.MoneyDetail;
@@ -35,7 +36,7 @@ public class MoneyDetailServiceTest {
             moneyDetail.setMoney(100.00D);
             moneyDetail.setRemark("测试数据" + i);
             moneyDetail.setRestMoney(100D);
-            moneyDetail.setMoney_no(CommUtils.getCode("MD"));
+            moneyDetail.setMoney_no(CommUtils.getCode(ConstantUtils.MONEY_DETAIL));
             moneyDetailService.saveEntity(moneyDetail);
             System.out.println("保存成功：" + moneyDetail.getId());
         }

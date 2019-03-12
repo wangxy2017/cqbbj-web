@@ -1,6 +1,7 @@
 package com.cqbbj.controller;
 
 import com.cqbbj.core.base.BaseController;
+import com.cqbbj.core.util.ConstantUtils;
 import com.cqbbj.core.base.PageModel;
 import com.cqbbj.core.base.Result;
 import com.cqbbj.core.util.CommUtils;
@@ -104,7 +105,7 @@ public class EmployeeController extends BaseController {
     public Result save(Employee employee) {
         employee.setPassword(MD5Utils.MD5Encode(employee.getPassword()));
         employee.setIs_disabled(0);
-        employee.setEmp_no(CommUtils.getCode("EP"));
+        employee.setEmp_no(CommUtils.getCode(ConstantUtils.EMPLOYEE));
         employee.setMoney(0.00D);
         employee.setCreateTime(new Date());
         employee.setDeleteStatus(0);

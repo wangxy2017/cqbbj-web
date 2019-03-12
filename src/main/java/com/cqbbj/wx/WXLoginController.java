@@ -1,11 +1,11 @@
 package com.cqbbj.wx;
 
 import com.cqbbj.core.base.BaseController;
+import com.cqbbj.core.util.ConstantUtils;
 import com.cqbbj.core.base.Result;
 import com.cqbbj.core.util.CommUtils;
 import com.cqbbj.core.util.DateUtils;
 import com.cqbbj.core.util.ResultUtils;
-import com.cqbbj.core.util.SmsUtils;
 import com.cqbbj.entity.Code;
 import com.cqbbj.entity.Customer;
 import com.cqbbj.service.ICodeService;
@@ -60,7 +60,7 @@ public class WXLoginController extends BaseController {
         user.setName(name);
         user.setCreateTime(new Date());
         user.setDeleteStatus(0);
-        user.setCust_no(CommUtils.getCode("CO"));
+        user.setCust_no(CommUtils.getCode(ConstantUtils.CUSTOMER));
         user.setPhone(phone);
         customerService.saveEntity(user);
         return ResultUtils.success(user.getId());

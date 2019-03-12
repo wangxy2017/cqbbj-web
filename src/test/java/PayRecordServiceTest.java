@@ -1,6 +1,5 @@
-import com.cqbbj.core.base.PageModel;
+import com.cqbbj.core.util.ConstantUtils;
 import com.cqbbj.core.util.CommUtils;
-import com.cqbbj.core.util.MD5Utils;
 import com.cqbbj.entity.PayRecord;
 import com.cqbbj.service.IPayRecordService;
 import org.junit.Test;
@@ -29,12 +28,12 @@ public class PayRecordServiceTest {
     public void save() {
         for (int i = 0; i < 1000; i++) {
             PayRecord payRecord = new PayRecord();
-            payRecord.setOrder_no(CommUtils.getCode("DD"));
+            payRecord.setOrder_no(CommUtils.getCode(ConstantUtils.ORDER));
             payRecord.setCust_no("CO201903081645060770237");
             payRecord.setPayWay(1);
             payRecord.setPayMoney(100.00D);
             payRecord.setPayTime(new Date());
-            payRecord.setRecord_no(CommUtils.getCode("RE"));
+            payRecord.setRecord_no(CommUtils.getCode(ConstantUtils.PAY_RECORD));
             payRecord.setTrans_no(CommUtils.getCode("TS"));
             payRecord.setEmp_no("EP201903051725529700609");
             payRecordService.saveEntity(payRecord);

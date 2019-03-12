@@ -1,6 +1,7 @@
 package com.cqbbj.controller;
 
 import com.cqbbj.core.base.BaseController;
+import com.cqbbj.core.util.ConstantUtils;
 import com.cqbbj.core.base.PageModel;
 import com.cqbbj.core.base.Result;
 import com.cqbbj.core.util.CommUtils;
@@ -139,7 +140,7 @@ public class OrderController extends BaseController {
             customer = new Customer();
             customer.setName(order.getName());
             customer.setPhone(order.getPhone());
-            customer.setCust_no(CommUtils.getCode("CO"));
+            customer.setCust_no(CommUtils.getCode(ConstantUtils.CUSTOMER));
             customer.setCreateTime(new Date());
             customer.setDeleteStatus(0);
             customerService.saveEntity(customer);
@@ -148,7 +149,7 @@ public class OrderController extends BaseController {
         order.setCreateTime(new Date());
         order.setDeleteStatus(0);
         order.setStatus(0);
-        order.setOrder_no(CommUtils.getCode("DT"));
+        order.setOrder_no(CommUtils.getCode(ConstantUtils.ORDER));
         order.setCust_no(customer.getCust_no());
         orderService.saveEntity(order);
         // 记录日志

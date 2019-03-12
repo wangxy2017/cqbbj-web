@@ -1,6 +1,7 @@
 package com.cqbbj.controller;
 
 import com.cqbbj.core.base.BaseController;
+import com.cqbbj.core.util.ConstantUtils;
 import com.cqbbj.core.base.PageModel;
 import com.cqbbj.core.base.Result;
 import com.cqbbj.core.util.CommUtils;
@@ -15,9 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 /**
  * @author wangxy
@@ -109,7 +108,7 @@ public class IntentionOrderController extends BaseController {
         intentionOrder.setCreateTime(new Date());
         intentionOrder.setDeleteStatus(0);
         intentionOrder.setIs_follow(0);
-        intentionOrder.setInten_no(CommUtils.getCode("IO"));
+        intentionOrder.setInten_no(CommUtils.getCode(ConstantUtils.INTENTION_ORDER));
         intentionOrderService.saveEntity(intentionOrder);
         // 记录日志
         operationLogService.saveEntity(

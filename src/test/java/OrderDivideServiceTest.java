@@ -1,6 +1,5 @@
-import com.cqbbj.core.base.PageModel;
+import com.cqbbj.core.util.ConstantUtils;
 import com.cqbbj.core.util.CommUtils;
-import com.cqbbj.core.util.MD5Utils;
 import com.cqbbj.entity.OrderDivide;
 import com.cqbbj.service.IOrderDivideService;
 import org.junit.Test;
@@ -38,7 +37,7 @@ public class OrderDivideServiceTest {
             orderDivide.setMoney(15);
             orderDivide.setClean_time(new Date());
             orderDivide.setOperator_no("EP201903051725529700609");
-            orderDivide.setDivide_no(CommUtils.getCode("OD"));
+            orderDivide.setDivide_no(CommUtils.getCode(ConstantUtils.ORDER_DIVIDE));
             orderDivideService.saveEntity(orderDivide);
             System.out.println("保存成功：" + orderDivide.getId());
         }
