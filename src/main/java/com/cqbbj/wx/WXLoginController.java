@@ -16,6 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 
 @Controller
@@ -95,7 +96,7 @@ public class WXLoginController extends BaseController {
         }
         // 发送验证码
         log.debug("验证码：" + newCode);
-        System.out.println("验证码是："+newCode);
+        //System.out.println("验证码是："+newCode);
         //SmsUtils.sendSms(phone,"验证码："+newCode);
 
         return ResultUtils.success();
@@ -109,7 +110,7 @@ public class WXLoginController extends BaseController {
      */
     @RequestMapping("/login")
     @ResponseBody
-    public Result login(String phone, String code) {
+    public Result login(String phone, String code,HttpServletRequest request) {
         if (StringUtils.isBlank(phone) || StringUtils.isBlank(code)) {
             return ResultUtils.error(-1, "参数错误");
         }
@@ -119,6 +120,7 @@ public class WXLoginController extends BaseController {
         }
         // 查询用户信息
         Customer user = customerService.queryByPhone(phone);
+        request.getSession().setAttribute("customer",user);
         return ResultUtils.success(user);
     }
 
