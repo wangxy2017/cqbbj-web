@@ -36,7 +36,7 @@ public class SignBillServiceImpl implements ISignBillService {
 
     @Override
     public int saveEntity(SignBill signBill) {
-        return 0;
+        return signBillMapper.save(signBill);
     }
 
     @Override

@@ -1,5 +1,5 @@
 // JavaScript代码区域
-layui.use(["table", "layer", "laydate","jquery"], function () {
+layui.use(["table", "layer", "laydate", "jquery"], function () {
     var table = layui.table;
     var layer = layui.layer;
     var laydate = layui.laydate;
@@ -24,7 +24,7 @@ layui.use(["table", "layer", "laydate","jquery"], function () {
                 });
                 //结束时间
                 laydate.render({
-                    elem: '#endTime',
+                    elem: '#finishTime',
                     type: "datetime"
                 });
             },
@@ -35,7 +35,7 @@ layui.use(["table", "layer", "laydate","jquery"], function () {
                         "name": main.name,
                         "status": main.status,
                         "startTime": $("#startTime").val(),
-                        "endTime": $("#finishTime").val()
+                        "finishTime": $("#finishTime").val()
                     }
                 });
             },
@@ -73,17 +73,20 @@ layui.use(["table", "layer", "laydate","jquery"], function () {
                         , {field: 'name', title: '客户名称'}
                         , {field: 'start', title: '搬出地址'}
                         , {field: 'end', title: '搬入地址'}
-                        , {field: 'price', title: '订单价格'}
-                        , {field: 'receiveMoney', title: '实际收款'}
-                        , {field: 'costMoney', title: '支出金额'}
-                        , {field: 'emp_name', title: '收款人'}
-
                         , {
                             field: 'endTime', title: '完成时间', sort: true, templet: function (d) {
                                 return formatDateTime(d.endTime);
                             }
                         }
-                        , {field: 'status', title: '状态'}
+                        , {field: 'price', title: '订单价格', align: "center"}
+                        , {
+                            field: 'status', title: '收款状态', align: "center", templet: function (d) {
+                                return d.status == 0 ? "<span style='color: #FF5722'>未收款</span>" : "<span style='color: #009688'>已收款</span>";
+                            }
+                        }
+                        , {field: 'receiveMoney', title: '收款金额', align: "center"}
+                        , {field: 'emp_name', title: '收款人', align: "center"}
+                        , {title: '操作', fixed: 'right', align: 'center', toolbar: '#options', width: 120}
                     ]]
                 });
             }

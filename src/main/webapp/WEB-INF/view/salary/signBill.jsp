@@ -32,24 +32,24 @@
             </div>
         </div>
         <div class="search-item">
-            员工类型：
+            收款状态：
             <div class="layui-input-inline" style="width: 66px;">
                 <select class="layui-input" name="status" v-model="status">
                     <option value="">全部</option>
-                    <option value="0">未付款</option>
-                    <option value="1">已付款</option>
+                    <option value="0">未收款</option>
+                    <option value="1">已收款</option>
 
                 </select>
             </div>
         </div>
         <div class="search-item">
-            结算时间：
+            完成时间：
             <div class="layui-input-inline">
                 <input type="text" class="layui-input" name="startTime" id="startTime" autocomplete="off">
             </div>
             至
             <div class="layui-input-inline">
-                <input class="layui-input" name="finishTime" id="finishTime" autocomplete="off">
+                <input type="text" class="layui-input" name="finishTime" id="finishTime" autocomplete="off">
             </div>
         </div>
         <div class="search-item">
@@ -57,6 +57,10 @@
         </div>
     </div>
     <table id="signBillList" lay-filter="signBillList"></table>
+    <%-- 工具条存放区域--%>
+    <script type="text/html" id="options">
+        <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="receive">收款</a>
+    </script>
 </div>
 <script src="${pageContext.request.contextPath}/resources/plugin/layui/layui.js"></script>
 <script src="${pageContext.request.contextPath}/resources/plugin/vue/vue.min.js"></script>

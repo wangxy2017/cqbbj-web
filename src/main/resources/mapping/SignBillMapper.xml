@@ -3,30 +3,75 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.cqbbj.dao.SignBillMapper">
-
-
     <sql id="insert_all_fields">
-
+    createTime,
+    deleteStatus,
+    name,
+    phone,
+    start,
+    end,
+    content,
+    beginTime,
+    price,
+    endTime,
+    receiveMoney,
+    costMoney,
+    emp_no,
+    status,
+    order_no,
+    customer_no,
+    bill_no
     </sql>
     <sql id="insert_all_values">
-
+    #{createTime},
+    #{deleteStatus},
+    #{name},
+    #{phone},
+    #{start},
+    #{end},
+    #{content},
+    #{beginTime},
+    #{price},
+    #{endTime},
+    #{receiveMoney},
+    #{costMoney},
+    #{emp_no},
+    #{status},
+    #{order_no},
+    #{customer_no},
+    #{bill_no}
     </sql>
-
-    <!-- 保存提成记录 -->
+    <sql id="query_all_fields">
+    id,
+    name,
+    phone,
+    start,
+    end,
+    content,
+    beginTime,
+    price,
+    endTime,
+    receiveMoney,
+    costMoney,
+    emp_no,
+    status,
+    order_no,
+    customer_no,
+    bill_no
+    </sql>
+    <!-- 保存签单 -->
     <insert id="save" parameterType="signBill" useGeneratedKeys="true" keyProperty="id">
         insert into sys_sign_bill(<include refid="insert_all_fields"/>) values(<include refid="insert_all_values"/>)
     </insert>
-    <!-- 删除提成记录 -->
+    <!-- 删除签单 -->
     <delete id="delete" parameterType="int">
         delete from sys_sign_bill where id = #{id}
     </delete>
-    <!-- 逻辑删除提成记录 -->
+    <!-- 逻辑删除签单 -->
     <update id="deleteActive" parameterType="int">
         update sys_sign_bill set deleteStatus = 1 where id = #{id}
     </update>
-
-
-    <!-- 查询提成记录列表 -->
+    <!-- 查询签单列表 -->
     <select id="queryList" resultType="signBill" parameterType="map">
         select
         s.id,
@@ -51,11 +96,11 @@
         from sys_sign_bill s
         left join sys_employee e on s.emp_no=e.emp_no
         where s.deleteStatus=0 and e.deleteStatus=0
-        <if test="name!=null and name!=''">and s.name=#{name}</if>
-        <if test="status!=null and status!=''">and s.status=#{status}</if>
+        <if test="name!=null and name!=''">and s.name like concat("%",#{name},"%")</if>
+        <if test="status!=null">and s.status=#{status}</if>
         <if test="order_no!=null and order_no!=''">and s.order_no=#{order_no}</if>
-        <if test="startTime!=null and startTime!=''"><![CDATA[and s.endTime >= #{startTime}]]></if>
-        <if test="finishTime!=null and finishTime!=''"><![CDATA[ and s.finishTime  <= #{finishTime}]]></if>
+        <if test="startTime!=null"><![CDATA[and s.endTime >= #{startTime}]]></if>
+        <if test="finishTime!=null"><![CDATA[and s.endTime <= #{finishTime}]]></if>
         order by s.createTime desc
     </select>
 </mapper>
