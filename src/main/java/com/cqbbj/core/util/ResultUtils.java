@@ -45,4 +45,8 @@ public class ResultUtils {
     public static Result error() {
         return error(-1, "error");
     }
+
+    public static Result error(String msg) {
+        return error(-1, msg);
+    }
 }

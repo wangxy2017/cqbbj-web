@@ -1,0 +1,189 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+i{
+    font-style: normal;
+}
+a{
+    text-decoration: none;
+    color: #1e9fff;
+    margin-top: 15px;
+}
+html,body{
+    width: 100%;
+    height: 100%;
+    font-size: 50%;
+}
+body{
+    background-image: url("../imge/bg0.jpg");
+    background-repeat:no-repeat;
+    /*设置背景图片铺满页面*/
+    background-size: cover;
+    position: relative;
+}
+.login{
+    width: 850px;
+    height: 900px;
+    border-radius: 1em;
+    background: #ebe6e6;
+    opacity: 0.9;
+    position: absolute;
+    left: calc(50% - 425px);
+    top:calc(50% - 450px);
+    box-shadow: 0 0 0 2px #272636;
+}
+.logoPic{
+    width: 70%;
+    height: 18%;
+    margin: 0 auto;
+    margin-top: 3.6em;
+    text-align: center;
+    /*background: red;*/
+
+}
+.logoPic .h1{
+    color: #1e9fff;
+    font-size: 7rem;
+    position: relative;
+}
+.logoPic span{
+    color: #1e9fff;
+    font-size: 4rem;
+    position: absolute;
+    margin-top: -1.5em;
+    margin-left: 10.5rem;
+}
+#center{
+    width: 80%;
+    height: 76%;
+    margin: 0 auto;
+    /*background: red;*/
+}
+#center input{
+    width: 100%;
+    height: 4em;
+    line-height: 3.5em;
+    /*margin-top: 1.5em;*/
+    padding-left: 4em;
+    border-radius: 0.2em;
+    color: #272636;
+    font-size: 2em;
+    border: none;
+    position: relative;
+}
+/*用户登录框图片*/
+#user{
+    margin-top: 0;
+    background-image: url("../imge/usrname.png");
+    background-repeat: no-repeat;
+    background-position: left;
+    background-size: 10%;
+}
+/*用户密码框图片*/
+#psw{
+    background-image: url("../imge/password.png");
+    background-repeat: no-repeat;
+    background-position: left;
+    background-size: 10%;
+    margin-top: 4rem;
+}
+.checkbox-min{
+    margin-top: 1.6em;
+    height: 5em;
+    position: absolute;
+    text-align: center;
+    text-align: center;
+}
+.checkbox-min input{
+    display: none;
+}
+.checkbox-min span{
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    margin-top: -0.5em;
+    border: 2px solid #ccc;
+    border-radius: 50%;
+}
+.checkbox-min input:checked +span{
+    background: #1e9fff;
+    border-color: #1e9fff;
+    position: relative;
+}
+.checkbox-min input:checked +span::before{
+    content: "";
+    position: absolute;
+    width: 1.7em;
+    height: 0.8em;
+    top: 1em;
+    left: 0.8em;
+    border-left: 3px solid #fff;
+    border-bottom: 3px solid #fff;
+    -ms-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+
+}
+.checkbox-min i{
+    margin-left: 0.5em;
+    color: #1e9fff;
+    float: right;
+    font-size: 2em;
+}
+.weiXin{
+    float: right;
+    width: 12em;
+    /*background: red;*/
+    height: 4em;
+    background-image: url("../imge/weiXinLogo.png");
+    background-repeat: no-repeat;
+    background-size: 26%;
+    background-position: left;
+    text-align: center;
+    /*margin-top: 1em;*/
+    display: none;
+}
+.weiXin p{
+    line-height: 2.5em;
+    color: #1e9fff;
+    font-size: 1.8em;
+    margin-left: 1.5em;
+}
+.col-sm-6{
+    height: 1.8em;
+    margin-top: 1em;
+    margin-bottom: 1em;
+
+}
+#center #inPut{
+    background: #1e9fff;
+    width: 100%;
+    height: 3em;
+    color: white;
+    margin-top: 4rem;
+    font-size: 3em;
+    /*margin-top: 1em;*/
+    text-align: center;
+    /*该出还原input内边距样式，让文本登录可以居中*/
+    padding-left: 0em;
+}
+footer{
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    margin-top: 1.5em;
+}
+footer a{
+    font-size: 2.5em;
+    margin-left: 1em;
+    margin-right: 1em;
+}
+footer span{
+    font-size: 2.5em;
+    color: #1e9fff;
+}
+
+

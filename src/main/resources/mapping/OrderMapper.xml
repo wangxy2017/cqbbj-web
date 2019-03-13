@@ -110,14 +110,42 @@
     </update>
     <!-- 查询订单列表 -->
     <select id="queryList" resultType="order" parameterType="order">
-        select <include refid="query_all_fields"></include> from sys_order where deleteStatus = 0
-        <if test="name != null and name != ''">and name = #{name}</if>
-        <if test="order_no != null and order_no != ''">and order_no = #{order_no}</if>
-        <if test="status != null">and status = #{status}</if>
-        <if test="createTime1 != null"><![CDATA[and createTime >= #{createTime1}]]></if>
-        <if test="createTime2 != null"><![CDATA[and createTime <= #{createTime2}]]></if>
-        <if test="beginTime1 != null"><![CDATA[and beginTime >= #{beginTime1}]]></if>
-        <if test="beginTime2 != null"><![CDATA[and beginTime <= #{beginTime2}]]></if>
+        select
+        r.id,
+        r.name,
+        r.phone,
+        r.start,
+        r.end,
+        r.content,
+        r.price,
+        r.beginTime,
+        r.createTime,
+        r.status,
+        r.startMap,
+        r.endMap,
+        r.order_no,
+        r.endTime,
+        r.cust_no,
+        r.receiveMoney,
+        r.receiveText,
+        r.costMoney,
+        r.visit,
+        r.source,
+        r.type,
+        s.emp_no,
+        s.type sendType
+        from sys_order r
+        left join sys_send_order s on r.order_no=s.order_no
+        where r.deleteStatus = 0
+        <if test="emp_no != null and emp_no != ''">and s.emp_no = #{emp_no}</if>
+        <if test="name != null and name != ''">and r.name = #{name}</if>
+        <if test="cust_no != null and cust_no != ''">and r.cust_no = #{cust_no}</if>
+        <if test="order_no != null and order_no != ''">and r.order_no = #{order_no}</if>
+        <if test="status != null">and r.status = #{status}</if>
+        <if test="createTime1 != null"><![CDATA[and r.createTime >= #{createTime1}]]></if>
+        <if test="createTime2 != null"><![CDATA[and r.createTime <= #{createTime2}]]></if>
+        <if test="beginTime1 != null"><![CDATA[and r.beginTime >= #{beginTime1}]]></if>
+        <if test="beginTime2 != null"><![CDATA[and r.beginTime <= #{beginTime2}]]></if>
         order by createTime desc
     </select>
     <!-- 根据ID查询 -->

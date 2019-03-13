@@ -1,9 +1,11 @@
 package com.cqbbj.wx;
 
 import com.cqbbj.core.base.BaseController;
+import com.cqbbj.core.base.PageModel;
 import com.cqbbj.core.base.Result;
 import com.cqbbj.core.util.CommUtils;
 import com.cqbbj.core.util.ConstantUtils;
+import com.cqbbj.core.util.CustomerUtils;
 import com.cqbbj.core.util.ResultUtils;
 import com.cqbbj.entity.Customer;
 import com.cqbbj.entity.Order;
@@ -30,7 +32,7 @@ public class WXOrderControll extends BaseController {
      */
     @RequestMapping("/addOrder")
     @ResponseBody
-    public Result addOrder(HttpServletRequest request,String name, String phone, String start, String end, Double price, Date beginTime,
+    public Result addOrder(String name, String phone, String start, String end, Double price, Date beginTime,
                            String content, Integer type){
         Order order=new Order();
         order.setName(name);
@@ -44,13 +46,25 @@ public class WXOrderControll extends BaseController {
 
 
         order.setOrder_no(CommUtils.getCode(ConstantUtils.ORDER));
-        order.setCust_no(((Customer)request.getAttribute("customer")).getCust_no());
+        order.setCust_no(CustomerUtils.getCust_no());
         order.setStatus(0);
         order.setSource(1);
         orderService.saveEntity(order);
         return ResultUtils.success();
     }
 
+
+    /**
+     * 查询订单
+     */
+@RequestMapping("/queryPageList")
+    @ResponseBody
+public Result queryPageList( Order order,int pageNum,int pageSize) {
+    order.setCust_no(CustomerUtils.getCust_no());
+    PageModel<Order> orderPageModel = orderService.queryPageList(order,pageNum,pageSize);
+
+return ResultUtils.success(orderPageModel);
+}
     /**
      * 根据ID查找订单
      * @param id
