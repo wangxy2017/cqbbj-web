@@ -1,6 +1,7 @@
 package com.cqbbj.service;
 
 import com.cqbbj.core.base.BaseService;
+import com.cqbbj.core.base.PageModel;
 import com.cqbbj.entity.Order;
 
 /**
@@ -24,4 +25,14 @@ public interface IOrderService extends BaseService<Order> {
      */
     int dispatchOrder(String order_no, String[] moneyEmps,
                       String[] driveEmps, String[] moveEmps, String[] airEmps);
+
+    /**
+     * 查询财务账单
+     *
+     * @param order
+     * @param pageNum
+     * @param pageSize
+     * @return
+     */
+    PageModel<Order> queryFinanceOrder(Order order, Integer pageNum, Integer pageSize);
 }

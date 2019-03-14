@@ -16,11 +16,11 @@ public class BaseEntity {
     /**
      * 创建时间
      */
-    private Date createTime = new Date();
+    private Date createTime;
     /**
      * 删除状态 0：未删除 1：已删除
      */
-    private Integer deleteStatus = 0;
+    private Integer deleteStatus;
 
     public Integer getId() {
         return id;

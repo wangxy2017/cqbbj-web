@@ -97,6 +97,11 @@ public class Order extends BaseEntity {
     private Integer type;
 
     /**
+     * 是否结算 0：未结算 1：已结算
+     */
+    private Integer is_clean;
+
+    /**
      * ============ 关联属性 =============
      */
 
@@ -348,5 +353,13 @@ public class Order extends BaseEntity {
 
     public void setType(Integer type) {
         this.type = type;
+    }
+
+    public Integer getIs_clean() {
+        return is_clean;
+    }
+
+    public void setIs_clean(Integer is_clean) {
+        this.is_clean = is_clean;
     }
 }

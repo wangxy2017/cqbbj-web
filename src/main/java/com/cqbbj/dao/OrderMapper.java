@@ -4,6 +4,7 @@ import com.cqbbj.core.base.BaseMapper;
 import com.cqbbj.entity.Order;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -15,4 +16,11 @@ import java.util.Map;
  */
 @Repository
 public interface OrderMapper extends BaseMapper<Order> {
+    /**
+     * 查询财务账单
+     *
+     * @param order
+     * @return
+     */
+    List<Order> queryFinanceOrder(Order order);
 }

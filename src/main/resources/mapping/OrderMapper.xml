@@ -24,7 +24,8 @@
         costMoney,
         visit,
         source,
-        type
+        type,
+        is_clean
     </sql>
     <sql id="insert_all_values">
         #{createTime},
@@ -47,7 +48,8 @@
         #{costMoney},
         #{visit},
         #{source},
-        #{type}
+        #{type},
+        #{is_clean}
     </sql>
     <sql id="query_all_fields">
         id,
@@ -70,7 +72,8 @@
         costMoney,
         visit,
         source,
-        type
+        type,
+        is_clean
     </sql>
     <!-- 保存订单 -->
     <insert id="save" parameterType="order" useGeneratedKeys="true" keyProperty="id">
@@ -97,6 +100,7 @@
             <if test="visit != null and visit != ''">visit = #{visit},</if>
             <if test="source != null">source = #{source},</if>
             <if test="type != null">type = #{type},</if>
+            <if test="is_clean != null">is_clean = #{is_clean},</if>
         </set>
         where id = #{id}
     </update>
@@ -132,5 +136,14 @@
         <include refid="query_all_fields"/>
         from sys_order where
         <if test="order_no != null and order_no != ''">order_no = #{order_no}</if>
+    </select>
+    <!-- 查询财务账单 -->
+    <select id="queryFinanceOrder" parameterType="order" resultType="order">
+        select * from sys_order where deleteStatus = 0 and status = 2
+        <if test="is_clean != null">and is_clean = #{is_clean}</if>
+        <if test="order_no != null and order_no !=''">and order_no = #{order_no}</if>
+        <if test="name != null and name !=''">and name like concat("%",#{name},"%")</if>
+        <if test="beginTime1 != null"><![CDATA[and beginTime >= #{beginTime1}]]></if>
+        <if test="beginTime2 != null"><![CDATA[and beginTime <= #{beginTime2}]]></if>
     </select>
 </mapper>

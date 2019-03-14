@@ -58,7 +58,7 @@
 
     <div class="layui-footer">
         <!-- 底部固定区域 -->
-        © lohoo.com - 底部固定区域
+        © cqbbj.tco2o.cn - 底部固定区域
     </div>
 </div>
 <script src="${pageContext.request.contextPath}/resources/plugin/layui/layui.js"></script>
