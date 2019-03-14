@@ -18,7 +18,7 @@ To change this template use File | Settings | File Templates.
 <body>
 	<div class="main">
 		<%-- 页面返回键 --%>
-		<a class="layui-btn go-back" href="/menu/menu">
+		<a class="layui-btn go-back" href="javascript:window.history.back()">
 			<i class="layui-icon">&#xe603;</i>返回
 		</a>
 		<%-- 表单区域 --%>

@@ -17,7 +17,10 @@ To change this template use File | Settings | File Templates.
 </head>
 <body>
 <div class="main" id="main" data-id="<%=request.getParameter("id")%>">
-    <p class="page-title">修改订单</p>
+    <%-- 页面返回键 --%>
+    <a class="layui-btn go-back" href="javascript:window.history.back()">
+        <i class="layui-icon">&#xe603;</i>返回
+    </a>
     <%-- 表单区域 --%>
     <form class="layui-form" action="" v-if="order">
         <div class="layui-form-item layui-hide">

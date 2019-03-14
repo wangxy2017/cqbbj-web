@@ -18,7 +18,10 @@ To change this template use File | Settings | File Templates.
 </head>
 <body>
 <div class="main">
-    <p class="page-title">新增意向</p>
+    <%-- 页面返回键 --%>
+    <a class="layui-btn go-back" href="javascript:window.history.back()">
+        <i class="layui-icon">&#xe603;</i>返回
+    </a>
     <%-- 表单区域 --%>
     <form class="layui-form" action="">
         <div class="layui-form-item">

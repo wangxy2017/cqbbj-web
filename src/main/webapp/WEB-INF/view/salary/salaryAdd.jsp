@@ -18,10 +18,9 @@
 <body>
 <div class="main" id="main">
     <%-- 页面返回键 --%>
-    <a class="layui-btn go-back" href="/salary/salary">
+    <a class="layui-btn go-back" href="javascript:window.history.back()">
         <i class="layui-icon">&#xe603;</i>返回
     </a>
-
     <%-- 表单区域 --%>
     <form class="layui-form" action="/salary/save" method="post">
         <div class="layui-form-item layui-hide">
