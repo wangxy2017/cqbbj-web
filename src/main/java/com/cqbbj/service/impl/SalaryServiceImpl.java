@@ -68,7 +68,7 @@ public class SalaryServiceImpl implements ISalaryService {
 
     @Override
     public Salary queryById(Integer id) {
-        return null;
+        return salaryMapper.queryById(id);
     }
 
 

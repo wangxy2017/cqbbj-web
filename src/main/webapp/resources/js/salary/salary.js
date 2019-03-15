@@ -77,9 +77,24 @@ layui.use(["table", "layer", "laydate", "jquery"], function () {
 
                     // 修改
                     if (layEvent === 'update') {
+                        window.location.href = "/salary/updateSalary?id=" + data.id;
                     }
                     // 删除
                     if (layEvent === 'delete') {
+                        layer.confirm("数据删除后不可恢复，确认删除吗？", function () {
+                            // 请求后台，删除数据
+                            main.$http.post('/salary/delete', {"id": data.id}, {emulateJSON: true}).then(function (res) {
+                                if (res.body.code == 1) {
+                                    layer.msg("删除成功");
+                                    // 刷新列表
+                                    table.reload("salaryList");
+                                } else {
+                                    layer.msg("删除失败");
+                                }
+                            }, function (res) {
+                                layer.msg("服务器请求异常");
+                            });
+                        })
                     }
                 });
             }
