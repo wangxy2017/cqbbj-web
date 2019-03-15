@@ -95,7 +95,6 @@ public class Order extends BaseEntity {
      * 订单类型 0：个人 1：企业
      */
     private Integer type;
-
     /**
      * 是否结算 0：未结算 1：已结算
      */
@@ -138,6 +137,14 @@ public class Order extends BaseEntity {
      */
     private Date beginTime1;
     private Date beginTime2;
+    /**
+     * =============== 关联字段 =================
+     */
+
+    /**
+     * 员工编号
+     */
+    private String emp_no;
 
     public String getName() {
         return name;
@@ -355,6 +362,13 @@ public class Order extends BaseEntity {
         this.type = type;
     }
 
+    public String getEmp_no() {
+        return emp_no;
+    }
+
+    public void setEmp_no(String emp_no) {
+        this.emp_no = emp_no;
+    }
     public Integer getIs_clean() {
         return is_clean;
     }
