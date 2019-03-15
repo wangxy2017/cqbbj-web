@@ -44,11 +44,11 @@ public class WXLoginController extends BaseController {
         return "wx/login";
     }
     /**
-     * 登录页面跳转
+     * home页面跳转
      *
      * @return
      */
-    @RequestMapping("/home")
+    @RequestMapping("/toHome")
     public String toHome() {
         return "wx/home";
     }
@@ -182,6 +182,7 @@ public class WXLoginController extends BaseController {
                 if (employee.getIs_disabled() == 0) {
                     HttpSession session = getSession(request);
                     session.setAttribute("empUser", employee);
+                    session.setAttribute("loginer",0);
                 } else {
                     return ResultUtils.error("账号已被禁用");
                 }

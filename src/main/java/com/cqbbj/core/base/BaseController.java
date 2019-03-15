@@ -35,13 +35,31 @@ public class BaseController {
     }
 
     /**
-     * 获取登录信息
+     * 获取后台员工登录信息
      *
      * @param request
      * @return
      */
     protected Employee getLoginUser(HttpServletRequest request) {
         return (Employee) getSession(request).getAttribute("loginUser");
+    }
+
+    /**
+     * 获取微信登录员工信息
+     * @param request
+     * @return
+     */
+    protected Employee getWXEmpUser(HttpServletRequest request) {
+        return (Employee) getSession(request).getAttribute("empUser");
+    }
+
+    /**
+     * 获取微信客户登录信息
+     * @param request
+     * @return
+     */
+    protected Employee getWXCosUser(HttpServletRequest request) {
+        return (Employee) getSession(request).getAttribute("cosUser");
     }
 
     /**
