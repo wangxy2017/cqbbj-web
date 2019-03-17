@@ -1,10 +1,11 @@
 // JavaScript代码区域
 var checkedEmps = [];// 选择的员工
-layui.use(["table", "layer", "laydate", "jquery"], function () {
+layui.use(["table", "layer", "laydate", "jquery", "form"], function () {
     var table = layui.table;
     var layer = layui.layer;
     var laydate = layui.laydate;
     var $ = layui.$;
+    var form = layui.form;
 
     // 创建vue实例
     var main = new Vue({
@@ -116,7 +117,7 @@ layui.use(["table", "layer", "laydate", "jquery"], function () {
                         layer.open({
                             type: 1,
                             content: $('#helpDoneForm'),
-                            area: ["480px", "360px"],
+                            area: ["480px", "400px"],
                             title: "辅助完成",
                             btn: ["确认", "取消"],
                             success: function (layero, index) {
@@ -128,7 +129,7 @@ layui.use(["table", "layer", "laydate", "jquery"], function () {
                             },
                             yes: function (index, layero) {
                                 // 验证金额
-                                if ($("#receiveMoney").val() == "") {
+                                if ($("#receiveMoney").val() == "" && !$("#isNotPay").is(":checked")) {
                                     layer.msg("请填写金额");
                                     return;
                                 }
@@ -138,7 +139,8 @@ layui.use(["table", "layer", "laydate", "jquery"], function () {
                                         "id": $("#id").val(),
                                         "order_no": $("#order_no").val(),
                                         "receiveMoney": $("#receiveMoney").val(),
-                                        "receiveText": $("#receiveText").val()
+                                        "receiveText": $("#receiveText").val(),
+                                        "isNotPay": $("#isNotPay").is(":checked") ? $("#isNotPay").val() : null
                                     },
                                     {emulateJSON: true}).then(function (res) {
                                     // console.log(res.body);
@@ -163,6 +165,8 @@ layui.use(["table", "layer", "laydate", "jquery"], function () {
             var that = this;
             // 初始化表格
             that.initTable();
+            // 初始化表单
+            form.render();
         }
     });
 });

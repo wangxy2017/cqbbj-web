@@ -65,4 +65,9 @@ public class MoneyDetailServiceImpl implements IMoneyDetailService {
     public MoneyDetail queryById(Integer id) {
         return null;
     }
+
+    @Override
+    public MoneyDetail queryByProperties(MoneyDetail moneyDetail) {
+        return null;
+    }
 }

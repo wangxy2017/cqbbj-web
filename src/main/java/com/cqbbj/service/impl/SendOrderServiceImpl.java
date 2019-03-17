@@ -69,4 +69,9 @@ public class SendOrderServiceImpl implements ISendOrderService {
         sendOrder.setOrder_no(order_no);
         return sendOrderMapper.queryList(sendOrder);
     }
+
+    @Override
+    public SendOrder queryByProperties(SendOrder sendOrder) {
+        return null;
+    }
 }

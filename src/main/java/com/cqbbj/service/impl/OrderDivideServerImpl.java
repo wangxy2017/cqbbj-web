@@ -70,4 +70,9 @@ public class OrderDivideServerImpl implements IOrderDivideService {
     public OrderDivide queryById(Integer id) {
         return null;
     }
+
+    @Override
+    public OrderDivide queryByProperties(OrderDivide orderDivide) {
+        return null;
+    }
 }

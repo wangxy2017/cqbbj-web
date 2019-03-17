@@ -46,9 +46,9 @@ public class SignBill extends BaseEntity {
      */
     private Double receiveMoney;
     /**
-     * 支出费用
+     * 收款备注
      */
-    private Double costMoney;
+    private String receiveText;
     /**
      * 	状态
      */
@@ -160,14 +160,6 @@ public class SignBill extends BaseEntity {
         this.receiveMoney = receiveMoney;
     }
 
-    public Double getCostMoney() {
-        return costMoney;
-    }
-
-    public void setCostMoney(Double costMoney) {
-        this.costMoney = costMoney;
-    }
-
     public Integer getStatus() {
         return status;
     }
@@ -198,5 +190,13 @@ public class SignBill extends BaseEntity {
 
     public void setBill_no(String bill_no) {
         this.bill_no = bill_no;
+    }
+
+    public String getReceiveText() {
+        return receiveText;
+    }
+
+    public void setReceiveText(String receiveText) {
+        this.receiveText = receiveText;
     }
 }

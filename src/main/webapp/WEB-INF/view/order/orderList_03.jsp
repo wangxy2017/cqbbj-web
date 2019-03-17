@@ -79,6 +79,12 @@
                 <textarea id="receiveText" placeholder="请输入备注" class="layui-textarea" style="width: 300px"></textarea>
             </div>
         </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">是否收款</label>
+            <div class="layui-input-inline">
+                <input type="checkbox" name="isNotPay" id="isNotPay" value="1" title="暂不收款" lay-skin="primary">
+            </div>
+        </div>
     </form>
 </div>
 <script src="${pageContext.request.contextPath}/resources/plugin/layui/layui.js"></script>

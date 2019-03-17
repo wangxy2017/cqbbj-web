@@ -77,4 +77,9 @@ public class CustomerServiceImpl implements ICustomerService {
        String[] array=ids.split(",");
         customerMapper.deleteActiveBatch(array);
     }
+
+    @Override
+    public Customer queryByProperties(Customer customer) {
+        return null;
+    }
 }

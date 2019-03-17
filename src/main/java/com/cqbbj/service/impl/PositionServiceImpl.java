@@ -66,4 +66,9 @@ public class PositionServiceImpl implements IPositionService {
     public Position queryById(Integer id) {
         return null;
     }
+
+    @Override
+    public Position queryByProperties(Position position) {
+        return null;
+    }
 }

@@ -64,4 +64,9 @@ public class OperationLogServiceImpl implements IOperationLogService {
     public OperationLog queryById(Integer id) {
         return null;
     }
+
+    @Override
+    public OperationLog queryByProperties(OperationLog operationLog) {
+        return null;
+    }
 }

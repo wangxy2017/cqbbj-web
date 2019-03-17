@@ -59,6 +59,7 @@ public class OrderServiceImpl implements IOrderService {
         if (order.getCreateTime() == null) order.setCreateTime(new Date());
         if (order.getDeleteStatus() == null) order.setDeleteStatus(0);
         if (order.getIs_clean() == null) order.setIs_clean(0);
+        if (order.getPayState() == null) order.setPayState(0);
         return orderMapper.save(order);
     }
 
@@ -173,5 +174,10 @@ public class OrderServiceImpl implements IOrderService {
         List<Order> list = orderMapper.queryFinanceOrder(order);
         PageInfo<Order> pageInfo = new PageInfo<>(list);
         return new PageModel(pageInfo);
+    }
+
+    @Override
+    public Order queryByProperties(Order order) {
+        return orderMapper.queryByProperties(order);
     }
 }

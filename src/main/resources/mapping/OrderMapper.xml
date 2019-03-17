@@ -25,7 +25,8 @@
         visit,
         source,
         type,
-        is_clean
+        is_clean,
+        payState
     </sql>
     <sql id="insert_all_values">
         #{createTime},
@@ -49,7 +50,8 @@
         #{visit},
         #{source},
         #{type},
-        #{is_clean}
+        #{is_clean},
+        #{payState}
     </sql>
     <sql id="query_all_fields">
         id,
@@ -73,7 +75,8 @@
         visit,
         source,
         type,
-        is_clean
+        is_clean,
+        payState
     </sql>
     <!-- 保存订单 -->
     <insert id="save" parameterType="order" useGeneratedKeys="true" keyProperty="id">
@@ -101,6 +104,7 @@
             <if test="source != null">source = #{source},</if>
             <if test="type != null">type = #{type},</if>
             <if test="is_clean != null">is_clean = #{is_clean},</if>
+            <if test="payState != null">payState = #{payState},</if>
         </set>
         where id = #{id}
     </update>
@@ -140,6 +144,7 @@
         r.visit,
         r.source,
         r.type,
+        r.payState,
         s.emp_no,
         s.type sendType
         from sys_order r
@@ -150,6 +155,7 @@
         <if test="cust_no != null and cust_no != ''">and r.cust_no = #{cust_no}</if>
         <if test="order_no != null and order_no != ''">and r.order_no = #{order_no}</if>
         <if test="status != null">and r.status = #{status}</if>
+        <if test="payState != null">and r.payState = #{payState}</if>
         <if test="createTime1 != null"><![CDATA[and r.createTime >= #{createTime1}]]></if>
         <if test="createTime2 != null"><![CDATA[and r.createTime <= #{createTime2}]]></if>
         <if test="beginTime1 != null"><![CDATA[and r.beginTime >= #{beginTime1}]]></if>
@@ -173,6 +179,7 @@
     <select id="queryFinanceOrder" parameterType="order" resultType="order">
         select * from sys_order where deleteStatus = 0 and status = 2
         <if test="is_clean != null">and is_clean = #{is_clean}</if>
+        <if test="payState != null">and payState = #{payState}</if>
         <if test="order_no != null and order_no !=''">and order_no = #{order_no}</if>
         <if test="name != null and name !=''">and name like concat("%",#{name},"%")</if>
         <if test="beginTime1 != null"><![CDATA[and beginTime >= #{beginTime1}]]></if>

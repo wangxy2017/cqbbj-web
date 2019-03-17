@@ -73,4 +73,9 @@ public class EmployeeServiceImpl implements IEmployeeService {
         List<Employee> list = employeeMapper.queryList(employee);
         return list;
     }
+
+    @Override
+    public Employee queryByProperties(Employee employee) {
+        return null;
+    }
 }

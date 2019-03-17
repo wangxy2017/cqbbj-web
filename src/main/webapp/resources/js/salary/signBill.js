@@ -89,6 +89,57 @@ layui.use(["table", "layer", "laydate", "jquery"], function () {
                         , {title: '操作', fixed: 'right', align: 'center', toolbar: '#options', width: 120}
                     ]]
                 });
+                // 监听工具条
+                table.on('tool(signBillList)', function (obj) {
+                    var data = obj.data; // 获得当前行数据
+                    var layEvent = obj.event; // 获得 lay-event 对应的值
+
+                    // 收款
+                    if (layEvent === 'receive') {
+                        layer.open({
+                            type: 1,
+                            content: $('#receiveForm'),
+                            area: ["480px", "360px"],
+                            title: "收款",
+                            btn: ["确认", "取消"],
+                            success: function (layero, index) {
+                                // 重置表单
+                                $("#id").val(data.id);
+                                $("#order_no").val(data.order_no);
+                                $("#receiveMoney").val("");
+                                $("#receiveText").val("");
+                            },
+                            yes: function (index, layero) {
+                                // 验证金额
+                                if ($("#receiveMoney").val() == "") {
+                                    layer.msg("请填写金额");
+                                    return;
+                                }
+                                // 提交数据
+                                main.$http.post('/signBill/receive',
+                                    {
+                                        "id": $("#id").val(),
+                                        "order_no": $("#order_no").val(),
+                                        "receiveMoney": $("#receiveMoney").val(),
+                                        "receiveText": $("#receiveText").val()
+                                    },
+                                    {emulateJSON: true}).then(function (res) {
+                                    // console.log(res.body);
+                                    if (res.body.code == 1) {
+                                        layer.msg("操作成功");
+                                        // 刷新列表
+                                        layer.close(index);
+                                        table.reload("signBillList");
+                                    } else {
+                                        layer.msg("操作失败");
+                                    }
+                                }, function (res) {
+                                    layer.msg("服务器请求异常");
+                                });
+                            }
+                        });
+                    }
+                });
             }
 
         },

@@ -61,6 +61,34 @@
     <script type="text/html" id="options">
         <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="receive">收款</a>
     </script>
+    <%-- 辅助收款 --%>
+    <form class="layui-form" action="" id="receiveForm" style="display: none;margin-top: 20px">
+        <div class="layui-form-item layui-hide">
+            <input type="hidden" id="id">
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">订单编号</label>
+            <div class="layui-input-inline">
+                <input type="text" id="order_no" placeholder="请输入订单编号"
+                       autocomplete="off"
+                       class="layui-input" disabled>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">收款金额</label>
+            <div class="layui-input-inline">
+                <input type="text" id="receiveMoney" placeholder="请输入实际收款"
+                       autocomplete="off"
+                       class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">收款备注</label>
+            <div class="layui-input-inline">
+                <textarea id="receiveText" placeholder="请输入备注" class="layui-textarea" style="width: 300px"></textarea>
+            </div>
+        </div>
+    </form>
 </div>
 <script src="${pageContext.request.contextPath}/resources/plugin/layui/layui.js"></script>
 <script src="${pageContext.request.contextPath}/resources/plugin/vue/vue.min.js"></script>

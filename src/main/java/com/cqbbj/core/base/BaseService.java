@@ -64,4 +64,12 @@ public interface BaseService<T> {
      * @return
      */
     T queryById(Integer id);
+
+    /**
+     * 根据对象属性查询对象
+     *
+     * @param t
+     * @return
+     */
+    T queryByProperties(T t);
 }

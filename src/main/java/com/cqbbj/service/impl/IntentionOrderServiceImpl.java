@@ -64,4 +64,9 @@ public class IntentionOrderServiceImpl implements IIntentionOrderService {
     public IntentionOrder queryById(Integer id) {
         return intentionOrderMapper.queryById(id);
     }
+
+    @Override
+    public IntentionOrder queryByProperties(IntentionOrder intentionOrder) {
+        return null;
+    }
 }

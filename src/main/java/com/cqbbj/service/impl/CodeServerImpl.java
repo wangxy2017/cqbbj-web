@@ -66,4 +66,9 @@ public class CodeServerImpl implements ICodeService {
     public Code queryById(Integer id) {
         return codeMapper.queryById(id);
     }
+
+    @Override
+    public Code queryByProperties(Code code) {
+        return null;
+    }
 }

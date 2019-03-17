@@ -41,7 +41,7 @@ public class SignBillServiceImpl implements ISignBillService {
 
     @Override
     public int updateEntity(SignBill signBill) {
-        return 0;
+        return signBillMapper.update(signBill);
     }
 
     @Override
@@ -66,6 +66,11 @@ public class SignBillServiceImpl implements ISignBillService {
 
     @Override
     public SignBill queryById(Integer id) {
+        return signBillMapper.queryById(id);
+    }
+
+    @Override
+    public SignBill queryByProperties(SignBill signBill) {
         return null;
     }
 }

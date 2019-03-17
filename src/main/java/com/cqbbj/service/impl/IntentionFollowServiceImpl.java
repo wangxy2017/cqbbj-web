@@ -56,4 +56,9 @@ public class IntentionFollowServiceImpl implements IIntentionFollowService {
     public IntentionFollow queryById(Integer id) {
         return intentionFollowMapper.queryById(id);
     }
+
+    @Override
+    public IntentionFollow queryByProperties(IntentionFollow intentionFollow) {
+        return null;
+    }
 }

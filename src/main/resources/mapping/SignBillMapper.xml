@@ -15,7 +15,7 @@
     price,
     endTime,
     receiveMoney,
-    costMoney,
+    receiveText,
     emp_no,
     status,
     order_no,
@@ -34,7 +34,7 @@
     #{price},
     #{endTime},
     #{receiveMoney},
-    #{costMoney},
+    #{receiveText},
     #{emp_no},
     #{status},
     #{order_no},
@@ -52,7 +52,7 @@
     price,
     endTime,
     receiveMoney,
-    costMoney,
+    receiveText,
     emp_no,
     status,
     order_no,
@@ -86,7 +86,7 @@
         s.price,
         s.endTime,
         s.receiveMoney,
-        s.costMoney,
+        s.receiveText,
         s.emp_no,
         s.`status`,
         s.order_no,
@@ -95,7 +95,7 @@
         e.`name` emp_name
         from sys_sign_bill s
         left join sys_employee e on s.emp_no=e.emp_no
-        where s.deleteStatus=0 and e.deleteStatus=0
+        where s.deleteStatus=0
         <if test="name!=null and name!=''">and s.name like concat("%",#{name},"%")</if>
         <if test="status!=null">and s.status=#{status}</if>
         <if test="order_no!=null and order_no!=''">and s.order_no=#{order_no}</if>
@@ -103,4 +103,22 @@
         <if test="finishTime!=null"><![CDATA[and s.endTime <= #{finishTime}]]></if>
         order by s.createTime desc
     </select>
+
+    <!-- 根据ID查询 -->
+    <select id="queryById" parameterType="int" resultType="signBill">
+        select
+        <include refid="query_all_fields"/>
+        from sys_sign_bill where id = #{id}
+    </select>
+    <!-- 修改订单 -->
+    <update id="update" parameterType="signBill">
+        update sys_sign_bill
+        <set>
+            <if test="receiveMoney != null">receiveMoney = #{receiveMoney},</if>
+            <if test="receiveText != null and receiveText != ''">receiveText = #{receiveText},</if>
+            <if test="status != null">status = #{status},</if>
+            <if test="emp_no != null and emp_no != ''">emp_no = #{emp_no},</if>
+        </set>
+        where id = #{id}
+    </update>
 </mapper>

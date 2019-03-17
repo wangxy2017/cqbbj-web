@@ -64,4 +64,9 @@ public class DivideModelServiceImpl implements IDivideModelService {
     public DivideModel queryById(Integer id) {
         return null;
     }
+
+    @Override
+    public DivideModel queryByProperties(DivideModel divideModel) {
+        return null;
+    }
 }

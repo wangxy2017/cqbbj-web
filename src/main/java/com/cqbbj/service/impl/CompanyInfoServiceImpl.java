@@ -59,4 +59,9 @@ public class CompanyInfoServiceImpl implements ICompanyInfoService {
     public CompanyInfo queryById(Integer id) {
         return companyInfoMapper.queryById(id);
     }
+
+    @Override
+    public CompanyInfo queryByProperties(CompanyInfo companyInfo) {
+        return null;
+    }
 }

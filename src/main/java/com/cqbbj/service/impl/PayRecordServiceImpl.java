@@ -84,4 +84,9 @@ public class PayRecordServiceImpl implements IPayRecordService {
     public PayRecord queryById(Integer id) {
         return null;
     }
+
+    @Override
+    public PayRecord queryByProperties(PayRecord payRecord) {
+        return null;
+    }
 }

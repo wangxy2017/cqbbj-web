@@ -64,4 +64,9 @@ public class MessageLogServiceImpl implements IMessageLogService {
     public MessageLog queryById(Integer id) {
         return null;
     }
+
+    @Override
+    public MessageLog queryByProperties(MessageLog messageLog) {
+        return null;
+    }
 }

@@ -101,6 +101,11 @@ public class Order extends BaseEntity {
     private Integer is_clean;
 
     /**
+     * 收款状态 0：未收款 1：已收款
+     */
+    private Integer payState;
+
+    /**
      * ============ 关联属性 =============
      */
 
@@ -369,11 +374,20 @@ public class Order extends BaseEntity {
     public void setEmp_no(String emp_no) {
         this.emp_no = emp_no;
     }
+
     public Integer getIs_clean() {
         return is_clean;
     }
 
     public void setIs_clean(Integer is_clean) {
         this.is_clean = is_clean;
+    }
+
+    public Integer getPayState() {
+        return payState;
+    }
+
+    public void setPayState(Integer payState) {
+        this.payState = payState;
     }
 }
