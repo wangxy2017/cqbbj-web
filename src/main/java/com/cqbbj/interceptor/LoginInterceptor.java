@@ -6,6 +6,7 @@
  */
 package com.cqbbj.interceptor;
 
+import com.cqbbj.core.util.EmployeeUtils;
 import com.cqbbj.entity.Employee;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
@@ -19,7 +20,7 @@ public class LoginInterceptor implements HandlerInterceptor {
     /**
      * 配置不需要拦截的路径
      */
-    private static final String[] rule = {"/resources/","/upload/","/login","/doLogin","/wx/"};
+    private static final String[] rule = {"/resources/", "/upload/", "/login", "/doLogin", "/wx/login/toLogin", "/wx/login/empLogin"};
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
@@ -31,12 +32,21 @@ public class LoginInterceptor implements HandlerInterceptor {
             }
         }
         // 如果路径都需要拦截，则判断是否登陆
-        HttpSession session = request.getSession();
-        Employee loginUser = (Employee) session.getAttribute("loginUser");
-        if (loginUser != null) {
-            return true;
+        if (uri.indexOf("/wx/") != -1) {
+            System.out.println("微信操作："+uri);
+            if (EmployeeUtils.getEmployee() != null) {
+                return true;
+            } else {
+                response.sendRedirect("/wx/login/toLogin");
+            }
         } else {
-            response.sendRedirect("/login");
+            HttpSession session = request.getSession();
+            Employee loginUser = (Employee) session.getAttribute("loginUser");
+            if (loginUser != null) {
+                return true;
+            } else {
+                response.sendRedirect("/login");
+            }
         }
         return false;
     }

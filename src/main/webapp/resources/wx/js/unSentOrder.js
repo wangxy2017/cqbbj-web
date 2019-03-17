@@ -20,19 +20,20 @@ var main = new Vue({
             if (confirm("确定取消该订单吗？")) {
                 console.log("点击的确定修改!");
                 // 发送异步请求，跟新订单
-                // 刷新列表
                 $.ajax({
-                    url:"/wx/order/cancelOrder",
-                    data:{"id":$("#orderId").val(),"status":3,"orderNo":$("#orderNo").val()},
+                    url:"/wx/order/updateOrderStatus",
+                    data:{"id":$("#orderId").val(),"status":3},
                     dataType:"json",
                     type:"post",
                     success:function (res) {
                         console.log(res.data);
-                        window.location.href="/wx/order/sentOrder";
+                    window.location.href="/wx/order/unSentOrder";
                     },error:function(){
+
 
                     }
                 });
+                // 刷新列表
             }
         },
         /**
@@ -46,37 +47,20 @@ var main = new Vue({
          * 查看按钮
          */
         view: function () {
-            window.location.href = "/wx/order/view?id=" ;
+            window.location.href = "/wx/order/orderDetail?id="+ $("orderId").val();
         },
         /**
-         * 修改按钮
+         * 派单按钮
          */
-        modify: function () {
-            window.location.href = "wx/order/modify";
+        dispatch: function () {
+            window.location.href = "wx/order/dispach?id="+ $("orderId").val();
         },
-        /**
-         * 辅助完成
-         */
-        finish: function () {
-            $.ajax({
-                url:"/wx/order/updateOrderStatus",
-                data:{"id":$("orderId").val(),"status":2},
-                dataType:"json",
-                type:"post",
-                success:function (res) {
-                    console.log(res.data);
-                    window.location.href="/wx/order/sentOrder";
-                },error:function(){
 
-                }
-            });
-
-        }
     },
     mounted: function () {
         // 初始化
         this.$http.post("/wx/order/queryPageListEmployee", {
-            "status": 1,
+            "status": 0,
             "pageNum": 1,
             "pageSize": 4
         }, {emulateJSON: true}).then(function (res) {

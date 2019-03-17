@@ -84,6 +84,14 @@ public class OrderServiceImpl implements IOrderService {
     }
 
     @Override
+    public void updateOrderStatus(Integer id, Integer status) {
+        Map map=new HashMap();
+        map.put("id",id);
+        map.put("status",status);
+        orderMapper.updateOrderStatus(map);
+    }
+
+    @Override
     public PageModel<Order> queryPageList(Order order, int pageNum, int pageSize) {
         PageHelper.startPage(pageNum, pageSize);
         List<Order> list = orderMapper.queryList(order);

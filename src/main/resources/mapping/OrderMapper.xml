@@ -112,9 +112,13 @@
     <update id="deleteActive" parameterType="int">
         update sys_order set deleteStatus = 1 where id = #{id}
     </update>
+    <!-- 修改订单状态 -->
+    <update id="updateOrderStatus" parameterType="map">
+        update sys_order set status = #{status} where id = #{id}
+    </update>
     <!-- 查询订单列表 -->
     <select id="queryList" resultType="order" parameterType="order">
-        select
+        select DISTINCT
         r.id,
         r.name,
         r.phone,

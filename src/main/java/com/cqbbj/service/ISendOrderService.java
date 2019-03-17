@@ -21,4 +21,10 @@ public interface ISendOrderService extends BaseService<SendOrder> {
      * @return
      */
     List<SendOrder> queryByOrderNo(String order_no);
+
+    /**
+     * 根据订单号删除派单
+     * @param order_no
+     */
+    void deleteSendOrder(String order_no);
 }
