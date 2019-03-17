@@ -45,6 +45,9 @@ public class SendOrderServiceImpl implements ISendOrderService {
 
     }
 
+    public void deleteSendOrder(String order_no){
+        sendOrderMapper.deleteSendOrder(order_no);
+    }
     @Override
     public List<SendOrder> queryList(SendOrder sendOrder) {
         return null;

@@ -24,4 +24,6 @@ public interface IOrderService extends BaseService<Order> {
      */
     int dispatchOrder(String order_no, String[] moneyEmps,
                       String[] driveEmps, String[] moveEmps, String[] airEmps);
+
+    void updateOrderStatus(Integer id,Integer status);
 }

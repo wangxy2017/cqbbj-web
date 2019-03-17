@@ -38,7 +38,7 @@
 <div id="main">
     <ul>
         <li>
-            <a onclick="toOrderAdd()">
+            <a onclick="OrderAdd()">
                 <div>
                     <img src="${pageContext.request.contextPath}/resources/wx/imge/0001.png" alt="">
                 </div>
@@ -46,15 +46,15 @@
             </a>
         </li>
         <li>
-            <a onclick="toDispash()">
+            <a onclick="unSentOrder()">
                 <div>
                     <img src="${pageContext.request.contextPath}/resources/wx/imge/0002.png" alt="">
                 </div>
-                <p>派单管理</p>
+                <p>未派订单</p>
             </a>
         </li>
         <li>
-            <a onclick="haveSent()">
+            <a onclick="sentOrder()">
                 <div>
                     <img src="${pageContext.request.contextPath}/resources/wx/imge/0003.png" alt="">
                 </div>
@@ -62,7 +62,7 @@
             </a>
         </li>
         <li>
-            <a href="demand.html">
+            <a onclick="orderSearch()">
                 <div>
                     <img src="${pageContext.request.contextPath}/resources/wx/imge/0004.png" alt="">
                 </div>

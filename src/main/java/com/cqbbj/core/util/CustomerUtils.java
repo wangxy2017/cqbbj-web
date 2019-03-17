@@ -4,7 +4,8 @@ import com.cqbbj.entity.Customer;
 
 public class CustomerUtils {
 
-    //private static Customer customer;
+    private static Customer customer;
+
 
 
     public static String  getCust_no(){

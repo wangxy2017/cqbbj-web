@@ -17,9 +17,9 @@
 <body>
 <header>
     <div class="pic">
-        <a href="home.html">
-            <img src="${pageContext.request.contextPath}/resources/wx/imge/comeback.png" alt="">
-        </a>
+
+            <img src="${pageContext.request.contextPath}/resources/wx/imge/comeback.png" onclick="javaScript:window.history.back()" alt="">
+
     </div>
     <p>添加订单</p>
 </header>
@@ -47,7 +47,7 @@
         </dl>
         <dl>
             <dt>预约时间:</dt>
-            <dd><input id="dateTime" name="beginTime" id="beginTime" type="datetime-local"></dd>
+            <dd><input  name="beginTime" id="beginTime" type="datetime"></dd>
         </dl>
         <dl id="dlText">
             <dt>搬运备注:</dt>
@@ -89,7 +89,7 @@
                 <i>是否发送短信通知客户</i>
             </label>
         </div>
-        <input id="submit" type="button" >
+        <input id="submit" type="button" value="提  交">
     </form>
 </div>
 <script src="${pageContext.request.contextPath}/resources/wx/plugin/jquery-3.3.1.min.js"></script>

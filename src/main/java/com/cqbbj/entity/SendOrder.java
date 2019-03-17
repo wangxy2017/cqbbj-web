@@ -24,6 +24,20 @@ public class SendOrder extends BaseEntity {
      */
     private Integer type;
 
+    /**
+     * #################################关联:员工姓名
+     * @return
+     */
+    private String emp_name;
+
+    public String getEmp_name() {
+        return emp_name;
+    }
+
+    public void setEmp_name(String emp_name) {
+        this.emp_name = emp_name;
+    }
+
     public String getOrder_no() {
         return order_no;
     }

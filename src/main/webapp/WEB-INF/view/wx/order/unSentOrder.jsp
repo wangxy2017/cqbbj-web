@@ -2,7 +2,7 @@
   Created by IntelliJ IDEA.
   User: js3
   Date: 2019/3/14
-  Time: 19:18
+  Time: 14:41
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -10,25 +10,24 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <title>已派订单</title>
+    <title>未派订单</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/plugin/bootstrap-3.3.7-dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/css/haveSent.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/css/dispach.css">
 </head>
 <body>
 <header>
     <div class="pic">
-
-            <img src="${pageContext.request.contextPath}/resources/wx/imge/comeback.png" alt="">
-
+        <img src="${pageContext.request.contextPath}/resources/wx/imge/comeback.png" onclick="javaScript:window.history.back()" alt="">
     </div>
-    <p>已派订单</p>
+    <p>未派订单</p>
 </header>
-<div class="container-fluid">
+<div class="container-fluid" id="main">
     <form action="" class="form-group">
         <ul class="list-ul">
-            <li class="row list-li" v-for="item in orders">
+            <li class="row list-li" v-for="item in orders" @click="showBtns($event)">
+                <input type="hidden" name="orderId" v-model="item.id">
                 <div class="zhang">
-                    <img src="${pageContext.request.contextPath}/resources/wx/imge/yp.png" alt="">
+                    <img src="${pageContext.request.contextPath}/resources/wx/imge/wp.png" alt="">
                 </div>
                 <div class="row li-title">
                     <div class="col-sm-7">
@@ -55,38 +54,31 @@
                 <div class="row display">
                     <div class="col-sm-3">
                         <a class="view">
-                            <button type="button" class="btn btn-primary">查看</button>
+                            <button type="button" class="btn btn-primary" @click.stop="view">查看</button>
                         </a>
                     </div>
                     <div class="col-sm-3">
                         <a class="sent">
-                            <button type="button" class="btn btn-success">修改</button>
+                            <button type="button" class="btn btn-success" @click.stop="dispatch">派单</button>
                         </a>
                     </div>
-                    <div class="col-sm-3">
-                        <a class="assist">
-                            <button type="button" class="btn btn-info">辅助</button>
-                        </a>
-                    </div>
+
                     <div class="col-sm-3">
                         <a class="abolish">
-                            <button type="button" class="btn btn-default" onclick="cancel()">取消</button>
+                            <button type="button" class="btn btn-default" @click.stop="cancel">取消</button>
                         </a>
                     </div>
                 </div>
             </li>
-
         </ul>
         <div class="loading" style="display: none;">.....我是有底线的....</div>
     </form>
 </div>
-
-
 <script src="${pageContext.request.contextPath}/resources/wx/plugin/jquery-3.3.1.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/wx/plugin/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/wx/plugin/Vue/vue.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/wx/plugin/Vue/vue-resource.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/wx/js/common.js"></script>
-<script src="${pageContext.request.contextPath}/resources/wx/js/haveSent.js"></script>
+<script src="${pageContext.request.contextPath}/resources/wx/js/unSentOrder.js"></script>
 </body>
 </html>
