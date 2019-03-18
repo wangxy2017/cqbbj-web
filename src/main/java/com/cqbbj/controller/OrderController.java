@@ -395,19 +395,4 @@ public class OrderController extends BaseController {
         operationLogService.saveEntity(log);
         return ResultUtils.success();
     }
-
-    /**
-     * 业绩查询
-     *
-     * @param order
-     * @param pageNum
-     * @param pageSize
-     * @return
-     */
-    @RequestMapping("/queryWorkList")
-    @ResponseBody
-    public Result queryWorkList(Order order, Integer pageNum, Integer pageSize) {
-        PageModel<Order> pageModel = orderService.queryWorkList(order, pageNum, pageSize);
-        return ResultUtils.success(pageModel);
-    }
 }

@@ -180,12 +180,4 @@ public class OrderServiceImpl implements IOrderService {
     public Order queryByProperties(Order order) {
         return orderMapper.queryByProperties(order);
     }
-
-    @Override
-    public PageModel<Order> queryWorkList(Order order, Integer pageNum, Integer pageSize) {
-        PageHelper.startPage(pageNum, pageSize);
-        List<Order> list = orderMapper.queryWorkList(order);
-        PageInfo<Order> pageInfo = new PageInfo<>(list);
-        return new PageModel(pageInfo);
-    }
 }
