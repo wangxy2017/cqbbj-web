@@ -1,3 +1,9 @@
+var calendardatetime = new lCalendar();
+calendardatetime.init({
+    'trigger': '#beginTime',
+    'type': 'datetime'
+});
+
 $(function () {
     $("ul input").on("click", function () {
         if ($(this).hasClass("active")) {
@@ -25,30 +31,55 @@ $(function () {
 
 });
 $(function () {
-   $("#submit").on("click",function(){
+    $("#submit").on("click", function () {
 
-       $.ajax({
-           url: "/wx/order/addOrder",
-           data: {"name": $("#name").val(),
-               "phone": $("#phone").val(),
-               "start": $("#start").val(),
-               "end": $("#end").val(),
-               "price": $("#price").val(),
-               "beginTime": $("#beginTime").val(),
-               "content": $("#content").val(),
-               "isNotice": $("#isNotice").val()
-               },
-           dateType: "json",
-           type: "POST",
-           success: function (res) {
-               console.log(res);
-               window.location.href="/wx/login/toHome";
-           }, error: function () {
+        $.ajax({
+            url: "/wx/order/addOrder",
+            data: {
+                "name": $("#name").val(),
+                "phone": $("#phone").val(),
+                "start": $("#start").val(),
+                "end": $("#end").val(),
+                "price": $("#price").val(),
+                "beginTime": $("#beginTime").val()+":00",
+                "content": $("#content").val(),
+                "type":$("input[name='type']:checked").val(),
+                "isNotice": $("#isNotice").val()
+            },
+            dateType: "json",
+            type: "POST",
+            success: function (res) {
+                console.log(res);
+                window.location.href = "/wx/login/toHome";
+            }, error: function () {
 
-           }
+            }
 
-       })
+        })
 
-   })
+    })
 
 });
+// layui.use(["laydate"], function () {
+//
+//     var laydate = layui.laydate;
+//
+//     var main = new Vue({
+//         el: "#main",
+//         data: {},
+//         methods: {
+//             initCalander: function () {
+//                 //保险到期
+//                 laydate.render({
+//                     elem: '#beginTime',
+//                     type: "datetime",
+//                 });
+//
+//             },
+//             mounted: function () {
+//                 this.initCalander();
+//
+//             }
+//         }
+//     });
+// })

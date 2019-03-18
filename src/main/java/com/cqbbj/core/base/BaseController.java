@@ -44,23 +44,23 @@ public class BaseController {
         return (Employee) getSession(request).getAttribute("loginUser");
     }
 
-    /**
-     * 获取微信登录员工信息
-     * @param request
-     * @return
-     */
-    protected Employee getWXEmpUser(HttpServletRequest request) {
-        return (Employee) getSession(request).getAttribute("empUser");
-    }
+//    /**
+//     * 获取微信登录员工信息
+//     * @param request
+//     * @return
+//     */
+//    protected Employee getWXEmpUser(HttpServletRequest request) {
+//        return (Employee) getSession(request).getAttribute("empUser");
+//    }
 
-    /**
-     * 获取微信客户登录信息
-     * @param request
-     * @return
-     */
-    protected Employee getWXCosUser(HttpServletRequest request) {
-        return (Employee) getSession(request).getAttribute("cosUser");
-    }
+//    /**
+//     * 获取微信客户登录信息
+//     * @param request
+//     * @return
+//     */
+//    protected Employee getWXCosUser(HttpServletRequest request) {
+//        return (Employee) getSession(request).getAttribute("cosUser");
+//    }
 
     /**
      * 创建日志

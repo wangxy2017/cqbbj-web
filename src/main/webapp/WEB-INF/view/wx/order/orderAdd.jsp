@@ -10,15 +10,18 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/css/indent.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/plugin/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/css/orderAdd.css">
+    <link rel="stylesheet"
+          href="${pageContext.request.contextPath}/resources/wx/plugin/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/plugin/datetime/css/lCalendar.css">
     <title>订单管理</title>
 </head>
 <body>
 <header>
     <div class="pic">
 
-            <img src="${pageContext.request.contextPath}/resources/wx/imge/comeback.png" onclick="javaScript:window.history.back()" alt="">
+        <img src="${pageContext.request.contextPath}/resources/wx/imge/comeback.png"
+             onclick="javaScript:window.history.back()" alt="">
 
     </div>
     <p>添加订单</p>
@@ -28,6 +31,19 @@
         <dl>
             <dt>客户姓名:</dt>
             <dd><input type="text" id="name" name="name" placeholder="名字"></dd>
+        </dl>
+        <dl>
+            <dt>客户类型:</dt>
+            <dd class="demo">
+                <div class="left">
+                    <input class="radio radio-inline" type="radio" name="type" value="0" checked >
+                    个人
+                </div>
+                <div class="right">
+                    <input class="radio radio-inline" type="radio" name="type" value="1">
+                    公司
+                </div>
+            </dd>
         </dl>
         <dl>
             <dt>客户电话:</dt>
@@ -47,7 +63,8 @@
         </dl>
         <dl>
             <dt>预约时间:</dt>
-            <dd><input  name="beginTime" id="beginTime" type="datetime"></dd>
+            <dd><input id="beginTime" type="text" name="beginTime" placeholder="选择时间"/></dd>
+            <!-- <dd><input  name="beginTime" id="beginTime" type="datetime-local" ></dd>-->
         </dl>
         <dl id="dlText">
             <dt>搬运备注:</dt>
@@ -93,6 +110,8 @@
     </form>
 </div>
 <script src="${pageContext.request.contextPath}/resources/wx/plugin/jquery-3.3.1.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/wx/plugin/datetime/js/lCalendar.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/wx/plugin/datetime/js/lCalendar.js"></script>
 <script src="${pageContext.request.contextPath}/resources/wx/plugin/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/wx/js/orderAdd.js"></script>
 </body>

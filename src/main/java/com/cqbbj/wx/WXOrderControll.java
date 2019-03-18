@@ -4,9 +4,11 @@ import com.cqbbj.core.base.BaseController;
 import com.cqbbj.core.base.PageModel;
 import com.cqbbj.core.base.Result;
 import com.cqbbj.core.util.*;
+import com.cqbbj.entity.Customer;
 import com.cqbbj.entity.Employee;
 import com.cqbbj.entity.Order;
 import com.cqbbj.entity.SendOrder;
+import com.cqbbj.service.ICustomerService;
 import com.cqbbj.service.IOperationLogService;
 import com.cqbbj.service.IOrderService;
 import com.cqbbj.service.ISendOrderService;
@@ -30,6 +32,8 @@ public class WXOrderControll extends BaseController {
     private IOperationLogService operationLogService;
     @Autowired
     private ISendOrderService sendOrderService;
+    @Autowired
+    private ICustomerService customerService;
 
     /**
      * 进入添加订单页面
@@ -64,7 +68,7 @@ public class WXOrderControll extends BaseController {
     }
 
     /**
-     * 进入未派订单页面
+     * 进入派单页面
      */
     @RequestMapping("/dispach")
     public String dispach() {
@@ -81,6 +85,13 @@ public class WXOrderControll extends BaseController {
     @ResponseBody
     public Result addOrder(String name, String phone, String start, String end, Double price, Date beginTime,
                            String content, Integer type, Integer isNotice, HttpServletRequest request) {
+
+        Customer customer=new Customer();
+        customer.setName(name);
+        customer.setPhone(phone);
+        customerService.saveEntity(customer);
+
+
         Order order = new Order();
         order.setName(name);
         order.setPhone(phone);
@@ -94,7 +105,7 @@ public class WXOrderControll extends BaseController {
 
 
         order.setOrder_no(CommUtils.getCode(ConstantUtils.ORDER));
-        order.setCust_no(CustomerUtils.getCust_no());
+        order.setCust_no(customer.getCust_no());
         order.setStatus(0);
         order.setSource(1);
         orderService.saveEntity(order);

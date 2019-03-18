@@ -12,8 +12,7 @@
     <meta charset="UTF-8">
     <title>登录注册</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/css/login.css">
-    <link rel="stylesheet"
-          href="${pageContext.request.contextPath}/resources/wx/plugin/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <link rel="stylesheet"  href="${pageContext.request.contextPath}/resources/wx/plugin/bootstrap-3.3.7-dist/css/bootstrap.min.css">
 </head>
 <body>
 <div class="login">
