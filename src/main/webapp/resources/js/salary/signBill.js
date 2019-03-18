@@ -96,6 +96,10 @@ layui.use(["table", "layer", "laydate", "jquery"], function () {
 
                     // 收款
                     if (layEvent === 'receive') {
+                        if(data.status == 1){
+                            layer.msg("该订单已收款，无需操作");
+                            return;
+                        }
                         layer.open({
                             type: 1,
                             content: $('#receiveForm'),

@@ -72,7 +72,7 @@ public class SignBillController extends BaseController {
             order1.setPayState(1);
             orderService.updateEntity(order1);
             // 记录日志
-            OperationLog log = createLog(request, "完成欠条收款：" + signBill1.getBill_no() + "关联订单号：" + signBill1.getOrder_no());
+            OperationLog log = createLog(request, "完成未收款订单收款：" + signBill1.getOrder_no());
             operationLogService.saveEntity(log);
             return ResultUtils.success();
         }
