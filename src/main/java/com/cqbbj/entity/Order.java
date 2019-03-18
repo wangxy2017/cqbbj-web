@@ -106,6 +106,11 @@ public class Order extends BaseEntity {
     private Integer payState;
 
     /**
+     * 业务员
+     */
+    private String salesman;
+
+    /**
      * ============ 关联属性 =============
      */
 
@@ -389,5 +394,13 @@ public class Order extends BaseEntity {
 
     public void setPayState(Integer payState) {
         this.payState = payState;
+    }
+
+    public String getSalesman() {
+        return salesman;
+    }
+
+    public void setSalesman(String salesman) {
+        this.salesman = salesman;
     }
 }

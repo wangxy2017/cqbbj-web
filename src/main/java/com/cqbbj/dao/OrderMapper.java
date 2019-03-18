@@ -17,6 +17,7 @@ import java.util.Map;
 @Repository
 public interface OrderMapper extends BaseMapper<Order> {
     int updateOrderStatus(Map map);
+
     /**
      * 查询财务账单
      *

@@ -86,9 +86,9 @@ public class OrderServiceImpl implements IOrderService {
 
     @Override
     public void updateOrderStatus(Integer id, Integer status) {
-        Map map=new HashMap();
-        map.put("id",id);
-        map.put("status",status);
+        Map map = new HashMap();
+        map.put("id", id);
+        map.put("status", status);
         orderMapper.updateOrderStatus(map);
     }
 
