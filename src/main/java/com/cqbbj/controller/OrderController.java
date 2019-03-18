@@ -154,6 +154,7 @@ public class OrderController extends BaseController {
         order.setStatus(0);
         order.setOrder_no(CommUtils.getCode(ConstantUtils.ORDER));
         order.setCust_no(customer.getCust_no());
+        order.setSalesman(getLoginUser(request).getEmp_no());
         orderService.saveEntity(order);
         // 记录日志
         operationLogService.saveEntity(createLog(request, "新增订单：" + order.getOrder_no()));

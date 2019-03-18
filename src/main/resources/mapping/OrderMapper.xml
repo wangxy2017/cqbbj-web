@@ -26,7 +26,8 @@
         source,
         type,
         is_clean,
-        payState
+        payState,
+        salesman
     </sql>
     <sql id="insert_all_values">
         #{createTime},
@@ -51,7 +52,8 @@
         #{source},
         #{type},
         #{is_clean},
-        #{payState}
+        #{payState},
+        #{salesman}
     </sql>
     <sql id="query_all_fields">
         id,
@@ -76,7 +78,8 @@
         source,
         type,
         is_clean,
-        payState
+        payState,
+        salesman
     </sql>
     <!-- 保存订单 -->
     <insert id="save" parameterType="order" useGeneratedKeys="true" keyProperty="id">
@@ -144,7 +147,8 @@
         r.visit,
         r.source,
         r.type,
-        r.payState
+        r.payState,
+        r.salesman
         from sys_order r
         where r.deleteStatus = 0
         <if test="name != null and name != ''">and r.name = #{name}</if>
@@ -152,6 +156,7 @@
         <if test="order_no != null and order_no != ''">and r.order_no = #{order_no}</if>
         <if test="status != null">and r.status = #{status}</if>
         <if test="payState != null">and r.payState = #{payState}</if>
+        <if test="salesman != null and salesman != ''">and r.salesman = #{salesman}</if>
         <if test="createTime1 != null"><![CDATA[and r.createTime >= #{createTime1}]]></if>
         <if test="createTime2 != null"><![CDATA[and r.createTime <= #{createTime2}]]></if>
         <if test="beginTime1 != null"><![CDATA[and r.beginTime >= #{beginTime1}]]></if>
