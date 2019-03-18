@@ -60,7 +60,7 @@ var main = new Vue({
         finish: function () {
             $.ajax({
                 url:"/wx/order/updateOrderStatus",
-                data:{"id":$("orderId").val(),"status":2},
+                data:{"id":$("#orderId").val(),"status":2},
                 dataType:"json",
                 type:"post",
                 success:function (res) {

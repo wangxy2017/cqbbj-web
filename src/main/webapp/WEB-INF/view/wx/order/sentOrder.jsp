@@ -27,7 +27,7 @@
 <div class="container-fluid">
     <form action="" class="form-group">
         <ul class="list-ul">
-            <li class="row list-li" v-for="item in orders">
+            <li class="row list-li" v-for="item in orders" @click="showBtns($event)">
                 <input type="hidden" name="orderId" v-model="item.id">
                 <div class="zhang">
                     <img src="${pageContext.request.contextPath}/resources/wx/imge/yp.png" alt="">

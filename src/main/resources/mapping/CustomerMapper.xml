@@ -27,6 +27,7 @@
     <!-- 保存客户 -->
     <insert id="save" parameterType="customer" useGeneratedKeys="true" keyProperty="id">
         insert into sys_customer(<include refid="insert_all_fields"/>) values(<include refid="insert_all_values"/>)
+        on duplicate key update name=#{name},phone=#{phone},cust_no=#{cust_no}
     </insert>
     <!-- 修改客户 -->
     <update id="update" parameterType="customer">

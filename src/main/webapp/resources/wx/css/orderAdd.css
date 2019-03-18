@@ -200,4 +200,23 @@ li input{
 }
 
 
+#main dd input.radio{
+    width: 8%;
+}
+#main dd .left{
+    float: left;
+    position: absolute;
+}
+#main dd.demo{
+    position: relative;
+    height: 12rem;
+}
+#main dd .right{
+    float: left;
+    margin-left: 20rem;
+    position: absolute;
+}
+
+
+
 
