@@ -38,7 +38,6 @@
                     <option value="">全部</option>
                     <option value="0">现金</option>
                     <option value="1">微信</option>
-                    <option value="2">欠条</option>
                 </select>
             </div>
         </div>
