@@ -29,6 +29,7 @@ public class CustomerServiceImpl implements ICustomerService {
 
     @Override
     public int saveEntity(Customer customer) {
+        if (customer.getIs_wxLogin() == null) customer.setIs_wxLogin(0);
         return customerMapper.save(customer);
     }
 
@@ -74,7 +75,7 @@ public class CustomerServiceImpl implements ICustomerService {
 
     @Override
     public void deleteEntityBatch(String ids) {
-       String[] array=ids.split(",");
+        String[] array = ids.split(",");
         customerMapper.deleteActiveBatch(array);
     }
 

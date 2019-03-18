@@ -40,18 +40,18 @@
         <div class="form-group">
             <label class="col-sm-3 control-label">电话:</label>
             <div class="col-sm-9">
-                <input type="text" class="form-control input-lg" placeholder="输入电话号码">
+                <input type="text" id="" class="form-control input-lg" placeholder="输入电话号码">
             </div>
         </div>
         <div class="form-group">
             <label class="col-sm-3 control-label">预约时间:</label>
             <div class="col-sm-9">
-                <input type="datetime-local" class="dataOn">
+                <input type="datetime-local" id="beginTime" name="beginTime" class="dataOn">
             </div>
         </div>
         <div class="form-group">
             <div class="row">
-                <button class="btn btn-success">搜索</button>
+                <button class="btn btn-success" id="submit">搜索</button>
             </div>
         </div>
     </form>
