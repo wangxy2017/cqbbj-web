@@ -31,7 +31,7 @@
                 </div>
                 <div class="row li-title">
                     <div class="col-sm-7">
-                        <p>订单号：<a href="javascript:;">{{item.order_no}}</a></p>
+                        <p>订单号：<a href="javascript:;" @click="view"><span id="order_no">{{item.order_no}}</span></a></p>
                     </div>
                     <div class="col-sm-5">
                         <p class="pull-right">客户姓名：{{item.name}}</p>

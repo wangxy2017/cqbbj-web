@@ -52,7 +52,14 @@ public class WXOrderControll extends BaseController {
     }
 
     /**
-     * 进入查看订单页面
+     * 进入订单详情页面
+     */
+    @RequestMapping("/orderSearch")
+    public String orderSearch() {
+        return "wx/order/orderSearch";
+    }
+    /**
+     * 进入查询订单页面
      */
     @RequestMapping("/orderDetail")
     public String orderDetail() {
@@ -70,9 +77,9 @@ public class WXOrderControll extends BaseController {
     /**
      * 进入派单页面
      */
-    @RequestMapping("/dispach")
+    @RequestMapping("/dispachOrder")
     public String dispach() {
-        return "wx/order/dispach";
+        return "wx/order/dispachOrder";
     }
 
     /**
@@ -184,8 +191,8 @@ public class WXOrderControll extends BaseController {
     /**
      * 变更订单状态
      */
-    @RequestMapping("/updateOrderStatus")
-    public Result updateOrderStatus(Integer id, Integer status) {
+    @RequestMapping("/finishOrderStatus")
+    public Result finishOrderStatus(Integer id, Integer status) {
         orderService.updateOrderStatus(id, status);
         return ResultUtils.success();
 
@@ -249,5 +256,13 @@ public class WXOrderControll extends BaseController {
         operationLogService.saveEntity(createLog(request, "修改订单：" + order.getOrder_no()));
         return ResultUtils.success();
     }
-
+/**
+ * 查询订单
+ */
+@RequestMapping("/search")
+@ResponseBody
+public Result search(Order order){
+    Order o=orderService.queryByProperties(order);
+    return ResultUtils.success(o);
+}
 }

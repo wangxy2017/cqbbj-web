@@ -13,6 +13,7 @@
     <title>查询订单</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/plugin/bootstrap-3.3.7-dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/css/orderSearch.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/plugin/datetime/css/lCalendar.css">
 </head>
 <body>
 <header>
@@ -28,7 +29,7 @@
         <div class="form-group">
             <label class="col-sm-3 control-label">订单编号:</label>
             <div class="col-sm-9">
-                <input type="text" id="orderNo" name="orderNo" class="form-control input-lg" placeholder="输入查询的订单号">
+                <input type="text" id="order_no" name="order_no" class="form-control input-lg" placeholder="输入查询的订单号">
             </div>
         </div>
         <div class="form-group">
@@ -46,7 +47,14 @@
         <div class="form-group">
             <label class="col-sm-3 control-label">预约时间:</label>
             <div class="col-sm-9">
-                <input type="datetime-local" id="beginTime" name="beginTime" class="dataOn">
+                <input type="text" id="beginTime1" name="beginTime1" class="dataOn">
+            </div>
+
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">至：</label>
+            <div class="col-sm-9">
+                <input type="text" id="beginTime2" name="beginTime2" class="dataOn">
             </div>
         </div>
         <div class="form-group">
@@ -58,6 +66,8 @@
 </div>
 <script src="${pageContext.request.contextPath}/resources/wx/plugin/jquery-3.3.1.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/wx/plugin/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/wx/plugin/datetime/js/lCalendar.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/wx/plugin/datetime/js/lCalendar.js"></script>
 <script src="${pageContext.request.contextPath}/resources/wx/js/orderSearch.js"></script>
 </body>
 </html>

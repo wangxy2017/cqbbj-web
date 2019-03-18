@@ -22,9 +22,9 @@
                  onclick="javaScript:window.history.back()" alt="">
         </div>
     </div>
-    <p>已派订单</p>
+    <p>未派订单</p>
 </header>
-<div class="container-fluid">
+<div class="container-fluid" id="main">
     <form action="" class="form-group">
         <ul class="list-ul">
             <li class="row list-li" v-for="item in orders" @click="showBtns($event)">

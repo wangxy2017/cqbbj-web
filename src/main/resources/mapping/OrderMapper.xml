@@ -170,6 +170,10 @@
         <include refid="query_all_fields"/>
         from sys_order where
         <if test="order_no != null and order_no != ''">order_no = #{order_no}</if>
+        <if test="name != null and name != ''">`name` = #{name}</if>
+        <if test="phone != null and phone != ''">phone = #{phone}</if>
+        <if test="beginTime1 != null "><![CDATA[ beginTime >= #{beginTime1}  ]]> </if>
+        <if test="beginTime2 != null "><![CDATA[ beginTime <= #{beginTime2}  ]]> </if>
     </select>
     <!-- 查询财务账单 -->
     <select id="queryFinanceOrder" parameterType="order" resultType="order">
