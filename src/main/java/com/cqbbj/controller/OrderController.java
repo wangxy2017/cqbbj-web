@@ -46,7 +46,7 @@ public class OrderController extends BaseController {
     private IEmployeeService employeeService;// 员工
 
     @Autowired
-    private ISignBillService signBillService;// 签单
+    private ISignBillService signBillService;// 欠条
 
 
     /**
@@ -281,7 +281,7 @@ public class OrderController extends BaseController {
                 order1.setStatus(2);
                 order1.setEndTime(new Date());
                 orderService.updateEntity(order1);
-                // 生成签单
+                // 生成欠条
                 SignBill bill = new SignBill();
                 bill.setCreateTime(new Date());
                 bill.setDeleteStatus(0);

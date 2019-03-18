@@ -14,7 +14,7 @@ import java.util.Date;
  * @author wangxy
  * @version 1.0
  * @ClassName: SignBillServiceTest
- * @Description: 签单测试(这里用一句话描述这个类的作用)
+ * @Description: 欠条测试(这里用一句话描述这个类的作用)
  * @date 2019/2/18 14:01
  */
 @RunWith(SpringJUnit4ClassRunner.class)

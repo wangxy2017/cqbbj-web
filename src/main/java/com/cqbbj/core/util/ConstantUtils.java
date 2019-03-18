@@ -41,7 +41,7 @@ public class ConstantUtils {
      */
     public static final String DIVIDE_MODEL = "DM";
     /**
-     * 签单编号前缀
+     * 欠条编号前缀
      */
     public static final String SIGN_BILL = "SN";
     /**

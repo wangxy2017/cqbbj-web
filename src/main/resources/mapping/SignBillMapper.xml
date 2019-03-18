@@ -59,19 +59,19 @@
     customer_no,
     bill_no
     </sql>
-    <!-- 保存签单 -->
+    <!-- 保存欠条 -->
     <insert id="save" parameterType="signBill" useGeneratedKeys="true" keyProperty="id">
         insert into sys_sign_bill(<include refid="insert_all_fields"/>) values(<include refid="insert_all_values"/>)
     </insert>
-    <!-- 删除签单 -->
+    <!-- 删除欠条 -->
     <delete id="delete" parameterType="int">
         delete from sys_sign_bill where id = #{id}
     </delete>
-    <!-- 逻辑删除签单 -->
+    <!-- 逻辑删除欠条 -->
     <update id="deleteActive" parameterType="int">
         update sys_sign_bill set deleteStatus = 1 where id = #{id}
     </update>
-    <!-- 查询签单列表 -->
+    <!-- 查询欠条列表 -->
     <select id="queryList" resultType="signBill" parameterType="map">
         select
         s.id,

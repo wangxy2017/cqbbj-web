@@ -22,7 +22,7 @@ public class PayRecord extends BaseEntity {
      */
     private String cust_no;
     /**
-     * 支付方式 0：现金 1：微信 2：签单
+     * 支付方式 0：现金 1：微信 2：欠条
      */
     private Integer payWay;
     /**

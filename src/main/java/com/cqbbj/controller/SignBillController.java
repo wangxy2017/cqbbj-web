@@ -56,7 +56,7 @@ public class SignBillController extends BaseController {
     public Result receive(HttpServletRequest request, SignBill signBill) {
         SignBill signBill1 = signBillService.queryById(signBill.getId());
         if (signBill1 != null) {
-            // 更新签单
+            // 更新欠条
             signBill1.setReceiveMoney(signBill.getReceiveMoney());
             signBill1.setReceiveText(signBill.getReceiveText());
             signBill1.setEmp_no(getLoginUser(request).getEmp_no());
@@ -68,10 +68,11 @@ public class SignBillController extends BaseController {
             Order order1 = orderService.queryByProperties(order);
             order1.setReceiveMoney(signBill.getReceiveMoney());
             order1.setReceiveText(signBill1.getReceiveText());
+            order1.setEmp_no(signBill1.getEmp_no());
             order1.setPayState(1);
             orderService.updateEntity(order1);
             // 记录日志
-            OperationLog log = createLog(request, "完成签单收款：" + signBill1.getBill_no());
+            OperationLog log = createLog(request, "完成欠条收款：" + signBill1.getBill_no() + "关联订单号：" + signBill1.getOrder_no());
             operationLogService.saveEntity(log);
             return ResultUtils.success();
         }

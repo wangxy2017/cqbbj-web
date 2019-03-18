@@ -82,7 +82,7 @@ layui.use(["table", "layer", "laydate", "jquery"], function () {
                                         text = "微信";
                                         break;
                                     case 2:
-                                        text = "签单";
+                                        text = "欠条";
                                         break;
                                 }
                                 return text;

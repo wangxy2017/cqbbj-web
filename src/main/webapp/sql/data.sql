@@ -302,7 +302,7 @@ CREATE TABLE `sys_pay_record` (
   `deleteStatus` int(1) NOT NULL COMMENT '0：未删除 1：已删除',
   `order_no` varchar(20) NOT NULL COMMENT '订单号',
   `cust_no` varchar(20) NOT NULL COMMENT '客户名称',
-  `payWay` int(1) NOT NULL COMMENT '支付类型 0：现金 1：微信 2：签单',
+  `payWay` int(1) NOT NULL COMMENT '支付类型 0：现金 1：微信 2：欠条',
   `payMoney` double(10,2) NOT NULL COMMENT '支付金额',
   `payTime` datetime NOT NULL COMMENT '支付时间',
   `trans_no` varchar(100) NOT NULL COMMENT '交易号',

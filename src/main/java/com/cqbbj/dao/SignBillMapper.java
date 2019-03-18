@@ -12,7 +12,7 @@ import java.util.Map;
  * @author wangxy
  * @version 1.0
  * @ClassName: PayRecordMapper
- * @Description: 签单管理Mapper(这里用一句话描述这个类的作用)
+ * @Description: 欠条管理Mapper(这里用一句话描述这个类的作用)
  * @date 2019/2/18 11:49
  */
 @Repository

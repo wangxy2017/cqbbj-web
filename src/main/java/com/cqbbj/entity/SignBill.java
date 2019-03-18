@@ -62,7 +62,7 @@ public class SignBill extends BaseEntity {
      */
     private String customer_no;
     /**
-     * 签单编号
+     * 欠条编号
      */
     private String bill_no;
 
