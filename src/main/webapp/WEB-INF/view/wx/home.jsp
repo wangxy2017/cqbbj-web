@@ -50,7 +50,7 @@
                 <div>
                     <img src="${pageContext.request.contextPath}/resources/wx/imge/0002.png" alt="">
                 </div>
-                <p>未派订单</p>
+                <p>派单管理</p>
             </a>
         </li>
         <li>
