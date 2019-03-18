@@ -53,7 +53,7 @@ var main = new Vue({
          * 派单按钮
          */
         dispatch: function () {
-            window.location.href = "wx/order/dispach?id="+ $("orderId").val();
+            window.location.href = "wx/order/dispachOrder?id="+ $("orderId").val();
         },
 
     },
