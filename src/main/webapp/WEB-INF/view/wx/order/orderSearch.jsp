@@ -28,19 +28,19 @@
         <div class="form-group">
             <label class="col-sm-3 control-label">订单编号:</label>
             <div class="col-sm-9">
-                <input type="text" class="form-control input-lg" placeholder="输入查询的订单号">
+                <input type="text" id="orderNo" name="orderNo" class="form-control input-lg" placeholder="输入查询的订单号">
             </div>
         </div>
         <div class="form-group">
             <label class="col-sm-3 control-label">客户姓名:</label>
             <div class="col-sm-9">
-                <input type="text" class="form-control input-lg" placeholder="名字">
+                <input type="text" name="name" id="name" class="form-control input-lg" placeholder="名字">
             </div>
         </div>
         <div class="form-group">
             <label class="col-sm-3 control-label">电话:</label>
             <div class="col-sm-9">
-                <input type="text" id="" class="form-control input-lg" placeholder="输入电话号码">
+                <input type="text" id="phone" name="phone" class="form-control input-lg" placeholder="输入电话号码">
             </div>
         </div>
         <div class="form-group">

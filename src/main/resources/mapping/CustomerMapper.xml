@@ -8,14 +8,16 @@
         deleteStatus,
         name,
         phone,
-        cust_no
+        cust_no,
+        is_wxLogin
     </sql>
     <sql id="insert_all_values">
         #{createTime},
         #{deleteStatus},
         #{name},
         #{phone},
-        #{cust_no}
+        #{cust_no},
+        #{is_wxLogin}
     </sql>
     <sql id="query_all_fields">
         id,
