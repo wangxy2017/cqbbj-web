@@ -86,9 +86,9 @@ public class OrderServiceImpl implements IOrderService {
 
     @Override
     public void updateOrderStatus(Integer id, Integer status) {
-        Map map=new HashMap();
-        map.put("id",id);
-        map.put("status",status);
+        Map map = new HashMap();
+        map.put("id", id);
+        map.put("status", status);
         orderMapper.updateOrderStatus(map);
     }
 
@@ -179,5 +179,13 @@ public class OrderServiceImpl implements IOrderService {
     @Override
     public Order queryByProperties(Order order) {
         return orderMapper.queryByProperties(order);
+    }
+
+    @Override
+    public PageModel<Order> queryWorkList(Order order, Integer pageNum, Integer pageSize) {
+        PageHelper.startPage(pageNum, pageSize);
+        List<Order> list = orderMapper.queryWorkList(order);
+        PageInfo<Order> pageInfo = new PageInfo<>(list);
+        return new PageModel(pageInfo);
     }
 }

@@ -181,4 +181,32 @@
         <if test="beginTime1 != null"><![CDATA[and beginTime >= #{beginTime1}]]></if>
         <if test="beginTime2 != null"><![CDATA[and beginTime <= #{beginTime2}]]></if>
     </select>
+
+    <!-- 业绩查询 -->
+    <select id="queryWorkList" parameterType="order" resultType="order">
+       SELECT
+        o.id,
+        o.order_no,
+        o.`start`,
+        o.`end`,
+        o.price,
+        o.beginTime,
+        o.endTime,
+        o.receiveMoney,
+        o.`status`,
+        e.`name` AS empName,
+        p.`name` AS posName,
+        d.`name` AS deptName,
+        o.createTime
+        FROM
+        sys_send_order AS so
+        LEFT JOIN sys_order AS o ON o.order_no = so.order_no
+        LEFT JOIN sys_employee AS e ON e.emp_no = so.emp_no
+        LEFT JOIN sys_position AS p ON p.id = e.position_id
+        LEFT JOIN sys_dept AS d ON d.id = e.dept_id
+        GROUP BY
+        so.order_no
+        ORDER BY
+        so.createTime DESC
+    </select>
 </mapper>

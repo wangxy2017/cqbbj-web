@@ -4,6 +4,8 @@ import com.cqbbj.core.base.BaseService;
 import com.cqbbj.core.base.PageModel;
 import com.cqbbj.entity.Order;
 
+import java.util.List;
+
 /**
  * @author wangxy
  * @version 1.0
@@ -26,7 +28,8 @@ public interface IOrderService extends BaseService<Order> {
     int dispatchOrder(String order_no, String[] moneyEmps,
                       String[] driveEmps, String[] moveEmps, String[] airEmps);
 
-    void updateOrderStatus(Integer id,Integer status);
+    void updateOrderStatus(Integer id, Integer status);
+
     /**
      * 查询财务账单
      *
@@ -36,4 +39,14 @@ public interface IOrderService extends BaseService<Order> {
      * @return
      */
     PageModel<Order> queryFinanceOrder(Order order, Integer pageNum, Integer pageSize);
+
+    /**
+     * 业绩查询
+     *
+     * @param order
+     * @param pageNum
+     * @param pageSize
+     * @return
+     */
+    PageModel<Order> queryWorkList(Order order, Integer pageNum, Integer pageSize);
 }

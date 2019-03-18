@@ -17,6 +17,7 @@ import java.util.Map;
 @Repository
 public interface OrderMapper extends BaseMapper<Order> {
     int updateOrderStatus(Map map);
+
     /**
      * 查询财务账单
      *
@@ -24,4 +25,12 @@ public interface OrderMapper extends BaseMapper<Order> {
      * @return
      */
     List<Order> queryFinanceOrder(Order order);
+
+    /**
+     * 业绩查询
+     *
+     * @param order
+     * @return
+     */
+    List<Order> queryWorkList(Order order);
 }
