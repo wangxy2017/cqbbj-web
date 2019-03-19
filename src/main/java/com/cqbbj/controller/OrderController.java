@@ -1,20 +1,19 @@
 package com.cqbbj.controller;
 
 import com.cqbbj.core.base.BaseController;
-import com.cqbbj.core.util.ConstantUtils;
+import com.cqbbj.core.util.*;
 import com.cqbbj.core.base.PageModel;
 import com.cqbbj.core.base.Result;
-import com.cqbbj.core.util.CommUtils;
-import com.cqbbj.core.util.ResultUtils;
-import com.cqbbj.core.util.SmsUtils;
 import com.cqbbj.entity.*;
 import com.cqbbj.service.*;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.*;
 
 /**
@@ -395,5 +394,47 @@ public class OrderController extends BaseController {
         OperationLog log = createLog(request, "回访订单：" + order.getOrder_no());
         operationLogService.saveEntity(log);
         return ResultUtils.success();
+    }
+
+    /**
+     * 导出excel
+     *
+     * @param request
+     * @param response
+     * @param order
+     * @param page
+     * @throws Exception
+     */
+    @RequestMapping("/download")
+    public void download(HttpServletRequest request, HttpServletResponse response, Order order, String page) throws Exception {
+        String fileName = "";
+        String sheetName = "";
+        String[] title = null;
+        String[][] values = null;
+        // 打印完成订单
+        if ("04".equals(page)) {
+            List<Order> orders = orderService.queryList(order);
+            fileName = "完成订单.xls";
+            sheetName = "完成订单";
+            title = new String[]{"订单编号", "客户名称", "客户电话", "搬出地址", "搬入地址", "订单价格", "实际收款", "完成时间", "售后"};
+            values = new String[orders.size()][9];
+            int i = 0;
+            for (Order o : orders) {
+                values[i][0] = o.getOrder_no();
+                values[i][1] = o.getName();
+                values[i][2] = o.getPhone();
+                values[i][3] = o.getStart();
+                values[i][4] = o.getEnd();
+                values[i][5] = String.valueOf(o.getPrice());
+                values[i][6] = String.valueOf(o.getReceiveMoney());
+                values[i][7] = DateUtils.formatDateTime(o.getEndTime());
+                values[i][8] = StringUtils.isBlank(o.getVisit()) ? "未回访" : "已回访";
+                i++;
+            }
+        }
+        // 记录日志
+        OperationLog log = createLog(request, "导出订单表");
+        operationLogService.saveEntity(log);
+        ExcelUtils.downloadExcel(fileName, sheetName, title, values, response);
     }
 }
