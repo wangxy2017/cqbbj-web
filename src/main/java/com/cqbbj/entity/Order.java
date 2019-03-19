@@ -117,11 +117,11 @@ public class Order extends BaseEntity {
     /**
      * 收款人员
      */
-    private List<SendOrder> moenyEmps;
+    private List<SendOrder> moneyEmps;
     /**
      * 随车司机
      */
-    private List<SendOrder> dirveEmps;
+    private List<SendOrder> driveEmps;
     /**
      * 随车搬运工
      */
@@ -260,20 +260,20 @@ public class Order extends BaseEntity {
         this.cust_no = cust_no;
     }
 
-    public List<SendOrder> getMoenyEmps() {
-        return moenyEmps;
+    public List<SendOrder> getMoneyEmps() {
+        return moneyEmps;
     }
 
-    public void setMoenyEmps(List<SendOrder> moenyEmps) {
-        this.moenyEmps = moenyEmps;
+    public void setMoneyEmps(List<SendOrder> moneyEmps) {
+        this.moneyEmps = moneyEmps;
     }
 
-    public List<SendOrder> getDirveEmps() {
-        return dirveEmps;
+    public List<SendOrder> getDriveEmps() {
+        return driveEmps;
     }
 
-    public void setDirveEmps(List<SendOrder> dirveEmps) {
-        this.dirveEmps = dirveEmps;
+    public void setDriveEmps(List<SendOrder> driveEmps) {
+        this.driveEmps = driveEmps;
     }
 
     public List<SendOrder> getMoveEmps() {

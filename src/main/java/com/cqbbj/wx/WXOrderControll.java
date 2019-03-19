@@ -174,17 +174,17 @@ public class WXOrderControll extends BaseController {
         Order order = orderService.queryById(id);
         if (order.getStatus() == 1 || order.getStatus() == 2) {
           List<SendOrder> list= sendOrderService.queryByOrderNo(order.getOrder_no());
-            List<SendOrder> moenyEmps=new ArrayList<SendOrder>();
-            List<SendOrder> dirveEmps=new ArrayList<SendOrder>();
+            List<SendOrder> moneyEmps=new ArrayList<SendOrder>();
+            List<SendOrder> driveEmps=new ArrayList<SendOrder>();
             List<SendOrder> moveEmps=new ArrayList<SendOrder>();
             List<SendOrder> airEmps=new ArrayList<SendOrder>();
             for(SendOrder sendOrder : list){
               switch (sendOrder.getType()){
                    case 0:
-                       moenyEmps.add(sendOrder);
+                       moneyEmps.add(sendOrder);
                        break;
                    case 1:
-                       dirveEmps.add(sendOrder);
+                       driveEmps.add(sendOrder);
                        break;
                    case 2:
                        moveEmps.add(sendOrder);
@@ -196,8 +196,8 @@ public class WXOrderControll extends BaseController {
                        break;
                }
             }
-            order.setMoenyEmps(moenyEmps);
-            order.setDirveEmps(dirveEmps);
+            order.setMoneyEmps(moneyEmps);
+            order.setDriveEmps(driveEmps);
             order.setMoveEmps(moveEmps);
             order.setAirEmps(airEmps);
         }

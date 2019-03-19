@@ -240,17 +240,17 @@ public class OrderController extends BaseController {
         // 查询派单详情
         List<SendOrder> list = sendOrderService.queryByOrderNo(order.getOrder_no());
         // 分类
-        order.setMoenyEmps(new ArrayList<>());
-        order.setDirveEmps(new ArrayList<>());
+        order.setMoneyEmps(new ArrayList<>());
+        order.setDriveEmps(new ArrayList<>());
         order.setMoveEmps(new ArrayList<>());
         order.setAirEmps(new ArrayList<>());
         for (SendOrder so : list) {
             switch (so.getType()) {
                 case 0:
-                    order.getMoenyEmps().add(so);
+                    order.getMoneyEmps().add(so);
                     break;
                 case 1:
-                    order.getDirveEmps().add(so);
+                    order.getDriveEmps().add(so);
                     break;
                 case 2:
                     order.getMoveEmps().add(so);

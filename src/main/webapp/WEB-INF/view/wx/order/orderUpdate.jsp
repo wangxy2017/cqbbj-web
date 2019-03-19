@@ -84,14 +84,14 @@
         <div v-else>
             <tr >
                 <th>收款人:</th>
-                <td><span v-for="item in order.moenyEmps">{{item.emp_name}}&nbsp;</span></td>
+                <td><span v-for="item in order.moneyEmps">{{item.emp_name}}&nbsp;</span></td>
 <button id="addMoneyEmps">添加人员</button>
             </tr>
 
             <tr>
                 <th>司机:</th>
-                <td><span v-for="item in order.dirveEmps">{{item.emp_name}} &nbsp;</span></td>
-                <button id="addDirveEmps">添加人员</button>
+                <td><span v-for="item in order.driveEmps">{{item.emp_name}} &nbsp;</span></td>
+                <button id="adddriveEmps">添加人员</button>
             </tr>
             <tr v-for="item in moveEmps">
                 <th>搬运工:</th>

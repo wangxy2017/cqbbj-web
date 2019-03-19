@@ -85,11 +85,65 @@ layui.use(["table", "layer", "laydate", "jquery"], function () {
                                 return isEmpty(d.costMoney) ? "<span style='color:#FF5722'>未结算</span>" : d.costMoney;
                             }
                         }
-                        , {field: 'drive', title: '司机'}
-                        , {field: 'move', title: '搬运工'}
-                        , {field: 'air', title: '空调工'}
+                        , {
+                            field: 'money', title: '收款员', templet: function (d) {
+                                return d.moneyEmps[0].emp_name;
+                            }
+                        }
+                        , {
+                            field: 'drive', title: '司机', templet: function (d) {
+                                var text = "";
+                                for (var i = 0; i < d.driveEmps.length; i++) {
+                                    var emp = d.driveEmps[i];
+                                    text += emp.emp_name;
+                                    if (i != d.driveEmps.length - 1) text += "，";
+                                }
+                                return text;
+                            }
+                        }
+                        , {
+                            field: 'move', title: '搬运工', templet: function (d) {
+                                var text = "";
+                                for (var i = 0; i < d.moveEmps.length; i++) {
+                                    var emp = d.moveEmps[i];
+                                    text += emp.emp_name;
+                                    if (i != d.moveEmps.length - 1) text += "，";
+                                }
+                                return text;
+                            }
+                        }
+                        , {
+                            field: 'air', title: '空调工', templet: function (d) {
+                                var text = "";
+                                for (var i = 0; i < d.airEmps.length; i++) {
+                                    var emp = d.airEmps[i];
+                                    text += emp.emp_name;
+                                    if (i != d.airEmps.length - 1) text += "，";
+                                }
+                                return text;
+                            }
+                        }
                         , {title: '操作', fixed: 'right', align: 'center', toolbar: '#options', width: 120}
                     ]]
+                });
+                // 监听工具条
+                table.on('tool(financeCleanList)', function (obj) {
+                    var data = obj.data; // 获得当前行数据
+                    var layEvent = obj.event; // 获得 lay-event 对应的值
+
+                    // 结算
+                    if (layEvent === 'clean') {
+
+                    }
+                    // 查看
+                    if (layEvent === 'view') {
+                        layer.open({
+                            type: 2,
+                            content: "/order/orderView?id=" + data.id,
+                            area: ["700px", "550px"],
+                            title: "订单详情"
+                        });
+                    }
                 });
             }
 

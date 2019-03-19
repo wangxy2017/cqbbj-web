@@ -68,12 +68,12 @@
         <div v-else>
             <tr >
                 <th>收款人:</th>
-                <td><span v-for="item in order.moenyEmps">{{item.emp_name}}</span></td>
+                <td><span v-for="item in order.moneyEmps">{{item.emp_name}}</span></td>
             </tr>
 
             <tr>
                 <th>司机:</th>
-                <td><span v-for="item in order.dirveEmps">{{item.emp_name}}</span></td>
+                <td><span v-for="item in order.driveEmps">{{item.emp_name}}</span></td>
             </tr>
             <tr v-for="item in moveEmps">
                 <th>搬运工:</th>
