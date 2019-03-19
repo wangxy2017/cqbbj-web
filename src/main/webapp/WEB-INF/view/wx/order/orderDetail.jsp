@@ -57,39 +57,35 @@
             <th>预约时间:</th>
             <td>{{order.beginTime}}</td>
         </tr>
-        <div v-if="order.status == 0">
-            <tr>
-                <th>订单状态:</th>
-                <td>
-                    <img src="${pageContext.request.contextPath}/resources/wx/imge/wp.png" alt="">
-                </td>
-            </tr>
-        </div>
-        <div v-else>
-            <tr >
-                <th>收款人:</th>
-                <td><span v-for="item in order.moenyEmps">{{item.emp_name}}</span></td>
-            </tr>
 
-            <tr>
-                <th>司机:</th>
-                <td><span v-for="item in order.dirveEmps">{{item.emp_name}}</span></td>
-            </tr>
-            <tr v-for="item in moveEmps">
-                <th>搬运工:</th>
-                <td><span v-for="item in order.moveEmps">{{item.emp_name}}</span></td>
-            </tr>
-            <tr v-for="item in airEmps">
-                <th>空调工:</th>
-                <td><span v-for="item in order.airEmps">{{item.emp_name}}</span></td>
-            </tr>
-            <tr>
-                <th>订单状态:</th>
-                <td>
-                    <img src="${pageContext.request.contextPath}/resources/wx/imge/yp.png" alt="">
-                </td>
-            </tr>
-        </div>
+        <tr v-show="isDispatch">
+            <th>收款人:</th>
+            <td><span v-for="item in order.moenyEmps">{{item.emp_name}}</span></td>
+        </tr>
+        <tr v-show="isDispatch">
+            <th>司机:</th>
+            <td><span v-for="item in order.dirveEmps">{{item.emp_name}}</span></td>
+        </tr>
+        <tr v-show="isDispatch">
+            <th>搬运工:</th>
+            <td><span v-for="item in order.moveEmps">{{item.emp_name}}</span></td>
+        </tr>
+        <tr v-show="isDispatch">
+            <th>空调工:</th>
+            <td><span v-for="item in order.airEmps">{{item.emp_name}}</span></td>
+        </tr>
+        <tr>
+            <th>订单状态:</th>
+            <td>
+                <span v-if="order.status == 0">  <img src="${pageContext.request.contextPath}/resources/wx/imge/wp.png"
+                                                      alt=""></span>
+                <span v-else-if="order.status == 3"> <img
+                        src="${pageContext.request.contextPath}/resources/wx/imge/zf.png" alt=""></span>
+                <span v-else-if="order.status == 1">  <img
+                        src="${pageContext.request.contextPath}/resources/wx/imge/yp.png" alt=""></span>
+                <span v-else> <img src="${pageContext.request.contextPath}/resources/wx/imge/wc.png" alt=""></span>
+            </td>
+        </tr>
     </table>
 </form>
 <script src="${pageContext.request.contextPath}/resources/wx/plugin/jquery-3.3.1.min.js"></script>
