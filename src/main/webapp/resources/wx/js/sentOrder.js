@@ -22,8 +22,8 @@ var main = new Vue({
                 // 发送异步请求，跟新订单
                 // 刷新列表
                 $.ajax({
-                    url:"/wx/order/cancelOrder",
-                    data:{"id":$("#orderId").val(),"status":3,"orderNo":$("#orderNo").val()},
+                    url:"/wx/order/cancelOrderStatus",
+                    data:{"id":$("#orderId").val(),"status":3,"order_no":$("#order_no").val()},
                     dataType:"json",
                     type:"post",
                     success:function (res) {

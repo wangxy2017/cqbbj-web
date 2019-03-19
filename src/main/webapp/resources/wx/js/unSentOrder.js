@@ -53,9 +53,14 @@ var main = new Vue({
          * 派单按钮
          */
         dispatch: function () {
-            window.location.href = "/wx/order/dispatch?id="+ $("#orderId").val();
+            window.location.href = "wx/order/dispatch?id="+ $("#orderId").val();
         },
-
+        /**
+         * 修改按钮
+         */
+        dispatch: function () {
+            window.location.href = "wx/order/orderUpdate?id="+ $("#orderId").val();
+        },
     },
     mounted: function () {
         // 初始化
