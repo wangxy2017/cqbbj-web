@@ -94,7 +94,7 @@
             </a>
         </li>
         <li>
-            <a href="login.html">
+            <a onclick="loginout()">
                 <div>
                     <img src="${pageContext.request.contextPath}/resources/wx/imge/0008.png" alt="">
                 </div>

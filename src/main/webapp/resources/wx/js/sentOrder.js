@@ -46,30 +46,20 @@ var main = new Vue({
          * 查看按钮
          */
         view: function () {
-            window.location.href = "/wx/order/view?id="+ $("orderId").val() ;
+            window.location.href = "/wx/order/orderDetail?id="+ $("#orderId").val() ;
         },
         /**
          * 修改按钮
          */
         modify: function () {
-            window.location.href = "wx/order/modify?id=\"+ $(\"orderId\").val();";
+            window.location.href = "/wx/order/orderUpdate?id="+ $("#orderId").val() ;
         },
         /**
          * 辅助完成
          */
         finish: function () {
-            $.ajax({
-                url:"/wx/order/finishOrderStatus",
-                data:{"id":$("#orderId").val(),"status":2},
-                dataType:"json",
-                type:"post",
-                success:function (res) {
-                    console.log(res.data);
-                    window.location.href="/wx/order/sentOrder";
-                },error:function(){
+            window.location.href="/wx/order/finishOrder?id="+ $("#orderId").val() ;
 
-                }
-            });
 
         }
     },

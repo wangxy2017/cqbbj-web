@@ -77,9 +77,25 @@ public class WXOrderControll extends BaseController {
     /**
      * 进入派单页面
      */
-    @RequestMapping("/dispachOrder")
+    @RequestMapping("/dispatch")
     public String dispach() {
-        return "wx/order/dispachOrder";
+        return "wx/order/dispatch";
+    }
+
+    /**
+     * 进入修改订单页面
+     */
+    @RequestMapping("/orderUpdate")
+    public String orderUpdate() {
+        return "wx/order/orderUpdate";
+    }
+
+    /**
+     * 进入修改订单页面
+     */
+    @RequestMapping("/finishOrder")
+    public String finishOrder() {
+        return "wx/order/finishOrder";
     }
 
     /**
@@ -112,7 +128,7 @@ public class WXOrderControll extends BaseController {
 
 
         order.setOrder_no(CommUtils.getCode(ConstantUtils.ORDER));
-        order.setCust_no(customer.getCust_no());
+        order.setCust_no(customerService.queryByPhone(phone).getCust_no());
         order.setStatus(0);
         order.setSource(1);
         orderService.saveEntity(order);
@@ -264,5 +280,14 @@ public class WXOrderControll extends BaseController {
 public Result search(Order order){
     Order o=orderService.queryByProperties(order);
     return ResultUtils.success(o);
+}
+/**
+ * 登出
+ */
+@RequestMapping("/loginOut")
+@ResponseBody
+public Result  loginOut(){
+    EmployeeUtils.setEmployee(null);
+    return ResultUtils.success();
 }
 }

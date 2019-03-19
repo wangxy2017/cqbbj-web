@@ -47,13 +47,13 @@ var main = new Vue({
          * 查看按钮
          */
         view: function () {
-            window.location.href = "/wx/order/orderDetail?id="+ $("orderId").val();
+            window.location.href = "/wx/order/orderDetail?id="+ $("#orderId").val();
         },
         /**
          * 派单按钮
          */
         dispatch: function () {
-            window.location.href = "wx/order/dispachOrder?id="+ $("orderId").val();
+            window.location.href = "/wx/order/dispatch?id="+ $("#orderId").val();
         },
 
     },

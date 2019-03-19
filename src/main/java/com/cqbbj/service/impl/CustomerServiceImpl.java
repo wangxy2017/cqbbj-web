@@ -9,6 +9,7 @@ import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -29,6 +30,8 @@ public class CustomerServiceImpl implements ICustomerService {
 
     @Override
     public int saveEntity(Customer customer) {
+        if (customer.getCreateTime() == null) customer.setCreateTime(new Date());
+        if (customer.getDeleteStatus() == null) customer.setDeleteStatus(0);
         if (customer.getIs_wxLogin() == null) customer.setIs_wxLogin(0);
         return customerMapper.save(customer);
     }

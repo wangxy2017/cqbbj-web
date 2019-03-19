@@ -25,7 +25,7 @@
     <form action="" class="form-group">
         <ul class="list-ul">
             <li class="row list-li" v-for="item in orders" @click="showBtns($event)">
-                <input type="hidden" name="orderId" v-model="item.id">
+                <input type="hidden" name="orderId" id="orderId" v-model="item.id">
                 <div class="zhang">
                     <img src="${pageContext.request.contextPath}/resources/wx/imge/wp.png" alt="">
                 </div>
