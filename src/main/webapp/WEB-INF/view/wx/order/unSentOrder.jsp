@@ -25,13 +25,13 @@
     <form action="" class="form-group">
         <ul class="list-ul">
             <li class="row list-li" v-for="item in orders" @click="showBtns($event)">
-                <input type="hidden" name="orderId" v-model="item.id">
+                <input type="hidden" name="orderId" id="orderId" v-model="item.id">
                 <div class="zhang">
                     <img src="${pageContext.request.contextPath}/resources/wx/imge/wp.png" alt="">
                 </div>
                 <div class="row li-title">
                     <div class="col-sm-7">
-                        <p>订单号：<a href="javascript:;">{{item.order_no}}</a></p>
+                        <p>订单号：<a href="javascript:;" @click="view"><span id="order_no">{{item.order_no}}</span></a></p>
                     </div>
                     <div class="col-sm-5">
                         <p class="pull-right">客户姓名：{{item.name}}</p>

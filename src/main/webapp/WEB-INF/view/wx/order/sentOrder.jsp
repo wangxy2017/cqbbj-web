@@ -24,11 +24,11 @@
     </div>
     <p>已派订单</p>
 </header>
-<div class="container-fluid">
+<div class="container-fluid" id="main">
     <form action="" class="form-group">
         <ul class="list-ul">
             <li class="row list-li" v-for="item in orders" @click="showBtns($event)">
-                <input type="hidden" name="orderId" v-model="item.id">
+                <input type="hidden" name="orderId" id="orderId" v-model="item.id">
                 <div class="zhang">
                     <img src="${pageContext.request.contextPath}/resources/wx/imge/yp.png" alt="">
                 </div>

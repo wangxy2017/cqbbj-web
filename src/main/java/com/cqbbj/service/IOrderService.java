@@ -39,4 +39,5 @@ public interface IOrderService extends BaseService<Order> {
      * @return
      */
     PageModel<Order> queryFinanceOrder(Order order, Integer pageNum, Integer pageSize);
+
 }

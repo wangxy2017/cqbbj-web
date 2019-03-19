@@ -42,4 +42,7 @@ header .pic{
 }
 .dataOn{
     width: 100%;
+    margin-top: 2rem;
+    border: 1px solid #CCC;
+    padding: 4rem;
 }

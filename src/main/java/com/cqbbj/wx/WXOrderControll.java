@@ -52,7 +52,14 @@ public class WXOrderControll extends BaseController {
     }
 
     /**
-     * 进入查看订单页面
+     * 进入订单详情页面
+     */
+    @RequestMapping("/orderSearch")
+    public String orderSearch() {
+        return "wx/order/orderSearch";
+    }
+    /**
+     * 进入查询订单页面
      */
     @RequestMapping("/orderDetail")
     public String orderDetail() {
@@ -70,9 +77,25 @@ public class WXOrderControll extends BaseController {
     /**
      * 进入派单页面
      */
-    @RequestMapping("/dispach")
+    @RequestMapping("/dispatch")
     public String dispach() {
-        return "wx/order/dispach";
+        return "wx/order/dispatch";
+    }
+
+    /**
+     * 进入修改订单页面
+     */
+    @RequestMapping("/orderUpdate")
+    public String orderUpdate() {
+        return "wx/order/orderUpdate";
+    }
+
+    /**
+     * 进入修改订单页面
+     */
+    @RequestMapping("/finishOrder")
+    public String finishOrder() {
+        return "wx/order/finishOrder";
     }
 
     /**
@@ -105,7 +128,7 @@ public class WXOrderControll extends BaseController {
 
 
         order.setOrder_no(CommUtils.getCode(ConstantUtils.ORDER));
-        order.setCust_no(customer.getCust_no());
+        order.setCust_no(customerService.queryByPhone(phone).getCust_no());
         order.setStatus(0);
         order.setSource(1);
         orderService.saveEntity(order);
@@ -184,8 +207,8 @@ public class WXOrderControll extends BaseController {
     /**
      * 变更订单状态
      */
-    @RequestMapping("/updateOrderStatus")
-    public Result updateOrderStatus(Integer id, Integer status) {
+    @RequestMapping("/finishOrderStatus")
+    public Result finishOrderStatus(Integer id, Integer status) {
         orderService.updateOrderStatus(id, status);
         return ResultUtils.success();
 
@@ -249,5 +272,22 @@ public class WXOrderControll extends BaseController {
         operationLogService.saveEntity(createLog(request, "修改订单：" + order.getOrder_no()));
         return ResultUtils.success();
     }
-
+/**
+ * 查询订单
+ */
+@RequestMapping("/search")
+@ResponseBody
+public Result search(Order order){
+    Order o=orderService.queryByProperties(order);
+    return ResultUtils.success(o);
+}
+/**
+ * 登出
+ */
+@RequestMapping("/loginOut")
+@ResponseBody
+public Result  loginOut(){
+    EmployeeUtils.setEmployee(null);
+    return ResultUtils.success();
+}
 }

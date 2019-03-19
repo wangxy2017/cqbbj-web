@@ -74,7 +74,7 @@ body{
     position: relative;
 }
 /*用户登录框图片*/
-#user{
+#account{
     margin-top: 0;
     background-image: url("../imge/usrname.png");
     background-repeat: no-repeat;
@@ -82,7 +82,7 @@ body{
     background-size: 10%;
 }
 /*用户密码框图片*/
-#psw{
+#password{
     background-image: url("../imge/password.png");
     background-repeat: no-repeat;
     background-position: left;

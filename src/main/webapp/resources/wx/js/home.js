@@ -10,3 +10,6 @@ function sentOrder(){
 function orderSearch(){
     window.location.href="/wx/order/orderSearch";
 }
+function loginout() {
+    window.location.href="/wx/order/loginOut"
+}
