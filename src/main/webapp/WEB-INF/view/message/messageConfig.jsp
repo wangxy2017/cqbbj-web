@@ -56,6 +56,14 @@ To change this template use File | Settings | File Templates.
             </div>
         </div>
         <div class="layui-form-item">
+            <label class="layui-form-label"><em class="required">*</em>短信开关：</label>
+            <div class="layui-input-inline" style="width: 220px;">
+                <input type="radio" name="msg_open" value="0" title="开启派单" checked v-model="company.msg_open">
+                <input type="radio" name="msg_open" value="1" title="关闭派单" v-model="company.msg_open">
+            </div>
+            <div class="layui-form-mid layui-word-aux">设置关闭，派单后员工将不会收到派单短信通知</div>
+        </div>
+        <div class="layui-form-item">
             <div class="layui-input-block">
                 <button class="layui-btn" lay-submit lay-filter="update">立即提交</button>
                 <button type="reset" class="layui-btn layui-btn-primary">重置</button>

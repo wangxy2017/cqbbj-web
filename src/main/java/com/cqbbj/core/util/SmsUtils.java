@@ -22,7 +22,7 @@ public class SmsUtils {
 
     private static String username = "xrj2003";// 在短信宝注册的用户名
     private static String password = "741101";// 在短信宝注册的密码
-    private static String sign = "【重庆棒棒军】";// 注意测试时，也请带上公司简称或网站签名，发送正规内容短信。千万不要发送无意义的内容：例如 测一下、您好。否则可能会收不到
+    private static String sign = "重庆棒棒军";// 注意测试时，也请带上公司简称或网站签名，发送正规内容短信。千万不要发送无意义的内容：例如 测一下、您好。否则可能会收不到
     private static String domain = "http://api.smsbao.com/sms";// 接口地址
 
     /**
@@ -64,19 +64,13 @@ public class SmsUtils {
      */
     public static void sendSms(String phone, String content) {
         if (StringUtils.isNotBlank(phone) && StringUtils.isNotBlank(content)) {
-            String testUsername = username;
-            String testPassword = password;
-            String testPhone = phone;
-            String testContent = sign + content;
-            String httpUrl = domain;
-
             StringBuffer httpArg = new StringBuffer();
-            httpArg.append("u=").append(testUsername).append("&");
-            httpArg.append("p=").append(md5(testPassword)).append("&");
-            httpArg.append("m=").append(testPhone).append("&");
-            httpArg.append("c=").append(encodeUrlString(testContent, "UTF-8"));
+            httpArg.append("u=").append(username).append("&");
+            httpArg.append("p=").append(md5(password)).append("&");
+            httpArg.append("m=").append(phone).append("&");
+            httpArg.append("c=").append(encodeUrlString("【" + sign + "】" + content, "UTF-8"));
 
-            String result = request(httpUrl, httpArg.toString());
+            String result = request(domain, httpArg.toString());
             System.out.println(result);
         }
 

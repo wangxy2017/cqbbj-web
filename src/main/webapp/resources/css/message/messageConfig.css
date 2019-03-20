@@ -4,11 +4,15 @@
 }
 
 .layui-form-item .layui-input-inline {
-    width: 320px;
+    width: 260px;
 }
 
 .layui-form-label {
     width: 120px;
+}
+
+.layui-input-block {
+    margin-left: 150px;
 }
 
 .page-title {
