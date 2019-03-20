@@ -99,6 +99,10 @@ public class Order extends BaseEntity {
      * 是否结算 0：未结算 1：已结算
      */
     private Integer is_clean;
+    /**
+     * 结算备注
+     */
+    private String cleanText;
 
     /**
      * 收款状态 0：未收款 1：已收款
@@ -402,5 +406,13 @@ public class Order extends BaseEntity {
 
     public void setSalesman(String salesman) {
         this.salesman = salesman;
+    }
+
+    public String getCleanText() {
+        return cleanText;
+    }
+
+    public void setCleanText(String cleanText) {
+        this.cleanText = cleanText;
     }
 }

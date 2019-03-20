@@ -26,6 +26,7 @@
         source,
         type,
         is_clean,
+        cleanText,
         payState,
         salesman
     </sql>
@@ -52,6 +53,7 @@
         #{source},
         #{type},
         #{is_clean},
+        #{cleanText},
         #{payState},
         #{salesman}
     </sql>
@@ -78,6 +80,7 @@
         source,
         type,
         is_clean,
+        cleanText,
         payState,
         salesman
     </sql>
@@ -107,6 +110,7 @@
             <if test="source != null">source = #{source},</if>
             <if test="type != null">type = #{type},</if>
             <if test="is_clean != null">is_clean = #{is_clean},</if>
+            <if test="cleanText != null and cleanText != ''">cleanText = #{cleanText},</if>
             <if test="payState != null">payState = #{payState},</if>
         </set>
         where id = #{id}
@@ -148,7 +152,9 @@
         r.source,
         r.type,
         r.payState,
-        r.salesman
+        r.salesman,
+        r.is_clean,
+        r.cleanText
         from sys_order r
         where r.deleteStatus = 0
         <if test="name != null and name != ''">and r.name = #{name}</if>
