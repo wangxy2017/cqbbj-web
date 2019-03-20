@@ -32,19 +32,7 @@
             <dt>客户姓名:</dt>
             <dd><input type="text" id="name" name="name" placeholder="名字"></dd>
         </dl>
-        <dl>
-            <dt>客户类型:</dt>
-            <dd class="demo">
-                <div class="left">
-                    <input class="radio radio-inline" type="radio" name="type" value="0" checked >
-                    个人
-                </div>
-                <div class="right">
-                    <input class="radio radio-inline" type="radio" name="type" value="1">
-                    公司
-                </div>
-            </dd>
-        </dl>
+
         <dl>
             <dt>客户电话:</dt>
             <dd><input type="text" name="phone" id="phone" placeholder="电话号码\手机"></dd>
@@ -65,6 +53,19 @@
             <dt>预约时间:</dt>
             <dd><input id="beginTime" type="text" name="beginTime" placeholder="选择时间"/></dd>
             <!-- <dd><input  name="beginTime" id="beginTime" type="datetime-local" ></dd>-->
+        </dl>
+        <dl>
+            <dt>客户类型:</dt>
+            <dd class="demo">
+                <div class="left">
+                    <input class="radio radio-inline" type="radio" name="type" value="0" checked >
+                    个人
+                </div>
+                <div class="right">
+                    <input class="radio radio-inline" type="radio" name="type" value="1">
+                    公司
+                </div>
+            </dd>
         </dl>
         <dl id="dlText">
             <dt>搬运备注:</dt>

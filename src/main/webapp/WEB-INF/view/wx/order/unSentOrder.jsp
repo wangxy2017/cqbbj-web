@@ -62,7 +62,11 @@
                             <button type="button" class="btn btn-success" @click.stop="dispatch">派单</button>
                         </a>
                     </div>
-
+                    <div class="col-sm-3">
+                        <a class="view">
+                            <button type="button" class="btn btn-primary" @click.stop="modify">修改</button>
+                        </a>
+                    </div>
                     <div class="col-sm-3">
                         <a class="abolish">
                             <button type="button" class="btn btn-default" @click.stop="cancel">取消</button>

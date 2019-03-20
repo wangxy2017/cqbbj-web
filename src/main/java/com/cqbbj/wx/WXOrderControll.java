@@ -78,7 +78,7 @@ public class WXOrderControll extends BaseController {
      * 进入派单页面
      */
     @RequestMapping("/dispatch")
-    public String dispach() {
+    public String dispatch() {
         return "wx/order/dispatch";
     }
 
@@ -216,10 +216,10 @@ public class WXOrderControll extends BaseController {
     /**
      * 取消订单状态
      */
-    @RequestMapping("/cancelOrder")
-    public Result cancelOrder(Integer id, Integer status,String orderNo) {
+    @RequestMapping("/cancelOrderStatus")
+    public Result cancelOrderStatus(Integer id, Integer status,String order_no) {
         orderService.updateOrderStatus(id, status);
-        sendOrderService.deleteSendOrder(orderNo);
+        sendOrderService.deleteSendOrder(order_no);
         return ResultUtils.success();
 
     }
