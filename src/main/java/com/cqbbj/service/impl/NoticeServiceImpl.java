@@ -10,6 +10,7 @@ import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -30,6 +31,12 @@ public class NoticeServiceImpl implements INoticeService {
 
     @Override
     public int saveEntity(Notice notice) {
+        if(notice.getCreateTime() == null){
+            notice.setCreateTime(new Date());
+        }
+        if(notice.getDeleteStatus() == null){
+            notice.setDeleteStatus(0);
+        }
         return noticeMapper.save(notice);
     }
 

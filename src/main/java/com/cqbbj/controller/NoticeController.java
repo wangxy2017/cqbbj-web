@@ -129,4 +129,37 @@ public class NoticeController extends BaseController {
         PageModel<Notice> pageModel = noticeService.queryPageList(notice, pageNum, pageSize);
         return ResultUtils.success(pageModel);
     }
+
+    /**
+     * 物理删除
+     *
+     * @param id
+     * @return
+     */
+    @RequestMapping("/delete")
+    @ResponseBody
+    public Result delete(Integer id) {
+        noticeService.deleteEntity(id);
+        return ResultUtils.success();
+    }
+
+    /**
+     * 推送公告
+     *
+     * @param id
+     * @return
+     */
+    @RequestMapping("/push")
+    @ResponseBody
+    public Result push(Integer id) {
+        Notice notice = noticeService.queryById(id);
+        if (notice != null) {
+            log.debug("推送公告");
+            // 更新状态
+            notice.setStatus(1);
+            noticeService.updateEntity(notice);
+            return ResultUtils.success();
+        }
+        return ResultUtils.error();
+    }
 }

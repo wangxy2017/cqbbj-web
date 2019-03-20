@@ -24,7 +24,7 @@ public class Notice extends BaseEntity {
     private Integer status;
 
     /**
-     * 公告人
+     * 发布人
      */
     private String emp_no;
 
@@ -33,7 +33,7 @@ public class Notice extends BaseEntity {
      */
 
     /**
-     * 公告人
+     * 发布人
      */
     private String empName;
 
