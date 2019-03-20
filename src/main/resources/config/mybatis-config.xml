@@ -30,6 +30,7 @@
         <typeAlias type="com.cqbbj.entity.IntentionOrder" alias="intentionOrder"/>
         <typeAlias type="com.cqbbj.entity.IntentionFollow" alias="intentionFollow"/>
         <typeAlias type="com.cqbbj.entity.Code" alias="code"/>
+        <typeAlias type="com.cqbbj.entity.Notice" alias="notice"/>
     </typeAliases>
     <plugins>
         <!-- 分页插件 -->
