@@ -5,6 +5,7 @@ import com.cqbbj.core.base.PageModel;
 import com.cqbbj.core.base.Result;
 import com.cqbbj.core.util.ResultUtils;
 import com.cqbbj.entity.Notice;
+import com.cqbbj.entity.OperationLog;
 import com.cqbbj.service.INoticeService;
 import com.cqbbj.service.IOperationLogService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -94,7 +95,7 @@ public class NoticeController extends BaseController {
         noticeService.saveEntity(notice);
         // 记录日志
         operationLogService.saveEntity(
-                createLog(request, "新增公告：" + notice.getTitle()));
+                createLog(request, "发布公告：" + notice.getTitle()));
         return ResultUtils.success();
     }
 
@@ -151,13 +152,16 @@ public class NoticeController extends BaseController {
      */
     @RequestMapping("/push")
     @ResponseBody
-    public Result push(Integer id) {
+    public Result push(HttpServletRequest request, Integer id) {
         Notice notice = noticeService.queryById(id);
         if (notice != null) {
             log.debug("推送公告");
             // 更新状态
             notice.setStatus(1);
             noticeService.updateEntity(notice);
+            // 记录日志
+            OperationLog log = createLog(request, "推送公告" + notice.getTitle());
+            operationLogService.saveEntity(log);
             return ResultUtils.success();
         }
         return ResultUtils.error();
