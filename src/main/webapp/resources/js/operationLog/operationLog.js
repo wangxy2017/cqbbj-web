@@ -59,6 +59,17 @@ layui.use(["table", "layer", "laydate"], function () {
                         }
                     ]]
                 });
+            },
+            /**
+             * 导出日志
+             */
+            download: function () {
+                layer.confirm("导出数据属于敏感操作，确认继续吗？", function (index) {
+                    layer.close(index);
+                    window.location.href = "/operationLog/download?1=1" +
+                        "&name=" + main.name +
+                        "&content=" + main.content;
+                });
             }
         },
         mounted: function () {
