@@ -28,9 +28,22 @@ public class CompanyInfo extends BaseEntity {
      */
     private String logo;
     /**
+     * 短信宝账号
+     */
+    private String msg_username;
+    /**
+     * 短信宝密码
+     */
+    private String msg_password;
+    /**
      * 短信签名
      */
     private String msg_sign;
+    /**
+     * 短信宝接口地址
+     */
+    private String msg_domain;
+
     /**
      * 短信条数
      */
@@ -106,5 +119,29 @@ public class CompanyInfo extends BaseEntity {
 
     public void setKeyword(String keyword) {
         this.keyword = keyword;
+    }
+
+    public String getMsg_username() {
+        return msg_username;
+    }
+
+    public void setMsg_username(String msg_username) {
+        this.msg_username = msg_username;
+    }
+
+    public String getMsg_password() {
+        return msg_password;
+    }
+
+    public void setMsg_password(String msg_password) {
+        this.msg_password = msg_password;
+    }
+
+    public String getMsg_domain() {
+        return msg_domain;
+    }
+
+    public void setMsg_domain(String msg_domain) {
+        this.msg_domain = msg_domain;
     }
 }

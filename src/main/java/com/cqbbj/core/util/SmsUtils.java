@@ -20,6 +20,25 @@ import java.util.Set;
  */
 public class SmsUtils {
 
+    private static String username = "xrj2003";// 在短信宝注册的用户名
+    private static String password = "741101";// 在短信宝注册的密码
+    private static String sign = "【重庆棒棒军】";// 注意测试时，也请带上公司简称或网站签名，发送正规内容短信。千万不要发送无意义的内容：例如 测一下、您好。否则可能会收不到
+    private static String domain = "http://api.smsbao.com/sms";// 接口地址
+
+    /**
+     * 初始化参数
+     *
+     * @param username
+     * @param password
+     * @param sign
+     * @param domain
+     */
+    public static void config(String username, String password, String sign, String domain) {
+        SmsUtils.username = username;
+        SmsUtils.password = password;
+        SmsUtils.sign = sign;
+        SmsUtils.domain = domain;
+    }
 
     /**
      * 批量发送
@@ -45,12 +64,11 @@ public class SmsUtils {
      */
     public static void sendSms(String phone, String content) {
         if (StringUtils.isNotBlank(phone) && StringUtils.isNotBlank(content)) {
-            String testUsername = "xrj2003"; //在短信宝注册的用户名
-            String testPassword = "741101"; //在短信宝注册的密码
+            String testUsername = username;
+            String testPassword = password;
             String testPhone = phone;
-            String testContent = "【重庆棒棒军】" + content; // 注意测试时，也请带上公司简称或网站签名，发送正规内容短信。千万不要发送无意义的内容：例如 测一下、您好。否则可能会收不到
-
-            String httpUrl = "http://api.smsbao.com/sms";
+            String testContent = sign + content;
+            String httpUrl = domain;
 
             StringBuffer httpArg = new StringBuffer();
             httpArg.append("u=").append(testUsername).append("&");

@@ -4,8 +4,11 @@ import com.cqbbj.core.base.BaseController;
 import com.cqbbj.core.base.BaseEntity;
 import com.cqbbj.core.base.PageModel;
 import com.cqbbj.core.base.Result;
+import com.cqbbj.core.util.CommUtils;
 import com.cqbbj.core.util.ResultUtils;
+import com.cqbbj.entity.CompanyInfo;
 import com.cqbbj.entity.MessageLog;
+import com.cqbbj.service.ICompanyInfoService;
 import com.cqbbj.service.IMessageLogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,6 +28,8 @@ public class MessageController extends BaseController {
 
     @Autowired
     private IMessageLogService messageLogService;// 短信日志
+    @Autowired
+    private ICompanyInfoService companyInfoService;// 公司配置
 
     /**
      * 短信日志界面跳转
@@ -34,6 +39,16 @@ public class MessageController extends BaseController {
     @RequestMapping("/messageLog")
     public String messageLog() {
         return "message/messageLog";
+    }
+
+    /**
+     * 短信配置界面跳转
+     *
+     * @return
+     */
+    @RequestMapping("/messageConfig")
+    public String messageConfig() {
+        return "message/messageConfig";
     }
 
     /**
@@ -49,5 +64,18 @@ public class MessageController extends BaseController {
     public Result queryPageList(MessageLog messageLog, Integer pageNum, Integer pageSize) {
         PageModel<MessageLog> pageModel = messageLogService.queryPageList(messageLog, pageNum, pageSize);
         return ResultUtils.success(pageModel);
+    }
+
+    /**
+     * 修改短信配置
+     *
+     * @param companyInfo
+     * @return
+     */
+    @RequestMapping("/updateConfig")
+    @ResponseBody
+    public Result updateConfig(CompanyInfo companyInfo) {
+        companyInfoService.updateEntity(companyInfo);
+        return ResultUtils.success();
     }
 }

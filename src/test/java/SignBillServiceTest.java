@@ -37,7 +37,6 @@ public class SignBillServiceTest {
             signBill.setPrice(1000D);
             signBill.setEndTime(new Date());
             signBill.setReceiveMoney(1000D);
-            signBill.setCostMoney(500D);
             signBill.setEmp_no("EP201903042023137020919");
             signBill.setStatus(1);
             signBill.setOrder_no("DT201903101543537460528");

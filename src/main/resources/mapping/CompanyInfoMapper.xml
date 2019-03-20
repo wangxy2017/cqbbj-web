@@ -10,7 +10,10 @@
         address,
         telephone,
         logo,
+        msg_username,
+        msg_password,
         msg_sign,
+        msg_domain,
         msg_count,
         msg_open,
         keyword
@@ -22,7 +25,10 @@
         #{address},
         #{telephone},
         #{logo},
+        #{msg_username},
+        #{msg_password},
         #{msg_sign},
+        #{msg_domain},
         #{msg_count},
         #{msg_open},
         #{keyword}
@@ -33,7 +39,10 @@
         address,
         telephone,
         logo,
+        msg_username,
+        msg_password,
         msg_sign,
+        msg_domain,
         msg_count,
         msg_open,
         keyword
@@ -50,7 +59,10 @@
             <if test="address != null and address != ''">address = #{address},</if>
             <if test="telephone != null and telephone != ''">telephone = #{telephone},</if>
             <if test="logo != null and logo != ''">logo = #{logo},</if>
+            <if test="msg_username != null and msg_username != ''">msg_username = #{msg_username},</if>
+            <if test="msg_password != null and msg_password != ''">msg_password = #{msg_password},</if>
             <if test="msg_sign != null and msg_sign != ''">msg_sign = #{msg_sign},</if>
+            <if test="msg_domain != null and msg_domain != ''">msg_domain = #{msg_domain},</if>
             <if test="msg_count != null">msg_count = #{msg_count},</if>
             <if test="msg_open != null">msg_open = #{msg_open},</if>
             <if test="keyword != null and keyword != ''">keyword = #{keyword},</if>
