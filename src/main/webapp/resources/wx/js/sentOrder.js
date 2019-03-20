@@ -16,14 +16,14 @@ var main = new Vue({
         /**
          * 取消订单
          */
-        cancel: function () {
+        cancel: function (id,order_no) {
             if (confirm("确定取消该订单吗？")) {
                 console.log("点击的确定修改!");
                 // 发送异步请求，跟新订单
                 // 刷新列表
                 $.ajax({
                     url:"/wx/order/cancelOrderStatus",
-                    data:{"id":$("#orderId").val(),"status":3,"order_no":$("#order_no").val()},
+                    data:{"id":id,"status":3,"order_no":order_no},
                     dataType:"json",
                     type:"post",
                     success:function (res) {
@@ -45,20 +45,20 @@ var main = new Vue({
         /**
          * 查看按钮
          */
-        view: function () {
-            window.location.href = "/wx/order/orderDetail?id="+ $("#orderId").val() ;
+        view: function (id) {
+            window.location.href = "/wx/order/orderDetail?id="+ id ;
         },
         /**
          * 修改按钮
          */
-        modify: function () {
-            window.location.href = "/wx/order/orderUpdate?id="+ $("#orderId").val() ;
+        modify: function (order_no) {
+            window.location.href = "/wx/order/orderUpdate?order_no="+ order_no ;
         },
         /**
          * 辅助完成
          */
-        finish: function () {
-            window.location.href="/wx/order/finishOrder?id="+ $("#orderId").val() ;
+        finish: function (order_no) {
+            window.location.href="/wx/order/finishOrder?order_no="+ order_no;
 
 
         }

@@ -34,7 +34,7 @@
                 </div>
                 <div class="row li-title">
                     <div class="col-sm-7">
-                        <p >订单号：<a href="javascript:;"><span id="order_no">{{item.order_no}}</span></a></p>
+                        <p >订单号：<a href="javascript:;" @click.stop="view(item.id)"><span id="order_no">{{item.order_no}}</span></a></p>
                     </div>
                     <div class="col-sm-5">
                         <p class="pull-right">客户姓名：{{item.name}}</p>
@@ -57,22 +57,22 @@
                 <div class="row display">
                     <div class="col-sm-3">
                         <a class="view">
-                            <button type="button" @click.stop="view" class="btn btn-primary">查看</button>
+                            <button type="button" @click.stop="view(item.id)" class="btn btn-primary">查看</button>
                         </a>
                     </div>
                     <div class="col-sm-3">
                         <a class="sent">
-                            <button type="button"  @click.stop="modify" class="btn btn-success">修改</button>
+                            <button type="button"  @click.stop="modify(item.order_no)" class="btn btn-success">修改</button>
                         </a>
                     </div>
                     <div class="col-sm-3">
                         <a class="assist">
-                            <button type="button"  @click.stop="finish" class="btn btn-info">辅助</button>
+                            <button type="button"  @click.stop="finish(item.order_no)" class="btn btn-info">辅助</button>
                         </a>
                     </div>
                     <div class="col-sm-3">
                         <a class="abolish">
-                            <button type="button" class="btn btn-default"  @click.stop="cancel">取消</button>
+                            <button type="button" class="btn btn-default"  @click.stop="cancel(item.id,item.order_no)">取消</button>
                         </a>
                     </div>
                 </div>

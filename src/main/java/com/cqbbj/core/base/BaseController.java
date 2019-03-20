@@ -69,10 +69,14 @@ public class BaseController {
      * @return
      */
     protected OperationLog createLog(HttpServletRequest request, String content) {
+        return createLog(request, getLoginUser(request).getName(), content);
+    }
+
+    protected OperationLog createLog(HttpServletRequest request, String name, String content) {
         OperationLog log = new OperationLog();
         log.setCreateTime(new Date());
         log.setDeleteStatus(0);
-        log.setName(getLoginUser(request).getName());
+        log.setName(name);
         log.setContent(content);
         log.setIp(request.getRemoteAddr());
         return log;
