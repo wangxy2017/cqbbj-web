@@ -4,14 +4,8 @@ import com.cqbbj.core.base.BaseController;
 import com.cqbbj.core.base.PageModel;
 import com.cqbbj.core.base.Result;
 import com.cqbbj.core.util.*;
-import com.cqbbj.entity.Customer;
-import com.cqbbj.entity.Employee;
-import com.cqbbj.entity.Order;
-import com.cqbbj.entity.SendOrder;
-import com.cqbbj.service.ICustomerService;
-import com.cqbbj.service.IOperationLogService;
-import com.cqbbj.service.IOrderService;
-import com.cqbbj.service.ISendOrderService;
+import com.cqbbj.entity.*;
+import com.cqbbj.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,6 +28,10 @@ public class WXOrderControll extends BaseController {
     private ISendOrderService sendOrderService;
     @Autowired
     private ICustomerService customerService;
+    @Autowired
+    private ICompanyInfoService companyInfoService;
+    @Autowired
+    private IMessageLogService messageLogService;
 
     /**
      * 进入添加订单页面
@@ -58,6 +56,7 @@ public class WXOrderControll extends BaseController {
     public String orderSearch() {
         return "wx/order/orderSearch";
     }
+
     /**
      * 进入查询订单页面
      */
@@ -109,7 +108,7 @@ public class WXOrderControll extends BaseController {
     public Result addOrder(String name, String phone, String start, String end, Double price, Date beginTime,
                            String content, Integer type, Integer isNotice, HttpServletRequest request) {
 
-        Customer customer=new Customer();
+        Customer customer = new Customer();
         customer.setName(name);
         customer.setPhone(phone);
         customerService.saveEntity(customer);
@@ -136,7 +135,14 @@ public class WXOrderControll extends BaseController {
         operationLogService.saveEntity(createLog(request, "新增订单：" + order.getOrder_no()));
         if (isNotice != null && isNotice == 1) {
             log.debug("发送短信");
+            CompanyInfo companyInfo = companyInfoService.queryById(1);
+            SmsUtils.config(companyInfo.getMsg_username(), companyInfo.getMsg_password(), companyInfo.getMsg_sign(), companyInfo.getMsg_domain());
             SmsUtils.sendSms(order.getPhone(), "您好，您的订单" + order.getOrder_no() + "已生效，可前往[微信公众号-会员中心-我的订单]查看");
+            // 记录日志
+            MessageLog mlog = new MessageLog();
+            mlog.setPhone(order.getPhone());
+            mlog.setContent("您好，您的订单" + order.getOrder_no() + "已生效，可前往[微信公众号-会员中心-我的订单]查看");
+            messageLogService.saveEntity(mlog);
         }
 
         return ResultUtils.success();
@@ -173,28 +179,28 @@ public class WXOrderControll extends BaseController {
     public Result queryById(Integer id) {
         Order order = orderService.queryById(id);
         if (order.getStatus() == 1 || order.getStatus() == 2) {
-          List<SendOrder> list= sendOrderService.queryByOrderNo(order.getOrder_no());
-            List<SendOrder> moneyEmps=new ArrayList<SendOrder>();
-            List<SendOrder> driveEmps=new ArrayList<SendOrder>();
-            List<SendOrder> moveEmps=new ArrayList<SendOrder>();
-            List<SendOrder> airEmps=new ArrayList<SendOrder>();
-            for(SendOrder sendOrder : list){
-              switch (sendOrder.getType()){
-                   case 0:
-                       moneyEmps.add(sendOrder);
-                       break;
-                   case 1:
-                       driveEmps.add(sendOrder);
-                       break;
-                   case 2:
-                       moveEmps.add(sendOrder);
-                       break;
-                   case 3:
-                       airEmps.add(sendOrder);
-                       break;
-                   default:
-                       break;
-               }
+            List<SendOrder> list = sendOrderService.queryByOrderNo(order.getOrder_no());
+            List<SendOrder> moneyEmps = new ArrayList<SendOrder>();
+            List<SendOrder> driveEmps = new ArrayList<SendOrder>();
+            List<SendOrder> moveEmps = new ArrayList<SendOrder>();
+            List<SendOrder> airEmps = new ArrayList<SendOrder>();
+            for (SendOrder sendOrder : list) {
+                switch (sendOrder.getType()) {
+                    case 0:
+                        moneyEmps.add(sendOrder);
+                        break;
+                    case 1:
+                        driveEmps.add(sendOrder);
+                        break;
+                    case 2:
+                        moveEmps.add(sendOrder);
+                        break;
+                    case 3:
+                        airEmps.add(sendOrder);
+                        break;
+                    default:
+                        break;
+                }
             }
             order.setMoneyEmps(moneyEmps);
             order.setDriveEmps(driveEmps);
@@ -213,16 +219,18 @@ public class WXOrderControll extends BaseController {
         return ResultUtils.success();
 
     }
+
     /**
      * 取消订单状态
      */
     @RequestMapping("/cancelOrderStatus")
-    public Result cancelOrderStatus(Integer id, Integer status,String order_no) {
+    public Result cancelOrderStatus(Integer id, Integer status, String order_no) {
         orderService.updateOrderStatus(id, status);
         sendOrderService.deleteSendOrder(order_no);
         return ResultUtils.success();
 
     }
+
     /**
      * 派单
      *
@@ -272,22 +280,24 @@ public class WXOrderControll extends BaseController {
         operationLogService.saveEntity(createLog(request, "修改订单：" + order.getOrder_no()));
         return ResultUtils.success();
     }
-/**
- * 查询订单
- */
-@RequestMapping("/search")
-@ResponseBody
-public Result search(Order order){
-    Order o=orderService.queryByProperties(order);
-    return ResultUtils.success(o);
-}
-/**
- * 登出
- */
-@RequestMapping("/loginOut")
-@ResponseBody
-public Result  loginOut(){
-    EmployeeUtils.setEmployee(null);
-    return ResultUtils.success();
-}
+
+    /**
+     * 查询订单
+     */
+    @RequestMapping("/search")
+    @ResponseBody
+    public Result search(Order order) {
+        Order o = orderService.queryByProperties(order);
+        return ResultUtils.success(o);
+    }
+
+    /**
+     * 登出
+     */
+    @RequestMapping("/loginOut")
+    @ResponseBody
+    public Result loginOut() {
+        EmployeeUtils.setEmployee(null);
+        return ResultUtils.success();
+    }
 }

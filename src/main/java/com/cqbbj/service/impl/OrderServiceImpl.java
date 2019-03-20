@@ -122,15 +122,16 @@ public class OrderServiceImpl implements IOrderService {
             list.addAll(createSendOrder(order1.getOrder_no(), moveEmps, 2));
             list.addAll(createSendOrder(order1.getOrder_no(), airEmps, 3));
             // 保存派单记录
-            if (!list.isEmpty())
+            if (!list.isEmpty()) {
                 sendOrderMapper.saveBatch(list);
+            }
             // 更改订单状态
             order1.setStatus(1);
             orderMapper.update(order1);
             // 发送短信
             CompanyInfo companyInfo = companyInfoMapper.queryById(1);
             if (companyInfo != null && companyInfo.getMsg_open() == 0) {
-                List<String> phones = new ArrayList<>();
+                Set<String> phones = new HashSet();
                 for (SendOrder so : list) {
                     Employee employee = new Employee();
                     employee.setEmp_no(so.getEmp_no());
@@ -138,14 +139,12 @@ public class OrderServiceImpl implements IOrderService {
                     if (employee != null)
                         phones.add(employee.getPhone());
                 }
-                // 去重
-                Set<String> set = new HashSet();
-                set.addAll(phones);
                 String content = "师傅您好，您有新的派单消息，请前往微信公众号查看";
-                SmsUtils.sendSmsBatch(set, content);
+                SmsUtils.config(companyInfo.getMsg_username(), companyInfo.getMsg_password(), companyInfo.getMsg_sign(), companyInfo.getMsg_domain());
+                SmsUtils.sendSmsBatch(phones, content);
                 // 记录短信日志
                 MessageLog mlog = null;
-                for (String phone : set) {
+                for (String phone : phones) {
                     mlog.setCreateTime(new Date());
                     mlog.setDeleteStatus(0);
                     mlog.setPhone(phone);

@@ -160,8 +160,10 @@ public class OrderController extends BaseController {
         // 记录日志
         operationLogService.saveEntity(createLog(request, "新增订单：" + order.getOrder_no()));
         if (isNotice != null && isNotice == 1) {
+            CompanyInfo companyInfo = companyInfoService.queryById(1);
             log.debug("发送短信");
             String content = "您好，您的订单" + order.getOrder_no() + "已生效，可前往[微信公众号-会员中心-我的订单]查看";
+            SmsUtils.config(companyInfo.getMsg_username(), companyInfo.getMsg_password(), companyInfo.getMsg_sign(), companyInfo.getMsg_domain());
             SmsUtils.sendSms(order.getPhone(), content);
             // 记录短信日志
             MessageLog mLog = new MessageLog();
