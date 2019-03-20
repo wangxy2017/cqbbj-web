@@ -2,15 +2,10 @@ package com.cqbbj.service.impl;
 
 import com.cqbbj.core.base.PageModel;
 import com.cqbbj.core.util.SmsUtils;
-import com.cqbbj.dao.CompanyInfoMapper;
-import com.cqbbj.dao.EmployeeMapper;
-import com.cqbbj.dao.OrderMapper;
-import com.cqbbj.dao.SendOrderMapper;
-import com.cqbbj.entity.CompanyInfo;
-import com.cqbbj.entity.Employee;
-import com.cqbbj.entity.Order;
-import com.cqbbj.entity.SendOrder;
+import com.cqbbj.dao.*;
+import com.cqbbj.entity.*;
 import com.cqbbj.service.IEmployeeService;
+import com.cqbbj.service.IMessageLogService;
 import com.cqbbj.service.IOrderService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -52,6 +47,11 @@ public class OrderServiceImpl implements IOrderService {
      */
     @Autowired
     private EmployeeMapper employeeMapper;
+    /**
+     * 短信日志Mapper
+     */
+    @Autowired
+    private MessageLogMapper messageLogMapper;
 
     @Override
     public int saveEntity(Order order) {
@@ -139,9 +139,19 @@ public class OrderServiceImpl implements IOrderService {
                         phones.add(employee.getPhone());
                 }
                 // 去重
-                Set set = new HashSet();
+                Set<String> set = new HashSet();
                 set.addAll(phones);
-                SmsUtils.sendSmsBatch(set, "师傅您好，您有新的派单消息，请前往微信公众号查看");
+                String content = "师傅您好，您有新的派单消息，请前往微信公众号查看";
+                SmsUtils.sendSmsBatch(set, content);
+                // 记录短信日志
+                MessageLog mlog = null;
+                for (String phone : set) {
+                    mlog.setCreateTime(new Date());
+                    mlog.setDeleteStatus(0);
+                    mlog.setPhone(phone);
+                    mlog.setContent(content);
+                    messageLogMapper.save(mlog);
+                }
             }
         }
         return 1;
