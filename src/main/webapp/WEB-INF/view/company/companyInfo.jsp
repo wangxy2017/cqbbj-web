@@ -17,7 +17,7 @@ To change this template use File | Settings | File Templates.
 </head>
 <body>
 <div class="main" id="main">
-    <p class="page-title">商户配置</p>
+    <p class="page-title"><span class="flag">&nbsp;</span>商户配置</p>
     <%-- 表单区域 --%>
     <form class="layui-form" action="">
         <div class="layui-form-item layui-hide">

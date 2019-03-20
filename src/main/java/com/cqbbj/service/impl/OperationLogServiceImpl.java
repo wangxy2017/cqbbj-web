@@ -49,7 +49,7 @@ public class OperationLogServiceImpl implements IOperationLogService {
 
     @Override
     public List<OperationLog> queryList(OperationLog operationLog) {
-        return null;
+        return operationLogMapper.queryList(operationLog);
     }
 
     @Override

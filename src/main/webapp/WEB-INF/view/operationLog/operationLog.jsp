@@ -17,6 +17,10 @@
 </head>
 <body>
 <div class="main" id="main">
+    <%-- 工具栏 --%>
+    <div class="layui-btn-container">
+        <button class="layui-btn" @click="download">导出日志</button>
+    </div>
     <%-- 搜索栏 --%>
     <div class="search-tools">
         <div class="search-item">
