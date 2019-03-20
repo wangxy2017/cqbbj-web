@@ -121,7 +121,7 @@ public class WXOrderControll extends BaseController {
         order.setEnd(end);
         order.setPrice(price);
         order.setBeginTime(beginTime);
-        System.out.println(beginTime);
+        //System.out.println(beginTime);
         order.setContent(content);
         order.setType(type);
 
@@ -248,12 +248,12 @@ public class WXOrderControll extends BaseController {
                                 String airEmps) {
         // 派单
         orderService.dispatchOrder(order_no,
-                CommUtils.toStringArray(moneyEmps),
-                CommUtils.toStringArray(driveEmps),
-                CommUtils.toStringArray(moveEmps),
-                CommUtils.toStringArray(airEmps));
+                CommUtils.toStringArray(moneyEmps.replaceAll(" ",",")),
+                CommUtils.toStringArray(driveEmps.replaceAll(" ",",")),
+                CommUtils.toStringArray(moveEmps.replaceAll(" ",",")),
+                CommUtils.toStringArray(airEmps.replaceAll(" ",",")));
         // 记录日志
-        operationLogService.saveEntity(createLog(request, "派单：" + order_no));
+        operationLogService.saveEntity(createLog(request, EmployeeUtils.getEmployee().getName(),"派单：" + order_no));
         return ResultUtils.success();
     }
 

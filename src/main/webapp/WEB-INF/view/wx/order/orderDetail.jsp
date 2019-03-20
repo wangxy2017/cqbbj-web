@@ -47,7 +47,7 @@
         </tr>
         <tr>
             <th>客户备注:</th>
-            <td>{{order.remark}}</td>
+            <td>{{order.content}}</td>
         </tr>
         <tr>
             <th>预估起价:</th>
@@ -60,11 +60,11 @@
 
         <tr v-show="isDispatch">
             <th>收款人:</th>
-            <td><span v-for="item in order.moenyEmps">{{item.emp_name}}</span></td>
+            <td><span v-for="item in order.moneyEmps">{{item.emp_name}}</span></td>
         </tr>
         <tr v-show="isDispatch">
             <th>司机:</th>
-            <td><span v-for="item in order.dirveEmps">{{item.emp_name}}</span></td>
+            <td><span v-for="item in order.driveEmps">{{item.emp_name}}</span></td>
         </tr>
         <tr v-show="isDispatch">
             <th>搬运工:</th>

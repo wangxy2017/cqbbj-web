@@ -78,7 +78,7 @@
                 <input type="hidden" class="form-control" id="divNum">
             </div>
             <div class="col-sm-3">
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#motorMan" @click="chooseDriver">添加人员 </button>
+                <button :data-emp_no="item.emp_no" type="button" class="btn btn-primary" data-toggle="modal" data-target="#motorMan" @click="chooseDriver">添加人员 </button>
             </div>
         </div>
         <div id="motorMan" class="modal fade" tabindex="-1" role="dialog"

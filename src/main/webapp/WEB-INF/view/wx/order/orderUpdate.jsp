@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/css/orderdetail.css">
 </head>
 <body>
-<form class="form-group" id="main">
+<form class="form-group" id="main" dataid="<%=request.getParameter("order_no")%>">
     <header>
         <div class="pic">
             <img src="${pageContext.request.contextPath}/resources/wx/imge/comeback.png"

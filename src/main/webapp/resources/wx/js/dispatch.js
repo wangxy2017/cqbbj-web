@@ -89,7 +89,8 @@ var main = new Vue({
             var info = _this.hasClass("btn-info");
             if (info) {// 取消选中
                 _this.removeClass('btn-info').addClass('btn-default');
-                $("#driver").val("");
+                var name = _this.text() + " ";
+                $("#driver").val($("#driver").val().replace(name,""));
                 // 删值 ,123,456
                 var emp_no = "," + _this.attr("data-emp_no");
                 main.driveEmps.replace(emp_no, "");
@@ -97,7 +98,7 @@ var main = new Vue({
                 _this.removeClass('btn-default').addClass('btn-info');
                 // 赋值
                 var divNum = _this.attr("data-divNum");//编号
-                var name = _this.text() + "、";
+                var name = _this.text() + " ";
                 $("#driver").val($("#driver").val() + name);
                 $("#divNum").val(divNum);
                 // 赋值
@@ -136,7 +137,7 @@ var main = new Vue({
                 _this.removeClass('btn-default').addClass('btn-info');
                 // 赋值
                 var ham = _this.attr("data-empNo");//编号
-                var name = _this.text() + "、";
+                var name = _this.text() + " ";
                 $("#hamal").val($("#hamal").val() + name);
                 $("#ham").val(ham);
                 //赋值
@@ -178,7 +179,7 @@ var main = new Vue({
                 _this.removeClass('btn-default').addClass('btn-info');
                 // 赋值
                 var emp = _this.attr("data-empNo");//编号
-                var name = _this.text() + "、";
+                var name = _this.text() + " ";
                 $("#techniCian").val($("#techniCian").val() + name);
                 $("techNo").val(emp);
                 //赋值
@@ -202,6 +203,8 @@ var main = new Vue({
         * */
 
         submit: function () {
+            console.log(main.driveEmps);
+            return;
             $.ajax({
                 url: "http://192.168.0.100:9000/wx/order/dispatchOrder",
                 data: {
