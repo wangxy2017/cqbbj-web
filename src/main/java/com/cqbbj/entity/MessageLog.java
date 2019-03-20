@@ -2,6 +2,8 @@ package com.cqbbj.entity;
 
 import com.cqbbj.core.base.BaseEntity;
 
+import java.util.Date;
+
 /**
  * @author wangxy
  * @version 1.0
@@ -19,6 +21,13 @@ public class MessageLog extends BaseEntity {
      */
     private String content;
 
+    /**
+     * =========== 范围筛选 ==============
+     */
+    private Date createTime1;
+
+    private Date createTime2;
+
     public String getPhone() {
         return phone;
     }
@@ -33,5 +42,21 @@ public class MessageLog extends BaseEntity {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public Date getCreateTime1() {
+        return createTime1;
+    }
+
+    public void setCreateTime1(Date createTime1) {
+        this.createTime1 = createTime1;
+    }
+
+    public Date getCreateTime2() {
+        return createTime2;
+    }
+
+    public void setCreateTime2(Date createTime2) {
+        this.createTime2 = createTime2;
     }
 }

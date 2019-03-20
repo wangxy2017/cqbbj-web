@@ -28,6 +28,10 @@
     <!-- 查询短信日志列表 -->
     <select id="queryList" resultType="messageLog" parameterType="messageLog">
         select <include refid="query_all_fields"></include> from sys_message_log where deleteStatus = 0
+        <if test="phone != null and phone != ''">and phone = #{phone}</if>
+        <if test="content != null and content != ''">and content like concat("%",#{content},"%")</if>
+        <if test="createTime1 != null"><![CDATA[and createTime >= #{createTime1}]]></if>
+        <if test="createTime2 != null"><![CDATA[and createTime <= #{createTime2}]]></if>
         order by createTime desc
     </select>
 </mapper>
