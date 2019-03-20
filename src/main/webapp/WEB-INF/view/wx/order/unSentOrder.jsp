@@ -24,14 +24,16 @@
 <div class="container-fluid" id="main">
     <form action="" class="form-group">
         <ul class="list-ul">
-            <li class="row list-li" v-for="item in orders" @click="showBtns($event)">
+            <li class="row list-li" v-for="(item, index) in orders" @click="showBtns($event)">
                 <input type="hidden" name="orderId" id="orderId" v-model="item.id">
                 <div class="zhang">
                     <img src="${pageContext.request.contextPath}/resources/wx/imge/wp.png" alt="">
                 </div>
                 <div class="row li-title">
                     <div class="col-sm-7">
-                        <p>订单号：<a href="javascript:;" @click="view"><span id="order_no">{{item.order_no}}</span></a></p>
+                        <p>
+                            订单号：
+                            <a  href="javascript:;" @click.stop="view(item.id)"><span >{{item.order_no}}</span></a></p>
                     </div>
                     <div class="col-sm-5">
                         <p class="pull-right">客户姓名：{{item.name}}</p>
@@ -54,22 +56,22 @@
                 <div class="row display">
                     <div class="col-sm-3">
                         <a class="view">
-                            <button type="button" class="btn btn-primary" @click.stop="view">查看</button>
+                            <button type="button" class="btn btn-primary" @click.stop="view(item.id)">查看</button>
                         </a>
                     </div>
                     <div class="col-sm-3">
                         <a class="sent">
-                            <button type="button" class="btn btn-success" @click.stop="dispatch">派单</button>
+                            <button type="button" class="btn btn-success" @click.stop="dispatch(item.order_no)">派单</button>
                         </a>
                     </div>
                     <div class="col-sm-3">
                         <a class="view">
-                            <button type="button" class="btn btn-primary" @click.stop="modify">修改</button>
+                            <button type="button" class="btn btn-primary" @click.stop="modify(item.order_no)">修改</button>
                         </a>
                     </div>
                     <div class="col-sm-3">
                         <a class="abolish">
-                            <button type="button" class="btn btn-default" @click.stop="cancel">取消</button>
+                            <button type="button" class="btn btn-default" @click.stop="cancel(item.id)">取消</button>
                         </a>
                     </div>
                 </div>

@@ -23,7 +23,7 @@
     </div>
     <p>派单管理</p>
 </header>
-<div class="container-fluid" id="main">
+<div class="container-fluid" id="main" dataid="<%=request.getParameter("order_no")%>">
     <!--<form action="" class="form-horizontal">-->
     <div class="form-group">
         <div class="row list-div">
@@ -201,6 +201,6 @@
 <script src="${pageContext.request.contextPath}/resources/wx/plugin/Vue/vue.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/wx/plugin/toastr/toastr.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/wx/plugin/Vue/vue-resource.min.js"></script>
-<script src="${pageContext.request.contextPath}/resources/wx/js/sentOrder.js"></script>
+<script src="${pageContext.request.contextPath}/resources/wx/js/dispatch.js"></script>
 </body>
 </html>

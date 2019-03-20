@@ -224,7 +224,7 @@ var main = new Vue({
                     console.log(res);
                     //    请求成功执行的代码
                     toastr.success("派单成功");
-                    window.location.href = "dispach.html";
+                    window.location.href = "/wx/order/sentOrder";
                 }, error: function (res) {
                     console.log(res);
                     toastr.error("提交失败!");
@@ -234,13 +234,8 @@ var main = new Vue({
 
 
     },
-    mounted: function () {
-        // 获取参数
-        var url = window.location.href;
-        // console.log(url);
-        var n1 = url.length;//地址的总长度
-        var n2 = url.indexOf("=");//取得=号的位置
-        var id = decodeURI(url.substr(n2 + 1, n1 - n2));//从=号后面的内容
-        this.order_no = id;
+    mounted:function () {
+         this.order_no=$("#main").attr("dataid");
+
     }
 });

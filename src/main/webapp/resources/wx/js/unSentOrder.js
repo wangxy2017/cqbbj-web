@@ -7,6 +7,9 @@ var main = new Vue({
         total: 0
     },
     methods: {
+
+
+
         /**
          * 请求数据
          */
@@ -16,19 +19,19 @@ var main = new Vue({
         /**
          * 取消订单
          */
-        cancel: function () {
+        cancel: function (id) {
             if (confirm("确定取消该订单吗？")) {
                 console.log("点击的确定修改!");
                 // 发送异步请求，跟新订单
                 $.ajax({
-                    url:"/wx/order/updateOrderStatus",
-                    data:{"id":$("#orderId").val(),"status":3},
-                    dataType:"json",
-                    type:"post",
-                    success:function (res) {
+                    url: "/wx/order/updateOrderStatus",
+                    data: {"id": id, "status": 3},
+                    dataType: "json",
+                    type: "post",
+                    success: function (res) {
                         console.log(res.data);
-                    window.location.href="/wx/order/unSentOrder";
-                    },error:function(){
+                        window.location.href = "/wx/order/unSentOrder";
+                    }, error: function () {
 
 
                     }
@@ -46,20 +49,24 @@ var main = new Vue({
         /**
          * 查看按钮
          */
-        view: function () {
-            window.location.href = "/wx/order/orderDetail?id="+ $("#orderId").val();
+        view: function (id) {
+
+            window.location.href = "/wx/order/orderDetail?id=" + id;
+
         },
+
         /**
          * 派单按钮
          */
-        dispatch: function () {
-            window.location.href = "wx/order/dispatch?id="+ $("#orderId").val();
+        dispatch: function (order_no) {
+            window.location.href = "/wx/order/dispatch?order_no=" + order_no;
         },
+
         /**
          * 修改按钮
          */
-        dispatch: function () {
-            window.location.href = "wx/order/orderUpdate?id="+ $("#orderId").val();
+        modify: function (order_no) {
+            window.location.href = "/wx/order/orderUpdate?id=" +order_no;
         },
     },
     mounted: function () {
