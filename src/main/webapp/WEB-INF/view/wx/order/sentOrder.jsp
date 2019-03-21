@@ -28,7 +28,6 @@
     <form action="" class="form-group">
         <ul class="list-ul">
             <li class="row list-li" v-for="item in orders" @click="showBtns($event)">
-                <input type="hidden" name="orderId" id="orderId" v-model="item.id">
                 <div class="zhang">
                     <img src="${pageContext.request.contextPath}/resources/wx/imge/yp.png" alt="">
                 </div>
@@ -62,7 +61,7 @@
                     </div>
                     <div class="col-sm-3">
                         <a class="sent">
-                            <button type="button"  @click.stop="modify(item.order_no)" class="btn btn-success">修改</button>
+                            <button type="button"  @click.stop="modify(item.id)" class="btn btn-success">修改</button>
                         </a>
                     </div>
                     <div class="col-sm-3">

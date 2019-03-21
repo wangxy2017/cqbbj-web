@@ -111,6 +111,7 @@ public class WXOrderControll extends BaseController {
         Customer customer = new Customer();
         customer.setName(name);
         customer.setPhone(phone);
+        customer.setCust_no(CommUtils.getCode(ConstantUtils.CUSTOMER));
         customerService.saveEntity(customer);
 
 
@@ -132,7 +133,7 @@ public class WXOrderControll extends BaseController {
         order.setSource(1);
         orderService.saveEntity(order);
 
-        operationLogService.saveEntity(createLog(request, "新增订单：" + order.getOrder_no()));
+        operationLogService.saveEntity(createLog(request,  name,"新增订单：" + order.getOrder_no()));
         if (isNotice != null && isNotice == 1) {
             log.debug("发送短信");
             CompanyInfo companyInfo = companyInfoService.queryById(1);
@@ -248,10 +249,10 @@ public class WXOrderControll extends BaseController {
                                 String airEmps) {
         // 派单
         orderService.dispatchOrder(order_no,
-                CommUtils.toStringArray(moneyEmps.replaceAll(" ",",")),
-                CommUtils.toStringArray(driveEmps.replaceAll(" ",",")),
-                CommUtils.toStringArray(moveEmps.replaceAll(" ",",")),
-                CommUtils.toStringArray(airEmps.replaceAll(" ",",")));
+                CommUtils.toStringArray(moneyEmps),
+                CommUtils.toStringArray(driveEmps),
+                CommUtils.toStringArray(moveEmps),
+                CommUtils.toStringArray(airEmps));
         // 记录日志
         operationLogService.saveEntity(createLog(request, EmployeeUtils.getEmployee().getName(),"派单：" + order_no));
         return ResultUtils.success();
@@ -267,8 +268,14 @@ public class WXOrderControll extends BaseController {
     public Result update(HttpServletRequest request, Order order,
                          String moneyEmps, String driveEmps, String moveEmps,
                          String airEmps) {
+
+        if(order.getStatus()==0 || order.getStatus()==3){
+            order.setStatus(null);
         // 更新订单
-        orderService.updateEntity(order);
+        orderService.updateEntity(order);}else{
+            order.setStatus(null);
+            // 更新订单
+            orderService.updateEntity(order);
         // 更新派单
         if (moneyEmps != null || driveEmps != null || moneyEmps != null || airEmps != null)
             orderService.dispatchOrder(order.getOrder_no(),
@@ -277,7 +284,8 @@ public class WXOrderControll extends BaseController {
                     CommUtils.toStringArray(moveEmps),
                     CommUtils.toStringArray(airEmps));
         // 记录日志
-        operationLogService.saveEntity(createLog(request, "修改订单：" + order.getOrder_no()));
+        operationLogService.saveEntity(createLog(request, "修改订单：" + order.getOrder_no()));}
+
         return ResultUtils.success();
     }
 

@@ -203,8 +203,10 @@ var main = new Vue({
         * */
 
         submit: function () {
-            console.log(main.driveEmps);
-            return;
+            // console.log(main.driveEmps);
+            // console.log(main.moveEmps);
+            // console.log(main.moveEmps);
+            // return;
             $.ajax({
                 url: "http://192.168.0.100:9000/wx/order/dispatchOrder",
                 data: {

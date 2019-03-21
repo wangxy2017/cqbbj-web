@@ -51,8 +51,8 @@ var main = new Vue({
         /**
          * 修改按钮
          */
-        modify: function (order_no) {
-            window.location.href = "/wx/order/orderUpdate?order_no="+ order_no ;
+        modify: function (id) {
+            window.location.href = "/wx/order/orderUpdate?id="+ id ;
         },
         /**
          * 辅助完成
