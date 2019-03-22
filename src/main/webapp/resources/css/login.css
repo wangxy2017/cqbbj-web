@@ -5,7 +5,7 @@
     right: 0;
     bottom: 0;
     left: 0;
-    background: #2E363F;
+    background: #23262e;
 }
 
 .login-box {
@@ -14,7 +14,6 @@
     top: 200px;
     left: calc(50% - 200px);
     width: 400px;
-    background-color: #2E363F;
 }
 
 .login-box .login-text {
