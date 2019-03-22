@@ -67,8 +67,8 @@ var main = new Vue({
         // 初始化
         this.$http.post("/wx/order/queryPageListEmployee", {
             "status": 1,
-            "pageNum": 1,
-            "pageSize": 4
+            pageNum:1,
+            pageSize:4
         }, {emulateJSON: true}).then(function (res) {
             console.log(res.body);
             if (res.body.code == 1) {

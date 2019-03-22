@@ -61,6 +61,25 @@
                 <p>已派订单</p>
             </a>
         </li>
+
+        <li>
+            <a onclick="completeOrder()">
+                <div>
+                    <img src="${pageContext.request.contextPath}/resources/wx/imge/0003.png" alt="">
+                </div>
+                <p>完成订单</p>
+            </a>
+        </li>
+
+        <li>
+            <a onclick="canceledOrder()">
+                <div>
+                    <img src="${pageContext.request.contextPath}/resources/wx/imge/0003.png" alt="">
+                </div>
+                <p>作废订单</p>
+            </a>
+        </li>
+
         <li>
             <a onclick="orderSearch()">
                 <div>

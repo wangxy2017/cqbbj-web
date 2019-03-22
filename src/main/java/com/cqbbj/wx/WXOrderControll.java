@@ -90,13 +90,34 @@ public class WXOrderControll extends BaseController {
     }
 
     /**
-     * 进入修改订单页面
+     * 进入订单辅助完成页面
      */
     @RequestMapping("/finishOrder")
     public String finishOrder() {
-        return "wx/order/finishOrder";
+        return "wx/order/orderFinish";
     }
 
+    /**
+     * 进入完成订单页面
+     */
+    @RequestMapping("/completeOrder")
+    public String completeOrder() {
+    return "wx/order/completeOrder";
+    }
+    /**
+     * 进入完成订单页面
+     */
+    @RequestMapping("/canceledOrder")
+    public String canceledOrder() {
+        return "wx/order/canceledOrder";
+    }
+    /**
+     * 进入回访页面
+     */
+    @RequestMapping("/callback")
+    public String callback() {
+        return "wx/order/callback";
+    }
     /**
      * 添加订单
      *
@@ -107,14 +128,14 @@ public class WXOrderControll extends BaseController {
     @ResponseBody
     public Result addOrder(String name, String phone, String start, String end, Double price, Date beginTime,
                            String content, Integer type, Integer isNotice, HttpServletRequest request) {
-
+        //添加客户信息
         Customer customer = new Customer();
         customer.setName(name);
         customer.setPhone(phone);
         customer.setCust_no(CommUtils.getCode(ConstantUtils.CUSTOMER));
         customerService.saveEntity(customer);
 
-
+        //添加订单
         Order order = new Order();
         order.setName(name);
         order.setPhone(phone);
@@ -133,7 +154,7 @@ public class WXOrderControll extends BaseController {
         order.setSource(1);
         orderService.saveEntity(order);
 
-        operationLogService.saveEntity(createLog(request,  name,"新增订单：" + order.getOrder_no()));
+        operationLogService.saveEntity(createLog(request, name, "新增订单：" + order.getOrder_no()));
         if (isNotice != null && isNotice == 1) {
             log.debug("发送短信");
             CompanyInfo companyInfo = companyInfoService.queryById(1);
@@ -214,8 +235,8 @@ public class WXOrderControll extends BaseController {
     /**
      * 变更订单状态
      */
-    @RequestMapping("/finishOrderStatus")
-    public Result finishOrderStatus(Integer id, Integer status) {
+    @RequestMapping("/updateOrderStatus")
+    public Result updateOrderStatus(Integer id, Integer status) {
         orderService.updateOrderStatus(id, status);
         return ResultUtils.success();
 
@@ -254,7 +275,7 @@ public class WXOrderControll extends BaseController {
                 CommUtils.toStringArray(moveEmps),
                 CommUtils.toStringArray(airEmps));
         // 记录日志
-        operationLogService.saveEntity(createLog(request, EmployeeUtils.getEmployee().getName(),"派单：" + order_no));
+        operationLogService.saveEntity(createLog(request, EmployeeUtils.getEmployee().getName(), "派单：" + order_no));
         return ResultUtils.success();
     }
 
@@ -269,22 +290,24 @@ public class WXOrderControll extends BaseController {
                          String moneyEmps, String driveEmps, String moveEmps,
                          String airEmps) {
 
-        if(order.getStatus()==0 || order.getStatus()==3){
-            order.setStatus(null);
-        // 更新订单
-        orderService.updateEntity(order);}else{
+        if (order.getStatus() == 0 || order.getStatus() == 3||order.getStatus() == null) {
             order.setStatus(null);
             // 更新订单
             orderService.updateEntity(order);
-        // 更新派单
-        if (moneyEmps != null || driveEmps != null || moneyEmps != null || airEmps != null)
-            orderService.dispatchOrder(order.getOrder_no(),
-                    CommUtils.toStringArray(moneyEmps),
-                    CommUtils.toStringArray(driveEmps),
-                    CommUtils.toStringArray(moveEmps),
-                    CommUtils.toStringArray(airEmps));
-        // 记录日志
-        operationLogService.saveEntity(createLog(request, "修改订单：" + order.getOrder_no()));}
+        } else {
+            order.setStatus(null);
+            // 更新订单
+            orderService.updateEntity(order);
+            // 更新派单
+            if (moneyEmps != null || driveEmps != null || moneyEmps != null || airEmps != null)
+                orderService.dispatchOrder(order.getOrder_no(),
+                        CommUtils.toStringArray(moneyEmps),
+                        CommUtils.toStringArray(driveEmps),
+                        CommUtils.toStringArray(moveEmps),
+                        CommUtils.toStringArray(airEmps));
+            // 记录日志
+            operationLogService.saveEntity(createLog(request, "修改订单：" + order.getOrder_no()));
+        }
 
         return ResultUtils.success();
     }
