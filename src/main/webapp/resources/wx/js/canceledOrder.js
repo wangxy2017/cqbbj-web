@@ -29,8 +29,10 @@ var main = new Vue({
                 //向后台发送请求地址
                 url: "/wx/order/updateOrderStatus",
                 dataType: "json",
-                data: {"id":id,
-                "status":0},
+                data: {
+                    "id": id,
+                    "status": 0
+                },
                 type: "POST",
                 /**
                  * 请求成功执行的函数
@@ -39,7 +41,7 @@ var main = new Vue({
                     //{code:1,msg:success}
                     if (result.code == 1) {
                         toastr.success('恢复成功');
-                        window.location.herf="/wx/order/";
+                        window.location.herf = "/wx/order/";
                     } else {
                         toastr.error("操作失败");
                     }
@@ -55,8 +57,8 @@ var main = new Vue({
     mounted: function () {
         this.$http.post("/wx/order/queryPageListEmployee", {
             status: 3,
-            pageNum:1,
-            pageSize:4
+            pageNum: 1,
+            pageSize: 4
         }, {emulateJSON: true})
             .then(function (res) {
                 console.log(res);
