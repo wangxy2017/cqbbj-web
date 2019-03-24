@@ -1,90 +1,71 @@
 var main = new Vue({
     el: "#main",
     data: {
-        orders: [],
+
+        order: {},
         flag: true,
         loaded: 0,
         total: 0
     },
+    //方法
     methods: {
-
-
-
         /**
-         * 请求数据
-         */
-        requestData: function () {
-
+         * 点击卡片显示隐藏查看和回访
+         * **/
+        display: function () {
+            $(".list-li").children('.display').toggle(500).css('display');
         },
         /**
-         * 取消订单
-         */
-        cancel: function (id) {
-            if (confirm("确定取消该订单吗？")) {
-                console.log("点击的确定修改!");
-                // 发送异步请求，跟新订单
-                $.ajax({
-                    url: "/wx/order/updateOrderStatus",
-                    data: {"id": id, "status": 3},
-                    dataType: "json",
-                    type: "post",
-                    success: function (res) {
-                        console.log(res.data);
-                        window.location.href = "/wx/order/unSentOrder";
-                    }, error: function () {
-
-
-                    }
-                });
-                // 刷新列表
-            }
-        },
-        /**
-         * 显示操作按钮
-         */
-        showBtns: function (event) {
-            var el = event.currentTarget;// 获取当前元素
-            $(el).children('.display').toggle(500).css('display');
-        },
-        /**
-         * 查看按钮
-         */
+         * 查看跳转页面
+         * */
         view: function (id) {
-
             window.location.href = "/wx/order/orderDetail?id=" + id;
-
         },
-
         /**
-         * 派单按钮
-         */
-        dispatch: function (order_no) {
-            window.location.href = "/wx/order/dispatch?order_no=" + order_no;
-        },
+         * 还原跳转页面
+         * */
+        restore: function (id) {
+            $.ajax({
+                //向后台发送请求地址
+                url: "/wx/order/updateOrderStatus",
+                dataType: "json",
+                data: {
+                    "id": id,
+                    "status": 0
+                },
+                type: "POST",
+                /**
+                 * 请求成功执行的函数
+                 * */
+                success: function (result) {
+                    //{code:1,msg:success}
+                    if (result.code == 1) {
+                        toastr.success('恢复成功');
+                        window.location.herf = "/wx/order/";
+                    } else {
+                        toastr.error("操作失败");
+                    }
+                },
+                error: function () {
+                    toastr.warning("服务器异常");
+                }
+            });
 
-        /**
-         * 修改按钮
-         */
-        modify: function (id) {
-            window.location.href = "/wx/order/orderUpdate?id=" +id;
+
         },
     },
     mounted: function () {
-        // 初始化
         this.$http.post("/wx/order/queryPageListEmployee", {
-            "status": 0
-
-        }, {emulateJSON: true}).then(function (res) {
-            console.log(res.body);
-            if (res.body.code == 1) {
-                main.orders = res.body.data.list;
-                // 分页准备工作--赋值
-                main.loaded = res.body.data.list.length;
-                main.loaded = res.body.data.total;
-            }
-        }, function (res) {
-            console.log(res.body);
-        });
+            status: 3,
+            pageNum: 1,
+            pageSize: 4
+        }, {emulateJSON: true})
+            .then(function (res) {
+                console.log(res);
+                this.order = res.body.data;
+            }, function () {
+                toastr.error("数据异常");
+            });
         // 分页
         $(function () {
             // 监听滚动事件

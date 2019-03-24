@@ -51,8 +51,8 @@ var main = new Vue({
         /**
          * 修改按钮
          */
-        modify: function (order_no) {
-            window.location.href = "/wx/order/orderUpdate?order_no="+ order_no ;
+        modify: function (id) {
+            window.location.href = "/wx/order/orderUpdate?id="+ id ;
         },
         /**
          * 辅助完成
@@ -67,8 +67,8 @@ var main = new Vue({
         // 初始化
         this.$http.post("/wx/order/queryPageListEmployee", {
             "status": 1,
-            "pageNum": 1,
-            "pageSize": 4
+            pageNum:1,
+            pageSize:4
         }, {emulateJSON: true}).then(function (res) {
             console.log(res.body);
             if (res.body.code == 1) {

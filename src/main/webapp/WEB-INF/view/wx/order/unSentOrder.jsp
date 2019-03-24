@@ -66,7 +66,7 @@
                     </div>
                     <div class="col-sm-3">
                         <a class="view">
-                            <button type="button" class="btn btn-primary" @click.stop="modify(item.order_no)">修改</button>
+                            <button type="button" class="btn btn-primary" @click.stop="modify(item.id)">修改</button>
                         </a>
                     </div>
                     <div class="col-sm-3">

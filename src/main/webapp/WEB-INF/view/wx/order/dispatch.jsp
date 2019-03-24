@@ -53,7 +53,8 @@
                             <div class="container">
                                 <div class="row">
                                     <div class="col-sm-4 emp" v-for="item in emps">
-                                        <button type="button" :data-emp_no="item.emp_no"  class="btn btn-default btn-lg" @click="checkEmp($event)">{{item.name}}</button>
+                                        <button type="button" :data-emp_no="item.emp_no"
+                                                class="btn btn-default btn-lg" @click="checkEmp($event)">{{item.name}}({{item.account}})</button>
                                     </div>
                                 </div>
                             </div>
@@ -70,6 +71,12 @@
                 </div>
             </div>
         </div>
+
+
+
+
+
+
         <!--随车司机模态框-->
         <div class="row list-div">
             <label class="col-sm-3 control-label">司机:</label>
@@ -78,7 +85,7 @@
                 <input type="hidden" class="form-control" id="divNum">
             </div>
             <div class="col-sm-3">
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#motorMan" @click="chooseDriver">添加人员 </button>
+                <button class="btn btn-primary" data-toggle="modal" data-target="#motorMan" @click="chooseDriver">添加人员</button>
             </div>
         </div>
         <div id="motorMan" class="modal fade" tabindex="-1" role="dialog"
@@ -92,7 +99,8 @@
                         <div class="container">
                             <div class="row">
                                 <div class="col-sm-4" v-for="item in motorMans">
-                                    <button :data-emp_no="item.motorMan_no" type="button"class="btn btn-default btn-lg" @click="checkDriver($event)">{{item.name}}</button>
+                                    <button :data-emp_no="item.emp_no"
+                                            class="btn btn-default btn-lg" @click="checkDriver($event)">{{item.name}}({{item.account}})</button>
                                 </div>
                             </div>
                         </div>
@@ -108,6 +116,13 @@
                 </div>
             </div>
         </div>
+
+
+
+
+
+
+
         <!--随车搬运工模态框-->
         <div class="row list-div">
             <label class="col-sm-3 control-label">搬运工:</label>
@@ -129,7 +144,8 @@
                         <div class="container">
                             <div class="row">
                                 <div class="col-sm-4" v-for="item in hamals">
-                                    <button :data-emp_no="item.hamal_no" type="button" class="btn btn-default btn-lg" @click="checkHamal($event)">{{item.name}}</button>
+                                    <button :data-emp_no="item.emp_no"
+                                            class="btn btn-default btn-lg" @click="checkHamal($event)">{{item.name}}({{item.account}})</button>
                                 </div>
                             </div>
                         </div>
@@ -145,6 +161,9 @@
                 </div>
             </div>
         </div>
+
+
+
         <!--随车空调工模态框-->
         <div class="row list-div">
             <label class="col-sm-3 control-label">空调工:</label>
@@ -167,7 +186,7 @@
                         <div class="container">
                             <div class="row">
                                 <div class="col-sm-4" v-for="item in hvacs">
-                                    <button :data-emp_no="item.hvac_no" type="button" class="btn btn-default btn-lg" @click="checkHvac">{{item.name}} </button>
+                                    <button :data-emp_no="item.emp_no"  class="btn btn-default btn-lg" @click="checkHvac">{{item.name}}({{item.account}}) </button>
                                 </div>
                             </div>
                         </div>
