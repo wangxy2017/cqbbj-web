@@ -27,7 +27,7 @@
             <div class="group">
                 <label>登录账号</label>
                 <div class="input-box">
-                    <span class="layui-icon layui-icon-username" style="background: #28B779;"></span>
+                    <span class="layui-icon layui-icon-username" style="background: #009688;"></span>
                     <input type="text" name="account" required lay-verify="required"
                            placeholder="请输入登录账号" autocomplete="off"/>
                 </div>
