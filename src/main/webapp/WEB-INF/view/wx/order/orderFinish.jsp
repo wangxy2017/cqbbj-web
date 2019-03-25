@@ -21,33 +21,33 @@
     </div>
     <p>辅助完成</p>
 </header>
-<div class="container-fluid" id="main">
+<div class="container-fluid" id="main" data_id="<%=request.getParameter("id")%>" data_no="<%=request.getParameter("order_no")%>">
     <form action="" class="form-horizontal">
         <div class="form-group">
             <label class="col-sm-3 control-label">订单编号:</label>
             <div class="col-sm-9">
-                <input type="text" class="form-control" v-model="order_no">
+                <input  class="form-control" disabled v-model="order_no">
             </div>
         </div>
         <div class="form-group">
             <label class="col-sm-3 control-label">实际收款:</label>
             <div class="col-sm-9">
-                <input type="text" class="form-control">
+                <input type="text" class="form-control" v-model="receiveMoney">
             </div>
         </div>
         <div class="form-group">
             <label class="col-sm-3 control-label">收款备注:</label>
             <div class="col-sm-9">
-                <textarea class="form-control" rows="6"></textarea>
+                <textarea class="form-control" v-model="receiveText" rows="6"> </textarea>
             </div>
         </div>
         <div class="form-group">
             <div class="row">
                 <div class="col-sm-6">
-                    <button @click="queren" class="btn btn-success btn-lg">确认</button>
+                    <button @click="submit" class="btn btn-success btn-lg">确认</button>
                 </div>
                 <div class="col-sm-6">
-                    <button class="btn btn-info btn-lg">取消</button>
+                    <button class="btn btn-info btn-lg" onclick="javaScript:window.history.back()">取消</button>
                 </div>
             </div>
         </div>

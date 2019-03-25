@@ -66,7 +66,7 @@
                     </div>
                     <div class="col-sm-3">
                         <a class="assist">
-                            <button type="button"  @click.stop="finish(item.order_no)" class="btn btn-info">辅助</button>
+                            <button type="button"  @click.stop="finish(item.id,item.order_no)" class="btn btn-info">辅助</button>
                         </a>
                     </div>
                     <div class="col-sm-3">

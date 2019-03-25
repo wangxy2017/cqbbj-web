@@ -240,6 +240,15 @@ public class WXOrderControll extends BaseController {
     }
 
     /**
+     * 变更订单状态
+     */
+    @RequestMapping("/finishOrderStatus")
+    public Result finishOrderStatus(Order order, Integer status) {
+        orderService.updateOrderStatus(order.getId(), status);
+        return ResultUtils.success();
+
+    }
+    /**
      * 取消订单状态
      */
     @RequestMapping("/cancelOrderStatus")
@@ -287,12 +296,9 @@ public class WXOrderControll extends BaseController {
                          String moneyEmps, String driveEmps, String moveEmps,
                          String airEmps) {
 
-        if (order.getStatus() == 0 || order.getStatus() == 3||order.getStatus() == null) {
-            order.setStatus(null);
             // 更新订单
             orderService.updateEntity(order);
-        } else {
-            order.setStatus(null);
+
             // 更新订单
             orderService.updateEntity(order);
             // 更新派单
@@ -304,7 +310,7 @@ public class WXOrderControll extends BaseController {
                         CommUtils.toStringArray(airEmps));
             // 记录日志
             operationLogService.saveEntity(createLog(request, "修改订单：" + order.getOrder_no()));
-        }
+
 
         return ResultUtils.success();
     }

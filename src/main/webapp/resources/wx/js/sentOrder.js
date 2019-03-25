@@ -57,10 +57,8 @@ var main = new Vue({
         /**
          * 辅助完成
          */
-        finish: function (order_no) {
-            window.location.href="/wx/order/finishOrder?order_no="+ order_no;
-
-
+        finish: function (id,order_no) {
+            window.location.href="/wx/order/finishOrder?id="+ id+"&order_no="+order_no;
         }
     },
     mounted: function () {

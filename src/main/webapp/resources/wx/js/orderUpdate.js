@@ -11,7 +11,6 @@ var main = new Vue({
                     data: {
                         "id": $("#table").attr("data_id"),
                         "order_no": order.order_no,
-                        "status":order.status,
                         "phone": order.phone,
                         "start": order.start,
                         "end": order.end,
@@ -25,10 +24,14 @@ var main = new Vue({
                     },
                     dataType: "json",
                     type: "post",
-                    success:function () {
-
-                },error:function () {
-
+                    success: function () {
+                        toastr.success("修改成功");
+                        if($("status").val()==0){
+                        window.location.herf = "/wx/order/unSentOrder";}
+                        if($("status").val()==1){
+                            window.location.herf = "/wx/order/sentOrder";}
+                    }, error: function () {
+                        toastr.success("修改失败");
                     }
                 })
             }
@@ -40,7 +43,7 @@ var main = new Vue({
                 if (res.body.code == 1) {
                     this.order = res.body.data;
                     this.$nextTick(function () {
-                        if (this.order.status == 1 ) {
+                        if (this.order.status == 1) {
                             this.isDispatch = true;
                         }
                         $("#moneyEmps").val($("#moneyEmpsList").text());

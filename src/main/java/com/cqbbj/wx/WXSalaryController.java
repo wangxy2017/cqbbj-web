@@ -27,7 +27,10 @@ public class WXSalaryController extends BaseController {
     public String salary(){
         return "wx/finance/salary";
     }
-
+    @RequestMapping("/salaryUpdate")
+    public String salaryUpdate(){
+        return "wx/finance/salaryUpdate";
+    }
 
     /**
      * 保存salary
@@ -53,7 +56,7 @@ public class WXSalaryController extends BaseController {
     public Result update(HttpServletRequest request, Salary salary) {
         salaryService.updateEntity(salary);
         // 记录日志
-        OperationLog log = createLog(request, "修改员工工资核算" + salary.getSalary_no());
+        OperationLog log = createLog(request, salary.getEmp_name(),"修改员工工资核算" + salary.getSalary_no());
         operationLogService.saveEntity(log);
         return ResultUtils.success();
     }
