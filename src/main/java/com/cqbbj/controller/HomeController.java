@@ -36,6 +36,16 @@ public class HomeController extends BaseController {
     }
 
     /**
+     * 经营数据
+     *
+     * @return
+     */
+    @RequestMapping("/operateData")
+    public String operateData() {
+        return "home/operateData";
+    }
+
+    /**
      * 查询系统公告
      *
      * @return

@@ -1,0 +1,78 @@
+.page-title {
+    border-bottom: 1px solid #009688;
+    padding: 5px;
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+.page-title .flag {
+    background: #009688;
+    margin-right: 6px;
+}
+
+.search {
+    overflow: hidden;
+    margin: 20px 15px;
+}
+
+.search .search-item {
+    float: left;
+    border: 1px solid #393d49;
+    border-right: none;
+    padding: 4px 8px;
+    cursor: pointer;
+}
+
+.search .search-item:hover {
+    background: #393d49;
+    color: #fff;
+}
+.search .search-item.active{
+    background: #393d49;
+    color: #fff;
+}
+
+.search .search-item.date {
+    border-right: 1px solid #393d49;
+    padding-right: 30px;
+    padding-left: 15px;
+}
+
+.data-list {
+    margin-top: 20px;
+    margin-left: 10px;
+}
+
+.data-list .title {
+    line-height: 26px;
+    padding: 5px 10px;
+    background: #45474e;
+    color: #fff;
+}
+
+.data-list .infos {
+    padding: 15px 10px;
+    overflow: hidden;
+    border: 1px solid #ccc;
+    border-top: none;
+}
+
+.data-list .infos .info {
+    float: left;
+    width: 19%;
+    border-right: 1px solid #ccc;
+}
+
+.data-list .infos .info:last-child {
+    border-right: none;
+}
+
+.data-list .infos .info p {
+    line-height: 32px;
+    padding-left: 20px;
+}
+.data-list .infos .info p em{
+    font-size: 20px;
+    margin-right: 5px;
+    color: #183152;
+}
