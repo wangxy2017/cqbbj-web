@@ -102,7 +102,7 @@ public class WXSalaryController extends BaseController {
         if (salary != null) {
             salaryService.deleteEntity(id);
             // 记录日志
-            OperationLog log = createLog(request, "删除员工【" + salary.getEmp_name() + "】工资核算");
+            OperationLog log = createLog(request, salary.getEmp_name(),"删除员工【" + salary.getEmp_name() + "】工资核算");
             operationLogService.saveEntity(log);
             return ResultUtils.success();
         }
