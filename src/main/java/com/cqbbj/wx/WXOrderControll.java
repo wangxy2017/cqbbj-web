@@ -36,7 +36,7 @@ public class WXOrderControll extends BaseController {
     /**
      * 进入添加订单页面
      */
-    @RequestMapping("/OrderAdd")
+    @RequestMapping("/orderAdd")
     public String OrderAdd() {
         return "wx/order/orderAdd";
     }
@@ -176,13 +176,10 @@ public class WXOrderControll extends BaseController {
      */
     @RequestMapping("/queryPageListEmployee")
     @ResponseBody
-    public Result queryPageList(HttpServletRequest request, Order order, int pageNum, int pageSize) {
+    public Result queryPageList( Order order, int pageNum, int pageSize) {
 
         Employee empUser = EmployeeUtils.getEmployee();
         order.setEmp_no(empUser.getEmp_no());
-        System.out.println("##########" + empUser.getEmp_no());
-
-//            order.setEmp_no(getWXEmpUser(request).getEmp_no());
 
         PageModel<Order> orderPageModel = orderService.queryPageList(order, pageNum, pageSize);
 

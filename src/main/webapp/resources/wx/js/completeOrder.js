@@ -4,7 +4,7 @@ var main = new Vue({
         flag: true,
         loaded: 0,
         total: 0,
-        order: {}
+        orders: {}
     },
     //方法
     methods: {
@@ -12,8 +12,9 @@ var main = new Vue({
         /**
          * 点击卡片显示隐藏查看和回访
          * **/
-        display: function () {
-            $(".list-li").children('.display').toggle(500).css('display');
+        display: function (event) {
+            var el = event.currentTarget;// 获取当前元素
+            $(el).children('.display').toggle(500).css('display');
         },
         /**
          * 查看跳转页面
@@ -30,11 +31,12 @@ var main = new Vue({
 
             window.location.href = "/wx/order/callback?id=" + id;
 
-        },
+        }
+    },
         mounted: function () {
             // 初始化
             this.$http.post("/wx/order/queryPageListEmployee", {
-                "status": 2,
+                status: 2,
                 pageNum: 1,
                 pageSize: 4
             }, {emulateJSON: true}).then(function (res) {
@@ -98,6 +100,6 @@ var main = new Vue({
                 });
             });
         }
-    }
+
 });
 

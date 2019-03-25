@@ -25,9 +25,9 @@
 </header>
 <div class="container-fluid" id="main">
     <ul class="list-ul">
-        <li class="row list-li" @click.stop="display">
+        <li class="row list-li" @click.stop="display($event)" v-for="order in orders">
             <div class="zhang">
-                <img src="../imge/zf.png" alt="">
+                <img src="${pageContext.request.contextPath}/resources/wx/imge/zf.png" alt="">
             </div>
             <div class="row li-title">
                 <div class="col-sm-7">

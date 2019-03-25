@@ -2,7 +2,7 @@ var main = new Vue({
     el: "#main",
     data: {
 
-        order: {},
+        orders: {},
         flag: true,
         loaded: 0,
         total: 0
@@ -12,8 +12,9 @@ var main = new Vue({
         /**
          * 点击卡片显示隐藏查看和回访
          * **/
-        display: function () {
-            $(".list-li").children('.display').toggle(500).css('display');
+        display:function (event) {
+            var el = event.currentTarget;// 获取当前元素
+            $(el).children('.display').toggle(500).css('display');
         },
         /**
          * 查看跳转页面
@@ -41,7 +42,7 @@ var main = new Vue({
                     //{code:1,msg:success}
                     if (result.code == 1) {
                         toastr.success('恢复成功');
-                        window.location.herf = "/wx/order/";
+                        window.location.herf = "/wx/order/unSentOrder";
                     } else {
                         toastr.error("操作失败");
                     }
@@ -55,6 +56,7 @@ var main = new Vue({
         },
     },
     mounted: function () {
+
         this.$http.post("/wx/order/queryPageListEmployee", {
             status: 3,
             pageNum: 1,
@@ -62,7 +64,12 @@ var main = new Vue({
         }, {emulateJSON: true})
             .then(function (res) {
                 console.log(res);
-                this.order = res.body.data;
+                if (res.body.code == 1) {
+                    main.orders = res.body.data.list;
+                    // 分页准备工作--赋值
+                    main.loaded = res.body.data.list.length;
+                    main.loaded = res.body.data.total;
+                }
             }, function () {
                 toastr.error("数据异常");
             });

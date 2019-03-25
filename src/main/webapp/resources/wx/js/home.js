@@ -1,5 +1,5 @@
 function OrderAdd(){
-    window.location.href="/wx/order/OrderAdd";
+    window.location.href="/wx/order/orderAdd";
 }
 function unSentOrder(){
     window.location.href="/wx/order/unSentOrder";

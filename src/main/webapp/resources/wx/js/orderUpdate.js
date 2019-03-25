@@ -40,7 +40,7 @@ var main = new Vue({
                 if (res.body.code == 1) {
                     this.order = res.body.data;
                     this.$nextTick(function () {
-                        if (this.order.status == 1 || this.order.status == 2) {
+                        if (this.order.status == 1 ) {
                             this.isDispatch = true;
                         }
                         $("#moneyEmps").val($("#moneyEmpsList").text());
