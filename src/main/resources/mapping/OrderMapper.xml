@@ -22,7 +22,13 @@
         receiveMoney,
         receiveText,
         costMoney,
-        visit
+        visit,
+        source,
+        type,
+        is_clean,
+        cleanText,
+        payState,
+        salesman
     </sql>
     <sql id="insert_all_values">
         #{createTime},
@@ -43,7 +49,13 @@
         #{receiveMoney},
         #{receiveText},
         #{costMoney},
-        #{visit}
+        #{visit},
+        #{source},
+        #{type},
+        #{is_clean},
+        #{cleanText},
+        #{payState},
+        #{salesman}
     </sql>
     <sql id="query_all_fields">
         id,
@@ -64,7 +76,13 @@
         receiveMoney,
         receiveText,
         costMoney,
-        visit
+        visit,
+        source,
+        type,
+        is_clean,
+        cleanText,
+        payState,
+        salesman
     </sql>
     <!-- 保存订单 -->
     <insert id="save" parameterType="order" useGeneratedKeys="true" keyProperty="id">
@@ -89,6 +107,11 @@
             <if test="receiveText != null and receiveText != ''">receiveText = #{receiveText},</if>
             <if test="costMoney != null">costMoney = #{costMoney},</if>
             <if test="visit != null and visit != ''">visit = #{visit},</if>
+            <if test="source != null">source = #{source},</if>
+            <if test="type != null">type = #{type},</if>
+            <if test="is_clean != null">is_clean = #{is_clean},</if>
+            <if test="cleanText != null and cleanText != ''">cleanText = #{cleanText},</if>
+            <if test="payState != null">payState = #{payState},</if>
         </set>
         where id = #{id}
     </update>
@@ -100,12 +123,52 @@
     <update id="deleteActive" parameterType="int">
         update sys_order set deleteStatus = 1 where id = #{id}
     </update>
+    <!-- 修改订单状态 -->
+    <update id="updateOrderStatus" parameterType="map">
+        update sys_order set status = #{status} where id = #{id}
+    </update>
+
     <!-- 查询订单列表 -->
     <select id="queryList" resultType="order" parameterType="order">
-        select <include refid="query_all_fields"></include> from sys_order where deleteStatus = 0
-        <if test="name != null and name != ''">and name = #{name}</if>
-        <if test="order_no != null and order_no != ''">and order_no = #{order_no}</if>
-        <if test="status != null">and status = #{status}</if>
+        select
+        r.id,
+        r.name,
+        r.phone,
+        r.start,
+        r.end,
+        r.content,
+        r.price,
+        r.beginTime,
+        r.createTime,
+        r.status,
+        r.startMap,
+        r.endMap,
+        r.order_no,
+        r.endTime,
+        r.cust_no,
+        r.receiveMoney,
+        r.receiveText,
+        r.costMoney,
+        r.visit,
+        r.source,
+        r.type,
+        r.payState,
+        r.salesman,
+        r.is_clean,
+        r.cleanText
+        from sys_order r
+        where r.deleteStatus = 0
+        <if test="name != null and name != ''">and r.name = #{name}</if>
+        <if test="cust_no != null and cust_no != ''">and r.cust_no = #{cust_no}</if>
+        <if test="order_no != null and order_no != ''">and r.order_no = #{order_no}</if>
+        <if test="status != null">and r.status = #{status}</if>
+        <if test="payState != null">and r.payState = #{payState}</if>
+        <if test="salesman != null and salesman != ''">and r.salesman = #{salesman}</if>
+        <if test="createTime1 != null"><![CDATA[and r.createTime >= #{createTime1}]]></if>
+        <if test="createTime2 != null"><![CDATA[and r.createTime <= #{createTime2}]]></if>
+        <if test="beginTime1 != null"><![CDATA[and r.beginTime >= #{beginTime1}]]></if>
+        <if test="beginTime2 != null"><![CDATA[and r.beginTime <= #{beginTime2}]]></if>
+        order by r.createTime desc
     </select>
     <!-- 根据ID查询 -->
     <select id="queryById" parameterType="int" resultType="order">
@@ -119,5 +182,19 @@
         <include refid="query_all_fields"/>
         from sys_order where
         <if test="order_no != null and order_no != ''">order_no = #{order_no}</if>
+        <if test="name != null and name != ''">`name` = #{name}</if>
+        <if test="phone != null and phone != ''">phone = #{phone}</if>
+        <if test="beginTime1 != null "><![CDATA[ beginTime >= #{beginTime1}  ]]> </if>
+        <if test="beginTime2 != null "><![CDATA[ beginTime <= #{beginTime2}  ]]> </if>
+    </select>
+    <!-- 查询财务账单 -->
+    <select id="queryFinanceOrder" parameterType="order" resultType="order">
+        select <include refid="query_all_fields"/> from sys_order where deleteStatus = 0 and status = 2
+        <if test="is_clean != null">and is_clean = #{is_clean}</if>
+        <if test="payState != null">and payState = #{payState}</if>
+        <if test="order_no != null and order_no !=''">and order_no = #{order_no}</if>
+        <if test="name != null and name !=''">and name like concat("%",#{name},"%")</if>
+        <if test="beginTime1 != null"><![CDATA[and beginTime >= #{beginTime1}]]></if>
+        <if test="beginTime2 != null"><![CDATA[and beginTime <= #{beginTime2}]]></if>
     </select>
 </mapper>

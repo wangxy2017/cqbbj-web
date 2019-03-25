@@ -1,0 +1,28 @@
+/* 更改layui样式*/
+.layui-form {
+    margin-top: 20px !important;
+}
+
+.layui-form-item .layui-input-inline {
+    width: 260px;
+}
+
+.layui-form-label {
+    width: 120px;
+}
+
+.layui-input-block {
+    margin-left: 150px;
+}
+
+.page-title {
+    border-bottom: 1px solid #009688;
+    padding: 5px;
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+.page-title .flag {
+    background: #009688;
+    margin-right: 6px;
+}

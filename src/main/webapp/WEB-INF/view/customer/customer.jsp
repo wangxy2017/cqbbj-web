@@ -19,25 +19,32 @@
 <div class="main" id="main">
     <%-- 工具栏 --%>
     <div class="layui-btn-container">
-
         <button class="layui-btn layui-btn-normal" @click="updateCustomer">修改客户</button>
         <button class="layui-btn layui-btn-danger" @click="deleteCustomer">删除客户</button>
     </div>
-        <div class="search-tools">
+    <div class="search-tools">
+        <div class="search-item">
             客户账号：
-            <div class="layui-inline">
-                <input class="layui-input" name="cust_no" autocomplete="off"  v-model="cust_no">
+            <div class="layui-input-inline">
+                <input class="layui-input" name="cust_no" autocomplete="off" v-model="cust_no">
             </div>
+        </div>
+        <div class="search-item">
             姓名：
-            <div class="layui-inline">
-                 <input class="layui-input" name="name"autocomplete="off"  v-model="name">
+            <div class="layui-input-inline">
+                <input class="layui-input" name="name" autocomplete="off" v-model="name">
             </div>
+        </div>
+        <div class="search-item">
             微信名称：
-            <div class="layui-inline">
-                 <input class="layui-input" name="wxname" autocomplete="off"  v-model="wxname">
+            <div class="layui-input-inline">
+                <input class="layui-input" name="wxname" autocomplete="off" v-model="wxname">
             </div>
+        </div>
+        <div class="search-item">
             <button class="layui-btn" @click="search">搜索</button>
         </div>
+    </div>
     <table id="customerList" lay-filter="customerList"></table>
     <%-- 工具条存放区域--%>
 

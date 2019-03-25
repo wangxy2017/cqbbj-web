@@ -17,30 +17,41 @@
 </head>
 <body>
 <div class="main" id="main">
+    <%-- 工具栏 --%>
+    <div class="layui-btn-container">
+        <button class="layui-btn" @click="download">导出数据</button>
+    </div>
     <div class="search-tools">
-        订单编号：
-        <div class="layui-inline">
-            <input class="layui-input" name="order_no" autocomplete="off" placeholder="输入订单编号" v-model="order_no">
+        <div class="search-item">
+            订单编号：
+            <div class="layui-input-inline">
+                <input class="layui-input" name="order_no" autocomplete="off" placeholder="输入订单编号" v-model="order_no">
+            </div>
         </div>
-        客户名称：
-        <div class="layui-inline">
-            <input class="layui-input" name="name" autocomplete="off" placeholder="输入客户名称" v-model="name">
+        <div class="search-item">
+            客户名称：
+            <div class="layui-input-inline">
+                <input class="layui-input" name="name" autocomplete="off" placeholder="输入客户名称" v-model="name">
+            </div>
         </div>
-        支付时间：
-        <div class="layui-inline">
-            <input class="layui-input" id="payTime1" name="payTime1" autocomplete="off" placeholder="YYYY-MM-DD"
-                   v-model="payTime1">
+        <div class="search-item">
+            支付时间：
+            <div class="layui-input-inline">
+                <input class="layui-input" id="payTime1" name="payTime1" autocomplete="off" placeholder="选择开始时间">
+            </div>
+            至
+            <div class="layui-input-inline">
+                <input class="layui-input" id="payTime2" name="payTime2" autocomplete="off" placeholder="选择结束时间">
+            </div>
         </div>
-        至
-        <div class="layui-inline">
-            <input class="layui-input" id="payTime2" name="payTime2" autocomplete="off" placeholder="YYYY-MM-DD"
-                   v-model="payTime2">
+        <div class="search-item">
+            <button class="layui-btn" @click="search">搜索</button>
         </div>
-        <button class="layui-btn" @click="search">搜索</button>
     </div>
     <table id="orderList" lay-filter="orderList"></table>
     <%-- 工具条存放区域--%>
     <script type="text/html" id="options">
+        <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="view">查看</a>
         <a class="layui-btn layui-btn-xs" lay-event="visit">回访</a>
     </script>
 </div>

@@ -45,6 +45,9 @@ public class SendOrderServiceImpl implements ISendOrderService {
 
     }
 
+    public void deleteSendOrder(String order_no){
+        sendOrderMapper.deleteSendOrder(order_no);
+    }
     @Override
     public List<SendOrder> queryList(SendOrder sendOrder) {
         return null;
@@ -65,5 +68,10 @@ public class SendOrderServiceImpl implements ISendOrderService {
         SendOrder sendOrder = new SendOrder();
         sendOrder.setOrder_no(order_no);
         return sendOrderMapper.queryList(sendOrder);
+    }
+
+    @Override
+    public SendOrder queryByProperties(SendOrder sendOrder) {
+        return null;
     }
 }

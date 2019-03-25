@@ -85,4 +85,9 @@ public class DeptServiceImpl implements IDeptService {
     public List<Integer> queryBindMenu(Integer id) {
         return deptMapper.queryBindMenu(id);
     }
+
+    @Override
+    public Dept queryByProperties(Dept dept) {
+        return null;
+    }
 }

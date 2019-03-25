@@ -1,18 +1,17 @@
 // JavaScript代码区域
 var checkedEmps = [];// 选择的员工
-layui.use(["table", "layer", "laydate"], function () {
+layui.use(["table", "layer", "laydate", "jquery"], function () {
     var table = layui.table;
     var layer = layui.layer;
     var laydate = layui.laydate;
+    var $ = layui.$;
 
     // 创建vue实例
     var main = new Vue({
         el: "#main",
         data: {
             order_no: "",
-            name: "",
-            beginTime1: "",
-            beginTime2: ""
+            name: ""
         },
         methods: {
             /**
@@ -23,8 +22,8 @@ layui.use(["table", "layer", "laydate"], function () {
                     where: {
                         "name": main.name,
                         "order_no": main.order_no,
-                        "beginTime1": main.beginTime1,
-                        "beginTime2": main.beginTime2
+                        "beginTime1": $("#beginTime1").val(),
+                        "beginTime2": $("#beginTime2").val()
                     }
                 });
             },
@@ -61,21 +60,23 @@ layui.use(["table", "layer", "laydate"], function () {
                         , {field: 'start', title: '搬出地址'}
                         , {field: 'end', title: '搬入地址'}
                         , {field: 'content', title: '备注'}
-                        , {field: 'price', title: '预估起价'}
+                        , {field: 'price', title: '订单价格'}
                         , {
                             field: 'beginTime', title: '预约时间', templet: function (d) {
                                 return formatDateTime(d.beginTime);
                             }
                         }
-                        , {title: '操作', fixed: 'right', align: 'center', toolbar: '#options', width: 160}
+                        , {title: '操作', fixed: 'right', align: 'center', toolbar: '#options', width: 220}
                     ]]
                 });
                 // 初始化时间插件
                 laydate.render({
-                    elem: '#beginTime1'
+                    elem: '#beginTime1',
+                    type: "datetime"
                 });
                 laydate.render({
-                    elem: '#beginTime2'
+                    elem: '#beginTime2',
+                    type: "datetime"
                 });
                 // 监听工具条
                 table.on('tool(orderList)', function (obj) {
@@ -90,7 +91,12 @@ layui.use(["table", "layer", "laydate"], function () {
                             title: "派单",
                             content: "/order/dispatch?order_no=" + data.order_no,
                             area: ["700px", "500px"],
-                            maxmin: true
+                            maxmin: true,
+                            moveOut: true,
+                            end: function () {
+                                // 刷新列表
+                                table.reload("orderList");
+                            }
                         });
                     }
                     // 取消订单
@@ -114,6 +120,15 @@ layui.use(["table", "layer", "laydate"], function () {
                     // 修改订单
                     if (layEvent === 'update') {
                         window.location.href = "/order/orderUpdate?id=" + data.id;
+                    }
+                    // 查看订单
+                    if (layEvent === 'view') {
+                        layer.open({
+                            type: 2,
+                            content: "/order/orderView?id=" + data.id,
+                            area: ["700px", "550px"],
+                            title: "订单详情"
+                        });
                     }
                 });
             }

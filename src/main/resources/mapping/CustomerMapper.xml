@@ -8,14 +8,16 @@
         deleteStatus,
         name,
         phone,
-        cust_no
+        cust_no,
+        is_wxLogin
     </sql>
     <sql id="insert_all_values">
         #{createTime},
         #{deleteStatus},
         #{name},
         #{phone},
-        #{cust_no}
+        #{cust_no},
+        #{is_wxLogin}
     </sql>
     <sql id="query_all_fields">
         id,
@@ -27,6 +29,7 @@
     <!-- 保存客户 -->
     <insert id="save" parameterType="customer" useGeneratedKeys="true" keyProperty="id">
         insert into sys_customer(<include refid="insert_all_fields"/>) values(<include refid="insert_all_values"/>)
+        on duplicate key update name=#{name},phone=#{phone}
     </insert>
     <!-- 修改客户 -->
     <update id="update" parameterType="customer">
@@ -54,6 +57,7 @@
         select <include refid="query_all_fields"></include> from sys_customer where deleteStatus = 0
         <if test="cust_no != null and cust_no != ''">and cust_no = #{cust_no}</if>
         <if test="name != null and name != ''">and name like concat('%', #{name},'%')</if>
+        order by createTime desc
     </select>
     <!-- 查询客户列表 -->
     <select id="queryById" resultType="customer" parameterType="int">
@@ -62,6 +66,11 @@
     <!-- 根据对象属性查询 -->
     <select id="queryByProperties" parameterType="customer" resultType="customer">
         select * from sys_customer where deleteStatus = 0
+        <if test="phone != null and phone != ''">and phone = #{phone}</if>
+    </select>
+    <!--根据手机号查找客户-->
+    <select id="queryByPhone" parameterType="string"  resultType="customer">
+        select <include refid="query_all_fields"/> from sys_customer where deleteStatus = 0
         <if test="phone != null and phone != ''">and phone = #{phone}</if>
     </select>
 </mapper>

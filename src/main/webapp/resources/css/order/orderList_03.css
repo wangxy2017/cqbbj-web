@@ -6,3 +6,6 @@
 .layui-form-item .layui-input-inline {
     width: 200px;
 }
+.layui-form-checkbox[lay-skin=primary] {
+    height: 30px !important;
+}

@@ -18,31 +18,37 @@
 <body>
 <div class="main" id="main">
     <div class="search-tools">
-        订单编号：
-        <div class="layui-inline">
-            <input class="layui-input" name="order_no" autocomplete="off" placeholder="输入订单编号" v-model="order_no">
+        <div class="search-item">
+            订单编号：
+            <div class="layui-input-inline">
+                <input class="layui-input" name="order_no" autocomplete="off" placeholder="输入订单编号" v-model="order_no">
+            </div>
         </div>
-        客户名称：
-        <div class="layui-inline">
-            <input class="layui-input" name="name" autocomplete="off" placeholder="输入客户名称" v-model="name">
+        <div class="search-item">
+            客户名称：
+            <div class="layui-input-inline">
+                <input class="layui-input" name="name" autocomplete="off" placeholder="输入客户名称" v-model="name">
+            </div>
         </div>
-        预约时间：
-        <div class="layui-inline">
-            <input class="layui-input" id="beginTime1" name="beginTime1" autocomplete="off" placeholder="YYYY-MM-DD"
-                   v-model="beginTime1">
+        <div class="search-item">
+            预约时间：
+            <div class="layui-input-inline">
+                <input class="layui-input" id="beginTime1" name="beginTime1" autocomplete="off" placeholder="选择开始时间">
+            </div>
+            至
+            <div class="layui-input-inline">
+                <input class="layui-input" id="beginTime2" name="beginTime2" autocomplete="off" placeholder="选择结束时间">
+            </div>
         </div>
-        至
-        <div class="layui-inline">
-            <input class="layui-input" id="beginTime2" name="beginTime2" autocomplete="off" placeholder="YYYY-MM-DD"
-                   v-model="beginTime2">
+        <div class="search-item">
+            <button class="layui-btn" @click="search">搜索</button>
         </div>
-        <button class="layui-btn" @click="search">搜索</button>
     </div>
     <table id="orderList" lay-filter="orderList"></table>
     <%-- 工具条存放区域--%>
     <script type="text/html" id="options">
-        <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="helpDone">辅助完成</a>
-        <a class="layui-btn layui-btn-xs" lay-event="print">打印</a>
+        <a class="layui-btn layui-btn-xs" lay-event="helpDone">辅助完成</a>
+        <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="view">查看</a>
         <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="update">修改</a>
         <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="cancel">取消</a>
     </script>
@@ -71,6 +77,12 @@
             <label class="layui-form-label">收款备注</label>
             <div class="layui-input-inline">
                 <textarea id="receiveText" placeholder="请输入备注" class="layui-textarea" style="width: 300px"></textarea>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">是否收款</label>
+            <div class="layui-input-inline">
+                <input type="checkbox" name="isNotPay" id="isNotPay" value="1" title="暂不收款" lay-skin="primary">
             </div>
         </div>
     </form>

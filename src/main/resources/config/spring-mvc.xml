@@ -9,6 +9,7 @@ http://www.springframework.org/schema/mvc http://www.springframework.org/schema/
 
     <!-- 自动扫描 -->
     <context:component-scan base-package="com.cqbbj.controller"/>
+    <context:component-scan base-package="com.cqbbj.wx"/>
     <!-- 处理器映射器 -->
     <mvc:annotation-driven/>
     <!-- 静态资源处理  css js imgs -->
@@ -16,7 +17,14 @@ http://www.springframework.org/schema/mvc http://www.springframework.org/schema/
     <mvc:resources location="/upload/" mapping="/upload/**"/>
     <!-- 自定义拦截器（此配置方法拦截所有请求） -->
     <mvc:interceptors>
-        <bean class="com.cqbbj.interceptor.LoginInterceptor"></bean>
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <bean class="com.cqbbj.interceptor.AccessInterceptor"/>
+        </mvc:interceptor>
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <bean class="com.cqbbj.interceptor.LoginInterceptor"></bean>
+        </mvc:interceptor>
     </mvc:interceptors>
     <!-- 配置视图解析器 -->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">

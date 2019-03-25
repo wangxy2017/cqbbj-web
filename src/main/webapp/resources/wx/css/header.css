@@ -1,0 +1,22 @@
+header{
+    width: 100%;
+    background: darkslateblue;
+    margin: 0 auto;
+    text-align: center;
+    color: white;
+    font-size: 6rem;
+    position: relative;
+}
+header p{
+    line-height: 150px;
+}
+header .pic{
+    width: 150px;
+    height: 150px;
+    float: left;
+    position: absolute;
+}
+.pic span{
+   line-height: 150px;
+    color: white;
+}

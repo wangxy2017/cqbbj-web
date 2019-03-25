@@ -17,7 +17,10 @@ To change this template use File | Settings | File Templates.
 </head>
 <body>
 <div class="main" id="main" data-id="<%=request.getParameter("id")%>">
-    <p class="page-title">修改订单</p>
+    <%-- 页面返回键 --%>
+    <a class="layui-btn go-back" href="javascript:window.history.back()">
+        <i class="layui-icon">&#xe603;</i>返回
+    </a>
     <%-- 表单区域 --%>
     <form class="layui-form" action="" v-if="order">
         <div class="layui-form-item layui-hide">
@@ -34,6 +37,24 @@ To change this template use File | Settings | File Templates.
             <div class="layui-input-inline">
                 <input type="text" name="phone" required lay-verify="required" placeholder="请输入客户电话" autocomplete="off"
                        class="layui-input" v-model="order.phone">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label"><i class="required">*</i>客户来源</label>
+            <div class="layui-input-inline">
+                <select name="source" lay-verify="required" v-model="order.source">
+                    <option value="">请选择</option>
+                    <option value="0">电话</option>
+                    <option value="1">网络</option>
+                </select>
+            </div>
+            <label class="layui-form-label"><i class="required">*</i>客户类型</label>
+            <div class="layui-input-inline">
+                <select name="type" lay-verify="required" v-model="order.type">
+                    <option value="">请选择</option>
+                    <option value="0">个人</option>
+                    <option value="1">公司</option>
+                </select>
             </div>
         </div>
         <div class="layui-form-item">
@@ -57,9 +78,9 @@ To change this template use File | Settings | File Templates.
             </div>
         </div>
         <div class="layui-form-item">
-            <label class="layui-form-label"><i class="required">*</i>预估起价</label>
+            <label class="layui-form-label"><i class="required">*</i>订单价格</label>
             <div class="layui-input-inline">
-                <input type="text" name="price" required lay-verify="required" placeholder="请输入预估起价" autocomplete="off"
+                <input type="text" name="price" required lay-verify="required" placeholder="请输入订单价格" autocomplete="off"
                        class="layui-input" v-model="order.price">
             </div>
             <label class="layui-form-label"><i class="required">*</i>预约时间</label>

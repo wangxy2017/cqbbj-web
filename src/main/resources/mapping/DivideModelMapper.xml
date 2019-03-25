@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cqbbj.dao.DivideModelMapper">
+    <sql id="insert_all_fields">
+        createTime,
+        deleteStatus,
+        name,
+        model_no,
+        is_disabled
+    </sql>
+    <sql id="insert_all_values">
+        #{createTime},
+        #{deleteStatus},
+        #{name},
+        #{model_no},
+        #{is_disabled}
+    </sql>
+    <!-- 保存结算模式 -->
+    <insert id="save" parameterType="divideModel" useGeneratedKeys="true" keyProperty="id">
+        insert into sys_divide_model(<include refid="insert_all_fields"/>)
+        values(<include refid="insert_all_values"/>)
+    </insert>
+    <!-- 修改结算模式 -->
+    <update id="update" parameterType="divideModel">
+        update sys_divide_model
+        <set>
+            <if test="name != null and name != ''">name = #{name},</if>
+            <if test="is_disabled != null">is_disabled = #{is_disabled},</if>
+        </set>
+    </update>
+    <!-- 删除结算模式 -->
+    <delete id="delete" parameterType="int">
+        delete from sys_divide_model where id = #{id}
+    </delete>
+    <!-- 查询列表 -->
+    <resultMap type="divideModel" id="queryListResultMap">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="is_disabled" column="is_disabled"/>
+        <result property="createTime" column="createTime"/>
+        <!-- 配置一对多的关系 -->
+        <collection property="details" javaType="list" ofType="divideModelDetails">
+            <!-- 配置主键，是关联Order的唯一标识 -->
+            <id property="model_no" column="model_no"/>
+            <result property="id" column="did"/>
+            <result property="name" column="dname"/>
+            <result property="type" column="dtype"/>
+            <result property="value" column="dvalue"/>
+            <result property="isAll" column="disAll"/>
+        </collection>
+    </resultMap>
+    <select id="queryList" parameterType="divideModel" resultMap="queryListResultMap">
+        select
+        dm.id,
+        dm.name,
+        dm.is_disabled,
+        dm.createTime,
+        dmd.id as did,
+        dmd.name as dname,
+        dmd.type as dtype,
+        dmd.value as dvalue,
+        dmd.isAll as disAll
+        from sys_divide_model dm
+        left join sys_divide_model_details dmd on dmd.model_no = dm.model_no
+        where dm.deleteStatus = 0
+        order by dm.createTime desc
+    </select>
+</mapper>

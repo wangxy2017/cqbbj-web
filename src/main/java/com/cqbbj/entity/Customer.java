@@ -23,6 +23,18 @@ public class Customer extends BaseEntity {
      */
     private String cust_no;
 
+    public Integer getIs_wxLogin() {
+        return is_wxLogin;
+    }
+
+    public void setIs_wxLogin(Integer is_wxLogin) {
+        this.is_wxLogin = is_wxLogin;
+    }
+
+    /**
+     * 是否微信登录
+     */
+    private Integer is_wxLogin;
     public String getName() {
         return name;
     }

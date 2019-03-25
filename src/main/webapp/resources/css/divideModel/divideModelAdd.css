@@ -1,0 +1,40 @@
+/* 更改layui样式*/
+.layui-form {
+    margin-top: 40px !important;
+}
+
+.layui-form-checkbox[lay-skin=primary] {
+    height: 30px !important;
+}
+
+.layui-form-item .layui-input-inline {
+    width: 400px;
+}
+
+.layui-form-label {
+    width: 130px;
+}
+
+.go-back {
+    padding-left: 5px !important;
+    padding-right: 15px !important;
+}
+
+.divide {
+    padding: 8px 0;
+    margin-top: 0px !important;
+}
+
+.divide .divide-dl {
+    overflow: hidden;
+    margin-left: 20px;
+}
+
+.divide .divide-dl .divide-dt {
+    padding: 5px 0;
+}
+
+.divide .divide-dl .divide-dd {
+    overflow: hidden;
+    padding-left: 20px;
+}

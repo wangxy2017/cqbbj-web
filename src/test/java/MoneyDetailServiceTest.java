@@ -1,3 +1,4 @@
+import com.cqbbj.core.util.ConstantUtils;
 import com.cqbbj.core.base.PageModel;
 import com.cqbbj.core.util.CommUtils;
 import com.cqbbj.entity.MoneyDetail;
@@ -30,10 +31,12 @@ public class MoneyDetailServiceTest {
             MoneyDetail moneyDetail = new MoneyDetail();
             moneyDetail.setCreateTime(new Date());
             moneyDetail.setDeleteStatus(0);
-            moneyDetail.setEmp_no("sdf");
+            moneyDetail.setEmp_no("EP201903042023137020919");
             moneyDetail.setType(0);
             moneyDetail.setMoney(100.00D);
             moneyDetail.setRemark("测试数据" + i);
+            moneyDetail.setRestMoney(100D);
+            moneyDetail.setMoney_no(CommUtils.getCode(ConstantUtils.MONEY_DETAIL));
             moneyDetailService.saveEntity(moneyDetail);
             System.out.println("保存成功：" + moneyDetail.getId());
         }

@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cqbbj.dao.SignBillMapper">
+    <sql id="insert_all_fields">
+    createTime,
+    deleteStatus,
+    name,
+    phone,
+    start,
+    end,
+    content,
+    beginTime,
+    price,
+    endTime,
+    receiveMoney,
+    receiveText,
+    emp_no,
+    status,
+    order_no,
+    customer_no,
+    bill_no
+    </sql>
+    <sql id="insert_all_values">
+    #{createTime},
+    #{deleteStatus},
+    #{name},
+    #{phone},
+    #{start},
+    #{end},
+    #{content},
+    #{beginTime},
+    #{price},
+    #{endTime},
+    #{receiveMoney},
+    #{receiveText},
+    #{emp_no},
+    #{status},
+    #{order_no},
+    #{customer_no},
+    #{bill_no}
+    </sql>
+    <sql id="query_all_fields">
+    id,
+    name,
+    phone,
+    start,
+    end,
+    content,
+    beginTime,
+    price,
+    endTime,
+    receiveMoney,
+    receiveText,
+    emp_no,
+    status,
+    order_no,
+    customer_no,
+    bill_no
+    </sql>
+    <!-- 保存欠条 -->
+    <insert id="save" parameterType="signBill" useGeneratedKeys="true" keyProperty="id">
+        insert into sys_sign_bill(<include refid="insert_all_fields"/>) values(<include refid="insert_all_values"/>)
+    </insert>
+    <!-- 删除欠条 -->
+    <delete id="delete" parameterType="int">
+        delete from sys_sign_bill where id = #{id}
+    </delete>
+    <!-- 逻辑删除欠条 -->
+    <update id="deleteActive" parameterType="int">
+        update sys_sign_bill set deleteStatus = 1 where id = #{id}
+    </update>
+    <!-- 查询欠条列表 -->
+    <select id="queryList" resultType="signBill" parameterType="map">
+        select
+        s.id,
+        s.createTime,
+        s.deleteStatus,
+        s.`name`,
+        s.phone,
+        s.`start`,
+        s.`end`,
+        s.content,
+        s.beginTime,
+        s.price,
+        s.endTime,
+        s.receiveMoney,
+        s.receiveText,
+        s.emp_no,
+        s.`status`,
+        s.order_no,
+        s.customer_no,
+        s.bill_no,
+        e.`name` emp_name
+        from sys_sign_bill s
+        left join sys_employee e on s.emp_no=e.emp_no
+        where s.deleteStatus=0
+        <if test="name!=null and name!=''">and s.name like concat("%",#{name},"%")</if>
+        <if test="status!=null">and s.status=#{status}</if>
+        <if test="order_no!=null and order_no!=''">and s.order_no=#{order_no}</if>
+        <if test="startTime!=null"><![CDATA[and s.endTime >= #{startTime}]]></if>
+        <if test="finishTime!=null"><![CDATA[and s.endTime <= #{finishTime}]]></if>
+        order by s.createTime desc
+    </select>
+
+    <!-- 根据ID查询 -->
+    <select id="queryById" parameterType="int" resultType="signBill">
+        select
+        <include refid="query_all_fields"/>
+        from sys_sign_bill where id = #{id}
+    </select>
+    <!-- 修改订单 -->
+    <update id="update" parameterType="signBill">
+        update sys_sign_bill
+        <set>
+            <if test="receiveMoney != null">receiveMoney = #{receiveMoney},</if>
+            <if test="receiveText != null and receiveText != ''">receiveText = #{receiveText},</if>
+            <if test="status != null">status = #{status},</if>
+            <if test="emp_no != null and emp_no != ''">emp_no = #{emp_no},</if>
+        </set>
+        where id = #{id}
+    </update>
+</mapper>

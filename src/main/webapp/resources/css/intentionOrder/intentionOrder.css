@@ -1,0 +1,8 @@
+/* layui样式更改 */
+.layui-table-view .layui-form-checkbox {
+    top: 5px !important;
+}
+
+.layui-form {
+    margin: 20px 0;
+}

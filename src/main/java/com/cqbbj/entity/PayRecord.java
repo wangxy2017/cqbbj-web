@@ -22,7 +22,7 @@ public class PayRecord extends BaseEntity {
      */
     private String cust_no;
     /**
-     * 支付方式 0：现金 1：微信 2：签单
+     * 支付方式 0：现金 1：微信 2：欠条
      */
     private Integer payWay;
     /**
@@ -45,6 +45,20 @@ public class PayRecord extends BaseEntity {
      * 记录编号
      */
     private String record_no;
+
+    /**
+     * ============ 关联字段 ==============
+     */
+
+    /**
+     * 客户姓名
+     */
+    private String custName;
+    /**
+     * 收款人姓名
+     */
+    private String empName;
+
 
     public String getOrder_no() {
         return order_no;
@@ -108,5 +122,21 @@ public class PayRecord extends BaseEntity {
 
     public void setRecord_no(String record_no) {
         this.record_no = record_no;
+    }
+
+    public String getCustName() {
+        return custName;
+    }
+
+    public void setCustName(String custName) {
+        this.custName = custName;
+    }
+
+    public String getEmpName() {
+        return empName;
+    }
+
+    public void setEmpName(String empName) {
+        this.empName = empName;
     }
 }

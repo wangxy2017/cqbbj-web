@@ -1,0 +1,7 @@
+/* layui样式更改 */
+.layui-table-view .layui-form-checkbox{
+    top:5px !important;
+}
+.layui-form-item .layui-input-inline {
+    width: 200px;
+}

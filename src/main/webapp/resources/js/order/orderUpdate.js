@@ -69,7 +69,7 @@ layui.use(["jquery", "form", "layer", "laydate"], function () {
                             // console.log(result);
                             // 保存成功，跳转页面
                             if (result.code == 1) {
-                                window.location.href = "/order/orderList?page=1";
+                                window.location.href = "/order/orderList?page=2";
                             }
                         },
                         error: function () {
@@ -116,7 +116,7 @@ layui.use(["jquery", "form", "layer", "laydate"], function () {
                             for (var i = 0; i < results.getCurrentNumPois(); i++) {
                                 var position = results.getPoi(i);
                                 // console.log(position);
-                                html += "<dd class='search-result' data-lng='" + position.point.lng + "' data-lat='" + position.point.lat + "'><span>" + position.title + "</span><i>" + position.address + "</i></dd>";
+                                html += "<dd class='search-result' data-lng='" + position.point.lng + "' data-lat='" + position.point.lat + "'><span>" + position.city + position.title + "</span><i>" + position.address + "</i></dd>";
                             }
                             _result.empty().append(html).show();
                             // 绑定点击事件
@@ -143,6 +143,11 @@ layui.use(["jquery", "form", "layer", "laydate"], function () {
                             local.search("重庆市" + _input.val());
                         }
                     }, 0);
+                });
+                _input.on("blur", function () {
+                    setTimeout(function () {
+                        _result.hide();
+                    }, 200);
                 });
             }
 

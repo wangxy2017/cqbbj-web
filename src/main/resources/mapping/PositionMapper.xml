@@ -44,5 +44,6 @@
     <!-- 查询职位列表 -->
     <select id="queryList" resultType="position" parameterType="position">
         select <include refid="query_all_fields"></include> from sys_position where deleteStatus = 0
+        order by createTime desc
     </select>
 </mapper>

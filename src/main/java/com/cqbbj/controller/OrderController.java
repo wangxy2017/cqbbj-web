@@ -1,18 +1,19 @@
 package com.cqbbj.controller;
 
 import com.cqbbj.core.base.BaseController;
+import com.cqbbj.core.util.*;
 import com.cqbbj.core.base.PageModel;
 import com.cqbbj.core.base.Result;
-import com.cqbbj.core.util.CommUtils;
-import com.cqbbj.core.util.ResultUtils;
 import com.cqbbj.entity.*;
 import com.cqbbj.service.*;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.*;
 
 /**
@@ -42,6 +43,11 @@ public class OrderController extends BaseController {
     private ICompanyInfoService companyInfoService;// 配置信息
     @Autowired
     private IEmployeeService employeeService;// 员工
+
+    @Autowired
+    private ISignBillService signBillService;// 欠条
+    @Autowired
+    private IMessageLogService messageLogService;// 短信
 
 
     /**
@@ -94,6 +100,16 @@ public class OrderController extends BaseController {
     }
 
     /**
+     * 查看订单
+     *
+     * @return
+     */
+    @RequestMapping("/orderView")
+    public String orderView() {
+        return "order/orderView";
+    }
+
+    /**
      * 跳转派单界面
      *
      * @return
@@ -128,7 +144,7 @@ public class OrderController extends BaseController {
             customer = new Customer();
             customer.setName(order.getName());
             customer.setPhone(order.getPhone());
-            customer.setCust_no(CommUtils.getCode("CO"));
+            customer.setCust_no(CommUtils.getCode(ConstantUtils.CUSTOMER));
             customer.setCreateTime(new Date());
             customer.setDeleteStatus(0);
             customerService.saveEntity(customer);
@@ -137,13 +153,25 @@ public class OrderController extends BaseController {
         order.setCreateTime(new Date());
         order.setDeleteStatus(0);
         order.setStatus(0);
-        order.setOrder_no(CommUtils.getCode("DT"));
+        order.setOrder_no(CommUtils.getCode(ConstantUtils.ORDER));
         order.setCust_no(customer.getCust_no());
+        order.setSalesman(getLoginUser(request).getEmp_no());
         orderService.saveEntity(order);
         // 记录日志
         operationLogService.saveEntity(createLog(request, "新增订单：" + order.getOrder_no()));
         if (isNotice != null && isNotice == 1) {
+            CompanyInfo companyInfo = companyInfoService.queryById(1);
             log.debug("发送短信");
+            String content = "您好，您的订单" + order.getOrder_no() + "已生效，可前往[微信公众号-会员中心-我的订单]查看";
+            SmsUtils.config(companyInfo.getMsg_username(), companyInfo.getMsg_password(), companyInfo.getMsg_sign(), companyInfo.getMsg_domain());
+            SmsUtils.sendSms(order.getPhone(), content);
+            // 记录短信日志
+            MessageLog mLog = new MessageLog();
+            mLog.setCreateTime(new Date());
+            mLog.setDeleteStatus(0);
+            mLog.setPhone(order.getPhone());
+            mLog.setContent(content);
+            messageLogService.saveEntity(mLog);
         }
         return ResultUtils.success();
     }
@@ -224,17 +252,17 @@ public class OrderController extends BaseController {
         // 查询派单详情
         List<SendOrder> list = sendOrderService.queryByOrderNo(order.getOrder_no());
         // 分类
-        order.setMoenyEmps(new ArrayList<>());
-        order.setDirveEmps(new ArrayList<>());
+        order.setMoneyEmps(new ArrayList<>());
+        order.setDriveEmps(new ArrayList<>());
         order.setMoveEmps(new ArrayList<>());
         order.setAirEmps(new ArrayList<>());
         for (SendOrder so : list) {
             switch (so.getType()) {
                 case 0:
-                    order.getMoenyEmps().add(so);
+                    order.getMoneyEmps().add(so);
                     break;
                 case 1:
-                    order.getDirveEmps().add(so);
+                    order.getDriveEmps().add(so);
                     break;
                 case 2:
                     order.getMoveEmps().add(so);
@@ -256,14 +284,45 @@ public class OrderController extends BaseController {
      */
     @RequestMapping("/helpDone")
     @ResponseBody
-    public Result helpDone(HttpServletRequest request, Order order) {
-        // 完成订单
-        order.setStatus(2);
-        order.setEndTime(new Date());
-        orderService.updateEntity(order);
-        // 记录日志
-        operationLogService.saveEntity(createLog(request, "辅助完成订单：" + order.getOrder_no()));
-        return ResultUtils.success();
+    public Result helpDone(HttpServletRequest request, Order order, Integer isNotPay) {
+        Order order1 = orderService.queryById(order.getId());
+        if (order1 != null) {
+            // 暂不付款
+            if (isNotPay != null && isNotPay == 1) {
+                order1.setPayState(0);
+                order1.setStatus(2);
+                order1.setEndTime(new Date());
+                orderService.updateEntity(order1);
+                // 生成欠条
+                SignBill bill = new SignBill();
+                bill.setCreateTime(new Date());
+                bill.setDeleteStatus(0);
+                bill.setName(order1.getName());
+                bill.setPhone(order1.getPhone());
+                bill.setStart(order1.getStart());
+                bill.setEnd(order1.getEnd());
+                bill.setContent(order1.getContent());
+                bill.setBeginTime(order1.getBeginTime());
+                bill.setPrice(order1.getPrice());
+                bill.setEndTime(order1.getEndTime());
+                bill.setStatus(0);
+                bill.setOrder_no(order1.getOrder_no());
+                bill.setCustomer_no(order1.getCust_no());
+                bill.setBill_no(CommUtils.getCode(ConstantUtils.SIGN_BILL));
+                signBillService.saveEntity(bill);
+            } else {
+                order1.setReceiveMoney(order.getReceiveMoney());
+                order1.setReceiveText(order.getReceiveText());
+                order1.setPayState(1);
+                order1.setStatus(2);
+                order1.setEndTime(new Date());
+                orderService.updateEntity(order1);
+            }
+            // 记录日志
+            operationLogService.saveEntity(createLog(request, "辅助完成订单：" + order1.getOrder_no()));
+            return ResultUtils.success();
+        }
+        return ResultUtils.error();
     }
 
     /**
@@ -330,5 +389,64 @@ public class OrderController extends BaseController {
     public Result queryById(Integer id) {
         Order order = orderService.queryById(id);
         return ResultUtils.success(order);
+    }
+
+    /**
+     * 回访
+     *
+     * @param request
+     * @param order
+     * @return
+     */
+    @RequestMapping("/visit")
+    @ResponseBody
+    public Result visit(HttpServletRequest request, Order order) {
+        orderService.updateEntity(order);
+        // 记录日志
+        OperationLog log = createLog(request, "回访订单：" + order.getOrder_no());
+        operationLogService.saveEntity(log);
+        return ResultUtils.success();
+    }
+
+    /**
+     * 导出excel
+     *
+     * @param request
+     * @param response
+     * @param order
+     * @param page
+     * @throws Exception
+     */
+    @RequestMapping("/download")
+    public void download(HttpServletRequest request, HttpServletResponse response, Order order, String page) throws Exception {
+        String fileName = "";
+        String sheetName = "";
+        String[] title = null;
+        String[][] values = null;
+        // 打印完成订单
+        if ("04".equals(page)) {
+            List<Order> orders = orderService.queryList(order);
+            fileName = "完成订单.xls";
+            sheetName = "完成订单";
+            title = new String[]{"订单编号", "客户名称", "客户电话", "搬出地址", "搬入地址", "订单价格", "实际收款", "完成时间", "售后"};
+            values = new String[orders.size()][9];
+            int i = 0;
+            for (Order o : orders) {
+                values[i][0] = o.getOrder_no();
+                values[i][1] = o.getName();
+                values[i][2] = o.getPhone();
+                values[i][3] = o.getStart();
+                values[i][4] = o.getEnd();
+                values[i][5] = String.valueOf(o.getPrice());
+                values[i][6] = String.valueOf(o.getReceiveMoney());
+                values[i][7] = DateUtils.formatDateTime(o.getEndTime());
+                values[i][8] = StringUtils.isBlank(o.getVisit()) ? "未回访" : "已回访";
+                i++;
+            }
+        }
+        // 记录日志
+        OperationLog log = createLog(request, "导出订单表");
+        operationLogService.saveEntity(log);
+        ExcelUtils.downloadExcel(fileName, sheetName, title, values, response);
     }
 }

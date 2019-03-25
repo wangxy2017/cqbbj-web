@@ -1,6 +1,8 @@
 package com.cqbbj.service.impl;
 
+import com.cqbbj.core.util.ConstantUtils;
 import com.cqbbj.core.base.PageModel;
+import com.cqbbj.core.util.CommUtils;
 import com.cqbbj.dao.SalaryMapper;
 import com.cqbbj.entity.Salary;
 import com.cqbbj.service.ISalaryService;
@@ -29,6 +31,10 @@ public class SalaryServiceImpl implements ISalaryService {
 
     @Override
     public int saveEntity(Salary salary) {
+
+        //salary.setDeleteStatus(0);
+        //salary.setCreateTime(new Date());
+        salary.setSalary_no(CommUtils.getCode(ConstantUtils.SALARY));
         return salaryMapper.save(salary);
     }
 
@@ -62,6 +68,11 @@ public class SalaryServiceImpl implements ISalaryService {
 
     @Override
     public Salary queryById(Integer id) {
+        return salaryMapper.queryById(id);
+    }
+
+    @Override
+    public Salary queryByProperties(Salary salary) {
         return null;
     }
 }

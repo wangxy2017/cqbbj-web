@@ -9,6 +9,7 @@ import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -29,6 +30,8 @@ public class MessageLogServiceImpl implements IMessageLogService {
 
     @Override
     public int saveEntity(MessageLog messageLog) {
+        if (messageLog.getCreateTime() == null) messageLog.setCreateTime(new Date());
+        if (messageLog.getDeleteStatus() == null) messageLog.setDeleteStatus(0);
         return messageLogMapper.save(messageLog);
     }
 
@@ -62,6 +65,11 @@ public class MessageLogServiceImpl implements IMessageLogService {
 
     @Override
     public MessageLog queryById(Integer id) {
+        return null;
+    }
+
+    @Override
+    public MessageLog queryByProperties(MessageLog messageLog) {
         return null;
     }
 }

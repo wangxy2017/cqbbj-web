@@ -35,7 +35,7 @@ public class BaseController {
     }
 
     /**
-     * 获取登录信息
+     * 获取后台员工登录信息
      *
      * @param request
      * @return
@@ -44,6 +44,24 @@ public class BaseController {
         return (Employee) getSession(request).getAttribute("loginUser");
     }
 
+//    /**
+//     * 获取微信登录员工信息
+//     * @param request
+//     * @return
+//     */
+//    protected Employee getWXEmpUser(HttpServletRequest request) {
+//        return (Employee) getSession(request).getAttribute("empUser");
+//    }
+
+//    /**
+//     * 获取微信客户登录信息
+//     * @param request
+//     * @return
+//     */
+//    protected Employee getWXCosUser(HttpServletRequest request) {
+//        return (Employee) getSession(request).getAttribute("cosUser");
+//    }
+
     /**
      * 创建日志
      *
@@ -51,10 +69,14 @@ public class BaseController {
      * @return
      */
     protected OperationLog createLog(HttpServletRequest request, String content) {
+        return createLog(request, getLoginUser(request).getName(), content);
+    }
+
+    protected OperationLog createLog(HttpServletRequest request, String name, String content) {
         OperationLog log = new OperationLog();
         log.setCreateTime(new Date());
         log.setDeleteStatus(0);
-        log.setName(getLoginUser(request).getName());
+        log.setName(name);
         log.setContent(content);
         log.setIp(request.getRemoteAddr());
         return log;

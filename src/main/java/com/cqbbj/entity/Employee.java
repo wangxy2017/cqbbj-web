@@ -55,6 +55,10 @@ public class Employee extends BaseEntity {
      * 是否在职 0：在职 1：离职
      */
     private Integer is_onjob;
+    /**
+     * 离职原因
+     */
+    private String reason;
 
     /**
      * ================关联字段=============
@@ -171,5 +175,13 @@ public class Employee extends BaseEntity {
 
     public void setPositionName(String positionName) {
         this.positionName = positionName;
+    }
+
+    public String getReason() {
+        return reason;
+    }
+
+    public void setReason(String reason) {
+        this.reason = reason;
     }
 }

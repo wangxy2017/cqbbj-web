@@ -23,6 +23,14 @@
         <typeAlias type="com.cqbbj.entity.Salary" alias="salary"/>
         <typeAlias type="com.cqbbj.entity.CompanyInfo" alias="companyInfo"/>
         <typeAlias type="com.cqbbj.entity.SendOrder" alias="sendOrder"/>
+        <typeAlias type="com.cqbbj.entity.OrderDivide" alias="orderDivide"/>
+        <typeAlias type="com.cqbbj.entity.DivideModel" alias="divideModel"/>
+        <typeAlias type="com.cqbbj.entity.DivideModelDetails" alias="divideModelDetails"/>
+        <typeAlias type="com.cqbbj.entity.SignBill" alias="signBill"/>
+        <typeAlias type="com.cqbbj.entity.IntentionOrder" alias="intentionOrder"/>
+        <typeAlias type="com.cqbbj.entity.IntentionFollow" alias="intentionFollow"/>
+        <typeAlias type="com.cqbbj.entity.Code" alias="code"/>
+        <typeAlias type="com.cqbbj.entity.Notice" alias="notice"/>
     </typeAliases>
     <plugins>
         <!-- 分页插件 -->

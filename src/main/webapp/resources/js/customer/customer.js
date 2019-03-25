@@ -67,7 +67,7 @@ layui.use(["table", "layer"], function () {
                     }, function (res) {
                         layer.msg("服务器请求异常");
                     });
-                })
+                });
             }
         }
     });

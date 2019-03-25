@@ -44,7 +44,18 @@
 
     <!-- 查询派单列表 -->
     <select id="queryList" parameterType="sendOrder" resultType="sendOrder">
-        select * from sys_send_order where deleteStatus = 0
-        <if test="order_no != null and order_no != ''">order_no = #{order_no}</if>
+        select
+        s.id,
+        s.createTime,
+        s.deleteStatus,
+        s.order_no,
+        s.emp_no,
+        s.type,
+        e.`name` emp_name
+        from sys_send_order s
+        left join sys_employee e on s.emp_no=e.emp_no
+        where s.deleteStatus = 0
+        <if test="order_no != null and order_no != ''">and s.order_no = #{order_no}</if>
+        order by s.createTime desc
     </select>
 </mapper>

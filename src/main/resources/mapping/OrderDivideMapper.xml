@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cqbbj.dao.OrderDivideMapper">
+
+
+    <sql id="insert_all_fields">
+    createTime,
+    deleteStatus,
+    emp_no,
+    order_no,
+    order_price,
+    type,
+    money,
+    clean_time,
+    operator_no,
+    divide_no
+    </sql>
+    <sql id="insert_all_values">
+    #{createTime},
+    #{deleteStatus},
+    #{emp_no},
+    #{order_no},
+    #{order_price},
+    #{type},
+    #{money},
+    #{clean_time},
+    #{operator_no},
+    #{divide_no}
+    </sql>
+
+    <!-- 保存提成记录 -->
+    <insert id="save" parameterType="orderDivide" useGeneratedKeys="true" keyProperty="id">
+        insert into sys_order_divide(<include refid="insert_all_fields"/>) values(<include refid="insert_all_values"/>)
+    </insert>
+    <!-- 删除提成记录 -->
+    <delete id="delete" parameterType="int">
+        delete from sys_order_divide where id = #{id}
+    </delete>
+    <!-- 逻辑删除提成记录 -->
+    <update id="deleteActive" parameterType="int">
+        update sys_order_divide set deleteStatus = 1 where id = #{id}
+    </update>
+
+
+    <!-- 查询提成记录列表 -->
+    <select id="queryList" resultType="orderDivide" parameterType="map">
+        select
+        d.id,
+        d.createTime,
+        d.deleteStatus,
+        d.emp_no,
+        d.order_no,
+        d.order_price,
+        d.`type`,
+        d.money,
+        d.clean_time,
+        d.operator_no,
+        d.divide_no,
+        e.`name` emp_name,
+        e.position_id,
+        p.name as deptName,
+        m.`name` operator_name,
+        o.start,
+        o.`end`,
+        o.endTime
+        from sys_order_divide d
+        left join sys_employee e on e.emp_no=d.emp_no
+        left join sys_position p on p.id = e.position_id
+        left join sys_employee m on d.operator_no=m.emp_no
+        left join sys_order o on d.order_no=o.order_no
+        where d.deleteStatus = 0
+        <if test="name!=null and name!=''">and e.name like concat("%",#{name},"%")</if>
+        <if test="position_id!=null and position_id!=''">and e.position_id=#{position_id}</if>
+        <if test="order_no!=null and order_no!=''">and d.order_no=#{order_no}</if>
+        <if test="startTime!=null and startTime!=''"><![CDATA[and d.clean_time >= #{startTime}]]></if>
+        <if test="endTime!=null and endTime!=''"><![CDATA[ and d.clean_time  <= #{endTime}]]></if>
+        order by d.createTime desc
+    </select>
+</mapper>

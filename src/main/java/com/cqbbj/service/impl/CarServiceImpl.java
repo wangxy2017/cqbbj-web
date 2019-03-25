@@ -35,8 +35,6 @@ public class CarServiceImpl implements ICarService {
 
     @Override
     public int updateEntity(Car car) {
-
-
         return carMapper.update(car);
     }
 
@@ -70,7 +68,12 @@ public class CarServiceImpl implements ICarService {
 
     @Override
     public void deleteActiveBatch(String ids) {
-        String[] array=ids.split(",");
+        String[] array = ids.split(",");
         carMapper.deleteActiveBatch(array);
+    }
+
+    @Override
+    public Car queryByProperties(Car car) {
+        return null;
     }
 }

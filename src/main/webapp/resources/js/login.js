@@ -1,7 +1,8 @@
 // JavaScript代码存放区域
-layui.use(["form", "layer"], function () {
+layui.use(["form", "layer", "jquery"], function () {
     var form = layui.form;
     var layer = layui.layer;
+    var $ = layui.$;
 
     var main = new Vue({
         el: "#main",
@@ -30,6 +31,12 @@ layui.use(["form", "layer"], function () {
                     });
                     return false;// 阻止表单跳转
                 });
+            },
+            /**
+             * 回车登录
+             */
+            doLogin: function () {
+                $("#login").trigger("click");
             }
         },
         mounted: function () {

@@ -104,4 +104,9 @@ public class MenuServiceImpl implements IMenuService {
         List<Menu> menus = menuMapper.queryMenuByDept(dept_id);
         return sortMenus(menus);
     }
+
+    @Override
+    public Menu queryByProperties(Menu menu) {
+        return null;
+    }
 }

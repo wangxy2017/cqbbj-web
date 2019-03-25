@@ -27,7 +27,7 @@
             <div class="group">
                 <label>登录账号</label>
                 <div class="input-box">
-                    <span class="layui-icon layui-icon-username" style="background: #28B779;"></span>
+                    <span class="layui-icon layui-icon-username" style="background: #009688;"></span>
                     <input type="text" name="account" required lay-verify="required"
                            placeholder="请输入登录账号" autocomplete="off"/>
                 </div>
@@ -37,12 +37,12 @@
                 <div class="input-box">
                     <span class="layui-icon layui-icon-password" style="background: #FFB848;"></span>
                     <input type="password" name="password" required lay-verify="required"
-                           placeholder="请输入登录密码" autocomplete="off"/>
+                           placeholder="请输入登录密码" autocomplete="off" @keyup.enter="doLogin"/>
                 </div>
             </div>
             <div :class="{'error':error}" v-text="error"></div>
             <div class="actions">
-                <button type="button" class="layui-btn layui-btn-fluid" lay-submit lay-filter="login">登&nbsp;&nbsp;&nbsp;&nbsp;录
+                <button type="button" class="layui-btn layui-btn-fluid" lay-submit lay-filter="login" id="login">登&nbsp;&nbsp;&nbsp;&nbsp;录
                 </button>
             </div>
         </form>

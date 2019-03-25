@@ -3,15 +3,14 @@ layui.use(["table", "layer", "laydate"], function () {
     var table = layui.table;
     var layer = layui.layer;
     var laydate = layui.laydate;
+    var $ = layui.$;
 
     // 创建vue实例
     var main = new Vue({
         el: "#main",
         data: {
             order_no: "",
-            name: "",
-            beginTime1: "",
-            beginTime2: ""
+            name: ""
         },
         methods: {
             /**
@@ -22,8 +21,8 @@ layui.use(["table", "layer", "laydate"], function () {
                     where: {
                         "name": main.name,
                         "order_no": main.order_no,
-                        "beginTime1": main.beginTime1,
-                        "beginTime2": main.beginTime2
+                        "beginTime1": $("#beginTime1").val(),
+                        "beginTime2": $("#beginTime2").val()
                     }
                 });
             },
@@ -60,7 +59,7 @@ layui.use(["table", "layer", "laydate"], function () {
                         , {field: 'start', title: '搬出地址'}
                         , {field: 'end', title: '搬入地址'}
                         , {field: 'content', title: '备注'}
-                        , {field: 'price', title: '预估起价'}
+                        , {field: 'price', title: '订单价格'}
                         , {
                             field: 'beginTime', title: '预约时间', templet: function (d) {
                                 return formatDateTime(d.createTime);
@@ -71,10 +70,12 @@ layui.use(["table", "layer", "laydate"], function () {
                 });
                 // 初始化时间插件
                 laydate.render({
-                    elem: '#beginTime1'
+                    elem: '#beginTime1',
+                    type: "datetime"
                 });
                 laydate.render({
-                    elem: '#beginTime2'
+                    elem: '#beginTime2',
+                    type: "datetime"
                 });
                 // 监听工具条
                 table.on('tool(orderList)', function (obj) {
@@ -97,6 +98,15 @@ layui.use(["table", "layer", "laydate"], function () {
                             }, function (res) {
                                 layer.msg("服务器请求异常");
                             });
+                        });
+                    }
+                    // 查看
+                    if (layEvent === 'view') {
+                        layer.open({
+                            type: 2,
+                            content: "/order/orderView?id=" + data.id,
+                            area: ["700px", "550px"],
+                            title: "订单详情"
                         });
                     }
                 });

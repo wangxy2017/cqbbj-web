@@ -41,6 +41,7 @@
     <!-- 查询部门列表 -->
     <select id="queryList" resultType="dept" parameterType="dept">
         select <include refid="query_all_fields"></include> from sys_dept where deleteStatus = 0
+        order by createTime desc
     </select>
 
     <!-- 插入部门菜单 -->

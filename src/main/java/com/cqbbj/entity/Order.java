@@ -74,7 +74,7 @@ public class Order extends BaseEntity {
     /**
      * 收款备注
      */
-    private Double receiveText;
+    private String receiveText;
 
     /**
      * 实际花费
@@ -87,17 +87,45 @@ public class Order extends BaseEntity {
     private String visit;
 
     /**
+     * 订单来源 0：电话 1：网络
+     */
+    private Integer source;
+
+    /**
+     * 订单类型 0：个人 1：企业
+     */
+    private Integer type;
+    /**
+     * 是否结算 0：未结算 1：已结算
+     */
+    private Integer is_clean;
+    /**
+     * 结算备注
+     */
+    private String cleanText;
+
+    /**
+     * 收款状态 0：未收款 1：已收款
+     */
+    private Integer payState;
+
+    /**
+     * 业务员
+     */
+    private String salesman;
+
+    /**
      * ============ 关联属性 =============
      */
 
     /**
      * 收款人员
      */
-    private List<SendOrder> moenyEmps;
+    private List<SendOrder> moneyEmps;
     /**
      * 随车司机
      */
-    private List<SendOrder> dirveEmps;
+    private List<SendOrder> driveEmps;
     /**
      * 随车搬运工
      */
@@ -106,6 +134,31 @@ public class Order extends BaseEntity {
      * 随车空调工
      */
     private List<SendOrder> airEmps;
+
+
+    /**
+     * ============= 范围筛选属性 ==============
+     */
+
+    /**
+     * 创建时间筛选
+     */
+    private Date createTime1;
+    private Date createTime2;
+
+    /**
+     * 预约时间筛选
+     */
+    private Date beginTime1;
+    private Date beginTime2;
+    /**
+     * =============== 关联字段 =================
+     */
+
+    /**
+     * 员工编号
+     */
+    private String emp_no;
 
     public String getName() {
         return name;
@@ -211,20 +264,20 @@ public class Order extends BaseEntity {
         this.cust_no = cust_no;
     }
 
-    public List<SendOrder> getMoenyEmps() {
-        return moenyEmps;
+    public List<SendOrder> getMoneyEmps() {
+        return moneyEmps;
     }
 
-    public void setMoenyEmps(List<SendOrder> moenyEmps) {
-        this.moenyEmps = moenyEmps;
+    public void setMoneyEmps(List<SendOrder> moneyEmps) {
+        this.moneyEmps = moneyEmps;
     }
 
-    public List<SendOrder> getDirveEmps() {
-        return dirveEmps;
+    public List<SendOrder> getDriveEmps() {
+        return driveEmps;
     }
 
-    public void setDirveEmps(List<SendOrder> dirveEmps) {
-        this.dirveEmps = dirveEmps;
+    public void setDriveEmps(List<SendOrder> driveEmps) {
+        this.driveEmps = driveEmps;
     }
 
     public List<SendOrder> getMoveEmps() {
@@ -251,11 +304,11 @@ public class Order extends BaseEntity {
         this.receiveMoney = receiveMoney;
     }
 
-    public Double getReceiveText() {
+    public String getReceiveText() {
         return receiveText;
     }
 
-    public void setReceiveText(Double receiveText) {
+    public void setReceiveText(String receiveText) {
         this.receiveText = receiveText;
     }
 
@@ -273,5 +326,93 @@ public class Order extends BaseEntity {
 
     public void setVisit(String visit) {
         this.visit = visit;
+    }
+
+    public Date getCreateTime1() {
+        return createTime1;
+    }
+
+    public void setCreateTime1(Date createTime1) {
+        this.createTime1 = createTime1;
+    }
+
+    public Date getCreateTime2() {
+        return createTime2;
+    }
+
+    public void setCreateTime2(Date createTime2) {
+        this.createTime2 = createTime2;
+    }
+
+    public Date getBeginTime1() {
+        return beginTime1;
+    }
+
+    public void setBeginTime1(Date beginTime1) {
+        this.beginTime1 = beginTime1;
+    }
+
+    public Date getBeginTime2() {
+        return beginTime2;
+    }
+
+    public void setBeginTime2(Date beginTime2) {
+        this.beginTime2 = beginTime2;
+    }
+
+    public Integer getSource() {
+        return source;
+    }
+
+    public void setSource(Integer source) {
+        this.source = source;
+    }
+
+    public Integer getType() {
+        return type;
+    }
+
+    public void setType(Integer type) {
+        this.type = type;
+    }
+
+    public String getEmp_no() {
+        return emp_no;
+    }
+
+    public void setEmp_no(String emp_no) {
+        this.emp_no = emp_no;
+    }
+
+    public Integer getIs_clean() {
+        return is_clean;
+    }
+
+    public void setIs_clean(Integer is_clean) {
+        this.is_clean = is_clean;
+    }
+
+    public Integer getPayState() {
+        return payState;
+    }
+
+    public void setPayState(Integer payState) {
+        this.payState = payState;
+    }
+
+    public String getSalesman() {
+        return salesman;
+    }
+
+    public void setSalesman(String salesman) {
+        this.salesman = salesman;
+    }
+
+    public String getCleanText() {
+        return cleanText;
+    }
+
+    public void setCleanText(String cleanText) {
+        this.cleanText = cleanText;
     }
 }

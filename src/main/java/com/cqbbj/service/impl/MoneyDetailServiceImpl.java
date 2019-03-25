@@ -2,6 +2,7 @@ package com.cqbbj.service.impl;
 
 import com.cqbbj.core.base.PageModel;
 import com.cqbbj.dao.MoneyDetailMapper;
+import com.cqbbj.entity.Employee;
 import com.cqbbj.entity.MoneyDetail;
 import com.cqbbj.service.IMoneyDetailService;
 import com.github.pagehelper.PageHelper;
@@ -62,6 +63,11 @@ public class MoneyDetailServiceImpl implements IMoneyDetailService {
 
     @Override
     public MoneyDetail queryById(Integer id) {
+        return null;
+    }
+
+    @Override
+    public MoneyDetail queryByProperties(MoneyDetail moneyDetail) {
         return null;
     }
 }

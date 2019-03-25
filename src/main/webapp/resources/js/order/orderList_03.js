@@ -1,19 +1,18 @@
 // JavaScript代码区域
 var checkedEmps = [];// 选择的员工
-layui.use(["table", "layer", "laydate", "jquery"], function () {
+layui.use(["table", "layer", "laydate", "jquery", "form"], function () {
     var table = layui.table;
     var layer = layui.layer;
     var laydate = layui.laydate;
     var $ = layui.$;
+    var form = layui.form;
 
     // 创建vue实例
     var main = new Vue({
         el: "#main",
         data: {
             order_no: "",
-            name: "",
-            beginTime1: "",
-            beginTime2: ""
+            name: ""
         },
         methods: {
             /**
@@ -24,8 +23,8 @@ layui.use(["table", "layer", "laydate", "jquery"], function () {
                     where: {
                         "name": main.name,
                         "order_no": main.order_no,
-                        "beginTime1": main.beginTime1,
-                        "beginTime2": main.beginTime2
+                        "beginTime1": $("#beginTime1").val(),
+                        "beginTime2": $("#beginTime2").val()
                     }
                 });
             },
@@ -71,18 +70,25 @@ layui.use(["table", "layer", "laydate", "jquery"], function () {
                 });
                 // 初始化时间插件
                 laydate.render({
-                    elem: '#beginTime1'
+                    elem: '#beginTime1',
+                    type: "datetime"
                 });
                 laydate.render({
-                    elem: '#beginTime2'
+                    elem: '#beginTime2',
+                    type: "datetime"
                 });
                 // 监听工具条
                 table.on('tool(orderList)', function (obj) {
                     var data = obj.data; // 获得当前行数据
                     var layEvent = obj.event; // 获得 lay-event 对应的值
                     // 打印
-                    if (layEvent === 'print') {
-                        console.log(layEvent);
+                    if (layEvent === 'view') {
+                        layer.open({
+                            type: 2,
+                            content: "/order/orderView?id=" + data.id,
+                            area: ["700px", "550px"],
+                            title: "订单详情"
+                        });
                     }
                     // 取消订单
                     if (layEvent === 'cancel') {
@@ -111,7 +117,7 @@ layui.use(["table", "layer", "laydate", "jquery"], function () {
                         layer.open({
                             type: 1,
                             content: $('#helpDoneForm'),
-                            area: ["480px", "360px"],
+                            area: ["480px", "400px"],
                             title: "辅助完成",
                             btn: ["确认", "取消"],
                             success: function (layero, index) {
@@ -123,7 +129,7 @@ layui.use(["table", "layer", "laydate", "jquery"], function () {
                             },
                             yes: function (index, layero) {
                                 // 验证金额
-                                if ($("#receiveMoney").val() == "") {
+                                if ($("#receiveMoney").val() == "" && !$("#isNotPay").is(":checked")) {
                                     layer.msg("请填写金额");
                                     return;
                                 }
@@ -133,7 +139,8 @@ layui.use(["table", "layer", "laydate", "jquery"], function () {
                                         "id": $("#id").val(),
                                         "order_no": $("#order_no").val(),
                                         "receiveMoney": $("#receiveMoney").val(),
-                                        "receiveText": $("#receiveText").val()
+                                        "receiveText": $("#receiveText").val(),
+                                        "isNotPay": $("#isNotPay").is(":checked") ? $("#isNotPay").val() : null
                                     },
                                     {emulateJSON: true}).then(function (res) {
                                     // console.log(res.body);
@@ -158,6 +165,8 @@ layui.use(["table", "layer", "laydate", "jquery"], function () {
             var that = this;
             // 初始化表格
             that.initTable();
+            // 初始化表单
+            form.render();
         }
     });
 });
