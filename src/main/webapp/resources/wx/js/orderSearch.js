@@ -22,7 +22,7 @@ $("#submit").on("click", function () {
         type: "post",
         success: function (res) {
             console.log(res.data);
-            window.location.href = "/wx/order/orderSearchResult";
+            window.location.href = "/wx/order/searchResult";
 
         }, error: function () {
             toastr.error("查询失败")

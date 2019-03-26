@@ -43,7 +43,14 @@ public class WXSignBillController extends BaseController {
 
         return ResultUtils.success(pageModel);
     }
+    @RequestMapping("/queryById")
+    @ResponseBody
+    public Result queryById(Integer id) {
 
+        SignBill signBill = signBillService.queryById(id);
+
+        return ResultUtils.success(signBill);
+    }
     /**
      * 收款
      *

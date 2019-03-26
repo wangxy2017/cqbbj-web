@@ -30,6 +30,11 @@
             <td style="color: #1e9fff">{{order.order_no}}</td>
         </tr>
         <tr>
+            <th>客户类型:</th>
+            <td v-if="order.type==0">个人</td>
+            <td v-else>公司</td>
+        </tr>
+        <tr>
             <th>客户名称:</th>
             <td>{{order.name}}</td>
         </tr>
@@ -46,7 +51,7 @@
             <td>{{order.end}}</td>
         </tr>
         <tr>
-            <th>客户备注:</th>
+            <th>搬运备注:</th>
             <td>{{order.content}}</td>
         </tr>
         <tr>

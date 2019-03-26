@@ -62,6 +62,9 @@ public class SalaryServiceImpl implements ISalaryService {
     public PageModel<Salary> queryPageList(Salary salary, int pageNum, int pageSize) {
         PageHelper.startPage(pageNum, pageSize);
         List<Salary> list = salaryMapper.queryList(salary);
+//        for(Salary s: list){
+//            System.out.println("FGHJKL:SDFGHJKL:FGHJKL:"+s.getId());
+//        }
         PageInfo<Salary> pageInfo = new PageInfo<>(list);
         return new PageModel(pageInfo);
     }
