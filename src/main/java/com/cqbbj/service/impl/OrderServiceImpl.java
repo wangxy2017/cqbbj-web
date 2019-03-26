@@ -189,4 +189,9 @@ public class OrderServiceImpl implements IOrderService {
     public Order queryByProperties(Order order) {
         return orderMapper.queryByProperties(order);
     }
+
+    @Override
+    public Map<String, Object> queryTotal(Map<String, Object> params) {
+        return orderMapper.queryTotal(params);
+    }
 }

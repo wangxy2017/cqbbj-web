@@ -20,7 +20,7 @@ function formatDateTime(timeStamp) {
     minute = minute < 10 ? ('0' + minute) : minute;
     second = second < 10 ? ('0' + second) : second;
     return y + '-' + m + '-' + d + ' ' + h + ':' + minute + ':' + second;
-};
+}
 
 /**
  * 格式化日期
@@ -38,7 +38,38 @@ function formatDate(timeStamp) {
     var d = date.getDate();
     d = d < 10 ? ('0' + d) : d;
     return y + '-' + m + '-' + d;
-};
+}
+
+/**
+ * 获取当前日期
+ * @returns {string}
+ */
+function currentDate() {
+    var date = new Date();
+
+    var year = date.getFullYear();
+    var month = date.getMonth() + 1;
+    var day = date.getDate();
+
+    if (month >= 1 && month <= 9) {
+        month = "0" + month;
+    }
+    if (day >= 0 && day <= 9) {
+        day = "0" + day;
+    }
+    return year + "-" + month + "-" + day;
+}
+
+/**
+ * 计算日期
+ * @param date
+ * @param num
+ * @returns {string}
+ */
+function addDay(date, num) {
+    var times = date.getTime() + num * 24 * 60 * 60 * 1000;
+    return formatDate(times);
+}
 
 /**
  * 验证空对象
@@ -51,7 +82,7 @@ function isEmptyObject(obj) {
     }
     ;
     return true
-};
+}
 
 /**
  * 验证为空
@@ -60,4 +91,22 @@ function isEmptyObject(obj) {
  */
 function isEmpty(obj) {
     return typeof obj == "undefined" || obj == null || obj == "" || obj == "null";
+}
+
+/**
+ * 返回整数
+ * @param value
+ * @returns {number}
+ */
+function returnInt(value) {
+    return isEmpty(value) ? 0 : value;
+}
+
+/**
+ * 返回小数
+ * @param value
+ * @returns {number}
+ */
+function returnDouble(value) {
+    return isEmpty(value) ? 0.00 : value;
 }

@@ -189,12 +189,24 @@
     </select>
     <!-- 查询财务账单 -->
     <select id="queryFinanceOrder" parameterType="order" resultType="order">
-        select <include refid="query_all_fields"/> from sys_order where deleteStatus = 0 and status = 2
+        select
+        <include refid="query_all_fields"/>
+        from sys_order where deleteStatus = 0 and status = 2
         <if test="is_clean != null">and is_clean = #{is_clean}</if>
         <if test="payState != null">and payState = #{payState}</if>
         <if test="order_no != null and order_no !=''">and order_no = #{order_no}</if>
         <if test="name != null and name !=''">and name like concat("%",#{name},"%")</if>
         <if test="beginTime1 != null"><![CDATA[and beginTime >= #{beginTime1}]]></if>
         <if test="beginTime2 != null"><![CDATA[and beginTime <= #{beginTime2}]]></if>
+    </select>
+
+    <!-- 订单统计 -->
+    <select id="queryTotal" resultType="map" parameterType="map">
+        select count(id) as f1,sum(price) as f2 from sys_order where deleteStatus = 0
+        <if test="startTime != null"><![CDATA[and createTime >= #{startTime}]]></if>
+        <if test="endTime != null"><![CDATA[and createTime <= #{endTime}]]></if>
+        <if test="status != null">and status = #{status}</if>
+        <if test="payState != null">and payState = #{payState}</if>
+        <if test="is_clean != null">and is_clean = #{is_clean}</if>
     </select>
 </mapper>

@@ -120,10 +120,10 @@ layui.use(["table", "layer", "laydate", "jquery", "form"], function () {
                                 var text = "";
                                 switch (d.status) {
                                     case 0:
-                                        text = "<span style='color: #1E9FFF'>只询问</span>";
+                                        text = "<span style='color: #1E9FFF'>录入</span>";
                                         break;
                                     case 1:
-                                        text = "<span style='color: #FF5722'>有意向</span>";
+                                        text = "<span style='color: #FF5722'>继谈</span>";
                                         break;
                                     case 2:
                                         text = "<span style='color: #009688'>成交</span>";

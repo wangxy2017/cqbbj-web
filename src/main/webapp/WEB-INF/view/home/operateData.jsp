@@ -17,38 +17,38 @@
 <div class="main" id="main">
     <p class="page-title"><span class="flag">&nbsp;</span>经营数据</p>
     <div class="search">
-        <div class="search-item">本日</div>
-        <div class="search-item">本周</div>
-        <div class="search-item">本月</div>
-        <div class="search-item date">2019-02-23 至 2019-03-25</div>
+        <div class="search-item" @click="choose('day')">今天</div>
+        <div class="search-item" @click="choose('week')">本周</div>
+        <div class="search-item" @click="choose('month')">本月</div>
+        <div class="search-item date" id="date"></div>
     </div>
     <div class="data-list">
         <p class="title">订单数据</p>
         <div class="infos">
             <div class="info">
-                <p>订单录入</p>
-                <p><em>1</em>单</p>
-                <p><em>200.00</em>元</p>
+                <p>意向订单</p>
+                <p><em>{{returnInt(data.intention)}}</em>单</p>
+                <p><em>{{returnDouble(data.intentionMoney)}}</em>元</p>
             </div>
             <div class="info">
                 <p>尚未派单</p>
-                <p><em>1</em>单</p>
-                <p><em>200.00</em>元</p>
+                <p><em>{{returnInt(data.unDispatch)}}</em>单</p>
+                <p><em>{{returnDouble(data.unDispatchMoney)}}</em>元</p>
             </div>
             <div class="info">
                 <p>已经派单</p>
-                <p><em>1</em>单</p>
-                <p><em>200.00</em>元</p>
+                <p><em>{{returnInt(data.dispatch)}}</em>单</p>
+                <p><em>{{returnDouble(data.dispatchMoney)}}</em>元</p>
             </div>
             <div class="info">
                 <p>完成订单</p>
-                <p><em>1</em>单</p>
-                <p><em>200.00</em>元</p>
+                <p><em>{{returnInt(data.done)}}</em>单</p>
+                <p><em>{{returnDouble(data.doneMoney)}}</em>元</p>
             </div>
             <div class="info">
                 <p>作废订单</p>
-                <p><em>1</em>单</p>
-                <p><em>200.00</em>元</p>
+                <p><em>{{returnInt(data.cancel)}}</em>单</p>
+                <p><em>{{returnDouble(data.cancelMoney)}}</em>元</p>
             </div>
         </div>
     </div>
@@ -56,29 +56,24 @@
         <p class="title">财务数据</p>
         <div class="infos">
             <div class="info">
-                <p>现金已收</p>
-                <p><em>1</em>单</p>
-                <p><em>200.00</em>元</p>
+                <p>已收款订单</p>
+                <p><em>{{returnInt(data.pay)}}</em>单</p>
+                <p><em>{{returnDouble(data.payMoney)}}</em>元</p>
             </div>
             <div class="info">
-                <p>欠款已收</p>
-                <p><em>1</em>单</p>
-                <p><em>200.00</em>元</p>
-            </div>
-            <div class="info">
-                <p>欠款未收</p>
-                <p><em>1</em>单</p>
-                <p><em>200.00</em>元</p>
+                <p>未收款订单</p>
+                <p><em>{{returnInt(data.unPay)}}</em>单</p>
+                <p><em>{{returnDouble(data.unPayMoney)}}</em>元</p>
             </div>
             <div class="info">
                 <p>已结算订单</p>
-                <p><em>1</em>单</p>
-                <p><em>200.00</em>元</p>
+                <p><em>{{returnInt(data.clean)}}</em>单</p>
+                <p><em>{{returnDouble(data.cleanMoney)}}</em>元</p>
             </div>
             <div class="info">
                 <p>未结算订单</p>
-                <p><em>1</em>单</p>
-                <p><em>200.00</em>元</p>
+                <p><em>{{returnInt(data.unClean)}}</em>单</p>
+                <p><em>{{returnDouble(data.unCleanMoney)}}</em>元</p>
             </div>
         </div>
     </div>

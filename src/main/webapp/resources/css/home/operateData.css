@@ -19,8 +19,12 @@
     float: left;
     border: 1px solid #393d49;
     border-right: none;
-    padding: 4px 8px;
     cursor: pointer;
+    line-height: 24px;
+    height: 24px;
+    width: 45px;
+    text-align: center;
+    padding: 2px 0;
 }
 
 .search .search-item:hover {
@@ -34,27 +38,25 @@
 
 .search .search-item.date {
     border-right: 1px solid #393d49;
-    padding-right: 30px;
-    padding-left: 15px;
+    width: 184px;
+    padding-right: 20px;
 }
 
 .data-list {
     margin-top: 20px;
     margin-left: 10px;
+    border: 1px solid #e6e6e6;
 }
 
 .data-list .title {
     line-height: 26px;
     padding: 5px 10px;
-    background: #45474e;
-    color: #fff;
+    background: #F2F2F2;
 }
 
 .data-list .infos {
     padding: 15px 10px;
     overflow: hidden;
-    border: 1px solid #ccc;
-    border-top: none;
 }
 
 .data-list .infos .info {
@@ -74,5 +76,6 @@
 .data-list .infos .info p em{
     font-size: 20px;
     margin-right: 5px;
-    color: #183152;
+    color: #FF5722;
+    font-style: normal;
 }
