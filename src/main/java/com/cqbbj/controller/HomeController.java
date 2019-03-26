@@ -38,6 +38,16 @@ public class HomeController extends BaseController {
     private IOrderService orderService;// 订单
 
     /**
+     * 我的主页
+     *
+     * @return
+     */
+    @RequestMapping("/welcome")
+    public String welcome() {
+        return "home/welcome";
+    }
+
+    /**
      * 系统公告
      *
      * @return

@@ -1,0 +1,173 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-size: 14px;
+}
+
+a {
+    text-decoration: none;
+}
+
+ul, li {
+    list-style: none;
+}
+
+em {
+    font-style: normal;
+}
+
+body {
+    background: #DBDBDB;
+}
+
+.main {
+    padding: 5px;
+}
+
+.notice {
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .1);
+    background: #EDEDED;
+    overflow: hidden;
+    line-height: 28px;
+    margin-bottom: 10px;
+}
+
+.notice .title {
+    float: left;
+    display: block;
+    width: 80px;
+    color: #393D49;
+    padding-left: 15px;
+    font-weight: bold;
+    background-image: url('/resources/images/guangbo.png');
+    background-size: 18%;
+    background-repeat: no-repeat;
+    background-position: right;
+}
+
+.notice marquee {
+    float: left;
+    width: calc(100% - 120px);
+    margin-left: 10px;
+    color: #009688;
+}
+
+.content {
+    overflow: hidden;
+}
+
+.content .left {
+    float: left;
+    width: 70%;
+}
+
+.content .left .task {
+    height: 160px;
+    padding: 10px;
+    background: #ededed;
+    margin-bottom: 10px;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .1);
+    overflow: hidden;
+}
+
+.content .left .task .info {
+    float: left;
+    width: 226px;
+    border-right: 1px solid #ccc;
+    height: 100%;
+    text-align: center;
+}
+
+.content .left .task .info .myTask {
+    line-height: 32px;
+    margin-top: 20px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.content .left .task .info .num {
+    color: #009688;
+    font-weight: bold;
+    font-size: 36px;
+    margin-right: 10px;
+}
+
+.content .left .task .list {
+    margin-left: 10px;
+    float: left;
+    width: calc(100% - 280px);
+    height: 100%;
+}
+
+.content .left .task .list p{
+    line-height: 28px;
+}
+
+.content .left .task .list .list-title {
+    text-align: center;
+}
+
+.content .left .table {
+    height: 400px;
+    background: #ededed;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .1);
+    padding: 10px;
+}
+
+.content .right {
+    float: right;
+    width: 29%;
+    min-width: 280px;
+}
+
+.content .right .help {
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .1);
+    background: #ededed;
+    margin-bottom: 10px;
+    padding: 10px;
+    min-height: 260px;
+}
+
+.content .right .help .title {
+    line-height: 32px;
+    border-bottom: 1px solid #393D49;
+    margin-bottom: 10px;
+}
+
+.content .right .help .content li {
+    line-height: 32px;
+    padding: 0 10px;
+    cursor: pointer;
+}
+
+.content .right .help .content li:hover {
+    background: #009688;
+    color: #fff;
+}
+
+.content .right .code {
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .1);
+    background: #ededed;
+    padding: 10px;
+    min-height: 300px;
+}
+
+.content .right .code .title {
+    line-height: 32px;
+    border-bottom: 1px solid #393D49;
+}
+
+.content .right .code dl {
+    overflow: hidden;
+    padding: 10px;
+}
+
+.content .right .code dl dt {
+    float: left;
+}
+
+.content .right .code dl dd {
+    float: left;
+    margin-left: 10px;
+    line-height: 32px;
+}
