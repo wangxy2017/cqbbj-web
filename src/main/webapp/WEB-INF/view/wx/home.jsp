@@ -80,7 +80,7 @@
             </a>
         </li>
 
-        <li>
+        <li   style="display: none">
             <a onclick="orderSearch()">
                 <div>
                     <img src="${pageContext.request.contextPath}/resources/wx/imge/0004.png" alt="">
