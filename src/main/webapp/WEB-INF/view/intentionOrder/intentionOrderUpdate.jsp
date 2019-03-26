@@ -100,9 +100,10 @@ To change this template use File | Settings | File Templates.
             <div class="layui-input-inline">
                 <select name="status" lay-verify="required" v-model="order.status">
                     <option value="">请选择</option>
-                    <option value="0">询问</option>
-                    <option value="1">有意向</option>
+                    <option value="0">录入</option>
+                    <option value="1">续谈</option>
                     <option value="2">成交</option>
+                    <option value="3">作废</option>
                 </select>
             </div>
         </div>

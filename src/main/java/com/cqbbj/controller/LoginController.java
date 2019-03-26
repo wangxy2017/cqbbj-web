@@ -48,16 +48,6 @@ public class LoginController extends BaseController {
     }
 
     /**
-     * 跳转欢迎界面
-     *
-     * @return
-     */
-    @RequestMapping("/welcome")
-    public String welcome() {
-        return "welcome";
-    }
-
-    /**
      * 跳转登录界面
      *
      * @return

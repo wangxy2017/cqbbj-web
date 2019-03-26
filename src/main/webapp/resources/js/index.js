@@ -7,7 +7,7 @@ layui.use(["element", "layer"], function () {
         el: "#main",
         data: {
             menus: [],
-            url: "welcome"
+            url: "/home/welcome"
         },
         methods: {
             /**

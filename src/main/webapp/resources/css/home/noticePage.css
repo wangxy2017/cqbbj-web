@@ -1,0 +1,36 @@
+.page-title {
+    border-bottom: 1px solid #009688;
+    padding: 5px;
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+.page-title .flag {
+    background: #009688;
+    margin-right: 6px;
+}
+
+.notices {
+    margin-left: 10px;
+}
+
+.notices li {
+    line-height: 32px;
+    margin: 0 10px;
+    border-bottom: 1px dashed #e6e6e6;
+    min-height: 40px;
+    padding: 5px 0;
+}
+
+.notices li .time {
+    margin-right: 10px;
+    color: #009688;
+}
+
+.notices li .content {
+    color: #666;
+}
+
+.no-data {
+    margin-left: 10px;
+}

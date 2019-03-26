@@ -4,6 +4,8 @@ import com.cqbbj.core.base.BaseMapper;
 import com.cqbbj.entity.IntentionOrder;
 import org.springframework.stereotype.Repository;
 
+import java.util.Map;
+
 /**
  * @author wangxy
  * @version 1.0
@@ -13,4 +15,12 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface IntentionOrderMapper extends BaseMapper<IntentionOrder> {
+
+    /**
+     * 意向订单统计
+     *
+     * @param params
+     * @return
+     */
+    Map<String, Object> queryTotal(Map<String, Object> params);
 }
