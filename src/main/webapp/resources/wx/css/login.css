@@ -24,13 +24,13 @@ body{
     position: relative;
 }
 .login{
-    width: 850px;
-    height: 900px;
+    width: 90rem;
+    height: 72rem;
     border-radius: 1em;
     background: #ebe6e6;
     opacity: 0.9;
     position: absolute;
-    left: calc(50% - 425px);
+    left: calc(50% - 45rem);
     top:calc(50% - 450px);
     box-shadow: 0 0 0 2px #272636;
 }
