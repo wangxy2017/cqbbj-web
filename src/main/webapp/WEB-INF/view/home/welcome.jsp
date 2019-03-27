@@ -32,8 +32,8 @@
                     </p>
                 </div>
                 <div class="list">
-                    <p class="list-title">最新派单</p>
-                    <p v-for="item in tasks">{{formatDate(item.beginTime)}}从：{{item.start}} 到：{{item.end}}</p>
+                    <p class="list-title">最新派单：</p>
+                    <p v-for="item in tasks">预约时间：{{formatDate(item.beginTime)}} 搬出地址：{{item.start}} 搬入地址：{{item.end}}</p>
                     <p v-if="!tasks.length">暂无派单</p>
                 </div>
             </div>
