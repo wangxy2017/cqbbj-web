@@ -31,10 +31,10 @@ public class NoticeServiceImpl implements INoticeService {
 
     @Override
     public int saveEntity(Notice notice) {
-        if(notice.getCreateTime() == null){
+        if (notice.getCreateTime() == null) {
             notice.setCreateTime(new Date());
         }
-        if(notice.getDeleteStatus() == null){
+        if (notice.getDeleteStatus() == null) {
             notice.setDeleteStatus(0);
         }
         return noticeMapper.save(notice);
@@ -76,5 +76,10 @@ public class NoticeServiceImpl implements INoticeService {
     @Override
     public Notice queryByProperties(Notice notice) {
         return null;
+    }
+
+    @Override
+    public Notice queryTopNews() {
+        return noticeMapper.queryTopNews();
     }
 }

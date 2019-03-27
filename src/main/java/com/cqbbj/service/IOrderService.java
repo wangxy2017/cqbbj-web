@@ -48,4 +48,15 @@ public interface IOrderService extends BaseService<Order> {
      * @return
      */
     Map<String, Object> queryTotal(Map<String, Object> params);
+
+
+    /**
+     * 查询我的派单
+     *
+     * @param order
+     * @param pageNum
+     * @param pageSize
+     * @return
+     */
+    PageModel<Order> queryMyTasks(Order order, Integer pageNum, Integer pageSize);
 }

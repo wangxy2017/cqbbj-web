@@ -14,4 +14,11 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface NoticeMapper extends BaseMapper<Notice> {
+
+    /**
+     * 查询最新公告
+     *
+     * @return
+     */
+    Notice queryTopNews();
 }

@@ -99,7 +99,7 @@ body {
     height: 100%;
 }
 
-.content .left .task .list p{
+.content .left .task .list p {
     line-height: 28px;
 }
 
@@ -134,13 +134,13 @@ body {
     margin-bottom: 10px;
 }
 
-.content .right .help .content li {
+.content .right .help .list li {
     line-height: 32px;
     padding: 0 10px;
     cursor: pointer;
 }
 
-.content .right .help .content li:hover {
+.content .right .help .list li:hover {
     background: #009688;
     color: #fff;
 }
@@ -164,10 +164,15 @@ body {
 
 .content .right .code dl dt {
     float: left;
+    width: 140px;
 }
 
 .content .right .code dl dd {
     float: left;
+    width: 200px;
     margin-left: 10px;
-    line-height: 32px;
+}
+
+.content .right .code dl dd p {
+    line-height: 28px;
 }
