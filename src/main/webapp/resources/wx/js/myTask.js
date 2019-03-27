@@ -2,9 +2,9 @@ var main = new Vue({
     el: "#main",
     data: {},
     methods: {
-        view:function () {
+        view:function (id) {
             setTimeout(function () {
-                window.location.href = "orderdetail.html";
+                window.location.href = "/wx/order/orderDetail?";
             },100)
 
         },
@@ -23,12 +23,12 @@ var main = new Vue({
                 var i =$(this).attr('data-show');
                 c = i;
                 if(i!=0){
-                    $(".complete").css("display","none");
-                    $(".unfinished").css("display","block");
+                    $(".complete").hide();
+                    $(".unfinished").show();
                     toastr.error("当前未完成订单");
                 }else {
-                    $(".complete").css("display","block");
-                    $(".unfinished").css("display","none");
+                    $(".complete").show();
+                    $(".unfinished").hide();
                     toastr.info("当前完成订单");
                 }
 

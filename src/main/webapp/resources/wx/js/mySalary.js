@@ -5,7 +5,7 @@ var main = new Vue({
         flag: false,
         loaded: 0,
         total: 0,
-        pageNum: 1,
+        pageNum: 0,
         pageSize: 4
     },
     methods: {
@@ -24,17 +24,17 @@ var main = new Vue({
          * 点击确定事件
          */
         ascertain: function (id) {
-             console.log(id);
+            console.log(id);
             // return;
             $.ajax({
                 url: "http://192.168.0.100:9000/wx/salary/delete",
                 dataType: "json",
                 data: {
-                    "id":id
+                    "id": id
                 },
                 type: "POST",
                 success: function (result) {
-                    if(result.code == 1){
+                    if (result.code == 1) {
                         // 刷新页面
                         toastr.success("操作成功");
                         $(".alert_body").animate({
@@ -42,11 +42,11 @@ var main = new Vue({
                         });
                         setTimeout(function () {
                             $(".alert_model").hide();
-                        },1000)
+                        }, 1000)
                         setTimeout(function () {
                             window.location.reload();
-                        },500)
-                    }else{
+                        }, 500)
+                    } else {
                         toastr.error("删除失败");
                     }
 
@@ -70,7 +70,7 @@ var main = new Vue({
          */
         open: function (event) {
             var _this = $(event.currentTarget);
-            var mask=_this.parent().parent().next();
+            var mask = _this.parent().parent().next();
             mask.show().find(".alert_body").animate({
                 marginTop: '40rem',
             });
@@ -101,7 +101,6 @@ var main = new Vue({
 
     },
     mounted: function () {
-        // return;
         // 初始化
         this.$http.post("http://192.168.0.100:9000/wx/salary/queryPageList", {
             //当前页面
@@ -127,23 +126,16 @@ var main = new Vue({
         $(function () {
             //监听屏幕滚动事件
             $(window).scroll(function () {
-                // 当滚动到底且有未加载的数据的时候，开启开关，异步加载数据
+                // 满足以下条件，请求数据
+                // 1.请求锁未锁
+                // 2.滚动条到底
+                // 3.已经加载的条数 < 总条数
                 var i = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
-                if ($(document).height() - (i + $(window).height()) == 1) {
-                    console.log("滚动到底打印：", main.loaded, main.total);
-                    // 当已加载的条数 >= 总条数，关闭开关，显示已经到底
-                    if (main.loaded >= main.total) {
-                        main.flag = false;
-                        $(".baseLine").show();
-                    } else {
-                        main.flag = true;
-                        $(".baseLine").hide();
-                    }
-                }
-                // 当开关打开时，发送请求
-                if (main.flag) {
-                    // 进入方法，关闭开关，保证只请求一次
-                    main.flag = false;
+                if (!main.locked && ($(document).height() - (i + $(window).height()) == 1 || $(document).height() - (i + $(window).height()) < i) && main.loaded < main.total) {
+                    // 先上锁，避免多次请求
+                    main.locked = true;
+                    // toastr.info("成功");
+                    // 发送请求
                     $.ajax({
                         url: 'http://192.168.0.100:9000/wx/salary/queryPageList',
                         dataType: 'json',
@@ -161,11 +153,20 @@ var main = new Vue({
                         success: function (result) {
                             console.log(result);
                             if (result.code == 1) {
+                                // 1.请求成功，渲染数据
                                 var salarys = main.salarys;
                                 salarys.push.apply(salarys, result.data.list);
-                                // 更新已经加载的条数
+                                // 2.更新已经加载的条数
                                 main.loaded += result.data.list.length;
                                 console.log("已经加载" + main.loaded + "条");
+                                // 3.把锁打开
+                                main.locked = false;
+                                // 4.如果已加载的条数 == 总条数 ，显示已经到底
+                                if (main.loaded >= main.total) {
+                                    $(".baseLine").show();
+                                } else {
+                                    $(".baseLine").hide();
+                                }
                             }
                         },
                         error: function () {

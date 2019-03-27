@@ -16,21 +16,27 @@ var main = new Vue({
         /**
          * 取消订单
          */
-        cancel: function (id,order_no) {
+        cancel: function (id, order_no) {
             if (confirm("确定取消该订单吗？")) {
-                console.log("点击的确定修改!");
+                console.log("点击的确定修改!id=" + id + " order_no=" + order_no);
                 // 发送异步请求，跟新订单
                 // 刷新列表
                 $.ajax({
-                    url:"/wx/order/cancelOrderStatus",
-                    data:{"id":id,"status":3,"order_no":order_no},
-                    dataType:"json",
-                    type:"post",
-                    success:function (res) {
-                        console.log(res.data);
-                        window.location.href="/wx/order/sentOrder";
-                    },error:function(){
-
+                    url: "/wx/order/cancelOrderStatus",
+                    data: {
+                        "id": id,
+                        "status": 3,
+                        order_no: order_no
+                    },
+                    dataType: "json",
+                    type: "post",
+                    success: function (res) {
+                        if (res.code == 1) {
+                            console.log(res.data);
+                            window.location.href="/wx/order/sentOrder";
+                        }
+                    }, error: function () {
+                        toastr.error("数据异常");
                     }
                 });
             }
@@ -46,27 +52,27 @@ var main = new Vue({
          * 查看按钮
          */
         view: function (id) {
-            window.location.href = "/wx/order/orderDetail?id="+ id ;
+            window.location.href = "/wx/order/orderDetail?id=" + id;
         },
         /**
          * 修改按钮
          */
         modify: function (id) {
-            window.location.href = "/wx/order/orderUpdate?id="+ id ;
+            window.location.href = "/wx/order/orderUpdate?id=" + id;
         },
         /**
          * 辅助完成
          */
-        finish: function (id,order_no) {
-            window.location.href="/wx/order/finishOrder?id="+ id+"&order_no="+order_no;
+        finish: function (id, order_no) {
+            window.location.href = "/wx/order/finishOrder?id=" + id + "&order_no=" + order_no;
         }
     },
     mounted: function () {
         // 初始化
         this.$http.post("/wx/order/queryPageListEmployee", {
             "status": 1,
-            pageNum:1,
-            pageSize:4
+            pageNum: 1,
+            pageSize: 4
         }, {emulateJSON: true}).then(function (res) {
             console.log(res.body);
             if (res.body.code == 1) {

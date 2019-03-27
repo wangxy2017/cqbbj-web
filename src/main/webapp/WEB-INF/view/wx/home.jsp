@@ -27,7 +27,7 @@
                 <img src="${pageContext.request.contextPath}/resources/wx/imge/shezhi.png" alt="">
             </a>
         </div>
-        <p>李梓萌</p>
+        <p><%=request.getParameter("name")%></p>
         <div class="header-bottom">
             <ul>
                 <li>

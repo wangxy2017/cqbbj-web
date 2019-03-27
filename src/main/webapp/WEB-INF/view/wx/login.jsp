@@ -22,23 +22,43 @@
     </div>
     <div id="center">
         <form action="" method="">
-            <input id="account" type="text" placeholder="请输入账号\邮箱\手机号" onfocus="this.placeholder='' "
-                   onblur="this.placeholder='请输入账号\\邮箱\\手机号'" autocomplete="off">
-            <input id="password" type="password" placeholder="请输入您的密码" onfocus="this.placeholder=''"
-                   onblur="this.placeholder='请输入您的密码'" autocomplete="off">
-            <div class="col-sm-6">
-                <label class="checkbox-min row">
-                    <input type="checkbox"/>
-                    <span></span>
-                    <i>自动登录</i>
-                </label>
-            </div>
-            <div class="col-sm-6">
-                <div class="weiXin">
-                    <p>微信登录</p>
+            <%--<input id="account" type="text" placeholder="请输入账号\邮箱\手机号" onfocus="this.placeholder='' "--%>
+                   <%--onblur="this.placeholder='请输入账号\\邮箱\\手机号'" autocomplete="off">--%>
+            <%--<input id="password" type="password" placeholder="请输入您的密码" onfocus="this.placeholder=''"--%>
+                   <%--onblur="this.placeholder='请输入您的密码'" autocomplete="off">--%>
+
+            <div class="row">
+                <div class="col-sm-1">
+                    <span class="glyphicon glyphicon-user"></span>
+                </div>
+                <div class="col-sm-11">
+                    <input id="account" type="text" placeholder="请输入账号\邮箱\手机号" onfocus="this.placeholder='' " onblur="this.placeholder='请输入账号\\邮箱\\手机号'" autocomplete="off">
                 </div>
             </div>
-            <input id="inPut" type="button" onclick="doLogin()" value="登&nbsp;&nbsp;&nbsp;录">
+            <div class="row">
+                <div class="col-sm-1">
+                    <span class="glyphicon glyphicon-lock"></span>
+                </div>
+                <div class="col-sm-11">
+                    <input id="password" type="password" placeholder="请输入您的密码" onfocus="this.placeholder=''" onblur="this.placeholder='请输入您的密码'" autocomplete="off">
+                </div>
+            </div>
+
+
+
+            <%--<div class="col-sm-6">--%>
+                <%--<label class="checkbox-min row">--%>
+                    <%--<input type="checkbox"/>--%>
+                    <%--<span></span>--%>
+                    <%--<i>自动登录</i>--%>
+                <%--</label>--%>
+            <%--</div>--%>
+            <%--<div class="col-sm-6">--%>
+                <%--<div class="weiXin">--%>
+                    <%--<p>微信登录</p>--%>
+                <%--</div>--%>
+            <%--</div>--%>
+            <input id="inPut" type="button" onclick="doLogin()" value="登录">
             <!--<footer class="col-sm-12">-->
             <!--<a href="#">忘记密码?</a>-->
             <!--</footer>-->

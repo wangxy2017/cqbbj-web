@@ -13,6 +13,7 @@
     <title>辅助完成</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/plugin/bootstrap-3.3.7-dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/css/orderFinish.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/plugin/toastr/toastr.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/css/header.css">
 </head>
 <body>
@@ -45,10 +46,10 @@
         <div class="form-group">
             <div class="row">
                 <div class="col-sm-6">
-                    <button @click="submit" class="btn btn-success btn-lg">确认</button>
+                    <button type="button" @click="submit" class="btn btn-success btn-lg">确认</button>
                 </div>
                 <div class="col-sm-6">
-                    <button class="btn btn-info btn-lg" onclick="javaScript:window.history.back()">取消</button>
+                    <button type="button" class="btn btn-info btn-lg" onclick="javaScript:window.history.back()">取消</button>
                 </div>
             </div>
         </div>
@@ -60,6 +61,7 @@
 <script src="${pageContext.request.contextPath}/resources/wx/plugin/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/wx/plugin/Vue/vue.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/wx/plugin/Vue/vue-resource.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/wx/plugin/toastr/toastr.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/wx/js/common.js"></script>
 <script src="${pageContext.request.contextPath}/resources/wx/js/orderFinish.js"></script>
 </body>

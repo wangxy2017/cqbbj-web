@@ -68,7 +68,7 @@
         <dl class="row">
             <dt class="col-sm-3">搬运备注:</dt>
             <dd class="col-sm-9">
-                <textarea class="form-control" name="textBox" id="content" name="content" rows="6" placeholder="请输入内容"></textarea>
+                <textarea class="form-control" name="textBox" id="content" name="content" cols="25" rows="6" placeholder="请输入内容"></textarea>
             </dd>
         </dl>
         <ul>

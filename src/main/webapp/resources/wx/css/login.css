@@ -61,12 +61,12 @@ body{
     margin: 0 auto;
     /*background: red;*/
 }
- #center input{
+#center input{
     width: 100%;
     height: 4em;
     line-height: 3.5em;
     /*margin-top: 1.5em;*/
-    padding-left: 4em;
+    padding-left:2rem;
     border-radius: 0.2em;
     color: #272636;
     font-size: 2em;
@@ -76,17 +76,17 @@ body{
 /*用户登录框图片*/
 #account{
     margin-top: 0;
-    background-image: url("../imge/usrname.png");
-    background-repeat: no-repeat;
-    background-position: left;
-    background-size: 10%;
+    /*background-image: url("../imge/usrname.png");*/
+    /*background-repeat: no-repeat;*/
+    /*background-position: left;*/
+    /*background-size: 10%;*/
 }
 /*用户密码框图片*/
 #password{
-    background-image: url("../imge/password.png");
-    background-repeat: no-repeat;
-    background-position: left;
-    background-size: 10%;
+    /*background-image: url("../imge/password.png");*/
+    /*background-repeat: no-repeat;*/
+    /*background-position: left;*/
+    /*background-size: 10%;*/
     margin-top: 4rem;
 }
 .checkbox-min{
@@ -187,5 +187,11 @@ footer span{
     font-size: 2.5em;
     color: #1e9fff;
 }
-
-
+.col-sm-1 span{
+    font-size: 4rem;
+    line-height: 10rem;
+    opacity: 0.5;
+}
+.glyphicon-lock{
+    margin-top: 4rem;
+}

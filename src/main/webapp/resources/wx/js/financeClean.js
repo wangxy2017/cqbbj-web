@@ -4,7 +4,7 @@ var main = new Vue({
     methods: {
         view:function () {
             setTimeout(function () {
-                window.location.href = "orderdetail.html";
+                window.location.href = "/wx/order/orderDetail?id="+id;
             },100)
 
         },

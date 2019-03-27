@@ -6,12 +6,15 @@
 i{
     font-style: normal;
 }
+#main dd input{
+    color: black;
+    /*font-weight: bold;*/
+}
 html,body{
     width: 100%;
     height: 100%;
     font-size: 50%;
 }
-
 #main{
     width: 100%;
     padding: 2rem;
@@ -27,13 +30,13 @@ dl{
     height: 8rem;
 
 }
- #main dt{
+#main dt{
     width: 25%;
     height: 10rem;
     line-height: 10rem;
     float: left;
-     text-align: right;
-     padding-right: 2rem;
+    text-align: right;
+    padding-right: 2rem;
     /*border: 1px solid black;*/
 }
 dd{
@@ -62,17 +65,20 @@ dd{
 #dlText dd{
     width: 75%;
     height: 100%;
+    font-size: 4rem;
     border:1px solid #737373 ;
 
 }
-textarea{
+.col-sm-9 textarea{
     width: 100%;
+    font-size: 4rem;
     height: 100%;
     overflow: hidden;
 }
+
 #main ul{
     width: 100%;
-    margin-top: 4rem;
+    margin-top: 32rem;
     height: 100%;
     border: 1px red;
 }
@@ -173,6 +179,25 @@ li input{
     outline: none;
     /*padding: 4rem;*/
 }
+
+
+#main dd input.radio{
+    width: 8%;
+}
+#main dd .left{
+    float: left;
+    position: absolute;
+}
+#main dd.demo{
+    position: relative;
+    height: 12rem;
+}
+#main dd .right{
+    float: left;
+    margin-left: 20rem;
+    position: absolute;
+}
+
 
 
 
