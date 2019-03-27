@@ -23,10 +23,12 @@ layui.use(["layer"], function () {
         mounted: function () {
             // 查询首页信息
             this.$http.post("/home/welcomeData", {}, {emulateJSON: true}).then(function (res) {
-                // console.log(res.body);
+                console.log(res.body);
                 // 加载数据
                 if (res.body.code == 1) {
                     this.notice = res.body.data.notice;
+                    this.task = res.body.data.task;
+                    this.tasks = res.body.data.tasks;
                 } else {
                     layer.msg("查询数据异常");
                 }

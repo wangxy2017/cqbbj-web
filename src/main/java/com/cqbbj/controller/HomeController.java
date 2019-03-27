@@ -162,6 +162,7 @@ public class HomeController extends BaseController {
         // 查询我的任务
         Order order = new Order();
         order.setStatus(1);
+        order.setEmp_no(getLoginUser(request).getEmp_no());
         PageModel<Order> pageModel = orderService.queryMyTasks(order, 1, 4);
         data.put("task", pageModel.getTotal());
         data.put("tasks", pageModel.getList());

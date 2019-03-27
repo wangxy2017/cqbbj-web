@@ -228,7 +228,8 @@
         FROM
         sys_order AS o
         LEFT JOIN sys_send_order AS so ON so.order_no = o.order_no
-        WHERE o.deleteStatus = 0
+        WHERE o.deleteStatus = 0 and so.emp_no = #{emp_no}
+        <if test="status != null">and o.status = #{status}</if>
         GROUP BY
         o.order_no
         ORDER BY
