@@ -14,7 +14,6 @@
         end,
         beginTime,
         is_follow,
-        followInfo,
         status,
         inten_no,
         emp_no,
@@ -33,7 +32,6 @@
         #{end},
         #{beginTime},
         #{is_follow},
-        #{followInfo},
         #{status},
         #{inten_no},
         #{emp_no},
@@ -52,7 +50,6 @@
         price,
         beginTime,
         is_follow,
-        followInfo,
         status,
         inten_no,
         emp_no,
@@ -78,7 +75,6 @@
             <if test="end != null and end != ''">end = #{end},</if>
             <if test="beginTime != null">beginTime = #{beginTime},</if>
             <if test="is_follow != null">is_follow = #{is_follow},</if>
-            <if test="followInfo != null and followInfo != ''">followInfo = #{followInfo},</if>
             <if test="status != null">status = #{status},</if>
             <if test="emp_no != null and emp_no != ''">emp_no = #{emp_no},</if>
             <if test="price != null">price = #{price},</if>

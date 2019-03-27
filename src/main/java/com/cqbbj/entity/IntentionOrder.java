@@ -46,10 +46,6 @@ public class IntentionOrder extends BaseEntity {
      */
     private Integer is_follow;
     /**
-     * 跟进日志
-     */
-    private String followInfo;
-    /**
      * 意向程度 0：录入 1：续谈  2：成交  3：放弃
      */
     private Integer status;
@@ -152,14 +148,6 @@ public class IntentionOrder extends BaseEntity {
 
     public void setIs_follow(Integer is_follow) {
         this.is_follow = is_follow;
-    }
-
-    public String getFollowInfo() {
-        return followInfo;
-    }
-
-    public void setFollowInfo(String followInfo) {
-        this.followInfo = followInfo;
     }
 
     public Integer getStatus() {
