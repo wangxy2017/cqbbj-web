@@ -42,7 +42,10 @@ var main = new Vue({
                     //{code:1,msg:success}
                     if (result.code == 1) {
                         toastr.success('恢复成功');
-                        window.location.herf = "/wx/order/unSentOrder";
+                        setTimeout(function () {
+                            window.location.reload();
+                        },1000)
+                      window.location.href = "/wx/order/unSentOrder";
                     } else {
                         toastr.error("操作失败");
                     }

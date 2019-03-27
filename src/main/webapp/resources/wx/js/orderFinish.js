@@ -14,16 +14,19 @@ var main = new Vue({
                 url: "/wx/order/update",
                 dataType: "json",
                 data: {
-                    order_no: main.order_no,
-                    receiveMoney: main.receiveMoney,
-                    receiveText: main.receiveText,
-                    status: 2,
-                    id:$("#main").attr("data_id")
+                    "order_no": main.order_no,
+                    "receiveMoney": main.receiveMoney,
+                    "receiveText": main.receiveText,
+                    "status": 2,
+                    "id":$("#main").attr("data_id")
                 },
                 type: "POST",
                 success: function (result) {
+                    console.log(result);
+                    if(result.code==1){
                     toastr.success('提交成功');
                     window.location.href = "/wx/order/completeOrder";
+                    }
                 },
                 error: function (result) {
                     toastr.warning('提交异常');

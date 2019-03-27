@@ -26,7 +26,7 @@ var main = new Vue({
              * 把当前页面的订单号码传送给跳转的页面
              * @type {string}
              */
-            var url = "payment.html?" + "+" + id + "order_no=" + encodeURI($("#order_no").text());
+            var url = "/wx/signBill/payment?id=" + "+" + id + "order_no=" + encodeURI($("#order_no").text());
             window.location.href = url;
             var _this = $(event.currentTarget);
             $.ajax({

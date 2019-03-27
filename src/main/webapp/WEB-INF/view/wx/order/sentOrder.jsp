@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/plugin/bootstrap-3.3.7-dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/css/header.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/css/sentOrder.css">
-
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/plugin/toastr/toastr.css">
 </head>
 <body>
 <header>
@@ -89,6 +89,7 @@
 <script src="${pageContext.request.contextPath}/resources/wx/plugin/Vue/vue.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/wx/plugin/Vue/vue-resource.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/wx/js/common.js"></script>
+<script src="${pageContext.request.contextPath}/resources/wx/plugin/toastr/toastr.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/wx/js/sentOrder.js"></script>
 </body>
 </html>

@@ -181,6 +181,7 @@ public class WXLoginController extends BaseController {
                 Employee employee = list.get(0);
                 if (employee.getIs_disabled() == 0) {
                     EmployeeUtils.setEmployee(employee);
+                    return ResultUtils.success(employee);
 //                    HttpSession session = getSession(request);
 //                    session.setAttribute("empUser", employee);
 //                    session.setAttribute("loginer",0);
@@ -193,6 +194,6 @@ public class WXLoginController extends BaseController {
         } else {
             return ResultUtils.error(-1, "参数错误");
         }
-        return ResultUtils.success();
+
     }
 }

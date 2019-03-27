@@ -34,6 +34,12 @@ public class WXSignBillController extends BaseController {
     public String signBill() {
         return "wx/finance/signBill";
     }
+    @RequestMapping("/payment")
+    public String payment() {
+        return "wx/finance/payment";
+    }
+
+
 
     @RequestMapping("/queryPageList")
     @ResponseBody

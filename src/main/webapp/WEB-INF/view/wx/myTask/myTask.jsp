@@ -11,153 +11,106 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/plugin/bootstrap-3.3.7-dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/css/header.css?time=2">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/css/wallet.css?time=2">
-    <title>我的零钱</title>
-    <link rel="icon" type="image/x-icon" href="${pageContext.request.contextPath}/resources/wx/favicon.ico"/>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/plugin/toastr/toastr.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/css/header.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/css/myTask.css">
+    <title>重庆棒棒军管理有限公司</title>
 </head>
 <body>
 <header>
     <div class="pic">
         <span class="glyphicon glyphicon-menu-left" onclick="javaScript:window.history.back()"></span>
     </div>
-    <p>我的钱包</p>
+    <p>我的任务</p>
 </header>
-<div class="main">
-    <div class="main-center">
-        <p>余额账户（元）</p>
-        <h1>0.00</h1>
+<div class="container-fluid" id="main">
+    <div class="title row">
+        <div class="col-sm-5 boder_bottom">
+            <p>未完成</p>
+        </div>
+        <div class="col-sm-2">
+            <div></div>
+        </div>
+        <div class="col-sm-5 " data-show="0">
+            <p>已完成</p>
+        </div>
     </div>
-</div>
-<section>
-    <p><span class="glyphicon glyphicon-calendar"></span> 收支明细</p>
-</section>
-<form action="" class="form-group">
-    <div class="container-fluid">
-        <article class="list">
-            <ul>
-                <li class="row">
-                    <div class="col-sm-6">
-                        <p class="h1">在线收入</p>
-                        <p>2018-01-02 08:30:22</p>
+    <div class="center">
+        <div class="unfinished row">
+            <ul class="list-ul">
+                <li class="row list-li"   @click.stop="open">
+                    <div class="zhang">
+                        <img src="${pageContext.request.contextPath}/resources/wx/imge/no.png" alt="">
                     </div>
-                    <div class="col-sm-6">
-                        <p class="pg">100元</p>
+                    <div class="row li-title">
+                        <div class="col-sm-7">
+                            <p>订单号：<a href="javascript:;">DT201903221566664721386</a></p>
+                        </div>
+                        <div class="col-sm-5">
+                            <p class="pull-right">客户姓名：李梓萌</p>
+                        </div>
                     </div>
-                </li>
-                <li class="row">
-                    <div class="col-sm-6">
-                        <p class="h1">在线收入</p>
-                        <p>2018-01-02 08:30:22</p>
+                    <div class="col-sm-12 li-content">
+                        <p class="toAdd">重庆市巴南区白市驿公交水利站家属院5棟108号</p>
                     </div>
-                    <div class="col-sm-6">
-                        <p class="pg">100元</p>
+                    <div class="col-sm-12">
+                        <p class="formAdd">重庆市渝中区鸿恩寺山顶道别墅区C栋5-1</p>
                     </div>
-                </li>
-                <li class="row">
-                    <div class="col-sm-6">
-                        <p class="h1">在线收入</p>
-                        <p>2018-01-02 08:30:22</p>
+                    <div class="row li-footer">
+                        <div class="col-sm-8">
+                            <p>2019-05-08 14:30</p>
+                        </div>
+                        <div class="col-sm-4">
+                            <p class="pull-right">500￥</p>
+                        </div>
                     </div>
-                    <div class="col-sm-6">
-                        <p class="pg">100元</p>
-                    </div>
-                </li>
-                <li class="row">
-                    <div class="col-sm-6">
-                        <p class="h1">在线收入</p>
-                        <p>2018-01-02 08:30:22</p>
-                    </div>
-                    <div class="col-sm-6">
-                        <p class="pg">100元</p>
-                    </div>
-                </li>
-                <li class="row">
-                    <div class="col-sm-6">
-                        <p class="h1">在线收入</p>
-                        <p>2018-01-02 08:30:22</p>
-                    </div>
-                    <div class="col-sm-6">
-                        <p class="pg">100元</p>
-                    </div>
-                </li>
-                <li class="row">
-                    <div class="col-sm-6">
-                        <p class="h1">在线收入</p>
-                        <p>2018-01-02 08:30:22</p>
-                    </div>
-                    <div class="col-sm-6">
-                        <p class="pg">100元</p>
-                    </div>
-                </li>
-                <li class="row">
-                    <div class="col-sm-6">
-                        <p class="h1">在线收入</p>
-                        <p>2018-01-02 08:30:22</p>
-                    </div>
-                    <div class="col-sm-6">
-                        <p class="pg">100元</p>
-                    </div>
-                </li>
-                <li class="row">
-                    <div class="col-sm-6">
-                        <p class="h1">在线收入</p>
-                        <p>2018-01-02 08:30:22</p>
-                    </div>
-                    <div class="col-sm-6">
-                        <p class="pg">100元</p>
-                    </div>
-                </li>
-                <li class="row">
-                    <div class="col-sm-6">
-                        <p class="h1">在线收入</p>
-                        <p>2018-01-02 08:30:22</p>
-                    </div>
-                    <div class="col-sm-6">
-                        <p class="pg">100元</p>
-                    </div>
-                </li>
-                <li class="row">
-                    <div class="col-sm-6">
-                        <p class="h1">在线收入</p>
-                        <p>2018-01-02 08:30:22</p>
-                    </div>
-                    <div class="col-sm-6">
-                        <p class="pg">100元</p>
-                    </div>
-                </li>
-                <li class="row">
-                    <div class="col-sm-6">
-                        <p class="h1">在线收入</p>
-                        <p>2018-01-02 08:30:22</p>
-                    </div>
-                    <div class="col-sm-6">
-                        <p class="pg">100元</p>
-                    </div>
-                </li>
-                <li class="row">
-                    <div class="col-sm-6">
-                        <p class="h1">在线收入</p>
-                        <p>2018-01-02 08:30:22</p>
-                    </div>
-                    <div class="col-sm-6">
-                        <p class="pg">100元</p>
-                    </div>
-                </li>
-                <li class="row">
-                    <div class="col-sm-6">
-                        <p class="h1">在线收入</p>
-                        <p>2018-01-02 08:30:22</p>
-                    </div>
-                    <div class="col-sm-6">
-                        <p class="pg">100元</p>
+                    <div class="row display">
+                        <div class="col-sm-4">
+                            <button type="button" class="btn btn-info" @click.stop="0">支付</button>
+                        </div>
+                        <div class="col-sm-4">
+                            <button type="button" class="btn btn-success" @click.stop="1">完成</button>
+                        </div>
+                        <div class="col-sm-4">
+                            <button type="button" class="btn btn-danger" @click.stop="2">查看</button>
+                        </div>
                     </div>
                 </li>
             </ul>
-            <div class="loading" style="display: none;">.....我是有底线的....</div>
-        </article>
+        </div>
+        <div class="complete" @click.stop="view()">
+            <ul class="list-ul">
+                <li class="row list-li">
+                    <div class="zhang">
+                        <img src="${pageContext.request.contextPath}/resources/wx/imge/yes.png" alt="">
+                    </div>
+                    <div class="row li-title">
+                        <div class="col-sm-7">
+                            <p>订单号：<a href="javascript:;">DT2000004567888888888</a></p>
+                        </div>
+                        <div class="col-sm-5">
+                            <p class="pull-right">客户姓名：王晓宇</p>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 li-content">
+                        <p class="toAdd">重庆市江北区北城天界108号</p>
+                    </div>
+                    <div class="col-sm-12">
+                        <p class="formAdd">重庆市石桥铺兰美路美茵河谷998号C栋806</p>
+                    </div>
+                    <div class="row li-footer">
+                        <div class="col-sm-8">
+                            <p>2019-03-08 12:00</p>
+                        </div>
+                        <div class="col-sm-4">
+                            <p class="pull-right">500￥</p>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
     </div>
-</form>
+</div>
 <script src="${pageContext.request.contextPath}/resources/wx/plugin/jquery-3.3.1.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/wx/plugin/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/wx/plugin/Vue/vue.min.js"></script>
