@@ -18,7 +18,7 @@
 <body>
 <div class="main" id="main">
     <h1 class="title"><span class="flag">&nbsp;</span>我的钱包</h1>
-    <p class="moneyInfo">可用余额：<em class="money">1000.00</em>元</p>
+    <p class="moneyInfo">可用余额：<em class="money">{{money}}</em>元</p>
     <hr>
     <p style="padding-left: 10px;">提成记录：</p>
     <table id="divideList" lay-filter="divideList"></table>
