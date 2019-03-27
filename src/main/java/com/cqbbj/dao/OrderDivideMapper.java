@@ -20,6 +20,12 @@ public interface OrderDivideMapper extends BaseMapper<OrderDivide> {
 
     List<OrderDivide> queryList(Map map);
 
-
+    /**
+     * 查询我的提成
+     *
+     * @param orderDivide
+     * @return
+     */
+    List<OrderDivide> queryMyDivide(OrderDivide orderDivide);
 
 }

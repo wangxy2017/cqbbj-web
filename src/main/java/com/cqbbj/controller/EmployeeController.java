@@ -273,4 +273,17 @@ public class EmployeeController extends BaseController {
         }
         return ResultUtils.error();
     }
+
+    /**
+     * 查询员工钱包
+     *
+     * @param request
+     * @return
+     */
+    @RequestMapping("/queryMoney")
+    @ResponseBody
+    public Result queryMoney(HttpServletRequest request) {
+        Employee employee = employeeService.queryById(getLoginUser(request).getId());
+        return ResultUtils.success(employee.getMoney());
+    }
 }

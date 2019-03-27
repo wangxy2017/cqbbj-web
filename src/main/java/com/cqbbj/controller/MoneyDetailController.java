@@ -6,7 +6,11 @@ import com.cqbbj.core.base.Result;
 import com.cqbbj.core.util.ResultUtils;
 import com.cqbbj.entity.Employee;
 import com.cqbbj.entity.MoneyDetail;
+import com.cqbbj.entity.Order;
+import com.cqbbj.entity.OrderDivide;
 import com.cqbbj.service.IMoneyDetailService;
+import com.cqbbj.service.IOrderDivideService;
+import com.cqbbj.service.IOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,6 +24,9 @@ public class MoneyDetailController extends BaseController {
 
     @Autowired
     private IMoneyDetailService moneyDetailService;
+
+    @Autowired
+    private IOrderDivideService orderDivideService;
 
     /**
      * 进入我的钱包
@@ -56,4 +63,19 @@ public class MoneyDetailController extends BaseController {
         return ResultUtils.success(pageModel);
     }
 
+    /**
+     * 查询我的提成
+     *
+     * @param orderDivide
+     * @param pageNum
+     * @param pageSize
+     * @return
+     */
+    @RequestMapping("/queryMyDivide")
+    @ResponseBody
+    public Result queryMyDivide(HttpServletRequest request, OrderDivide orderDivide, Integer pageNum, Integer pageSize) {
+        orderDivide.setEmp_no(getLoginUser(request).getEmp_no());
+        PageModel<OrderDivide> pageModel = orderDivideService.queryMyDivide(orderDivide, pageNum, pageSize);
+        return ResultUtils.success(pageModel);
+    }
 }

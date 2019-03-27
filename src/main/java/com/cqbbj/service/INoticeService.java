@@ -12,4 +12,11 @@ import com.cqbbj.entity.Notice;
  * @date 2019/2/19 14:02
  */
 public interface INoticeService extends BaseService<Notice> {
+
+    /**
+     * 查询最新公告
+     *
+     * @return
+     */
+    Notice queryTopNews();
 }

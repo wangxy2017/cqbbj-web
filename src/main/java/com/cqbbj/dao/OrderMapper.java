@@ -33,4 +33,12 @@ public interface OrderMapper extends BaseMapper<Order> {
      * @return
      */
     Map<String, Object> queryTotal(Map<String, Object> params);
+
+    /**
+     * 查询我的派单
+     *
+     * @param order
+     * @return
+     */
+    List<Order> queryMyTasks(Order order);
 }

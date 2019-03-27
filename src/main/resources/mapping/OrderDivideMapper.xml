@@ -78,4 +78,20 @@
         <if test="endTime!=null and endTime!=''"><![CDATA[ and d.clean_time  <= #{endTime}]]></if>
         order by d.createTime desc
     </select>
+    <!-- 查看我的提成 -->
+    <select id="queryMyDivide" parameterType="orderDivide" resultType="orderDivide">
+        select
+        d.id,
+        d.order_no,
+        o.start,
+        o.end,
+        o.endTime,
+        d.money,
+        d.clean_time
+        from sys_order_divide d
+        left join sys_order o on d.order_no=o.order_no
+        where d.deleteStatus = 0
+        and d.emp_no = #{emp_no}
+        order by d.createTime desc
+    </select>
 </mapper>

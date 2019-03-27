@@ -76,6 +76,9 @@ public class OrderDivide extends BaseEntity {
      */
     private String end;
 
+    /**
+     * 完成时间
+     */
     private Date endTime;
 
     public String getEmp_name() {

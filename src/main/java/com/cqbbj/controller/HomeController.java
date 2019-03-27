@@ -6,6 +6,7 @@ import com.cqbbj.core.base.Result;
 import com.cqbbj.core.util.ResultUtils;
 import com.cqbbj.entity.Notice;
 import com.cqbbj.entity.OperateData;
+import com.cqbbj.entity.Order;
 import com.cqbbj.service.IIntentionOrderService;
 import com.cqbbj.service.INoticeService;
 import com.cqbbj.service.IOrderService;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -31,7 +33,6 @@ public class HomeController extends BaseController {
 
     @Autowired
     private INoticeService noticeService;// 系统公告
-
     @Autowired
     private IIntentionOrderService intentionOrderService;// 意向订单
     @Autowired
@@ -143,6 +144,27 @@ public class HomeController extends BaseController {
         Map<String, Object> map8 = orderService.queryTotal(params);
         data.setUnClean((Long) map8.get("f1"));
         data.setUnCleanMoney((Double) map8.get("f2"));
+        return ResultUtils.success(data);
+    }
+
+    /**
+     * 查询首页数据
+     *
+     * @return
+     */
+    @RequestMapping("/welcomeData")
+    @ResponseBody
+    public Result welcomeData(HttpServletRequest request) {
+        Map<String, Object> data = new HashMap<>();
+        // 查询最新公告
+        Notice notice = noticeService.queryTopNews();
+        data.put("notice", notice.getContent());
+        // 查询我的任务
+        Order order = new Order();
+        order.setStatus(1);
+        PageModel<Order> pageModel = orderService.queryMyTasks(order, 1, 4);
+        data.put("task", pageModel.getTotal());
+        data.put("tasks", pageModel.getList());
         return ResultUtils.success(data);
     }
 }

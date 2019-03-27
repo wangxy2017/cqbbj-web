@@ -156,9 +156,13 @@ public class Order extends BaseEntity {
      */
 
     /**
-     * 员工编号
+     * 派遣员工编号
      */
     private String emp_no;
+    /**
+     * 派单时间
+     */
+    private Date dispatchTime;
 
     public String getName() {
         return name;
@@ -414,5 +418,13 @@ public class Order extends BaseEntity {
 
     public void setCleanText(String cleanText) {
         this.cleanText = cleanText;
+    }
+
+    public Date getDispatchTime() {
+        return dispatchTime;
+    }
+
+    public void setDispatchTime(Date dispatchTime) {
+        this.dispatchTime = dispatchTime;
     }
 }
