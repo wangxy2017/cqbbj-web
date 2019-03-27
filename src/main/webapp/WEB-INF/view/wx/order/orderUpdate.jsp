@@ -13,9 +13,10 @@
     <title>订单修改</title>
     <link rel="stylesheet"
           href="${pageContext.request.contextPath}/resources/wx/plugin/bootstrap-3.3.7-dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/css/orderUpdate.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/css/model.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/plugin/toastr/toastr.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/css/header.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/css/orderUpdate.css">
 </head>
 <body>
 <header>
@@ -142,7 +143,7 @@
     </footer>
 
 
-    //收款人model框
+    <%--收款人model框--%>
     <div class="model">
         <div class="center">
             <div class="title">选择员工 <span class="glyphicon glyphicon-remove"></span></div>
@@ -167,7 +168,7 @@
     </div>
 
 
-    //司机model框
+   <%--司机model框--%>
     <div class="model">
         <div class="center">
             <div class="title">选择员工 <span class="glyphicon glyphicon-remove"></span></div>
@@ -191,7 +192,7 @@
         </div>
     </div>
 
-    //搬用工model框
+    <%--搬用工model框--%>
     <div class="model">
         <div class="center">
             <div class="title">选择员工 <span class="glyphicon glyphicon-remove"></span></div>
@@ -216,7 +217,7 @@
     </div>
 
 
-    //空调工model框
+    <%--空调工model框--%>
     <div class="model">
         <div class="center">
             <div class="title">选择员工 <span class="glyphicon glyphicon-remove"></span></div>

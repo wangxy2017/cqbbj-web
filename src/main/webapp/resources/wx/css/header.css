@@ -9,6 +9,7 @@ header{
 }
 header p{
     line-height: 150px;
+    margin: 0;
 }
 header .pic{
     width: 150px;

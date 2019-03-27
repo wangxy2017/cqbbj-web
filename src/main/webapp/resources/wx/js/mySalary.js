@@ -18,7 +18,7 @@ var main = new Vue({
          * 修改点击事件
          */
         update: function (id) {
-            window.location.href = "updateSalary.html?id=" + id;
+            window.location.href = "/wx/salary/salaryUpdate?id=" + id;
         },
         /**
          * 点击确定事件
@@ -101,6 +101,7 @@ var main = new Vue({
 
     },
     mounted: function () {
+        // return;
         // 初始化
         this.$http.post("http://192.168.0.100:9000/wx/salary/queryPageList", {
             //当前页面

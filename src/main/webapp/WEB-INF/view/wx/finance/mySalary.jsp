@@ -5,6 +5,7 @@
   Time: 12:05
   To change this template use File | Settings | File Templates.
 --%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -25,7 +26,7 @@
 <div class="container-fluid" id="main">
     <div class="row list-li" @click.stop="display($event)" v-for="item in salarys">
         <div class="hd">
-            <img src="../imge/hd.png">
+            <img src="${pageContext.request.contextPath}/resources/wx/imge/hd.png">
         </div>
         <div class="col-sm-3 name name_no ">姓&nbsp;&nbsp;名</div>
         <div class="col-sm-9 name_no">
@@ -82,6 +83,6 @@
 <script src="${pageContext.request.contextPath}/resources/wx/plugin/Vue/vue-resource.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/wx/plugin/toastr/toastr.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/wx/plugin/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
-<script src="${pageContext.request.contextPath}/resources/wx/js/salary.js"></script>
+<script src="${pageContext.request.contextPath}/resources/wx/js/mySalary.js"></script>
 </body>
 </html>

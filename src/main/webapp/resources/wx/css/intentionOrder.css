@@ -11,7 +11,6 @@ html,body{
     height: 100%;
     font-size: 50%;
 }
-
 #main{
     width: 100%;
     padding: 2rem;
@@ -27,13 +26,13 @@ dl{
     height: 8rem;
 
 }
- #main dt{
+#main dt{
     width: 25%;
     height: 10rem;
     line-height: 10rem;
     float: left;
-     text-align: right;
-     padding-right: 2rem;
+    text-align: right;
+    padding-right: 2rem;
     /*border: 1px solid black;*/
 }
 dd{
@@ -75,6 +74,7 @@ textarea{
     margin-top: 4rem;
     height: 100%;
     border: 1px red;
+    margin-bottom: 4rem;
 }
 ul li{
     width: 100%;
@@ -99,51 +99,7 @@ li input{
     color: white;
     border-color:#1e9fff;
 }
-.checkbox-min{
-    margin-top: 4rem;
-    height: 5rem;
-    position: absolute;
-    text-align: center;
-    text-align: center;
-}
-.checkbox-min input{
-    display: none;
-}
-.checkbox-min span{
-    display: inline-block;
-    width: 50px;
-    height: 50px;
-    /*background: red;*/
-    /*margin-top: -1rem;*/
-    border: 2px solid #ccc;
-    border-radius: 50%;
-}
-.checkbox-min input:checked +span{
-    background: #1e9fff;
-    border-color: #1e9fff;
-    position: relative;
-}
-.checkbox-min input:checked +span::before{
-    content: "";
-    position: absolute;
-    width: 2.5rem;
-    height: 1.5rem;
-    top: 1.3rem;
-    left: 1rem;
-    border-left: 0.4rem solid white;
-    border-bottom: 0.4rem solid white;
-    -ms-transform: rotate(-45deg);
-    -moz-transform: rotate(-45deg);
-    -webkit-transform: rotate(-45deg);
-    -o-transform: rotate(-45deg);
 
-}
-.checkbox-min i{
-    margin-left: 2rem;
-    color: #1e9fff;
-    float: right;
-    font-size: 4rem;
-}
 #main div{
     width: 100%;
     height: 10rem;
@@ -161,18 +117,44 @@ li input{
 }
 #submit{
     width: 100%;
-    height: 10rem;
-    margin-top: 4rem;
+    height: 14rem;
+    margin-top: 6rem;
     margin-bottom: 6rem;
-    background:#1e9fff ;
-    color: white;
-    /*font-size: 4rem;*/
-    line-height: 10rem;
+    text-align: center;
+    font-size: 4rem;
+    background: #1e9fff;
+    line-height: 8rem;
     font-size: 5rem;
-    letter-spacing:5rem;
+    letter-spacing:10rem;
     outline: none;
-    /*padding: 4rem;*/
+    padding-left: 10rem;
 }
 
 
+/*单选框样式*/
+#main dd input.radio{
+    width: 8%;
+}
+#main dd .left{
+    float: left;
+    position: absolute;
+}
+#main dd.demo{
+    position: relative;
+    height: 12rem;
+}
+#main dd .right{
+    float: left;
+    margin-left: 20rem;
+    position: absolute;
+}
+.col-sm-9 button{
+    font-size: 4rem;
+    width: 30%;
+    height: 10rem;
+}
 
+.col-sm-3 span{
+    color: red;
+    right: 2rem;
+}

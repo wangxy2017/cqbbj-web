@@ -17,7 +17,9 @@
 }
 .dataOn{
     width: 100%;
+}
+.dataOn{
     margin-top: 2rem;
-    border: 1px solid #CCC;
+    border:1px solid #ccc;
     padding: 4rem;
 }

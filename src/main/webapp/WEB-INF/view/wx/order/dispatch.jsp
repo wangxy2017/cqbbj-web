@@ -10,18 +10,19 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <title>未派订单</title>
+    <title>派单管理</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/plugin/bootstrap-3.3.7-dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/css/sentOrder.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/css/header.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/css/dispatch.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/plugin/toastr/toastr.css">
     <link rel="icon" type="image/x-icon" href="${pageContext.request.contextPath}/resources/wx/favicon.ico"/>
 </head>
 <body>
 <header>
     <div class="pic">
-        <img src="${pageContext.request.contextPath}/resources/wx/imge/comeback.png" onclick="javaScript:window.history.back()" alt="">
+        <span class="glyphicon glyphicon-menu-left" onclick="javaScript:window.history.back()"></span>
     </div>
-    <p>派单管理</p>
+    <p>未派订单</p>
 </header>
 <div class="container-fluid" id="main" dataid="<%=request.getParameter("order_no")%>">
     <!--<form action="" class="form-horizontal">-->

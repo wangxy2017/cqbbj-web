@@ -19,7 +19,7 @@
 <body>
 <header>
     <div class="pic">
-            <img src="${pageContext.request.contextPath}/resources/wx/imge/comeback.png" onclick="javaScript:window.history.back()" alt="">
+        <span class="glyphicon glyphicon-menu-left" onclick="javaScript:window.history.back()"></span>
     </div>
     <p>查询订单</p>
 </header>

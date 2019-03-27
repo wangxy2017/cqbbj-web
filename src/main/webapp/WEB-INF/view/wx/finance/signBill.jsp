@@ -11,6 +11,7 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/plugin/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/plugin/toastr/toastr.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/css/signBill.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/css/header.css">
     <link rel="icon" type="image/x-icon" href="${pageContext.request.contextPath}/resources/wx/favicon.ico"/>
@@ -20,69 +21,29 @@
 <body>
 <header>
     <div class="pic">
-        <span class="glyphicon glyphicon-menu-left" onclick="javaScript:window.history.back()" ></span>
+        <span class="glyphicon glyphicon-menu-left" onclick="javaScript:window.history.back()"></span>
     </div>
-    <p>未收款订单</p>
+    <p>签单管理</p>
 </header>
-<div class="container-fluid">
-    <form action="">
-        <div class="row">
-            <div class="header-top">
-                <p class=" col-sm-6 border-buttom">已付款</p>
-                <p class="col-sm-6">未付款</p>
-            </div>
+<div class="container-fluid" id="main">
+    <div class="row header-top">
+        <div class="top col-sm-6 border-buttom" @click.stop="payment">
+            <p>未付款</p>
         </div>
-        <ul class="paid">
-            <li class="list-li">
-                <div class="row order-No">
-                    <div class="col-sm-3">订单编号:</div>
-                    <div class="col-sm-6">
-                        <p>DT2018030608125466678987</p>
-                    </div>
-                    <div class="col-sm-3">
-                        <p>8500￥</p>
-                    </div>
-                </div>
-                <div class="row addTo">
-                    <div class="col-sm-3">
-                        <p>搬出地址:</p>
-                    </div>
-                    <div class="col-sm-9">
-                        <P>重庆市渝北区双凤路空港大道B-1</P>
-                    </div>
-                </div>
-                <div class="row addEnd">
-                    <div class="col-sm-3">
-                        <P>搬入地址:</P>
-                    </div>
-                    <div class="col-sm-9">
-                        <P>重庆市渝北区双凤路空港大道B-9栋5-23号</P>
-                    </div>
-                </div>
-                <div class="row cade-bottom">
-                    <div class="col-sm-6">
-                        <p class="pull-left">2018-03-18 12:00:00</p>
-                    </div>
-                    <div class="col-sm-6">
-                        <p class="pull-right">客户姓名：王国栋</p>
-                    </div>
-                </div>
-                <div class="row display">
-                    <div class="col-sm-6">
-                        <input type="button" class="btn btn-danger btn-lg btn-block  view" value="查看">
-                    </div>
-                    <div class="col-sm-6">
-                        <input type="button" class="btn btn-info btn-lg btn-block  receipt" value="收款">
-                    </div>
-                </div>
-            </li> <li class="list-li">
+        <div class="top col-sm-6" data-show="0" @click.stop="havePaid">
+            <p>已付款</p>
+        </div>
+    </div>
+    <ul class="paid">
+        <li class="list-li non-payment" @click.stop="taskSwitch($event)" v-for="item in signBills">
+            <input class="id" type="hidden" v-model="item.id">
             <div class="row order-No">
                 <div class="col-sm-3">订单编号:</div>
-                <div class="col-sm-6">
-                    <p>DT2018030608125466678987</p>
+                <div class="col-sm-5">
+                    <p id="order_no">{{item.bill_no}}</p>
                 </div>
-                <div class="col-sm-3">
-                    <p>3500￥</p>
+                <div class="col-sm-4">
+                    <p>未付款</p>
                 </div>
             </div>
             <div class="row addTo">
@@ -90,7 +51,7 @@
                     <p>搬出地址:</p>
                 </div>
                 <div class="col-sm-9">
-                    <P>重庆市渝北区双凤路空港大道B-1</P>
+                    <P>{{item.start}}</P>
                 </div>
             </div>
             <div class="row addEnd">
@@ -98,74 +59,94 @@
                     <P>搬入地址:</P>
                 </div>
                 <div class="col-sm-9">
-                    <P>重庆市渝北区双凤路空港大道B-9栋5-23号</P>
+                    <P>{{item.end}}</P>
                 </div>
             </div>
             <div class="row cade-bottom">
                 <div class="col-sm-6">
-                    <p class="pull-left">2018-03-18 12:00:00</p>
+                    <p class="pull-left">{{item.endTime}}</p>
                 </div>
                 <div class="col-sm-6">
-                    <p class="pull-right">客户姓名：王国栋</p>
+                    <p class="pull-right">客户姓名：{{item.name}}</p>
                 </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3">预估起价:</div>
+                <div class="col-sm-9">{{item.price}}</div>
             </div>
             <div class="row display">
-                <div class="col-sm-6">
-                    <input type="button" class="btn btn-danger btn-lg btn-block  view" value="查看">
-                </div>
-                <div class="col-sm-6">
-                    <input type="button" class="btn btn-info btn-lg btn-block  receipt" value="收款">
-                </div>
-            </div>
-        </li> <li class="list-li">
-            <div class="row order-No">
-                <div class="col-sm-3">订单编号:</div>
-                <div class="col-sm-6">
-                    <p>DT2018030608125466678987</p>
-                </div>
-                <div class="col-sm-3">
-                    <p>5500￥</p>
-                </div>
-            </div>
-            <div class="row addTo">
-                <div class="col-sm-3">
-                    <p>搬出地址:</p>
-                </div>
-                <div class="col-sm-9">
-                    <P>重庆市渝北区双凤路空港大道B-1</P>
-                </div>
-            </div>
-            <div class="row addEnd">
-                <div class="col-sm-3">
-                    <P>搬入地址:</P>
-                </div>
-                <div class="col-sm-9">
-                    <P>重庆市渝北区双凤路空港大道B-9栋5-23号</P>
-                </div>
-            </div>
-            <div class="row cade-bottom">
-                <div class="col-sm-6">
-                    <p class="pull-left">2018-03-18 12:00:00</p>
-                </div>
-                <div class="col-sm-6">
-                    <p class="pull-right">客户姓名：王国栋</p>
-                </div>
-            </div>
-            <div class="row display">
-                <div class="col-sm-6">
-                    <input type="button" class="btn btn-danger btn-lg btn-block  view" value="查看">
-                </div>
-                <div class="col-sm-6">
-                    <input type="button" class="btn btn-info btn-lg btn-block  receipt" value="收款">
+                <!--<div class="col-sm-6" style="display: none">-->
+                <!--<input type="button" class="btn btn-danger btn-lg btn-block  view"  value="查看">-->
+                <!--</div>-->
+                <div class="col-sm-12">
+                    <input type="button" class="btn btn-info btn-lg btn-block" @click.stop="receipt(item.id,$event)" value="收款">
                 </div>
             </div>
         </li>
-        </ul>
-    </form>
+        <li class="list-li havePaid" @click.stop="taskSwitch($event)" v-for="item in signBills">
+            <div class="row order-No">
+                <div class="col-sm-3">订单编号:</div>
+                <div class="col-sm-5">
+                    <p>{{item.bill_no}}</p>
+                </div>
+                <div class="col-sm-4">
+                    <p>已付款:{{item.receiveMoney}}</p>
+                </div>
+            </div>
+            <div class="row addTo">
+                <div class="col-sm-3">
+                    <p>搬出地址:</p>
+                </div>
+                <div class="col-sm-9">
+                    <P>{{item.start}}</P>
+                </div>
+            </div>
+            <div class="row addEnd">
+                <div class="col-sm-3">
+                    <P>搬入地址:</P>
+                </div>
+                <div class="col-sm-9">
+                    <P>{{item.end}}</P>
+                </div>
+            </div>
+            <div class="row cade-bottom">
+                <div class="col-sm-6">
+                    <p class="pull-left">{{item.endTime}}</p>
+                </div>
+                <div class="col-sm-6">
+                    <p class="pull-right">客户姓名：{{item.name}}</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3">预估起价:</div>
+                <div class="col-sm-9">{{item.price}}</div>
+            </div>
+            <div class="row display">
+                <!--<div class="col-sm-6" style="display: none">-->
+                <!--<input type="button" class="btn btn-danger btn-lg btn-block  view"  value="查看">-->
+                <!--</div>-->
+                <div class="col-sm-12">
+                    <input type="button" class="btn btn-info btn-lg btn-block" @click.stop="receipt" value="收款">
+                </div>
+            </div>
+        </li>
+        <div class="row loading">
+            <div class="col-sm-5">
+                <img class="pull-right" src="../imge/loading.gif" alt="">
+            </div>
+            <div class="col-sm-7">
+                <P class="pull-left">页面加载中...</P>
+            </div>
+        </div>
+        <div class=" row baseLine">
+            <p>---------我是有底线的----------</p>
+        </div>
+    </ul>
 </div>
 <script src="${pageContext.request.contextPath}/resources/wx/plugin/jquery-3.3.1.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/wx/plugin/Vue/vue.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/wx/plugin/Vue/vue-resource.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/wx/plugin/toastr/toastr.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/wx/plugin/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/wx/js/signBill.js"></script>
 </body>

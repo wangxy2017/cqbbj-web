@@ -109,6 +109,7 @@ public class WXOrderControll extends BaseController {
      */
     @RequestMapping("/canceledOrder")
     public String canceledOrder() {
+
         return "wx/order/canceledOrder";
     }
     /**
@@ -116,8 +117,23 @@ public class WXOrderControll extends BaseController {
      */
     @RequestMapping("/callback")
     public String callback() {
+
         return "wx/order/callback";
     }
+
+
+
+
+    /**
+     * 进入回访页面
+     */
+    @RequestMapping("/myTask")
+    public String myTask() {
+        return "wx/myTask/myTask";
+    }
+
+
+
     /**
      * 添加订单
      *
@@ -296,8 +312,7 @@ public class WXOrderControll extends BaseController {
                          String moneyEmps, String driveEmps, String moveEmps,
                          String airEmps) {
 
-            // 更新订单
-            orderService.updateEntity(order);
+
 
             // 更新订单
             orderService.updateEntity(order);
@@ -329,9 +344,8 @@ public class WXOrderControll extends BaseController {
      * 登出
      */
     @RequestMapping("/loginOut")
-    @ResponseBody
-    public Result loginOut() {
+    public String loginOut() {
         EmployeeUtils.setEmployee(null);
-        return ResultUtils.success();
+        return "wx/login";
     }
 }

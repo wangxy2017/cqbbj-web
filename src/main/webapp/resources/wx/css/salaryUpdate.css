@@ -1,0 +1,48 @@
+
+.row{
+    font-size: 4rem;
+}
+.col-sm-3{
+    line-height: 10rem  ;
+}
+.row input{
+    height: 10rem;
+    margin-top: 2rem;
+    font-size: 4rem;
+    padding-left: 4rem;
+}
+
+#name{
+    width: 100%;
+    height: 10rem;
+    font-size: 4rem;
+    line-height: 10rem;
+    padding-left: 4rem;
+}
+.month{
+    width: 100%;
+    height: 10rem;
+    border: 1px solid #737383 ;
+    position: relative;
+    display: block;
+    margin-top: 2rem;
+}
+.center{
+    width: 98%;
+    margin: 2rem auto;
+    padding: 2rem;
+}
+.textBox{
+    margin-top: 2rem;
+
+}
+.textBox textarea{
+    font-size: 4rem;
+}
+#montn{
+    margin-top: 2rem;
+    width: 100%;
+    height: 10rem;
+    font-size: 4rem;
+    padding-left: 4rem;
+}
