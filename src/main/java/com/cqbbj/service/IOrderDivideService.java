@@ -15,4 +15,14 @@ import java.util.Date;
  */
 public interface IOrderDivideService extends BaseService<OrderDivide> {
     PageModel<OrderDivide> queryPageList(OrderDivide orderDivide, Integer position_id, String name, Date startTime, Date endTime, int pageNum, int pageSize);
+
+    /**
+     * 查询我的提成
+     *
+     * @param orderDivide
+     * @param pageNum
+     * @param pageSize
+     * @return
+     */
+    PageModel<OrderDivide> queryMyDivide(OrderDivide orderDivide, Integer pageNum, Integer pageSize);
 }

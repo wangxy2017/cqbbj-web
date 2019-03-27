@@ -75,4 +75,12 @@ public class OrderDivideServerImpl implements IOrderDivideService {
     public OrderDivide queryByProperties(OrderDivide orderDivide) {
         return null;
     }
+
+    @Override
+    public PageModel<OrderDivide> queryMyDivide(OrderDivide orderDivide, Integer pageNum, Integer pageSize) {
+        PageHelper.startPage(pageNum, pageSize);
+        List<OrderDivide> list = orderDivideMapper.queryMyDivide(orderDivide);
+        PageInfo<OrderDivide> pageInfo = new PageInfo<>(list);
+        return new PageModel(pageInfo);
+    }
 }

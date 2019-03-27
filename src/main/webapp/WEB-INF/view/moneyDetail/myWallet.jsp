@@ -17,18 +17,11 @@
 </head>
 <body>
 <div class="main" id="main">
-<h2>我的钱包</h2>
-<p>可用余额：<span id="yue"></span>元</p>
-    <p color="gray">温馨提示：账户余额用于系统续费和短信充值使用</p><hr/>
-    <div class="search-tools">
-        充值金额：
-    <div class="layui-inline">
-        <input class="layui-input" name="money" autocomplete="off" v-model="money">
-        <span color="gray">交易限额说明：每笔充值金额不能大于3000，可多次充值！</span>
-    </div>
-        <button class="layui-btn" @click="charge">充值</button>
-</div>
-
+    <h1 class="title"><span class="flag">&nbsp;</span>我的钱包</h1>
+    <p class="moneyInfo">可用余额：<em class="money">1000.00</em>元</p>
+    <hr>
+    <p style="padding-left: 10px;">提成记录：</p>
+    <table id="divideList" lay-filter="divideList"></table>
 </div>
 <script src="${pageContext.request.contextPath}/resources/plugin/layui/layui.js"></script>
 <script src="${pageContext.request.contextPath}/resources/plugin/vue/vue.min.js"></script>
