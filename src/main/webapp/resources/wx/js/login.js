@@ -15,6 +15,8 @@ function doLogin() {
                //console.log(result.data.name);
                var name=result.data.name;
                 window.location.href = "/wx/login/toHome?name="+name;
+            }else{
+                toastr.error(result.msg);
             }
         }, error: function () {// 请求失败函数
 

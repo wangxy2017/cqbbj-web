@@ -32,6 +32,8 @@ public class WXOrderControll extends BaseController {
     private ICompanyInfoService companyInfoService;
     @Autowired
     private IMessageLogService messageLogService;
+    @Autowired
+    private ISignBillService signBillService;
 
     /**
      * 进入添加订单页面
@@ -339,6 +341,55 @@ public class WXOrderControll extends BaseController {
     public Result search(Order order) {
         Order o = orderService.queryByProperties(order);
         return ResultUtils.success(o);
+    }
+    /**
+     * 辅助完成
+     *
+     * @param request
+     * @param order
+     * @return
+     */
+    @RequestMapping("/helpDone")
+    @ResponseBody
+    public Result helpDone(HttpServletRequest request, Order order, Integer isNotPay) {
+        Order order1 = orderService.queryById(order.getId());
+        if (order1 != null) {
+            // 暂不付款
+            if (isNotPay != null && isNotPay == 1) {
+                order1.setPayState(0);
+                order1.setStatus(2);
+                order1.setEndTime(new Date());
+                orderService.updateEntity(order1);
+                // 生成欠条
+                SignBill bill = new SignBill();
+                bill.setCreateTime(new Date());
+                bill.setDeleteStatus(0);
+                bill.setName(order1.getName());
+                bill.setPhone(order1.getPhone());
+                bill.setStart(order1.getStart());
+                bill.setEnd(order1.getEnd());
+                bill.setContent(order1.getContent());
+                bill.setBeginTime(order1.getBeginTime());
+                bill.setPrice(order1.getPrice());
+                bill.setEndTime(order1.getEndTime());
+                bill.setStatus(0);
+                bill.setOrder_no(order1.getOrder_no());
+                bill.setCustomer_no(order1.getCust_no());
+                bill.setBill_no(CommUtils.getCode(ConstantUtils.SIGN_BILL));
+                signBillService.saveEntity(bill);
+            } else {
+                order1.setReceiveMoney(order.getReceiveMoney());
+                order1.setReceiveText(order.getReceiveText());
+                order1.setPayState(1);
+                order1.setStatus(2);
+                order1.setEndTime(new Date());
+                orderService.updateEntity(order1);
+            }
+            // 记录日志
+            operationLogService.saveEntity(createLog(request, "辅助完成订单：" + order1.getOrder_no()));
+            return ResultUtils.success();
+        }
+        return ResultUtils.error();
     }
 
     /**

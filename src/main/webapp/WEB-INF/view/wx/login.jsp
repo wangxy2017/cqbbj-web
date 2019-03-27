@@ -12,6 +12,7 @@
     <meta charset="UTF-8">
     <title>登录注册</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/css/login.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/plugin/toastr/toastr.css">
     <link rel="stylesheet"  href="${pageContext.request.contextPath}/resources/wx/plugin/bootstrap-3.3.7-dist/css/bootstrap.min.css">
 </head>
 <body>
@@ -62,10 +63,12 @@
             <!--<footer class="col-sm-12">-->
             <!--<a href="#">忘记密码?</a>-->
             <!--</footer>-->
+
         </form>
     </div>
 </div>
 <script src="${pageContext.request.contextPath}/resources/wx/plugin/jquery-3.3.1.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/wx/plugin/toastr/toastr.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/wx/plugin/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/wx/js/login.js"></script>
 </body>

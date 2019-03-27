@@ -229,7 +229,9 @@ var main = new Vue({
                     console.log(res);
                     //    请求成功执行的代码
                     toastr.success("派单成功");
-                    window.location.href = "/wx/order/sentOrder";
+                    setTimeout(function () {
+                        window.location.href = "/wx/order/sentOrder";
+                    },1000)
                 }, error: function (res) {
                     console.log(res);
                     toastr.error("提交失败!");

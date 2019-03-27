@@ -132,7 +132,7 @@
         </li>
         <div class="row loading">
             <div class="col-sm-5">
-                <img class="pull-right" src="../imge/loading.gif" alt="">
+                <img class="pull-right" src="${pageContext.request.contextPath}/resources/wx/imge/loading.gif" alt="">
             </div>
             <div class="col-sm-7">
                 <P class="pull-left">页面加载中...</P>
