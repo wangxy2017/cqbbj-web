@@ -61,6 +61,8 @@
 <script src="${pageContext.request.contextPath}/resources/wx/plugin/jquery-3.3.1.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/wx/plugin/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/wx/plugin/toastr/toastr.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/wx/plugin/Vue/vue.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/wx/plugin/Vue/vue-resource.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/wx/js/home.js"></script>
 </body>
 </html>

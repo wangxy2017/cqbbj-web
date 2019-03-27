@@ -75,10 +75,10 @@ var main = new Vue({
     },
     mounted: function () {
         this.$http.post("/wx/menu/queryPageList",{},{emulateJSON: true}).then(function (res) {
-            // console.log(res.body);
+            console.log(res.body);
             // return;
             if (res.body.code == 1) {
-                this.menus = res.body.data;
+                this.menus = res.body.data[0].childs;
             } else {
                 toastr.info("数据异常");
             }
