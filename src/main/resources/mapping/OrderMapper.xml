@@ -230,6 +230,8 @@
         LEFT JOIN sys_send_order AS so ON so.order_no = o.order_no
         WHERE o.deleteStatus = 0 and so.emp_no = #{emp_no}
         <if test="status != null">and o.status = #{status}</if>
+        <if test="beginTime1 != null"><![CDATA[and o.beginTime >= #{beginTime1}]]></if>
+        <if test="beginTime2 != null"><![CDATA[and o.beginTime <= #{beginTime2}]]></if>
         GROUP BY
         o.order_no
         ORDER BY

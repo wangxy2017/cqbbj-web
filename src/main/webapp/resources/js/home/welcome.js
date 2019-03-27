@@ -18,6 +18,7 @@ layui.use(["layer"], function () {
                     layer.msg("暂无任务");
                     return;
                 }
+                window.location.href = "/home/myTask";
             }
         },
         mounted: function () {
