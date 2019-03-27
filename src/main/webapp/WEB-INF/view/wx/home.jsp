@@ -45,7 +45,7 @@
     </header>
     <div id="main">
         <ul>
-            <li>
+            <li v-for="menu in menus">
                 <a @click.stop="tiaozhuan(menu.url)">
                     <div>
                         <img :src="menu.icon" alt="">

@@ -64,7 +64,7 @@ function loginout() {
 var main = new Vue({
     el: "#main",
     data: {
-        menu: {}
+        menus: []
 
     },
     methods: {
@@ -72,5 +72,18 @@ var main = new Vue({
             window.location.href=url;
         }
 
+    },
+    mounted: function () {
+        this.$http.post("/wx/menu/queryPageList",{},{emulateJSON: true}).then(function (res) {
+            // console.log(res.body);
+            // return;
+            if (res.body.code == 1) {
+                this.menus = res.body.data;
+            } else {
+                toastr.info("数据异常");
+            }
+        }, function (res) {
+            toastr.error("服务器异常");
+        });
     }
 });
