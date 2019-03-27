@@ -10,7 +10,6 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=0.3, user-scalable=0" />
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/plugin/bootstrap-3.3.7-dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/plugin/toastr/toastr.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/css/header.css">
@@ -39,43 +38,43 @@
     <div class="center">
         <div class="unfinished row">
             <ul class="list-ul">
-                <li class="row list-li"   @click.stop="open">
+                <li class="row list-li"   @click.stop="open" v-for="order in orders">
                     <div class="zhang">
                         <img src="${pageContext.request.contextPath}/resources/wx/imge/no.png" alt="">
                     </div>
                     <div class="row li-title">
                         <div class="col-sm-7">
-                            <p>订单号：<a href="javascript:;">DT201903221566664721386</a></p>
+                            <p>订单号：<a href="javascript:;">{{order.order_no}}</a></p>
                         </div>
                         <div class="col-sm-5">
-                            <p class="pull-right">客户姓名：李梓萌</p>
+                            <p class="pull-right">客户姓名：{{order.name}}</p>
                         </div>
                     </div>
                     <div class="col-sm-12 li-content">
-                        <p class="toAdd">重庆市巴南区白市驿公交水利站家属院5棟108号</p>
+                        <p class="toAdd">{{star}}</p>
                     </div>
                     <div class="col-sm-12">
-                        <p class="formAdd">重庆市渝中区鸿恩寺山顶道别墅区C栋5-1</p>
+                        <p class="formAdd">{{end}}</p>
                     </div>
                     <div class="row li-footer">
                         <div class="col-sm-8">
-                            <p>2019-05-08 14:30</p>
+                            <p>{{order.beginTime}}</p>
                         </div>
                         <div class="col-sm-4">
-                            <p class="pull-right">500￥</p>
+                            <p class="pull-right">{{order.price}}￥</p>
                         </div>
                     </div>
-                    <div class="row display">
-                        <div class="col-sm-4">
-                            <button type="button" class="btn btn-info" @click.stop="0">支付</button>
-                        </div>
-                        <div class="col-sm-4">
-                            <button type="button" class="btn btn-success" @click.stop="1">完成</button>
-                        </div>
-                        <div class="col-sm-4">
-                            <button type="button" class="btn btn-danger" @click.stop="2">查看</button>
-                        </div>
-                    </div>
+                    <%--<div class="row display">--%>
+                        <%--<div class="col-sm-4">--%>
+                            <%--<button type="button" class="btn btn-info" @click.stop="0">支付</button>--%>
+                        <%--</div>--%>
+                        <%--<div class="col-sm-4">--%>
+                            <%--<button type="button" class="btn btn-success" @click.stop="1">完成</button>--%>
+                        <%--</div>--%>
+                        <%--<div class="col-sm-4">--%>
+                            <%--<button type="button" class="btn btn-danger" @click.stop="2">查看</button>--%>
+                        <%--</div>--%>
+                    <%--</div>--%>
                 </li>
             </ul>
         </div>
@@ -87,24 +86,24 @@
                     </div>
                     <div class="row li-title">
                         <div class="col-sm-7">
-                            <p>订单号：<a href="javascript:;">DT2000004567888888888</a></p>
+                            <p>订单号：<a href="javascript:;">{{order.order_no}}</a></p>
                         </div>
                         <div class="col-sm-5">
-                            <p class="pull-right">客户姓名：王晓宇</p>
+                            <p class="pull-right">客户姓名：{{order.name}}</p>
                         </div>
                     </div>
                     <div class="col-sm-12 li-content">
-                        <p class="toAdd">重庆市江北区北城天界108号</p>
+                        <p class="toAdd">{{star}}</p>
                     </div>
                     <div class="col-sm-12">
-                        <p class="formAdd">重庆市石桥铺兰美路美茵河谷998号C栋806</p>
+                        <p class="formAdd">{{end}}</p>
                     </div>
                     <div class="row li-footer">
                         <div class="col-sm-8">
-                            <p>2019-03-08 12:00</p>
+                            <p>{{order.beginTime}}</p>
                         </div>
                         <div class="col-sm-4">
-                            <p class="pull-right">500￥</p>
+                            <p class="pull-right">{{order.price}}￥</p>
                         </div>
                     </div>
                 </li>
