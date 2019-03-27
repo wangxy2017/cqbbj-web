@@ -69,6 +69,16 @@ public class HomeController extends BaseController {
     }
 
     /**
+     * 我的任务
+     *
+     * @return
+     */
+    @RequestMapping("/myTask")
+    public String myTask() {
+        return "home/myTask";
+    }
+
+    /**
      * 查询系统公告
      *
      * @return
@@ -162,9 +172,28 @@ public class HomeController extends BaseController {
         // 查询我的任务
         Order order = new Order();
         order.setStatus(1);
+        order.setEmp_no(getLoginUser(request).getEmp_no());
         PageModel<Order> pageModel = orderService.queryMyTasks(order, 1, 4);
         data.put("task", pageModel.getTotal());
         data.put("tasks", pageModel.getList());
         return ResultUtils.success(data);
+    }
+
+    /**
+     * 查询我的任务
+     *
+     * @param request
+     * @param order
+     * @param pageNum
+     * @param pageSize
+     * @return
+     */
+    @RequestMapping("/queryTaskList")
+    @ResponseBody
+    public Result queryTaskList(HttpServletRequest request, Order order, Integer pageNum, Integer pageSize) {
+        // 查询我的任务
+        order.setEmp_no(getLoginUser(request).getEmp_no());
+        PageModel<Order> pageModel = orderService.queryMyTasks(order, pageNum, pageSize);
+        return ResultUtils.success(pageModel);
     }
 }
