@@ -42,6 +42,11 @@ public class Menu extends BaseEntity implements Comparable<Menu> {
      */
     private List<Menu> childs;
 
+    /**
+     * 菜单类型 0：PC 1：微信 2：APP
+     */
+    private Integer type;
+
     public String getName() {
         return name;
     }
@@ -101,5 +106,13 @@ public class Menu extends BaseEntity implements Comparable<Menu> {
     @Override
     public int compareTo(Menu menu) {
         return (this.sort < menu.getSort()) ? -1 : ((this.sort == menu.getSort()) ? 0 : 1);
+    }
+
+    public Integer getType() {
+        return type;
+    }
+
+    public void setType(Integer type) {
+        this.type = type;
     }
 }

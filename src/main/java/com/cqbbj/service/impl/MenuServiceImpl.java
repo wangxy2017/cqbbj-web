@@ -100,8 +100,14 @@ public class MenuServiceImpl implements IMenuService {
     }
 
     @Override
-    public List<Menu> queryMenuByDept(Integer dept_id) {
-        List<Menu> menus = menuMapper.queryMenuByDept(dept_id);
+    public List<Menu> queryPCMenuByDept(Integer dept_id) {
+        List<Menu> menus = menuMapper.queryPCMenuByDept(dept_id);
+        return sortMenus(menus);
+    }
+
+    @Override
+    public List<Menu> queryWXMenuByDept(Integer dept_id) {
+        List<Menu> menus = menuMapper.queryWXMenuByDept(dept_id);
         return sortMenus(menus);
     }
 

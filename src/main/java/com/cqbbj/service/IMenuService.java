@@ -26,6 +26,14 @@ public interface IMenuService extends BaseService<Menu> {
      * @param dept_id
      * @return
      */
-    List<Menu> queryMenuByDept(Integer dept_id);
+    List<Menu> queryPCMenuByDept(Integer dept_id);
+
+    /**
+     * 查询部门菜单
+     *
+     * @param dept_id
+     * @return
+     */
+    List<Menu> queryWXMenuByDept(Integer dept_id);
 
 }

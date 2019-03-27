@@ -114,7 +114,7 @@ public class LoginController extends BaseController {
     @ResponseBody
     public Result loginInfo(HttpServletRequest request) {
         Employee loginUser = getLoginUser(request);
-        List<Menu> menus = menuService.queryMenuByDept(loginUser.getDept_id());
+        List<Menu> menus = menuService.queryPCMenuByDept(loginUser.getDept_id());
         return ResultUtils.success(menus);
     }
 }
