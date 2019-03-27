@@ -17,7 +17,8 @@ var main = new Vue({
                     order_no: main.order_no,
                     receiveMoney: main.receiveMoney,
                     receiveText: main.receiveText,
-                    status: 2
+                    status: 2,
+                    id:$("#main").attr("data_id")
                 },
                 type: "POST",
                 success: function (result) {
@@ -31,6 +32,6 @@ var main = new Vue({
         }
     },
     mounted: function () {
-        main.order_no = $("main").attr("data_no");
+        this.order_no = $("#main").attr("data_no");
     }
 });

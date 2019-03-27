@@ -1,0 +1,35 @@
+li{
+    list-style: none;
+}
+
+.row h1{
+    text-align: center;
+    font-size: 5rem;
+    font-weight: bold;
+}
+.center{
+    text-align: center;
+    font-size: 3rem;
+    margin-top: 2rem;
+}
+.center span{
+    font-size: 5rem;
+    font-weight: bold;
+}
+ul{
+    padding: 2rem;
+}
+.form-group label{
+    font-size: 3rem;
+}
+.form-group div>p{
+    font-size: 3rem;
+    color: #737373;
+}
+.form-group .li-next{
+    height: 10rem;
+    border-bottom: 1px #737373 solid;
+    font-size: 4rem;
+    padding: 2rem;
+    /*line-height: 10rem;*/
+}

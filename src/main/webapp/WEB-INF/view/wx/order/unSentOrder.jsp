@@ -12,12 +12,13 @@
     <meta charset="UTF-8">
     <title>未派订单</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/plugin/bootstrap-3.3.7-dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/css/dispach.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/css/unSentOrder.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/css/header.css">
 </head>
 <body>
 <header>
     <div class="pic">
-        <img src="${pageContext.request.contextPath}/resources/wx/imge/comeback.png" onclick="javaScript:window.history.back()" alt="">
+        <span class="glyphicon glyphicon-menu-left" onclick="javaScript:window.history.back()"></span>
     </div>
     <p>未派订单</p>
 </header>

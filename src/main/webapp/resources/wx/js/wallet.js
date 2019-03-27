@@ -21,7 +21,7 @@ $(function () {
         }
         if ($(document).height() - $(window).height() - $(window).scrollTop() > 50) {
             $.ajax({
-                // type: '',
+                type: 'post',
                 url: '',
                 data: {
                     pageSize: 10,

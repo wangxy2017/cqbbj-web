@@ -12,15 +12,12 @@
     <meta charset="UTF-8">
     <title>已派订单</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/plugin/bootstrap-3.3.7-dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/css/haveSent.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/css/sentOrder.css">
 </head>
 <body>
 <header>
     <div class="pic">
-        <div class="pic">
-            <img src="${pageContext.request.contextPath}/resources/wx/imge/comeback.png"
-                 onclick="javaScript:window.history.back()" alt="">
-        </div>
+        <span class="glyphicon glyphicon-menu-left" onclick="javaScript:window.history.back()"></span>
     </div>
     <p>已派订单</p>
 </header>

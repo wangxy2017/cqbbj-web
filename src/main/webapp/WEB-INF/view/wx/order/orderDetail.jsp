@@ -13,14 +13,14 @@
     <title>订单详情页</title>
     <link rel="stylesheet"
           href="${pageContext.request.contextPath}/resources/wx/plugin/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/css/header.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/css/orderdetail.css">
 </head>
 <body>
 <form class="form-group" id="main">
     <header>
         <div class="pic">
-            <img src="${pageContext.request.contextPath}/resources/wx/imge/comeback.png"
-                 onclick="javaScript:window.history.back()" alt="">
+            <span class="glyphicon glyphicon-menu-left" onclick="javaScript:window.history.back()"></span>
         </div>
         <p>订单详情</p>
     </header>

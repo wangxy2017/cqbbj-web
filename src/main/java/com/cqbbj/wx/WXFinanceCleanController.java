@@ -37,7 +37,7 @@ public class WXFinanceCleanController extends BaseController {
      */
     @RequestMapping("/financeClean")
     public String financeClean() {
-        return "finance/financeClean";
+        return "wx/finance/financeClean";
     }
 
     /**

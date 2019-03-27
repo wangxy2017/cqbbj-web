@@ -23,9 +23,9 @@ public class WXSalaryController extends BaseController {
     @Autowired
     private IOperationLogService operationLogService;
 
-    @RequestMapping("/salary")
+    @RequestMapping("/mySalary")
     public String salary(){
-        return "wx/finance/salary";
+        return "wx/finance/mySalary";
     }
     @RequestMapping("/salaryUpdate")
     public String salaryUpdate(){

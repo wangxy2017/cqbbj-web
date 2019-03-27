@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: js3
-  Date: 2019/3/24
-  Time: 12:45
+  Date: 2019/3/27
+  Time: 13:29
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -163,6 +163,6 @@
 <script src="${pageContext.request.contextPath}/resources/wx/plugin/Vue/vue.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/wx/plugin/Vue/vue-resource.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/wx/plugin/toastr/toastr.min.js"></script>
-<script src="${pageContext.request.contextPath}/resources/wx/js/myTask.js"></script>
+<script src="${pageContext.request.contextPath}/resources/wx/js/wallet.js"></script>
 </body>
 </html>

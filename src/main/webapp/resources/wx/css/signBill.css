@@ -1,0 +1,127 @@
+body{
+    background: #e7e7e7;
+}
+/*已付签单样式*/
+.paid{
+    margin: 0 auto;
+    padding: 2rem;
+}
+.paid li{
+    list-style: none;
+    text-align: center;
+    font-size: 3.5rem;
+    padding: 2rem;
+    box-shadow : 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 2rem;
+    background: #fff;
+    margin-top: 2rem;
+}
+li th{
+    text-align: center;
+}
+.header-top{
+    padding: 2rem;
+    font-size: 4rem;
+    text-align: center;
+}
+.border-buttom{
+    border-bottom: 4px solid #272636;
+}
+.col-sm-4 p{
+    color: #FF5722;
+}
+.col-sm-5 p{
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    color: #1e9fff;
+}
+.col-sm-9{
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+.col-sm-9 p{
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+/*头部*/
+.order-No{
+    border-bottom: 4px dashed #777777;
+}
+/*.order-No .col-sm-4 p{*/
+    /*white-space:nowrap;*/
+    /*overflow:hidden;*/
+    /*text-overflow:ellipsis;*/
+/*}*/
+/*搬出地址*/
+.addTo P{
+    height: 8rem;
+    line-height: 8rem;
+    color: #777777;
+}
+/*搬入地址*/
+.addEnd P{
+    height: 8rem;
+    line-height: 8rem;
+    color: #777777;
+}
+/*底部样式*/
+.cade-bottom{
+    border-top: 1px solid #777777;
+    height: 8rem;
+}
+.cade-bottom p{
+    font-size: 3.5rem;
+    color: #737373;
+    line-height: 8rem;
+}
+.display input{
+    height: 10rem;
+    margin-top: 4rem;
+    font-size: 4rem;
+}
+.display{
+    display: none;
+}
+/*已付款隐藏*/
+.havePaid{
+    display: none;
+}
+.loading{
+    font-size: 4rem;
+    padding: 4rem;
+    text-align: center;
+    background: #fff;
+    margin-top: 4rem;
+    color: #737383;
+    border-radius: 2rem;
+    box-shadow:0 4px 8px 0 rgba(0, 0, 0, 0.29), 0 8px 40px 0 rgba(0, 0, 0, 0.59);
+    position: relative;
+}
+.baseLine{
+    font-size: 4rem;
+    padding: 4rem;
+    text-align: center;
+    background: #fff;
+    margin-top: 4rem;
+    color: #737383;
+    border-radius: 2rem;
+    box-shadow:0 4px 8px 0 rgba(0, 0, 0, 0.29), 0 8px 40px 0 rgba(0, 0, 0, 0.59);
+    position: relative;
+}
+.loading img{
+    width: 5rem;
+    height: 5rem;
+    line-height: 10rem;
+}
+.loading p{
+    text-align: center;
+    font-size: 4rem;
+
+}
+/*加载完毕*/
+.baseLine{
+    display: none;
+}

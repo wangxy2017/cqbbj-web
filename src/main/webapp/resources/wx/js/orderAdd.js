@@ -50,9 +50,12 @@ $(function () {
             type: "POST",
             success: function (res) {
                 console.log(res);
-                window.location.href = "/wx/login/toHome";
+                toastr.info("提交成功");
+                setTimeout(function () {
+                    window.location.href = "/wx/login/toHome";
+                },1000);
             }, error: function () {
-
+                    toastr.error("提交异常");
             }
 
         })
