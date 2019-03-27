@@ -16,7 +16,7 @@
 <body>
 <div class="main" id="main">
     <div class="notice">
-        <span class="title">系统提示</span>
+        <span class="title">系统提示：</span>
         <marquee direction="scroll" scrollamount="4" scroll="left">{{notice}}</marquee>
     </div>
     <div class="content">
@@ -33,8 +33,11 @@
                 </div>
                 <div class="list">
                     <p class="list-title">最新派单：</p>
-                    <p v-for="item in tasks">预约时间：{{formatDate(item.beginTime)}} 搬出地址：{{item.start}} 搬入地址：{{item.end}}</p>
-                    <p v-if="!tasks.length">暂无派单</p>
+                    <p class="list-item" v-for="item in tasks">
+                        预约时间：<i class="text">{{formatDate(item.beginTime)}}</i>
+                        搬出地址：<i class="text">{{item.start}}</i>
+                        搬入地址：<i class="text">{{item.end}}</i></p>
+                    <p v-if="!tasks.length">【暂无派单】</p>
                 </div>
             </div>
             <div class="table"></div>

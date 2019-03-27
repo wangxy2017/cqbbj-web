@@ -39,10 +39,6 @@ body {
     color: #393D49;
     padding-left: 15px;
     font-weight: bold;
-    background-image: url('/resources/images/guangbo.png');
-    background-size: 18%;
-    background-repeat: no-repeat;
-    background-position: right;
 }
 
 .notice marquee {
@@ -103,7 +99,17 @@ body {
     line-height: 28px;
 }
 
-.content .left .task .list .list-title {
+.content .left .task .list .list-item {
+    padding-left: 18px;
+    background-image: url('/resources/images/guangbo.png');
+    background-size: 15px;
+    background-repeat: no-repeat;
+    background-position: 0px 6px;
+}
+
+.content .left .task .list .list-item .text {
+    color: #029141;
+    margin-right: 5px;
 }
 
 .content .left .table {
