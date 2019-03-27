@@ -11,7 +11,8 @@
         icon,
         pid,
         is_disabled,
-        sort
+        sort,
+        type
     </sql>
     <sql id="insert_all_values">
         #{createTime},
@@ -21,7 +22,8 @@
         #{icon},
         #{pid},
         #{is_disabled},
-        #{sort}
+        #{sort},
+        #{type}
     </sql>
     <sql id="query_all_fields">
         id,
@@ -30,7 +32,8 @@
         icon,
         pid,
         is_disabled,
-        sort
+        sort,
+        type
     </sql>
     <!-- 保存菜单 -->
     <insert id="save" parameterType="menu" useGeneratedKeys="true" keyProperty="id">
@@ -46,6 +49,7 @@
             <if test="pid != null">pid = #{pid},</if>
             <if test="is_disabled != null">is_disabled = #{is_disabled},</if>
             <if test="sort != null">sort = #{sort},</if>
+            <if test="type != null">type = #{type},</if>
         </set>
         where id = #{id}
     </update>
@@ -61,17 +65,36 @@
         <if test="pid != null">and pid = #{pid}</if>
     </select>
     <!-- 查询部门菜单 -->
-    <select id="queryMenuByDept" parameterType="int" resultType="menu">
+    <select id="queryPCMenuByDept" parameterType="int" resultType="menu">
         select
         m.id,
         m.name,
         m.url,
         m.icon,
         m.pid,
-        m.sort
+        m.sort,
+        m.type
         from sys_menu m
         left join sys_dept_menu dm on dm.menu_id = m.id
-        where dm.dept_id = #{dept_id}
+        where m.deleteStatus = 0
+        and dm.dept_id = #{dept_id}
+        and m.type = 0
+    </select>
+    <!-- 查询微信菜单 -->
+    <select id="queryWXMenuByDept" parameterType="int" resultType="menu">
+        select
+        m.id,
+        m.name,
+        m.url,
+        m.icon,
+        m.pid,
+        m.sort,
+        m.type
+        from sys_menu m
+        left join sys_dept_menu dm on dm.menu_id = m.id
+        where m.deleteStatus = 0
+        and dm.dept_id = #{dept_id}
+        and m.type = 1
     </select>
     <!-- 根据ID查询 -->
     <select id="queryById" parameterType="int" resultType="menu">

@@ -27,6 +27,16 @@ To change this template use File | Settings | File Templates.
                 <input type="hidden" name="id" v-model="menu.id">
             </div>
             <div class="layui-form-item">
+                <label class="layui-form-label">菜单类型</label>
+                <div class="layui-input-block">
+                    <select name="type" lay-verify="required" v-model="menu.type">
+                        <option value="">请选择</option>
+                        <option value="0">PC端</option>
+                        <option value="1">微信端</option>
+                    </select>
+                </div>
+            </div>
+            <div class="layui-form-item">
                 <label class="layui-form-label">菜单名称</label>
                 <div class="layui-input-block">
                     <input type="text" name="name" required lay-verify="required" placeholder="请输入菜单名称" autocomplete="off"
@@ -50,6 +60,13 @@ To change this template use File | Settings | File Templates.
                     class="layui-input" v-model="menu.url">
                 </div>
             </div>
+                <div class="layui-form-item">
+                        <label class="layui-form-label">图标路径</label>
+                        <div class="layui-input-block">
+                                <input type="text" name="icon" placeholder="请输入图标路径" autocomplete="off"
+                                class="layui-input" v-model="menu.icon">
+                        </div>
+                </div>
             <div class="layui-form-item">
                 <label class="layui-form-label">是否启用</label>
                 <div class="layui-input-block">

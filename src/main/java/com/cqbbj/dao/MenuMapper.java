@@ -21,5 +21,12 @@ public interface MenuMapper extends BaseMapper<Menu> {
      * @param dept_id
      * @return
      */
-    List<Menu> queryMenuByDept(Integer dept_id);
+    List<Menu> queryPCMenuByDept(Integer dept_id);
+
+    /**
+     * 根据部门ID查询菜单
+     * @param dept_id
+     * @return
+     */
+    List<Menu> queryWXMenuByDept(Integer dept_id);
 }
