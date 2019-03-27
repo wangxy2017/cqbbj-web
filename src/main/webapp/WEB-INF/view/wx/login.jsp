@@ -10,6 +10,7 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=0.3, user-scalable=0" />
     <title>登录注册</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/css/login.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/plugin/toastr/toastr.css">
