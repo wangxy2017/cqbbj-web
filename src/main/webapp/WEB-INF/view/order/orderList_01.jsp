@@ -20,6 +20,7 @@
     <%-- 工具栏 --%>
     <div class="layui-btn-container">
         <button class="layui-btn" @click="addOrder">添加订单</button>
+        <button class="layui-btn" @click="download">导出数据</button>
     </div>
     <div class="search-tools">
         <div class="search-item">

@@ -18,6 +18,9 @@
 <body>
 <div class="main" id="main">
     <%-- 工具栏 --%>
+    <div class="layui-btn-container">
+        <button class="layui-btn" @click="download">导出数据</button>
+    </div>
     <div class="search-tools">
         <div class="search-item">
             订单号：
@@ -44,11 +47,12 @@
         <div class="search-item">
             完成时间：
             <div class="layui-input-inline">
-                <input type="text" class="layui-input" name="beginTime1" id="beginTime1" placeholder="选择开始时间" autocomplete="off">
+                <input type="text" class="layui-input" name="endTime1" id="endTime1" placeholder="选择开始时间"
+                       autocomplete="off">
             </div>
             至
             <div class="layui-input-inline">
-                <input class="layui-input" name="beginTime2" id="beginTime2" placeholder="选择结束时间" autocomplete="off">
+                <input class="layui-input" name="endTime2" id="endTime2" placeholder="选择结束时间" autocomplete="off">
             </div>
         </div>
         <div class="search-item">

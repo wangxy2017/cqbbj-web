@@ -159,6 +159,20 @@ layui.use(["table", "layer", "laydate", "jquery", "form"], function () {
                         });
                     }
                 });
+            },
+            /**
+             * 导出
+             */
+            download: function () {
+                layer.confirm("导出数据属于敏感操作，确认继续吗？", function (index) {
+                    layer.close(index);
+                    window.location.href = "/order/download?page=03" +
+                        "&status=1" +
+                        "&name=" + main.name +
+                        "&order_no=" + main.order_no +
+                        "&beginTime1=" + $("#beginTime1").val() +
+                        "&beginTime2=" + $("#beginTime2").val();
+                });
             }
         },
         mounted: function () {
