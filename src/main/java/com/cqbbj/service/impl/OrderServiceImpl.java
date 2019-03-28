@@ -143,7 +143,7 @@ public class OrderServiceImpl implements IOrderService {
                 SmsUtils.config(companyInfo.getMsg_username(), companyInfo.getMsg_password(), companyInfo.getMsg_sign(), companyInfo.getMsg_domain());
                 SmsUtils.sendSmsBatch(phones, content);
                 // 记录短信日志
-                MessageLog mlog = null;
+                MessageLog mlog = new MessageLog();
                 for (String phone : phones) {
                     mlog.setCreateTime(new Date());
                     mlog.setDeleteStatus(0);

@@ -41,10 +41,10 @@ $(function () {
                 "start": $("#start").val(),
                 "end": $("#end").val(),
                 "price": $("#price").val(),
-                "beginTime": $("#beginTime").val()+":00",
+                "beginTime": $("#beginTime").val() + ":00",
                 "content": $("#content").val(),
-                "type":$("input[name='type']:checked").val(),
-                "isNotice": $("#isNotice").val()
+                "type": $("input[name='type']:checked").val(),
+                "isNotice": $("#isNotice").is(":checked") ? 1 : 0
             },
             dateType: "json",
             type: "POST",
@@ -53,9 +53,9 @@ $(function () {
                 toastr.info("提交成功");
                 setTimeout(function () {
                     window.location.href = "/wx/login/toHome";
-                },1000);
+                }, 1000);
             }, error: function () {
-                    toastr.error("提交异常");
+                toastr.error("提交异常");
             }
 
         })
