@@ -28,7 +28,7 @@ body{
     margin-top: 2rem;
     height: 100%;
     width: 100%;
-    background-image: url("../imge/xian.png");
+    background-image: url("/resources/wx/imge/xian.png");
     background-repeat: no-repeat;
     background-position: center;
     background-image: -moz-element(1px);
@@ -75,7 +75,7 @@ body{
 }
 /*起点样式*/
 .toAdd{
-    background-image: url("../imge/foadd.png");
+    background-image: url("/resources/wx/imge/foadd.png");
     background-repeat: no-repeat;
     background-position: 1rem;
     background-size:6%;
@@ -83,7 +83,7 @@ body{
 }
 /*终点样式*/
 .formAdd{
-    background-image: url("../imge/toAd.png");
+    background-image: url("/resources/wx/imge/toAd.png");
     background-repeat: no-repeat;
     background-position: 1rem;
     background-size: 6%;

@@ -51,7 +51,7 @@ header p{
     width: 260px;
     height: 260px;
     border-radius: 50%;
-    background-image: url(../imge/header.jpg);
+    background-image: url(/resources/wximge/header.jpg);
     background-repeat: no-repeat;
     background-size: 100%;
     margin: 0 auto;

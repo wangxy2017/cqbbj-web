@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/css/orderSearch.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/plugin/datetime/css/lCalendar.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/plugin/toastr/toastr.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/css/header.css">
 </head>
 <body>
 <header>

@@ -17,7 +17,7 @@ html,body{
     font-size: 50%;
 }
 body{
-    background-image: url("../imge/bg0.jpg");
+    background-image: url("/resources/wx/imge/bg0.jpg");
     background-repeat:no-repeat;
     /*设置背景图片铺满页面*/
     background-size: cover;
@@ -76,14 +76,14 @@ body{
 /*用户登录框图片*/
 #account{
     margin-top: 0;
-    /*background-image: url("../imge/usrname.png");*/
+    /*background-image: url("/resources/wx/imge/usrname.png");*/
     /*background-repeat: no-repeat;*/
     /*background-position: left;*/
     /*background-size: 10%;*/
 }
 /*用户密码框图片*/
 #password{
-    /*background-image: url("../imge/password.png");*/
+    /*background-image: url("/resources/wx/imge/password.png");*/
     /*background-repeat: no-repeat;*/
     /*background-position: left;*/
     /*background-size: 10%;*/
@@ -138,7 +138,7 @@ body{
     width: 12em;
     /*background: red;*/
     height: 4em;
-    background-image: url("../imge/weiXinLogo.png");
+    background-image: url("/resources/wx/imge/weiXinLogo.png");
     background-repeat: no-repeat;
     background-size: 26%;
     background-position: left;
