@@ -1,11 +1,12 @@
-body{
+body {
     background: #eeeeee;
 }
 
-.container-fluid{
+.container-fluid {
     padding: 5rem;
 }
-.row{
+
+.row {
     font-size: 4rem;
     padding: 4rem;
     text-align: center;
@@ -13,79 +14,90 @@ body{
     margin-top: 4rem;
     color: #737383;
     border-radius: 2rem;
-    box-shadow:0 4px 8px 0 rgba(0, 0, 0, 0.29), 0 8px 40px 0 rgba(0, 0, 0, 0.59);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.29), 0 8px 40px 0 rgba(0, 0, 0, 0.59);
     position: relative;
 }
-.col-sm-3{
+
+.col-sm-3 {
     height: 8rem;
     line-height: 8rem;
     border-bottom: 1px solid #777777;
 }
 
-.col-sm-9{
+.col-sm-9 {
     height: 8rem;
     line-height: 8rem;
     border-bottom: 1px solid #777777;
 }
+
 /*文字齐两头样式*/
-.name{
+.name {
     letter-spacing: 2rem;
     padding-left: 3rem;
 
 }
-.name_no{
+
+.name_no {
     height: 10rem;
     line-height: 10rem;
     border-bottom: 2px solid #777777;
 }
-.name_no span{
+
+.name_no span {
     margin-right: 2rem;
 }
- /*图片加载样式*/
- .hd{
-     height: 10rem;
-     z-index: 99;
-     position: absolute;
-     /*border: 1px solid red;*/
+
+/*图片加载样式*/
+.hd {
+    height: 10rem;
+    z-index: 99;
+    position: absolute;
+    /*border: 1px solid red;*/
 
 
 }
- .hd img{
-     width: 90%;
-     margin-top: -13rem;
-     margin-left: -2rem;
-     z-index: 99;
- }
- .footer .col-sm-6 input{
-     width: 100%;
-     height: 10rem;
-     font-size: 4rem;
-     margin-top: 2rem;
- }
- .footer{
-     display: none;
- }
- /**
- 模态框样式
-  */
-.alert_model{
+
+.hd img {
+    width: 90%;
+    margin-top: -13rem;
+    margin-left: -2rem;
+    z-index: 99;
+}
+
+.footer .col-sm-6 input {
+    width: 100%;
+    height: 10rem;
+    font-size: 4rem;
+    margin-top: 2rem;
+}
+
+.footer {
+    display: none;
+}
+
+/**
+模态框样式
+ */
+.alert_model {
     width: 100%;
     height: 100%;
     position: fixed;
     z-index: 999;
     top: 0;
     left: 0;
-    background: rgba(0, 0 ,0, 0.52);
+    background: rgba(0, 0, 0, 0.52);
     display: none;
 }
-.alert_body{
+
+.alert_body {
     width: 90%;
     background: #fff;
     margin: 10% auto;
     border-radius: 2rem;
     /*display: none;*/
 }
-.alert-title{
+
+.alert-title {
     height: 15rem;
     width: 100%;
     font-size: 4rem;
@@ -93,60 +105,79 @@ body{
     position: relative;
     border-bottom: 1px solid #737383;
 }
-.alert-title p{
+
+.alert-title p {
     line-height: 15rem;
     letter-spacing: 4rem;
     margin-left: 4rem;
 }
-.alert-title span{
+
+.alert-title span {
     font-size: 4rem;
     margin-left: -2rem;
     right: 4rem;
     line-height: 15rem;
     position: absolute;
 }
-.modal-text p{
+
+.modal-text p {
     height: 20rem;
     line-height: 20rem;
 }
-.alert_model input{
+
+.alert_model input {
     height: 10rem;
     width: 100%;
     font-size: 4rem;
     padding: 2rem;
 }
-.alert_model button{
+
+.alert_model button {
     height: 10rem;
     font-size: 4rem;
     width: 100%;
 }
-.alert_model .container-fluid{
+
+.alert_model .container-fluid {
     padding: 2rem;
 }
+
 /*页面加载*/
-.loading{
+.loading {
     height: 10rem;
     font-size: 4rem;
     display: none;
 }
-.col-sm-5{
+
+.loading .col-sm-5 {
     margin-top: -1rem;
 }
-.col-sm-7{
+
+.loading .col-sm-7 {
     margin-top: -1rem;
 }
-.loading img{
+
+.loading img {
     width: 5rem;
     height: 5rem;
     line-height: 10rem;
 }
-.loading p{
+
+.loading p {
     text-align: center;
     font-size: 4rem;
 
 }
+
 /*加载完毕*/
-.baseLine{
+.baseLine {
     display: none;
+}
+
+.baseLine p {
+    font-size: 4rem;
+    text-align: center;
+    padding: 0;
+    margin: 2rem 0;
 }
 

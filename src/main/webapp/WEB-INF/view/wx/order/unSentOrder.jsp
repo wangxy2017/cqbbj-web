@@ -10,8 +10,9 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <title>未派订单</title>
+    <title>订单管理</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/plugin/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/plugin/toastr/toastr.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/css/unSentOrder.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/css/header.css">
 </head>
@@ -72,19 +73,44 @@
                     </div>
                     <div class="col-sm-3">
                         <a class="abolish">
-                            <button type="button" class="btn btn-default" @click.stop="cancel(item.id)">取消</button>
+                            <button type="button" class="btn btn-default" @click.stop="cancel(item.id,$event)">作废</button>
                         </a>
                     </div>
                 </div>
             </li>
+            <div class="alert_model" @click.stop="end">
+                <div class="alert_body">
+                    <input type="hidden" id="checked" value="">
+                    <div class="alert-title">
+                        <p>提示</p>
+                        <span @click.stop="hide" class="glyphicon glyphicon-remove"></span>
+                    </div>
+                    <div class="container-fluid">
+                        <div class="modal-text">
+                            <p>是否确定作废?</p>
+                        </div>
+                        <div class="col-sm-6">
+                            <input type="button" class="btn btn-info btn-lg btn-block" @click.stop="ascertain"  value="确定">
+                        </div>
+                        <div class="col-sm-6">
+                            <input type="button" class="btn btn-default btn-lg btn-block" @click="outMolde" value="取消">
+                        </div>
+                    </div>
+                </div>
+            </div>
         </ul>
         <div class="loading" style="display: none;">.....我是有底线的....</div>
     </form>
+</div>
+<div class="notFind">
+    <img src="${pageContext.request.contextPath}/resources/wx/imge/undefind.png" alt="">
+    <p>-.-.-.-.-.-暂无数据-.-.-.-.-.-</p>
 </div>
 <script src="${pageContext.request.contextPath}/resources/wx/plugin/jquery-3.3.1.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/wx/plugin/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/wx/plugin/Vue/vue.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/wx/plugin/Vue/vue-resource.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/wx/plugin/toastr/toastr.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/wx/js/common.js"></script>
 <script src="${pageContext.request.contextPath}/resources/wx/js/unSentOrder.js"></script>
 </body>

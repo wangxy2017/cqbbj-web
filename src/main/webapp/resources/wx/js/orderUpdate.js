@@ -126,10 +126,10 @@ var main = new Vue({
                         $("#airEmps_name").val($("#airEmpsList").text());
                     });
                 } else {
-                    alert("数据异常");
+                    toastr.error("数据异常");
                 }
             }, function (res) {
-                alert("服务器异常");
+                toastr.error("服务器异常");
             });
         }
     })

@@ -13,8 +13,7 @@ var main = new Vue({
          * 点击卡片显示隐藏查看和回访
          * **/
         display:function (event) {
-            var el = event.currentTarget;// 获取当前元素
-            $(el).children('.display').toggle(500).css('display');
+            $(event.currentTarget).children('.display').fadeToggle(500);
         },
         /**
          * 查看跳转页面

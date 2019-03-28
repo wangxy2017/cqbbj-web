@@ -10,7 +10,7 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <title>订单详情页</title>
+    <title>订单管理</title>
     <link rel="stylesheet"
           href="${pageContext.request.contextPath}/resources/wx/plugin/bootstrap-3.3.7-dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/css/header.css">
@@ -61,6 +61,18 @@
         <tr>
             <th>预约时间:</th>
             <td>{{formatDateTime(order.beginTime)}}</td>
+        </tr>
+        <tr v-show="isComplete">
+            <th>实际收款:</th>
+            <td>{{order.receiveMoney}}</td>
+        </tr>
+        <tr v-show="isComplete">
+            <th>收款备注:</th>
+            <td>{{order.receiveText}}</td>
+        </tr>
+        <tr v-show="isComplete">
+            <th>回访记录:</th>
+            <td>{{order.visit}}</td>
         </tr>
 
         <tr v-show="isDispatch">

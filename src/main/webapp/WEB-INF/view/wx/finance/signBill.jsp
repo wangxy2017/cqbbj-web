@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/css/signBill.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/css/header.css">
     <link rel="icon" type="image/x-icon" href="${pageContext.request.contextPath}/resources/wx/favicon.ico"/>
-    <title>签单管理</title>
+    <title>财务管理</title>
 
 </head>
 <body>
@@ -27,10 +27,10 @@
 </header>
 <div class="container-fluid" id="main">
     <div class="row header-top">
-        <div class="top col-sm-6 border-buttom" @click.stop="payment">
+        <div class="top col-sm-6 border-buttom" @click.stop="payment($event)">
             <p>未付款</p>
         </div>
-        <div class="top col-sm-6" data-show="0" @click.stop="havePaid">
+        <div class="top col-sm-6" data-show="0" @click.stop="havePaid($event)">
             <p>已付款</p>
         </div>
     </div>

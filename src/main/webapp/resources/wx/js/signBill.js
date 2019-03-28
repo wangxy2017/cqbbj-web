@@ -10,7 +10,6 @@ var main = new Vue({
         pageSize: 4
     },
     methods: {
-
         /**
          * 点击卡片打开隐藏的收款按钮
          */
@@ -21,12 +20,12 @@ var main = new Vue({
         /**
          * 点击收款按钮事件
          */
-        receipt: function (id,event) {
+        receipt: function (id, event) {
             /**
              * 把当前页面的订单号码传送给跳转的页面
              * @type {string}
              */
-            var url = "/wx/signBill/payment?id=" +  "order_no=" + encodeURI($("#order_no").text());
+            var url = "/wx/signBill/payment?id=" + "order_no=" + encodeURI($("#order_no").text());
             window.location.href = url;
             var _this = $(event.currentTarget);
             $.ajax({
@@ -43,21 +42,24 @@ var main = new Vue({
                     console.log(result);
                     if (result.code == 1) {
                         main.status = 1;
-                    }else {
+                    } else {
                         toastr.error("数据出错啦");
                     }
-
                 },
-                error: function () {}
+                error: function () {
+                }
             });
-
-
-
         },
         /**
          * 点击已付款
          */
-        havePaid: function () {
+        havePaid: function (event) {
+            // 样式切换
+            var _this = $(event.currentTarget);
+            _this.addClass("border-buttom").siblings().removeClass("border-buttom");
+            $(".havePaid").show();
+            $(".non-payment").hide();
+            // 请求数据
             $.ajax({
                 url: "/wx/signBill/queryPageList",
                 dataType: "json",
@@ -83,6 +85,12 @@ var main = new Vue({
          * 点击未付款
          */
         payment: function () {
+            // 样式切换
+            var _this = $(event.currentTarget);
+            _this.addClass("border-buttom").siblings().removeClass("border-buttom");
+            $(".non-payment").show();
+            $(".havePaid").hide();
+            // 发送请求
             $.ajax({
                 url: "/wx/signBill/queryPageList",
                 dataType: "json",
@@ -106,32 +114,17 @@ var main = new Vue({
 
     },
     mounted: function () {
-        $(".header-top .top").click(function () {
-            $(this).addClass("border-buttom").siblings().removeClass("border-buttom");
-            var c = document.getElementsByClassName("havePaid");
-            var i = $(this).attr('data-show');
-            c = i;
-            if (i != 0) {
-                $(".havePaid").hide();
-                $(".non-payment").show();
-                toastr.error("未支付");
-            } else {
-                $(".havePaid").show();
-                $(".non-payment").hide();
-                toastr.info("已支付");
-            }
-
-        });
+        /**
+         * 加载数据
+         */
         this.$http.post("/wx/signBill/queryPageList", {
             //当前页面
             "pageNum": this.pageNum
             //展示数据
             , "pageSize": this.pageSize
-            ,"status":0
+            , "status": 0
 
         }, {emulateJSON: true}).then(function (res) {
-            // console.log(res.body);
-            // return;
             if (res.body.code == 1) {
                 main.signBills = res.body.data.list;
                 // 分页准备工作--赋值
@@ -196,8 +189,6 @@ var main = new Vue({
                     });
                 }
             });
-
-
-        })
+        });
     }
 });

@@ -2,7 +2,7 @@ var main = new Vue({
     el: "#main",
     data: {
         salarys: [],
-        flag: false,
+        locked: false,
         loaded: 0,
         total: 0,
         pageNum: 0,
@@ -10,9 +10,7 @@ var main = new Vue({
     },
     methods: {
         display: function (event) {
-            var _this = $(event.currentTarget);
-            var div = $(this.$el);
-            _this.children('.footer').fadeToggle(500);
+            $(event.currentTarget).children('.footer').fadeToggle(500);
         },
         /**
          * 修改点击事件
@@ -175,8 +173,6 @@ var main = new Vue({
                     });
                 }
             });
-
-
         })
     }
 });

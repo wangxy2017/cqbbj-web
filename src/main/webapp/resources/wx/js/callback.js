@@ -6,14 +6,12 @@ var main = new Vue({
          * 提交按钮事件
          * */
         submit: function () {
-            console.log("id="+$("#main").attr("dataid")+"receiveText="+$("#receiveText").val() );
-
             $.ajax({
                 url: "/wx/order/update",
                 dataType: "json",
                 data: {
                     "id": $("#main").attr("dataid"),
-                    "receiveText": $("#receiveText").val(),
+                    "visit": $("#visit").val()
 
                 },
                 type: "POST",

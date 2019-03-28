@@ -27,20 +27,16 @@
                 <img src="${pageContext.request.contextPath}/resources/wx/imge/shezhi.png" alt="">
             </a>
         </div>
-        <p >{{empName}}</p>
-        <div class="header-bottom">
-            <ul>
-                <li>
-                    <a onclick="wallet()">钱包</a>
-                </li>
-                <li>
-                    <a onclick="myTask()">我的任务</a>
-                </li>
-            </ul>
-            <ul class="ulfen">
-                <li>￥5000.00</li>
-                <li>50</li>
-            </ul>
+        <p>{{empName}}</p>
+        <div class="row">
+            <div class="col-sm-6" onclick="wallet()">
+                <p>钱包</p>
+                <p><span class="glyphicon glyphicon-yen"></span>{{money}}</p>
+            </div>
+            <div class="col-sm-6" onclick="myTask()">
+                <p>我的任务</p>
+                <p>{{task}}</p>
+            </div>
         </div>
     </header>
     <div >

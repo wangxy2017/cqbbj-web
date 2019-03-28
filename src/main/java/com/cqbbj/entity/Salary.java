@@ -52,6 +52,10 @@ public class Salary extends BaseEntity {
      * @return
      */
     private String emp_name;
+    /**
+     * 员工性别
+     */
+    private Integer emp_sex;
 
     public String getEmp_pos() {
         return emp_pos;
@@ -89,9 +93,6 @@ public class Salary extends BaseEntity {
     public void setBase_money(Double base_money) {
         this.base_money = base_money;
     }
-
-
-
 
     public Double getOther_money() {
         return other_money;
@@ -147,5 +148,13 @@ public class Salary extends BaseEntity {
 
     public void setSalary_no(String salary_no) {
         this.salary_no = salary_no;
+    }
+
+    public Integer getEmp_sex() {
+        return emp_sex;
+    }
+
+    public void setEmp_sex(Integer emp_sex) {
+        this.emp_sex = emp_sex;
     }
 }
