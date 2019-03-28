@@ -13,6 +13,7 @@
     <title>员工登录</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/css/login.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/plugin/toastr/toastr.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/css/header.css">
     <link rel="stylesheet"  href="${pageContext.request.contextPath}/resources/wx/plugin/bootstrap-3.3.7-dist/css/bootstrap.min.css">
 </head>
 <body>
@@ -64,8 +65,8 @@
             </form>
         </div>
     </div>
-    <div id="preloader">
-        <div id="loader"></div>
+    <div class="preloader">
+        <div class="loader"></div>
     </div>
 </div>
 <script src="${pageContext.request.contextPath}/resources/wx/plugin/jquery-3.3.1.min.js"></script>

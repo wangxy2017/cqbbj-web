@@ -67,10 +67,10 @@ var main = new Vue({
                 },
                 type: "POST",
                 beforeSend: function () {
-                    $(".loading").show();
+                    $(".preloader").show();
                 },
                 complete: function () {
-                    $(".loading").hide();
+                    $(".preloader").hide();
                 },
                 success: function (result) {
                     console.log(result);

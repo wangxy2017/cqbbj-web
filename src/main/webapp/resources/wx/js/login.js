@@ -14,10 +14,10 @@ function doLogin() {
         data: {"account": $("#account").val(), "password": $("#password").val()},// 请求数据
         type: "POST",// 请求方式
         beforeSend:function(){
-            $("#preloader").show();
+            $(".preloader").show();
         },
         complete:function(){
-            $("#preloader").hide();
+            $(".preloader").hide();
         },
         success: function (result) {// 请求成功函数
 

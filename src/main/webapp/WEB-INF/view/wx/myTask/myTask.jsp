@@ -84,13 +84,8 @@
         </div>
     </div>
 </div>
-<div class="row loading">
-    <div class="col-sm-5">
-        <img class="pull-right" src="${pageContext.request.contextPath}/resources/wx/imge/loading.gif" alt="">
-    </div>
-    <div class="col-sm-7">
-        <P class="pull-left">页面加载中...</P>
-    </div>
+<div class="preloader">
+    <div class="loader"></div>
 </div>
 <div class=" row baseLine">
     <p>---------我是有底线的----------</p>
