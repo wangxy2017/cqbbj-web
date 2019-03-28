@@ -1,16 +1,52 @@
 var main = new Vue({
     el: "#main",
-    data: {},
+    data: {
+
+        orders:{}
+    },
     methods: {
+
+        unComplete:function(){
+            $.ajax({
+                url:"/wx/myTask/queryTaskList",
+                data:{status:1 ,pageNum:1,
+                    pageSize:4},
+                dataType:"JSON",
+                type:"POST",
+                success:function(result){
+                    console.log(result);
+                    main.orders=result.data.list;
+            },error:function(){
+                    toastr.error("数据异常");
+                }
+            })
+        },
+        complete:function(){
+            $.ajax({
+                url:"/wx/myTask/queryTaskList",
+                data:{status:2 ,pageNum:1,
+                    pageSize:4},
+                dataType:"JSON",
+                type:"post",
+                success:function(result){
+                    console.log(result);
+                    main.orders=result.data.list;
+                },error:function(){
+                    toastr.error("数据异常");
+                }
+            })
+        },
+
         view:function (id) {
             setTimeout(function () {
-                window.location.href = "/wx/order/orderDetail?";
+                window.location.href = "/wx/order/orderDetail?id="+id;
             },100)
 
         },
-        open:function () {
+        open:function (event) {
             // console.log("123");
-            $('.display').toggle(500).css('display');
+            var el=event.currentTarget;
+            $(el).children('.display').toggle(500).css('display');
         },
     },
     mounted: function () {
@@ -25,18 +61,23 @@ var main = new Vue({
                 if(i!=0){
                     $(".complete").hide();
                     $(".unfinished").show();
-                    toastr.error("当前未完成订单");
                 }else {
                     $(".complete").show();
                     $(".unfinished").hide();
-                    toastr.info("当前完成订单");
                 }
 
             });
 
 
-            this.$http.post("/wx/myTask/queryTaskList",{},{emulateJSON:true}).then(function (res) {  },function () {
-                
+            this.$http.post("/wx/myTask/queryTaskList",{
+                status:1,
+                pageNum:1,
+                pageSize:4
+            },{emulateJSON:true}).then(function (res) {
+                console.log(res.body);
+                this.orders=res.body.data.list;
+            },function () {
+                toastr.error("数据异常");
             })
     }
 });

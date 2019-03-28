@@ -17,6 +17,7 @@ var main = new Vue({
                     "order_no": main.order_no,
                     "receiveMoney": main.receiveMoney,
                     "receiveText": main.receiveText,
+                    "endTime":new Date(),
                     "status": 2,
                     "id":$("#main").attr("data_id")
                 },

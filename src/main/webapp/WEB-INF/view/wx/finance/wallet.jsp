@@ -23,10 +23,11 @@
     </div>
     <p>我的钱包</p>
 </header>
+<div id="main">
 <div class="main">
     <div class="main-center">
         <p>余额账户（元）</p>
-        <h1>0.00</h1>
+        <h1>{{employee.money}}</h1>
     </div>
 </div>
 <section>
@@ -36,131 +37,26 @@
     <div class="container-fluid">
         <article class="list">
             <ul>
-                <li class="row">
+                <li class="row" v-for="wallet in wallets">
                     <div class="col-sm-6">
-                        <p class="h1">在线收入</p>
-                        <p>2018-01-02 08:30:22</p>
+                        <p class="h1"><span v-if="wallet.type==0">在线收入</span> <span v-else>在线支出</span></p>
+                        <p>{{formatDateTime(wallet.createTime)}}</p>
                     </div>
                     <div class="col-sm-6">
-                        <p class="pg">100元</p>
-                    </div>
-                </li>
-                <li class="row">
-                    <div class="col-sm-6">
-                        <p class="h1">在线收入</p>
-                        <p>2018-01-02 08:30:22</p>
-                    </div>
-                    <div class="col-sm-6">
-                        <p class="pg">100元</p>
+                        <p class="pg">{{wallet.money}}元</p>
                     </div>
                 </li>
-                <li class="row">
-                    <div class="col-sm-6">
-                        <p class="h1">在线收入</p>
-                        <p>2018-01-02 08:30:22</p>
-                    </div>
-                    <div class="col-sm-6">
-                        <p class="pg">100元</p>
-                    </div>
-                </li>
-                <li class="row">
-                    <div class="col-sm-6">
-                        <p class="h1">在线收入</p>
-                        <p>2018-01-02 08:30:22</p>
-                    </div>
-                    <div class="col-sm-6">
-                        <p class="pg">100元</p>
-                    </div>
-                </li>
-                <li class="row">
-                    <div class="col-sm-6">
-                        <p class="h1">在线收入</p>
-                        <p>2018-01-02 08:30:22</p>
-                    </div>
-                    <div class="col-sm-6">
-                        <p class="pg">100元</p>
-                    </div>
-                </li>
-                <li class="row">
-                    <div class="col-sm-6">
-                        <p class="h1">在线收入</p>
-                        <p>2018-01-02 08:30:22</p>
-                    </div>
-                    <div class="col-sm-6">
-                        <p class="pg">100元</p>
-                    </div>
-                </li>
-                <li class="row">
-                    <div class="col-sm-6">
-                        <p class="h1">在线收入</p>
-                        <p>2018-01-02 08:30:22</p>
-                    </div>
-                    <div class="col-sm-6">
-                        <p class="pg">100元</p>
-                    </div>
-                </li>
-                <li class="row">
-                    <div class="col-sm-6">
-                        <p class="h1">在线收入</p>
-                        <p>2018-01-02 08:30:22</p>
-                    </div>
-                    <div class="col-sm-6">
-                        <p class="pg">100元</p>
-                    </div>
-                </li>
-                <li class="row">
-                    <div class="col-sm-6">
-                        <p class="h1">在线收入</p>
-                        <p>2018-01-02 08:30:22</p>
-                    </div>
-                    <div class="col-sm-6">
-                        <p class="pg">100元</p>
-                    </div>
-                </li>
-                <li class="row">
-                    <div class="col-sm-6">
-                        <p class="h1">在线收入</p>
-                        <p>2018-01-02 08:30:22</p>
-                    </div>
-                    <div class="col-sm-6">
-                        <p class="pg">100元</p>
-                    </div>
-                </li>
-                <li class="row">
-                    <div class="col-sm-6">
-                        <p class="h1">在线收入</p>
-                        <p>2018-01-02 08:30:22</p>
-                    </div>
-                    <div class="col-sm-6">
-                        <p class="pg">100元</p>
-                    </div>
-                </li>
-                <li class="row">
-                    <div class="col-sm-6">
-                        <p class="h1">在线收入</p>
-                        <p>2018-01-02 08:30:22</p>
-                    </div>
-                    <div class="col-sm-6">
-                        <p class="pg">100元</p>
-                    </div>
-                </li>
-                <li class="row">
-                    <div class="col-sm-6">
-                        <p class="h1">在线收入</p>
-                        <p>2018-01-02 08:30:22</p>
-                    </div>
-                    <div class="col-sm-6">
-                        <p class="pg">100元</p>
-                    </div>
-                </li>
+
             </ul>
             <div class="loading" style="display: none;">.....我是有底线的....</div>
         </article>
     </div>
 </form>
+</div>
 <script src="${pageContext.request.contextPath}/resources/wx/plugin/jquery-3.3.1.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/wx/plugin/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/wx/plugin/Vue/vue.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/wx/js/common.js"></script>
 <script src="${pageContext.request.contextPath}/resources/wx/plugin/Vue/vue-resource.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/wx/plugin/toastr/toastr.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/wx/js/wallet.js"></script>

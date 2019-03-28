@@ -31,10 +31,10 @@
         <div class="header-bottom">
             <ul>
                 <li>
-                    <a >钱包</a>
+                    <a onclick="wallet()">钱包</a>
                 </li>
                 <li>
-                    <a >我的任务</a>
+                    <a onclick="myTask()">我的任务</a>
                 </li>
             </ul>
             <ul class="ulfen">

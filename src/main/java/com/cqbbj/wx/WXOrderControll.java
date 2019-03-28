@@ -8,6 +8,7 @@ import com.cqbbj.entity.*;
 import com.cqbbj.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -337,10 +338,11 @@ public class WXOrderControll extends BaseController {
      * 查询订单
      */
     @RequestMapping("/search")
-    @ResponseBody
-    public Result search(Order order) {
-        Order o = orderService.queryByProperties(order);
-        return ResultUtils.success(o);
+
+    public String search(Order order,Integer pageNum,Integer pageSize, ModelMap map) {
+        PageModel<Order> pageModel = orderService.queryPageList(order,pageNum,pageSize);
+        map.put("list",pageModel.getList());
+        return "wx/order/searchResult.jsp";
     }
     /**
      * 辅助完成

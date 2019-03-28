@@ -26,21 +26,21 @@
 <div class="container-fluid" id="main">
     <div class="title row">
         <div class="col-sm-5 boder_bottom">
-            <p>未完成</p>
+            <p @click="unComplete">未完成</p>
         </div>
         <div class="col-sm-2">
             <div></div>
         </div>
         <div class="col-sm-5 " data-show="0">
-            <p>已完成</p>
+            <p @click="complete">已完成</p>
         </div>
     </div>
     <div class="center">
-        <div class="unfinished row">
             <ul class="list-ul">
-                <li class="row list-li"   @click.stop="open" v-for="order in orders">
+                <li class="row list-li"   @click.stop="open($event)" v-for="order in orders">
                     <div class="zhang">
-                        <img src="${pageContext.request.contextPath}/resources/wx/imge/no.png" alt="">
+                        <span v-if="order.status==2"><img src="${pageContext.request.contextPath}/resources/wx/imge/wc.png" alt=""></span>
+                        <span v-else><img src="${pageContext.request.contextPath}/resources/wx/imge/no.png" alt=""></span>
                     </div>
                     <div class="row li-title">
                         <div class="col-sm-7">
@@ -51,64 +51,33 @@
                         </div>
                     </div>
                     <div class="col-sm-12 li-content">
-                        <p class="toAdd">{{star}}</p>
+                        <p class="toAdd">{{order.start}}</p>
                     </div>
                     <div class="col-sm-12">
-                        <p class="formAdd">{{end}}</p>
+                        <p class="formAdd">{{order.end}}</p>
                     </div>
                     <div class="row li-footer">
                         <div class="col-sm-8">
-                            <p>{{order.beginTime}}</p>
+                            <p>{{formatDateTime(order.beginTime)}}</p>
                         </div>
                         <div class="col-sm-4">
                             <p class="pull-right">{{order.price}}￥</p>
                         </div>
                     </div>
-                    <%--<div class="row display">--%>
-                        <%--<div class="col-sm-4">--%>
-                            <%--<button type="button" class="btn btn-info" @click.stop="0">支付</button>--%>
-                        <%--</div>--%>
-                        <%--<div class="col-sm-4">--%>
-                            <%--<button type="button" class="btn btn-success" @click.stop="1">完成</button>--%>
-                        <%--</div>--%>
-                        <%--<div class="col-sm-4">--%>
-                            <%--<button type="button" class="btn btn-danger" @click.stop="2">查看</button>--%>
-                        <%--</div>--%>
-                    <%--</div>--%>
-                </li>
-            </ul>
-        </div>
-        <div class="complete" @click.stop="view()">
-            <ul class="list-ul">
-                <li class="row list-li">
-                    <div class="zhang">
-                        <img src="${pageContext.request.contextPath}/resources/wx/imge/yes.png" alt="">
-                    </div>
-                    <div class="row li-title">
-                        <div class="col-sm-7">
-                            <p>订单号：<a href="javascript:;">{{order.order_no}}</a></p>
-                        </div>
-                        <div class="col-sm-5">
-                            <p class="pull-right">客户姓名：{{order.name}}</p>
-                        </div>
-                    </div>
-                    <div class="col-sm-12 li-content">
-                        <p class="toAdd">{{star}}</p>
-                    </div>
-                    <div class="col-sm-12">
-                        <p class="formAdd">{{end}}</p>
-                    </div>
-                    <div class="row li-footer">
-                        <div class="col-sm-8">
-                            <p>{{order.beginTime}}</p>
+                    <div class="row display">
+                        <div class="col-sm-4">
+                            <button type="button" class="btn btn-info" @click.stop="0">支付</button>
                         </div>
                         <div class="col-sm-4">
-                            <p class="pull-right">{{order.price}}￥</p>
+                            <button type="button" class="btn btn-success" @click.stop="finish(order.id)">完成</button>
+                        </div>
+                        <div class="col-sm-4">
+                            <button type="button" class="btn btn-danger" @click.stop="view(order.id)">查看</button>
                         </div>
                     </div>
                 </li>
             </ul>
-        </div>
+
     </div>
 </div>
 <script src="${pageContext.request.contextPath}/resources/wx/plugin/jquery-3.3.1.min.js"></script>
@@ -116,6 +85,7 @@
 <script src="${pageContext.request.contextPath}/resources/wx/plugin/Vue/vue.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/wx/plugin/Vue/vue-resource.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/wx/plugin/toastr/toastr.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/wx/js/common.js"></script>
 <script src="${pageContext.request.contextPath}/resources/wx/js/myTask.js"></script>
 </body>
 </html>
