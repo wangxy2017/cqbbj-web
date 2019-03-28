@@ -8,38 +8,70 @@ var main = new Vue({
     },
     methods: {
         /**
-         * 请求数据
+         * 作废订单事件
          */
-        requestData: function () {
-
+        cancel: function (id, order_no, event) {
+            // 设置选中id
+            $("#checkId").val(id);
+            $("#checkEmpNo").val(order_no);
+            // 模态框弹出
+            var _this = $(event.currentTarget);
+            var mask = _this.parents("li").siblings("div");
+            console.log(mask);
+            mask.show().find(".alert_body").animate({
+                marginTop: '40rem'
+            });
         },
         /**
-         * 取消订单
+         * 模态框点击确定事件
          */
-        cancel: function (id, order_no) {
-            if (confirm("确定取消该订单吗？")) {
-                console.log("点击的确定修改!id=" + id + " order_no=" + order_no);
-                // 发送异步请求，跟新订单
-                // 刷新列表
-                $.ajax({
-                    url: "/wx/order/cancelOrderStatus",
-                    data: {
-                        "id": id,
-                        "status": 3,
-                        order_no: order_no
-                    },
-                    dataType: "json",
-                    type: "post",
-                    success: function (res) {
-                        if (res.code == 1) {
-                            console.log(res.data);
-                            window.location.href="/wx/order/sentOrder";
-                        }
-                    }, error: function () {
-                        toastr.error("数据异常");
+        ascertain: function () {
+            var id = $("#checked").val();
+            var order_no = $("#checkEmpNo").val();
+            console.log(id);
+            $.ajax({
+                url: "/wx/order/cancelOrderStatus",
+                data: {
+                    "id": id,
+                    "status": 3,
+                    order_no: order_no
+                },
+                dataType: "json",
+                type: "post",
+                success: function (res) {
+                    if (res.code == 1) {
+                        console.log(res.data);
+                        window.location.href = "/wx/order/sentOrder";
                     }
-                });
-            }
+                }, error: function () {
+                    toastr.error("数据异常");
+                }
+            });
+            // 刷新列表
+        },
+
+        /**
+         * 点击任意地方关闭弹窗
+         */
+        end: function () {
+            $(".alert_body").animate({
+                marginTop: '-50rem',
+            });
+            setTimeout(function () {
+                $(".alert_model").css("display", "none");
+            }, 500);
+        },
+        /**
+         * 点击关闭按钮动画
+         */
+        hide: function () {
+            $(".alert_body").animate({
+                marginTop: '-50rem',
+            });
+            setTimeout(function () {
+                $(".alert_model").css("display", "none");
+            }, 500);
+
         },
         /**
          * 显示操作按钮
