@@ -36,7 +36,7 @@ var main = new Vue({
          * 选择收款人员
          */
         chooseEmp: function () {
-            main.$http.post("http://192.168.0.100:9000/wx/employee/queryPageList", {}, {emulateJSON: true}).then(function (res) {
+            main.$http.post("/wx/employee/queryPageList", {}, {emulateJSON: true}).then(function (res) {
                 console.log(res.body);
                 // [{name:xxx,emp_no:xxx},{name:xxx,emp_no:xxx},{name:xxx,emp_no:xxx}]
                 main.emps = res.body.data;
@@ -71,7 +71,7 @@ var main = new Vue({
         *添加随车司机
         */
         chooseDriver: function () {
-            main.$http.post("http://192.168.0.100:9000/wx/employee/queryPageList", {}, {emulateJSON: true}).then(function (res) {
+            main.$http.post("/wx/employee/queryPageList", {}, {emulateJSON: true}).then(function (res) {
                 console.log(res.body);
                 // [{name:xxx,emp_no:xxx},{name:xxx,emp_no:xxx},{name:xxx,emp_no:xxx}]
                 main.motorMans = res.body.data;
@@ -111,7 +111,7 @@ var main = new Vue({
          */
 
         chooseHamal: function () {
-            main.$http.post("http://192.168.0.100:9000/wx/employee/queryPageList", {}, {emulateJSON: true}).then(function (res) {
+            main.$http.post("/wx/employee/queryPageList", {}, {emulateJSON: true}).then(function (res) {
                 console.log(res.body);
                 // [{name:xxx,emp_no:xxx},{name:xxx,emp_no:xxx},{name:xxx,emp_no:xxx}]
                 main.hamals = res.body.data;
@@ -153,7 +153,7 @@ var main = new Vue({
          */
 
         chooseHvac: function () {
-            main.$http.post("http://192.168.0.100:9000/wx/employee/queryPageList", {}, {emulateJSON: true}).then(function (res) {
+            main.$http.post("/wx/employee/queryPageList", {}, {emulateJSON: true}).then(function (res) {
                 console.log(res.body);
                 // [{name:xxx,emp_no:xxx},{name:xxx,emp_no:xxx},{name:xxx,emp_no:xxx}]
                 main.hvacs = res.body.data;
@@ -208,7 +208,7 @@ var main = new Vue({
             // console.log(main.moveEmps);
             // return;
             $.ajax({
-                url: "http://192.168.0.100:9000/wx/order/dispatchOrder",
+                url: "/wx/order/dispatchOrder",
                 data: {
                     // 订单编号
                     order_no: main.order_no
@@ -226,12 +226,14 @@ var main = new Vue({
                 //异步请求
                 type: "post",
                 success: function (res) {
-                    console.log(res);
-                    //    请求成功执行的代码
-                    toastr.success("派单成功");
-                    setTimeout(function () {
-                        window.location.href = "/wx/order/sentOrder";
-                    },1000)
+                    if(res.code==1) {
+                        console.log(res);
+                        //    请求成功执行的代码
+                        toastr.success("派单成功");
+                        setTimeout(function () {
+                            window.location.href = "/wx/order/sentOrder";
+                        }, 500)
+                    }
                 }, error: function (res) {
                     console.log(res);
                     toastr.error("提交失败!");

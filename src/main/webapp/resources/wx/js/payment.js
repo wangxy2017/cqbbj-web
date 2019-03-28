@@ -9,7 +9,7 @@ var main = new Vue({
     methods: {
         receive:function () {
             $.ajax({
-                url: "http://192.168.0.100:9000/wx/signBill/receive",
+                url: "/wx/signBill/receive",
                 dataType: "json",
                 data: {
                     "receiveMoney": this.receiveMoney

@@ -33,5 +33,10 @@ var main = new Vue({
                 }
 
             });
+
+
+            this.$http.post("/wx/myTask/queryTaskList",{},{emulateJSON:true}).then(function (res) {  },function () {
+                
+            })
     }
 });

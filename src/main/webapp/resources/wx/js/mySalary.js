@@ -27,7 +27,7 @@ var main = new Vue({
             console.log(id);
             // return;
             $.ajax({
-                url: "http://192.168.0.100:9000/wx/salary/delete",
+                url: "/wx/salary/delete",
                 dataType: "json",
                 data: {
                     "id": id
@@ -102,7 +102,7 @@ var main = new Vue({
     },
     mounted: function () {
         // 初始化
-        this.$http.post("http://192.168.0.100:9000/wx/salary/queryPageList", {
+        this.$http.post("/wx/salary/queryPageList", {
             //当前页面
             "pageNum": this.pageNum
             //展示数据
@@ -137,7 +137,7 @@ var main = new Vue({
                     // toastr.info("成功");
                     // 发送请求
                     $.ajax({
-                        url: 'http://192.168.0.100:9000/wx/salary/queryPageList',
+                        url: '/wx/salary/queryPageList',
                         dataType: 'json',
                         data: {
                             "pageNum": main.pageNum++,

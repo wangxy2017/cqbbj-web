@@ -26,11 +26,11 @@ var main = new Vue({
              * 把当前页面的订单号码传送给跳转的页面
              * @type {string}
              */
-            var url = "/wx/signBill/payment?id=" + "+" + id + "order_no=" + encodeURI($("#order_no").text());
+            var url = "/wx/signBill/payment?id=" +  "order_no=" + encodeURI($("#order_no").text());
             window.location.href = url;
             var _this = $(event.currentTarget);
             $.ajax({
-                url: "http://192.168.0.100:9000/wx/signBill/receive",
+                url: "/wx/signBill/receive",
                 dataType: "json",
                 data: {
                     "pageNum": this.pageNum
@@ -59,7 +59,7 @@ var main = new Vue({
          */
         havePaid: function () {
             $.ajax({
-                url: "http://192.168.0.100:9000/wx/signBill/queryPageList",
+                url: "/wx/signBill/queryPageList",
                 dataType: "json",
                 data: {
                     "pageNum": this.pageNum
@@ -84,7 +84,7 @@ var main = new Vue({
          */
         payment: function () {
             $.ajax({
-                url: "http://192.168.0.100:9000/wx/signBill/queryPageList",
+                url: "/wx/signBill/queryPageList",
                 dataType: "json",
                 data: {
                     "pageNum": this.pageNum
@@ -122,7 +122,7 @@ var main = new Vue({
             }
 
         });
-        this.$http.post("http://192.168.0.100:9000/wx/signBill/queryPageList", {
+        this.$http.post("/wx/signBill/queryPageList", {
             //当前页面
             "pageNum": this.pageNum
             //展示数据
@@ -166,7 +166,7 @@ var main = new Vue({
                     // 进入方法，关闭开关，保证只请求一次
                     main.flag = false;
                     $.ajax({
-                        url: 'http://192.168.0.100:9000/wx/signBill/queryPageList',
+                        url: '/wx/signBill/queryPageList',
                         dataType: 'json',
                         data: {
                             "pageNum": main.pageNum++,
