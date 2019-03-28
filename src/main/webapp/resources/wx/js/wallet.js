@@ -49,10 +49,12 @@ var main = new Vue({
                         // 3.把锁打开
                         _this.locked = false;
                         // 4.如果已加载的条数 == 总条数 ，显示已经到底
-                        if (_this.loaded >= _this.total) {
-                            $(".baseLine").show();
+
+                        // 5.如果没有数据，则显示没有数据
+                        if (_this.wallets.length == 0) {
+                            $(".notFind").show();
                         } else {
-                            $(".baseLine").hide();
+                            $(".notFind").hide();
                         }
                     } else {
                         toastr.error("数据加载失败!");

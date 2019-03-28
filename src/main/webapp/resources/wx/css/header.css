@@ -62,6 +62,7 @@ header .pic{
 /*加载完毕*/
 .baseLine {
     display: none;
+    border: none !important;
 }
 
 .baseLine p {

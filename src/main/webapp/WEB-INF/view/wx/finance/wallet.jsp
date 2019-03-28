@@ -61,8 +61,9 @@
         <P class="pull-left">页面加载中...</P>
     </div>
 </div>
-<div class=" row baseLine">
-    <p>---------我是有底线的----------</p>
+<div class="notFind" style="padding: 0">
+    <img src="${pageContext.request.contextPath}/resources/wx/imge/undefind.png" alt="">
+    <p>-.-.-.-.-.-暂无数据-.-.-.-.-.-</p>
 </div>
 <script src="${pageContext.request.contextPath}/resources/wx/plugin/jquery-3.3.1.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/wx/plugin/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>

@@ -99,11 +99,23 @@
                 </div>
             </div>
         </ul>
-        <div class="loading" style="display: none;">.....我是有底线的....</div>
     </form>
 </div>
-
-
+<div class="row loading">
+    <div class="col-sm-5">
+        <img class="pull-right" src="${pageContext.request.contextPath}/resources/wx/imge/loading.gif" alt="">
+    </div>
+    <div class="col-sm-7">
+        <P class="pull-left">页面加载中...</P>
+    </div>
+</div>
+<div class=" row baseLine">
+    <p>---------我是有底线的----------</p>
+</div>
+<div class="notFind">
+    <img src="${pageContext.request.contextPath}/resources/wx/imge/undefind.png" alt="">
+    <p>-.-.-.-.-.-暂无数据-.-.-.-.-.-</p>
+</div>
 <script src="${pageContext.request.contextPath}/resources/wx/plugin/jquery-3.3.1.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/wx/plugin/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/wx/plugin/Vue/vue.min.js"></script>

@@ -37,48 +37,51 @@
         </div>
     </div>
     <div class="center">
-        <ul class="list-ul">
-            <li class="row list-li" @click.stop="open($event)" v-for="order in orders">
-                <div class="zhang">
+        <div class="unfinished row">
+            <ul class="list-ul">
+                <li class="row list-li" @click.stop="open($event)" v-for="order in orders">
+                    <div class="zhang">
                     <span v-if="order.status==2"><img src="${pageContext.request.contextPath}/resources/wx/imge/wc.png"
                                                       alt=""></span>
-                    <span v-else><img src="${pageContext.request.contextPath}/resources/wx/imge/no.png" alt=""></span>
-                </div>
-                <div class="row li-title">
-                    <div class="col-sm-7">
-                        <p>订单号：<a href="javascript:;">{{order.order_no}}</a></p>
+                        <span v-else><img src="${pageContext.request.contextPath}/resources/wx/imge/no.png"
+                                          alt=""></span>
                     </div>
-                    <div class="col-sm-5">
-                        <p class="pull-right">客户姓名：{{order.name}}</p>
+                    <div class="row li-title">
+                        <div class="col-sm-7">
+                            <p>订单号：<a href="javascript:;">{{order.order_no}}</a></p>
+                        </div>
+                        <div class="col-sm-5">
+                            <p class="pull-right">客户姓名：{{order.name}}</p>
+                        </div>
                     </div>
-                </div>
-                <div class="col-sm-12 li-content">
-                    <p class="toAdd">{{order.start}}</p>
-                </div>
-                <div class="col-sm-12">
-                    <p class="formAdd">{{order.end}}</p>
-                </div>
-                <div class="row li-footer">
-                    <div class="col-sm-8">
-                        <p>{{formatDateTime(order.beginTime)}}</p>
+                    <div class="col-sm-12 li-content">
+                        <p class="toAdd">{{order.start}}</p>
                     </div>
-                    <div class="col-sm-4">
-                        <p class="pull-right">{{order.price}}￥</p>
+                    <div class="col-sm-12">
+                        <p class="formAdd">{{order.end}}</p>
                     </div>
-                </div>
-                <div class="row display">
-                    <div class="col-sm-4">
-                        <button type="button" class="btn btn-info" @click.stop="0">支付</button>
+                    <div class="row li-footer">
+                        <div class="col-sm-8">
+                            <p>{{formatDateTime(order.beginTime)}}</p>
+                        </div>
+                        <div class="col-sm-4">
+                            <p class="pull-right">{{order.price}}￥</p>
+                        </div>
                     </div>
-                    <div class="col-sm-4">
-                        <button type="button" class="btn btn-success" @click.stop="finish(order.id)">完成</button>
+                    <div class="row display">
+                        <div class="col-sm-4">
+                            <button type="button" class="btn btn-info" @click.stop="0">支付</button>
+                        </div>
+                        <div class="col-sm-4">
+                            <button type="button" class="btn btn-success" @click.stop="finish(order.id)">完成</button>
+                        </div>
+                        <div class="col-sm-4">
+                            <button type="button" class="btn btn-danger" @click.stop="view(order.id)">查看</button>
+                        </div>
                     </div>
-                    <div class="col-sm-4">
-                        <button type="button" class="btn btn-danger" @click.stop="view(order.id)">查看</button>
-                    </div>
-                </div>
-            </li>
-        </ul>
+                </li>
+            </ul>
+        </div>
     </div>
 </div>
 <div class="row loading">

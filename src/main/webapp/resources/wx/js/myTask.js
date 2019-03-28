@@ -26,19 +26,6 @@ var main = new Vue({
             main.pageNum = 0;
             main.pageSize = 4;
             main.loadData();
-            // $.ajax({
-            //     url:"/wx/myTask/queryTaskList",
-            //     data:{status:1 ,pageNum:1,
-            //         pageSize:4},
-            //     dataType:"JSON",
-            //     type:"POST",
-            //     success:function(result){
-            //         console.log(result);
-            //         main.orders=result.data.list;
-            // },error:function(){
-            //         toastr.error("数据异常");
-            //     }
-            // })
         },
         complete: function () {
             // 样式切换
@@ -53,19 +40,6 @@ var main = new Vue({
             main.pageNum = 0;
             main.pageSize = 4;
             main.loadData();
-            // $.ajax({
-            //     url:"/wx/myTask/queryTaskList",
-            //     data:{status:2 ,pageNum:1,
-            //         pageSize:4},
-            //     dataType:"JSON",
-            //     type:"post",
-            //     success:function(result){
-            //         console.log(result);
-            //         main.orders=result.data.list;
-            //     },error:function(){
-            //         toastr.error("数据异常");
-            //     }
-            // })
         },
         view: function (id) {
             setTimeout(function () {
@@ -152,35 +126,5 @@ var main = new Vue({
                 }
             });
         });
-        // return;
-        // /**
-        //  * tab切换函数
-        //  */
-        //     $(".title .col-sm-5").click(function () {
-        //         $(this).addClass("border_bottom").siblings().removeClass("border_bottom");
-        //         var c = document.getElementsByClassName("complete");
-        //         var i =$(this).attr('data-show');
-        //         c = i;
-        //         if(i!=0){
-        //             $(".complete").hide();
-        //             $(".unfinished").show();
-        //         }else {
-        //             $(".complete").show();
-        //             $(".unfinished").hide();
-        //         }
-        //
-        //     });
-        //
-        //
-        //     this.$http.post("/wx/myTask/queryTaskList",{
-        //         status:1,
-        //         pageNum:1,
-        //         pageSize:4
-        //     },{emulateJSON:true}).then(function (res) {
-        //         console.log(res.body);
-        //         this.orders=res.body.data.list;
-        //     },function () {
-        //         toastr.error("数据异常");
-        //     })
     }
 });
