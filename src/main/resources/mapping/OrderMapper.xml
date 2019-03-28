@@ -196,8 +196,8 @@
         <if test="payState != null">and payState = #{payState}</if>
         <if test="order_no != null and order_no !=''">and order_no = #{order_no}</if>
         <if test="name != null and name !=''">and name like concat("%",#{name},"%")</if>
-        <if test="beginTime1 != null"><![CDATA[and beginTime >= #{beginTime1}]]></if>
-        <if test="beginTime2 != null"><![CDATA[and beginTime <= #{beginTime2}]]></if>
+        <if test="endTime1 != null"><![CDATA[and endTime >= #{endTime1}]]></if>
+        <if test="endTime2 != null"><![CDATA[and endTime <= #{endTime2}]]></if>
     </select>
 
     <!-- 订单统计 -->

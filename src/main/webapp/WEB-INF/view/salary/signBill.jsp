@@ -18,6 +18,10 @@
 <body>
 <div class="main" id="main">
     <%-- 工具栏 --%>
+    <div class="layui-btn-container">
+        <button class="layui-btn" @click="download">导出数据</button>
+    </div>
+    <%-- 工具栏 --%>
     <div class="search-tools">
         <div class="search-item">
             订单号：
@@ -35,7 +39,6 @@
             收款状态：
             <div class="layui-input-inline" style="width: 66px;">
                 <select class="layui-input" name="status" v-model="status">
-                    <option value="">全部</option>
                     <option value="0">未收款</option>
                     <option value="1">已收款</option>
 

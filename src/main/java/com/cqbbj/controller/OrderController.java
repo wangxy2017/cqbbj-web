@@ -423,6 +423,7 @@ public class OrderController extends BaseController {
         String sheetName = "";
         String[] title = null;
         String[][] values = null;
+        String content = "导出数据";
         // 打印完成订单
         if ("04".equals(page)) {
             List<Order> orders = orderService.queryList(order);
@@ -430,6 +431,7 @@ public class OrderController extends BaseController {
             sheetName = "完成订单";
             title = new String[]{"订单编号", "客户名称", "客户电话", "搬出地址", "搬入地址", "订单价格", "实际收款", "完成时间", "售后"};
             values = new String[orders.size()][9];
+            content = "导出完成订单";
             int i = 0;
             for (Order o : orders) {
                 values[i][0] = o.getOrder_no();
@@ -444,8 +446,66 @@ public class OrderController extends BaseController {
                 i++;
             }
         }
+        if ("03".equals(page)) {
+            List<Order> orders = orderService.queryList(order);
+            fileName = "已派订单.xls";
+            sheetName = "已派订单";
+            title = new String[]{"订单编号", "客户名称", "客户电话", "搬出地址", "搬入地址", "预约时间"};
+            values = new String[orders.size()][6];
+            content = "导出已派订单";
+            int i = 0;
+            for (Order o : orders) {
+                values[i][0] = o.getOrder_no();
+                values[i][1] = o.getName();
+                values[i][2] = o.getPhone();
+                values[i][3] = o.getStart();
+                values[i][4] = o.getEnd();
+                values[i][5] = DateUtils.formatDateTime(o.getBeginTime());
+                i++;
+            }
+        }
+        if ("02".equals(page)) {
+            List<Order> orders = orderService.queryList(order);
+            fileName = "未派订单.xls";
+            sheetName = "未派订单";
+            title = new String[]{"订单编号", "客户名称", "客户电话", "搬出地址", "搬入地址", "搬运备注", "订单价格", "预约时间"};
+            values = new String[orders.size()][8];
+            content = "导出未派订单";
+            int i = 0;
+            for (Order o : orders) {
+                values[i][0] = o.getOrder_no();
+                values[i][1] = o.getName();
+                values[i][2] = o.getPhone();
+                values[i][3] = o.getStart();
+                values[i][4] = o.getEnd();
+                values[i][5] = o.getContent();
+                values[i][6] = String.valueOf(o.getPrice());
+                values[i][7] = DateUtils.formatDateTime(o.getBeginTime());
+                i++;
+            }
+        }
+        if ("01".equals(page)) {
+            List<Order> orders = orderService.queryList(order);
+            fileName = "订单列表.xls";
+            sheetName = "订单列表";
+            title = new String[]{"订单编号", "客户名称", "客户电话", "搬出地址", "搬入地址", "搬运备注", "订单价格", "下单时间"};
+            values = new String[orders.size()][8];
+            content = "导出订单列表";
+            int i = 0;
+            for (Order o : orders) {
+                values[i][0] = o.getOrder_no();
+                values[i][1] = o.getName();
+                values[i][2] = o.getPhone();
+                values[i][3] = o.getStart();
+                values[i][4] = o.getEnd();
+                values[i][5] = o.getContent();
+                values[i][6] = String.valueOf(o.getPrice());
+                values[i][7] = DateUtils.formatDateTime(o.getCreateTime());
+                i++;
+            }
+        }
         // 记录日志
-        OperationLog log = createLog(request, "导出订单表");
+        OperationLog log = createLog(request, content);
         operationLogService.saveEntity(log);
         ExcelUtils.downloadExcel(fileName, sheetName, title, values, response);
     }

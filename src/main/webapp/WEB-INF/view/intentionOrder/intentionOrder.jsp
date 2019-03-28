@@ -21,6 +21,7 @@
     <div class="layui-btn-container">
         <button class="layui-btn" @click="addOrder">新增订单</button>
         <button class="layui-btn layui-btn-normal" @click="updateOrder">修改订单</button>
+        <button class="layui-btn" @click="download">导出数据</button>
     </div>
     <div class="search-tools">
         <div class="search-item">
@@ -36,7 +37,7 @@
             </div>
         </div>
         <div class="search-item">
-            创建时间：
+            录入时间：
             <div class="layui-input-inline">
                 <input class="layui-input" id="createTime1" name="createTime1" autocomplete="off" placeholder="选择开始时间">
             </div>

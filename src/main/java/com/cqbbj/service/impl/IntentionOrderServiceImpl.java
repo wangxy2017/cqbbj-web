@@ -50,7 +50,7 @@ public class IntentionOrderServiceImpl implements IIntentionOrderService {
 
     @Override
     public List<IntentionOrder> queryList(IntentionOrder intentionOrder) {
-        return null;
+        return intentionOrderMapper.queryList(intentionOrder);
     }
 
     @Override
