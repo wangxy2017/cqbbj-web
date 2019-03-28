@@ -135,6 +135,7 @@ body{
 .modal-text p{
     height: 20rem;
     line-height: 20rem;
+    padding: 0;
 }
 .alert_model input{
     height: 10rem;

@@ -25,7 +25,7 @@
 </header>
 <div class="container-fluid" id="main" dataid="<%=request.getParameter("id")%>">
     <h1>备注记录</h1>
-    <textarea class="form-control" rows="12" id="receiveText" placeholder="请输入内容"></textarea>
+    <textarea class="form-control" rows="12" id="visit" placeholder="请输入内容"></textarea>
     <div class="row">
         <input type="button" class="btn btn-success btn-lg btn-block" value="提交" @click.stop="submit">
     </div>
