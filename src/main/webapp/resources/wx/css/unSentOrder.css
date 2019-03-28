@@ -153,17 +153,7 @@ body{
 /*-------模态框结束------*/
 
 
-/*暂无数据*/
-#notFind{
-    background: #e7e7e7;
-    margin: 0 auto;
-    padding-top: 50%;
-    text-align: center;
-    display: none;
-}
-#notFind p{
-    background: none !important;
-    font-size: 4rem;
-}
+
+
 
 
