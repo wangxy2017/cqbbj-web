@@ -168,7 +168,7 @@ public class HomeController extends BaseController {
         Map<String, Object> data = new HashMap<>();
         // 查询最新公告
         Notice notice = noticeService.queryTopNews();
-        data.put("notice", notice.getContent());
+        data.put("notice", notice == null ? "【暂无公告】" : notice.getContent());
         // 查询我的任务
         Order order = new Order();
         order.setStatus(1);

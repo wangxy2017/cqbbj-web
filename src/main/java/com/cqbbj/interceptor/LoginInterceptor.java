@@ -24,15 +24,15 @@ public class LoginInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        // 判断地址中是否存在不需要拦截的路径
+        // 1.判断地址中是否存在不需要拦截的路径,如果存在，则放行
         String uri = request.getRequestURI();
         for (int i = 0; i < rule.length; i++) {
-            if (uri.indexOf(rule[i]) != -1) {
+            if (uri.startsWith(rule[i])) {
                 return true;
             }
         }
-        // 如果路径都需要拦截，则判断是否登陆
-        if (uri.indexOf("/wx/") != -1) {
+        // 2.判断是否登录
+        if (uri.startsWith("/wx/")) {
             System.out.println("微信操作："+uri);
             if (EmployeeUtils.getEmployee() != null) {
                 return true;
