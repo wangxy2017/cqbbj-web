@@ -37,25 +37,25 @@
         <div class="row">
             <div class="col-sm-3">基本工资:</div>
             <div class="col-sm-9">
-                <input type="text" class="form-control" v-model="salary.base_money">
+                <input type="number" class="form-control" v-model="salary.base_money">
             </div>
         </div>
         <div class="row">
             <div class="col-sm-3">提成工资:</div>
             <div class="col-sm-9">
-                <input type="text" class="form-control" v-model="salary.profit_money">
+                <input type="number" class="form-control" v-model="salary.profit_money">
             </div>
         </div>
         <div class="row">
             <div class="col-sm-3">其他开支:</div>
             <div class="col-sm-9">
-                <input type="text" class="form-control" v-model="salary.other_money">
+                <input type="number" class="form-control" v-model="salary.other_money">
             </div>
         </div>
         <div class="row">
             <div class="col-sm-3">实发工资:</div>
             <div class="col-sm-9">
-                <input type="text" class="form-control" v-model="salary.real_money">
+                <input type="number" class="form-control" v-model="salary.real_money">
             </div>
         </div>
         <div class="row">

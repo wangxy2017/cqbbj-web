@@ -161,7 +161,7 @@
                     <input type="button" class="btn btn-info btn-lg btn-block" value="添加">
                 </div>
                 <div class="col-sm-6">
-                    <input type="button" class="btn btn-danger btn-lg btn-block" type="reset" @click="reset" value="重置">
+                    <input class="btn btn-danger btn-lg btn-block" type="reset" @click="reset" value="重置">
                 </div>
             </footer>
         </div>
@@ -186,7 +186,7 @@
                     <input type="button" class="btn btn-info btn-lg btn-block" value="添加">
                 </div>
                 <div class="col-sm-6">
-                    <input type="button" class="btn btn-danger btn-lg btn-block" type="reset" @click="reset" value="重置">
+                    <input class="btn btn-danger btn-lg btn-block" type="reset" @click="reset" value="重置">
                 </div>
             </footer>
         </div>
@@ -210,7 +210,7 @@
                     <input type="button" class="btn btn-info btn-lg btn-block" value="添加">
                 </div>
                 <div class="col-sm-6">
-                    <input type="button" class="btn btn-danger btn-lg btn-block" type="reset" @click="reset" value="重置">
+                    <input class="btn btn-danger btn-lg btn-block" type="reset" @click="reset" value="重置">
                 </div>
             </footer>
         </div>
@@ -235,7 +235,7 @@
                     <input type="button" class="btn btn-info btn-lg btn-block" value="添加">
                 </div>
                 <div class="col-sm-6">
-                    <input type="button" class="btn btn-danger btn-lg btn-block" type="reset" @click="reset" value="重置">
+                    <input class="btn btn-danger btn-lg btn-block" type="reset" @click="reset" value="重置">
                 </div>
             </footer>
         </div>

@@ -1,7 +1,7 @@
 var main = new Vue({
     el: "#main",
     data: {
-        salary:{},
+        salary: {}
     },
     methods: {
         /*
@@ -11,25 +11,25 @@ var main = new Vue({
             $.ajax({
                 url: "/wx/salary/update",
                 data: {
-                    "id":main.salary.id,
-                    "emp_name":main.salary.emp_name,
-                    "base_money":main.salary.base_money,
-                    "profit_money":main.salary.profit_money,
-                    "other_money":main.salary.other_money,
-                    "real_money":main.salary.real_money,
-                    "year":main.salary.year,
-                    "month":main.salary.month,
-                    "remark":main.salary.remark,
+                    "id": main.salary.id,
+                    "emp_name": main.salary.emp_name,
+                    "base_money": main.salary.base_money,
+                    "profit_money": main.salary.profit_money,
+                    "other_money": main.salary.other_money,
+                    "real_money": main.salary.real_money,
+                    "year": main.salary.year,
+                    "month": main.salary.month,
+                    "remark": main.salary.remark
                 },
                 dataType: "json",
                 type: "post",
-                success:function (result) {
+                success: function (result) {
                     console.log(result);
                     toastr.success("修改成功");
                     setTimeout(function () {
-                        window.location.href = "salary.html";
-                    },1000)
-                },error:function () {
+                        window.location.href = "/wx/salary/mySalary";
+                    }, 1000)
+                }, error: function () {
                     toastr.error("提交失败");
                 }
             })
@@ -46,7 +46,7 @@ var main = new Vue({
             'type': 'year'
         });
 
-            // 获取参数
+        // 获取参数
         var url = window.location.href;
         // console.log(url);
         var n1 = url.length;//地址的总长度
