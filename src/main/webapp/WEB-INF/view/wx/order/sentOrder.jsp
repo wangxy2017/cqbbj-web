@@ -72,12 +72,32 @@
                     </div>
                     <div class="col-sm-3">
                         <a class="abolish">
-                            <button type="button" class="btn btn-default"  @click.stop="cancel(item.id,item.order_no)">取消</button>
+                            <button type="button" class="btn btn-default"  @click.stop="cancel(item.id,item.order_no,$event)">作废</button>
                         </a>
                     </div>
                 </div>
             </li>
-
+            <div class="alert_model" @click.stop="end">
+                <div class="alert_body">
+                    <input type="hidden" id="checkId" value="">
+                    <input type="hidden" id="checkEmpNo" value="">
+                    <div class="alert-title">
+                        <p>提示</p>
+                        <span @click.stop="hide" class="glyphicon glyphicon-remove"></span>
+                    </div>
+                    <div class="container-fluid">
+                        <div class="modal-text">
+                            <p>是否确定作废?</p>
+                        </div>
+                        <div class="col-sm-6">
+                            <input type="button" class="btn btn-info btn-lg btn-block" @click.stop="ascertain"  value="确定">
+                        </div>
+                        <div class="col-sm-6">
+                            <input type="button" class="btn btn-default btn-lg btn-block" value="取消">
+                        </div>
+                    </div>
+                </div>
+            </div>
         </ul>
         <div class="loading" style="display: none;">.....我是有底线的....</div>
     </form>

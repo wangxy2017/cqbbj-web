@@ -7,21 +7,6 @@ var main = new Vue({
         total: 0
     },
     methods: {
-
-
-
-        /**
-         * 请求数据
-         */
-        requestData: function () {
-
-        },
-        // /**
-        //  * 修改点击事件
-        //  */
-        // update: function (id) {
-        //     window.location.href = "/wx/salary/salaryUpdate?id=" + id;
-        // },
         /**
          * 模态框点击确定事件
          */
@@ -130,6 +115,17 @@ var main = new Vue({
                 // 分页准备工作--赋值
                 main.loaded = res.body.data.list.length;
                 main.loaded = res.body.data.total;
+                /**
+                 *  判断页面是否有数据如果没有就显示暂无数据
+                 */
+                if ( main.orders.length == 0){
+                    $("#notFind").show();
+                }else {
+                    $("#notFind").hide();
+                };
+                /**
+                 * 判断结束
+                 */
             }
         }, function (res) {
             console.log(res.body);

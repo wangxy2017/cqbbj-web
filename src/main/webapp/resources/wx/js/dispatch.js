@@ -230,9 +230,8 @@ var main = new Vue({
                         console.log(res);
                         //    请求成功执行的代码
                         toastr.success("派单成功");
-                        setTimeout(function () {
-                            window.location.href = "/wx/order/sentOrder";
-                        }, 500)
+                            //派单成功刷新页面
+                            window.location.reload();
                     }
                 }, error: function (res) {
                     console.log(res);
