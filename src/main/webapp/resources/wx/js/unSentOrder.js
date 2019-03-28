@@ -16,28 +16,77 @@ var main = new Vue({
         requestData: function () {
 
         },
+        // /**
+        //  * 修改点击事件
+        //  */
+        // update: function (id) {
+        //     window.location.href = "/wx/salary/salaryUpdate?id=" + id;
+        // },
         /**
-         * 取消订单
+         * 模态框点击确定事件
          */
-        cancel: function (id) {
-            if (confirm("确定取消该订单吗？")) {
-                console.log("点击的确定修改!");
-                // 发送异步请求，跟新订单
-                $.ajax({
-                    url: "/wx/order/updateOrderStatus",
-                    data: {"id": id, "status": 3},
-                    dataType: "json",
-                    type: "post",
-                    success: function (res) {
-                        console.log(res.data);
-                        window.location.href = "/wx/order/unSentOrder";
-                    }, error: function () {
+        ascertain: function () {
+                var id = $("#checked").val();
+            console.log(id);
+            $.ajax({
+                url: "/wx/order/updateOrderStatus",
+                data: {"id": id, "status": 3},
+                dataType: "json",
+                type: "post",
+                success: function (res) {
+                    console.log(res.data);
+                    window.location.href = "/wx/order/unSentOrder";
+                }, error: function () {
 
 
-                    }
-                });
-                // 刷新列表
-            }
+                }
+            });
+            // 刷新列表
+        },
+        /**
+         * 模态框点击取消事件
+         */
+        outMolde: function () {
+            setTimeout(function () {
+                toastr.info("你放弃了操作");
+            }, 500)
+
+        },
+        /**
+         * 点击任意地方关闭弹窗
+         */
+        end: function () {
+            $(".alert_body").animate({
+                marginTop: '-50rem',
+            });
+            setTimeout(function () {
+                $(".alert_model").css("display", "none");
+            }, 500);
+        },
+        /**
+         * 点击关闭按钮动画
+         */
+        hide: function () {
+            $(".alert_body").animate({
+                marginTop: '-50rem',
+            });
+            setTimeout(function () {
+                $(".alert_model").css("display", "none");
+            }, 500);
+
+        },
+        /**
+         * 作废订单事件
+         */
+        cancel: function (id,event) {
+            $("#checked").val(id);
+            var _this = $(event.currentTarget);
+            var mask = _this.parents("li").siblings("div");
+            console.log(mask);
+            mask.show().find(".alert_body").animate({
+                marginTop: '40rem'
+            });
+
         },
         /**
          * 显示操作按钮

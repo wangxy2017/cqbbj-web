@@ -89,3 +89,64 @@ body{
     height: 12rem;
     font-size: 4rem;
 }
+/**
+ 模态框样式
+  */
+.alert_model{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: 999;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0 ,0, 0.52);
+    display: none;
+}
+.alert_body{
+    width: 90%;
+    background: #fff;
+    margin: 10% auto;
+    border-radius: 2rem;
+    /*display: none;*/
+}
+.alert-title{
+    height: 15rem;
+    width: 100%;
+    font-size: 4rem;
+    text-align: center;
+    position: relative;
+    border-bottom: 1px solid #737383;
+}
+.alert-title p{
+    line-height: 15rem;
+    letter-spacing: 4rem;
+    margin-left: 4rem;
+}
+.alert-title span{
+    font-size: 4rem;
+    margin-left: -2rem;
+    right: 4rem;
+    line-height: 15rem;
+    position: absolute;
+}
+.modal-text{
+    text-align: center;
+}
+.modal-text p{
+    height: 20rem;
+    line-height: 20rem;
+}
+.alert_model input{
+    height: 10rem;
+    width: 100%;
+    font-size: 4rem;
+    padding: 2rem;
+}
+.alert_model button{
+    height: 10rem;
+    font-size: 4rem;
+    width: 100%;
+}
+.alert_model .container-fluid{
+    padding: 2rem;
+}
