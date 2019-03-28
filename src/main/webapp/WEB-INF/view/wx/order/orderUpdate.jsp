@@ -30,43 +30,43 @@
         <input type="hidden" name="status" id="status" v-model="order.status">
         <tr class="row">
             <th class="col-sm-3">订单编号:</th>
-            <td class="col-sm-9" style="color: #1e9fff"><input class="form-control" name="order_no" disabled
+            <td class="col-sm-9" style="color: #1e9fff"><input type="text" class="form-control" name="order_no" disabled
                                                                id="order_no" v-model="order.order_no"></td>
 
         </tr>
         <tr class="row">
             <th class="col-sm-3">客户名称:</th>
-            <td class="col-sm-9"><input class="form-control" name="name" id="name" v-model="order.name"></td>
+            <td class="col-sm-9"><input type="text" class="form-control" name="name" id="name" v-model="order.name"></td>
 
         </tr>
         <tr class="row">
             <th class="col-sm-3">客户电话:</th>
-            <td class="col-sm-9"><input class="form-control" name="phone" id="phone" v-model="order.phone"></td>
+            <td class="col-sm-9"><input type="number" class="form-control" name="phone" id="phone" v-model="order.phone"></td>
 
         </tr>
         <tr class="row">
             <th class="col-sm-3">搬出地址:</th>
-            <td class="col-sm-9"><input class="form-control" name="start" id="start" v-model="order.start"></td>
+            <td class="col-sm-9"><input type="text" class="form-control" name="start" id="start" v-model="order.start"></td>
 
         </tr>
         <tr class="row">
             <th class="col-sm-3">搬入地址:</th>
-            <td class="col-sm-9"><input class="form-control" name="end" id="end" v-model="order.end"></td>
+            <td class="col-sm-9"><input type="text" class="form-control" name="end" id="end" v-model="order.end"></td>
 
         </tr>
         <tr class="row">
             <th class="col-sm-3">客户备注:</th>
-            <td class="col-sm-9"><input class="form-control" name="remark" id="remark" v-model="order.content"></td>
+            <td class="col-sm-9"><input type="text" class="form-control" name="remark" id="remark" v-model="order.content"></td>
 
         </tr>
         <tr class="row">
             <th class="col-sm-3">预估起价:</th>
-            <td class="col-sm-9"><input class="form-control" name="price" id="price" v-model="order.price"></td>
+            <td class="col-sm-9"><input type="text" class="form-control" name="price" id="price" v-model="order.price"></td>
 
         </tr>
         <tr class="row">
             <th class="col-sm-3">预约时间:</th>
-            <td class="col-sm-9"><input class="form-control" name="beginTime" id="beginTime" v-model="order.beginTime">
+            <td class="col-sm-9"><input type="text" class="form-control" name="beginTime" id="beginTime" v-model="order.beginTime">
             </td>
 
         </tr>
@@ -76,7 +76,7 @@
             </th>
             <td class="col-sm-9">
                 <div class="col-sm-6">
-                    <input class="form-control" name="moneyEmps_name" id="moneyEmps_name">
+                    <input type="text" class="form-control" name="moneyEmps_name" id="moneyEmps_name">
                     <input type="hidden" name="moneyEmps" id="moneyEmps">
                 </div>
                 <div class="col-sm-3">
@@ -90,7 +90,7 @@
             </th>
             <td class="col-sm-9">
                 <div class="col-sm-6">
-                    <input class="form-control" name="driveEmps_name" id="driveEmps_name">
+                    <input type="text" class="form-control" name="driveEmps_name" id="driveEmps_name">
                     <input type="hidden" name="driveEmps" id="driveEmps">
                 </div>
                 <div class="col-sm-3">
@@ -103,7 +103,7 @@
             </th>
             <td class="col-sm-9">
                 <div class="col-sm-6">
-                    <input class="form-control" name="moveEmps_name" id="moveEmps_name">
+                    <input type="text" class="form-control" name="moveEmps_name" id="moveEmps_name">
                     <input type="hidden" name="moveEmps" id="moveEmps">
                 </div>
                 <div class="col-sm-3">
@@ -116,7 +116,7 @@
             </th>
             <td class="col-sm-9">
                 <div class="col-sm-6">
-                    <input class="form-control" name="airEmps_name" id="airEmps_name">
+                    <input type="text" class="form-control" name="airEmps_name" id="airEmps_name">
                     <input type="hidden" name="airEmps" id="airEmps">
                 </div>
                 <div class="col-sm-3">
@@ -161,7 +161,7 @@
                     <input type="button" class="btn btn-info btn-lg btn-block" value="添加">
                 </div>
                 <div class="col-sm-6">
-                    <input class="btn btn-danger btn-lg btn-block" type="reset" @click="reset" value="重置">
+                    <input type="button" class="btn btn-danger btn-lg btn-block" type="reset" @click="reset" value="重置">
                 </div>
             </footer>
         </div>
@@ -186,7 +186,7 @@
                     <input type="button" class="btn btn-info btn-lg btn-block" value="添加">
                 </div>
                 <div class="col-sm-6">
-                    <input class="btn btn-danger btn-lg btn-block" type="reset" @click="reset" value="重置">
+                    <input type="button" class="btn btn-danger btn-lg btn-block" type="reset" @click="reset" value="重置">
                 </div>
             </footer>
         </div>
@@ -210,7 +210,7 @@
                     <input type="button" class="btn btn-info btn-lg btn-block" value="添加">
                 </div>
                 <div class="col-sm-6">
-                    <input class="btn btn-danger btn-lg btn-block" type="reset" @click="reset" value="重置">
+                    <input type="button" class="btn btn-danger btn-lg btn-block" type="reset" @click="reset" value="重置">
                 </div>
             </footer>
         </div>
@@ -235,7 +235,7 @@
                     <input type="button" class="btn btn-info btn-lg btn-block" value="添加">
                 </div>
                 <div class="col-sm-6">
-                    <input class="btn btn-danger btn-lg btn-block" type="reset" @click="reset" value="重置">
+                    <input type="button" class="btn btn-danger btn-lg btn-block" type="reset" @click="reset" value="重置">
                 </div>
             </footer>
         </div>

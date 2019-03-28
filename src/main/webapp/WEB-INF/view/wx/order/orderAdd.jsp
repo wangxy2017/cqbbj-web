@@ -33,7 +33,7 @@
 
         <dl class="row">
             <dt>客户电话:</dt>
-            <dd><input type="text" name="phone" id="phone" placeholder="电话号码\手机"></dd>
+            <dd><input type="number" name="phone" id="phone" placeholder="电话号码\手机"></dd>
         </dl>
         <dl class="row">
             <dt>搬出地址:</dt>
@@ -45,7 +45,7 @@
         </dl>
         <dl class="row">
             <dt>预估起价:</dt>
-            <dd><input type="text" name="price" id="price" placeholder="金额预算"></dd>
+            <dd><input type="number" name="price" id="price" placeholder="金额预算"></dd>
         </dl>
         <dl class="row">
             <dt>预约时间:</dt>
