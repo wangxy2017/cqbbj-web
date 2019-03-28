@@ -139,7 +139,7 @@
         </tr>
     </table>
     <footer class="row">
-        <input class="form-control btn btn-info btn-lg btn-block" id="submit" @click="submit" value="提交">
+        <input type="button" class="form-control btn btn-info btn-lg btn-block" id="submit" @click="submit" value="提交">
     </footer>
 
 
