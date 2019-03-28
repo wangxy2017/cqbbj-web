@@ -13,8 +13,8 @@ function doLogin() {
 
             if (result.code == 1) {
                //console.log(result.data.name);
-               var name=result.data.name;
-                window.location.href = "/wx/login/toHome?name="+name;
+
+                window.location.href = "/wx/login/toHome";
             }else{
                 toastr.error(result.msg);
             }

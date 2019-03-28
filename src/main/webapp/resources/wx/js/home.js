@@ -65,17 +65,17 @@ var main = new Vue({
     el: "#main",
     data: {
         menus: [],
-        empName:""
+        empName: "请登录"
     },
     methods: {
-        tiaozhuan:function (url) {
-            window.location.href=url;
+        tiaozhuan: function (url) {
+            window.location.href = url;
         }
 
     },
     mounted: function () {
-        this.$http.post("/wx/menu/queryPageList",{},{emulateJSON: true}).then(function (res) {
-            console.log(res.body);
+        this.$http.post("/wx/menu/queryPageList", {}, {emulateJSON: true}).then(function (res) {
+         //   console.log(res.body);
             // return;
             if (res.body.code == 1) {
                 this.menus = res.body.data[0].childs;
@@ -85,10 +85,10 @@ var main = new Vue({
         }, function (res) {
             toastr.error("服务器异常");
         });
-        this.$http.post("/wx/login/getEmpName",{},{emulateJSON: true}).then(function (res) {
+        this.$http.post("/wx/login/getEmpName", {}, {emulateJSON: true}).then(function (res) {
 
-            if (res.code == 1) {
-                this.empName = res.data;
+            if (res.body.code == 1) {
+                this.empName = res.body.data;
             }
         }, function (res) {
             toastr.error("服务器异常");

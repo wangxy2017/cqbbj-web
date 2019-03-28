@@ -18,7 +18,7 @@
     <title>会员中心</title>
 </head>
 <body>
-<div class="container-fluid">
+<div class="container-fluid" id="main">
     <header>
         <br/>
         <div id="pichead"></div>
@@ -43,7 +43,7 @@
             </ul>
         </div>
     </header>
-    <div id="main">
+    <div >
         <ul>
             <li v-for="menu in menus">
                 <a @click.stop="tiaozhuan(menu.url)">

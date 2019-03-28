@@ -200,6 +200,7 @@ public class WXLoginController extends BaseController {
     }
 
     @RequestMapping("/getEmpName")
+    @ResponseBody
     public Result getEmpName() {
         if (EmployeeUtils.getEmployee() != null) {
             return ResultUtils.success(EmployeeUtils.getEmployee().getName());
