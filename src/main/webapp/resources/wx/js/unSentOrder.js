@@ -20,22 +20,13 @@ var main = new Vue({
                 type: "post",
                 success: function (res) {
                     console.log(res.data);
-                    window.location.href = "/wx/order/unSentOrder";
+                    window.location.reload();
                 }, error: function () {
 
 
                 }
             });
             // 刷新列表
-        },
-        /**
-         * 模态框点击取消事件
-         */
-        outMolde: function () {
-            setTimeout(function () {
-                toastr.info("你放弃了操作");
-            }, 500)
-
         },
         /**
          * 点击任意地方关闭弹窗
