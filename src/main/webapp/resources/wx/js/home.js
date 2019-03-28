@@ -69,12 +69,27 @@ var main = new Vue({
         money: 0.00
     },
     methods: {
+        /**
+         * 菜单跳转
+         * @param url
+         */
         tiaozhuan: function (url) {
             if (!isEmpty(url)) {
                 window.location.href = url;
             }
+        },
+        /**
+         * 我的任务
+         */
+        myTask:function () {
+            window.location.href = "/wx/order/myTask";
+        },
+        /**
+         * 我的钱包
+         */
+        wallet:function () {
+            window.location.href = "/wx/payRecord/wallet";
         }
-
     },
     mounted: function () {
         this.$http.post("/wx/menu/queryPageList", {}, {emulateJSON: true}).then(function (res) {

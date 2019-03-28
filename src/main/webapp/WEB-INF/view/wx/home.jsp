@@ -29,11 +29,11 @@
         </div>
         <p>{{empName}}</p>
         <div class="row">
-            <div class="col-sm-6" onclick="wallet()">
+            <div class="col-sm-6" @click="wallet">
                 <p>钱包</p>
                 <p><span class="glyphicon glyphicon-yen"></span>{{money}}</p>
             </div>
-            <div class="col-sm-6" onclick="myTask()">
+            <div class="col-sm-6" @click="myTask">
                 <p>我的任务</p>
                 <p>{{task}}</p>
             </div>
