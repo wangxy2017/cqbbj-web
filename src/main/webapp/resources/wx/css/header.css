@@ -21,3 +21,14 @@ header .pic{
    line-height: 150px;
     color: white;
 }
+/*页面没有元素显示画面*/
+.notFind{
+    margin: 0 auto;
+    padding-top: 50%;
+    text-align: center;
+    display: none;
+}
+.notFind p{
+    background: none !important;
+    font-size: 4rem;
+}

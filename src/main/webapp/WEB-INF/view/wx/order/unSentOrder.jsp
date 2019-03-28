@@ -102,7 +102,7 @@
         <div class="loading" style="display: none;">.....我是有底线的....</div>
     </form>
 </div>
-<div id="notFind">
+<div class="notFind">
     <img src="${pageContext.request.contextPath}/resources/wx/imge/undefind.png" alt="">
     <p>-.-.-.-.-.-暂无数据-.-.-.-.-.-</p>
 </div>

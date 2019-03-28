@@ -119,9 +119,9 @@ var main = new Vue({
                  *  判断页面是否有数据如果没有就显示暂无数据
                  */
                 if ( main.orders.length == 0){
-                    $("#notFind").show();
+                    $(".notFind").show();
                 }else {
-                    $("#notFind").hide();
+                    $(".notFind").hide();
                 };
                 /**
                  * 判断结束
