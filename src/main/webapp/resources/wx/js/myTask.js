@@ -18,7 +18,7 @@ var main = new Vue({
          * tab切换函数
          */
             $(".title .col-sm-5").click(function () {
-                $(this).addClass("boder_bottom").siblings().removeClass("boder_bottom");
+                $(this).addClass("border_bottom").siblings().removeClass("border_bottom");
                 var c = document.getElementsByClassName("complete");
                 var i =$(this).attr('data-show');
                 c = i;

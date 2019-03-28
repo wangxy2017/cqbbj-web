@@ -25,7 +25,7 @@
 </header>
 <div class="container-fluid" id="main">
     <div class="title row">
-        <div class="col-sm-5 boder_bottom">
+        <div class="col-sm-5 border_bottom">
             <p>未完成</p>
         </div>
         <div class="col-sm-2">
