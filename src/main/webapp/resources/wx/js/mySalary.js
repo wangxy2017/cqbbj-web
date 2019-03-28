@@ -10,9 +10,7 @@ var main = new Vue({
     },
     methods: {
         display: function (event) {
-            var _this = $(event.currentTarget);
-            var div = $(this.$el);
-            _this.children('.footer').fadeToggle(500);
+            $(event.currentTarget).children('.footer').fadeToggle(500);
         },
         /**
          * 修改点击事件

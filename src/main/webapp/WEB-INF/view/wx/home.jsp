@@ -11,39 +11,38 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet"
-          href="${pageContext.request.contextPath}/resources/wx/plugin/font-awesome-4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/css/home.css">
+          href="${pageContext.request.contextPath}/resources/wx/plugin/bootstrap-3.3.7-dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/plugin/toastr/toastr.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/css/home.css">
 
-    <title>会员中心</title>
+
+    <title>员工中心</title>
 </head>
 <body>
 <div class="container-fluid" id="main">
     <header>
-        <br/>
-        <div id="pichead"></div>
+        <div class="header-top row">
+            <img src="${pageContext.request.contextPath}/resources/wx/imge/header.jpg" alt="">
+        </div>
         <div class="set" style="display: none">
             <a href="javascript:;">
                 <img src="${pageContext.request.contextPath}/resources/wx/imge/shezhi.png" alt="">
             </a>
         </div>
-        <p >{{empName}}</p>
-        <div class="header-bottom">
-            <ul>
-                <li>
-                    <a >钱包</a>
-                </li>
-                <li>
-                    <a >我的任务</a>
-                </li>
-            </ul>
-            <ul class="ulfen">
-                <li>￥5000.00</li>
-                <li>50</li>
-            </ul>
+        <p>{{empName}}</p>
+        <div class="row">
+            <div class="col-sm-6">
+                <p>钱包</p>
+                <p><span class="glyphicon glyphicon-yen"></span>{{money}}</p>
+            </div>
+            <div class="col-sm-6">
+                <p>我的任务</p>
+                <p>{{task}}</p>
+
+            </div>
         </div>
     </header>
-    <div >
+    <div>
         <ul>
             <li v-for="menu in menus">
                 <a @click.stop="tiaozhuan(menu.url)">
@@ -63,6 +62,7 @@
 <script src="${pageContext.request.contextPath}/resources/wx/plugin/toastr/toastr.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/wx/plugin/Vue/vue.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/wx/plugin/Vue/vue-resource.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/wx/js/common.js"></script>
 <script src="${pageContext.request.contextPath}/resources/wx/js/home.js"></script>
 </body>
 </html>

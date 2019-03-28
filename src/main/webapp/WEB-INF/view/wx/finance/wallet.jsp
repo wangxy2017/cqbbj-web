@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/plugin/bootstrap-3.3.7-dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/css/header.css?time=2">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/css/wallet.css?time=2">
-    <title>我的零钱</title>
+    <title>财务管理</title>
     <link rel="icon" type="image/x-icon" href="${pageContext.request.contextPath}/resources/wx/favicon.ico"/>
 </head>
 <body>

@@ -2,7 +2,8 @@ var main = new Vue({
         el: "#main",
         data: {
             order: {},
-            isDispatch: false
+            isDispatch: false,
+            isComplete: false
         },
         methods: {},
         mounted: function () {
@@ -12,13 +13,17 @@ var main = new Vue({
                 if (res.body.code == 1) {
                     this.order = res.body.data;
                     // 显示派单信息
-                    if (this.order.status == 1 || this.order.status == 2)
+                    if (this.order.status == 1 || this.order.status == 2) {
                         this.isDispatch = true;
+                    }
+                    if (this.order.status == 2) {
+                        this.isComplete = true;
+                    }
                 } else {
-                    alert("数据异常");
+                    toastr.info("数据异常");
                 }
             }, function (res) {
-                alert("服务器异常");
+                toastr.error("服务器异常");
             });
         }
     })

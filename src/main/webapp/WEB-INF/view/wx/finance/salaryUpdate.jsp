@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/css/updateSalary.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/css/header.css">
     <link rel="icon" type="image/x-icon" href="${pageContext.request.contextPath}/resources/wx/favicon.ico"/>
-    <title>重庆棒棒军实业管理有限公司</title>
+    <title>财务管理</title>
 </head>
 <body>
 <header>

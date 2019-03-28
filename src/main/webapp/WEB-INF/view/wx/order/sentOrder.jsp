@@ -10,7 +10,7 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <title>已派订单</title>
+    <title>订单管理</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/plugin/bootstrap-3.3.7-dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/css/header.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/css/sentOrder.css">

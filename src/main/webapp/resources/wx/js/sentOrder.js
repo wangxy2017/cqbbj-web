@@ -45,8 +45,7 @@ var main = new Vue({
          * 显示操作按钮
          */
         showBtns: function (event) {
-            var el = event.currentTarget;// 获取当前元素
-            $(el).children('.display').toggle(500).css('display');
+            $(event.currentTarget).children('.display').fadeToggle(500);
         },
         /**
          * 查看按钮

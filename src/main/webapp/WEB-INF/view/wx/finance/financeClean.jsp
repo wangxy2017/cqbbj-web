@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/css/financeClean.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/css/header.css">
     <link rel="icon" type="image/x-icon" href="${pageContext.request.contextPath}/resources/wx/favicon.ico"/>
-    <title>重庆棒棒军管理系统</title>
+    <title>财务管理</title>
 </head>
 <body>
 <header>
