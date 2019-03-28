@@ -27,7 +27,7 @@
                 <img src="${pageContext.request.contextPath}/resources/wx/imge/shezhi.png" alt="">
             </a>
         </div>
-        <p><%=request.getParameter("name")%></p>
+        <p >{{empName}}</p>
         <div class="header-bottom">
             <ul>
                 <li>

@@ -64,8 +64,8 @@ function loginout() {
 var main = new Vue({
     el: "#main",
     data: {
-        menus: []
-
+        menus: [],
+        empName:""
     },
     methods: {
         tiaozhuan:function (url) {
@@ -81,6 +81,14 @@ var main = new Vue({
                 this.menus = res.body.data[0].childs;
             } else {
                 toastr.info("数据异常");
+            }
+        }, function (res) {
+            toastr.error("服务器异常");
+        });
+        this.$http.post("/wx/login/getEmpName",{},{emulateJSON: true}).then(function (res) {
+
+            if (res.code == 1) {
+                this.empName = res.data;
             }
         }, function (res) {
             toastr.error("服务器异常");

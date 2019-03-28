@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 
 @Controller
 @RequestMapping("/wx/myTask")
-public class HomeTaskController extends BaseController {
+public class WXHomeTaskController extends BaseController {
 
     @Autowired
     private IOrderService orderService;// 订单

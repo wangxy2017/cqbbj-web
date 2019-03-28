@@ -60,7 +60,7 @@
         </tr>
         <tr>
             <th>预约时间:</th>
-            <td>{{order.beginTime}}</td>
+            <td>{{formatDateTime(order.beginTime)}}</td>
         </tr>
 
         <tr v-show="isDispatch">

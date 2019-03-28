@@ -43,6 +43,7 @@ public class WXLoginController extends BaseController {
     public String toLogin() {
         return "wx/login";
     }
+
     /**
      * home页面跳转
      *
@@ -52,6 +53,7 @@ public class WXLoginController extends BaseController {
     public String toHome() {
         return "wx/home";
     }
+
     /**
      * 手机号注册
      *
@@ -172,7 +174,7 @@ public class WXLoginController extends BaseController {
      */
     @RequestMapping("/empLogin")
     @ResponseBody
-    public Result empLogin(HttpServletRequest request, String account,String password) {
+    public Result empLogin(HttpServletRequest request, String account, String password) {
         // 查询员工
         List<Employee> list = employeeService.queryByAccount(account);
         if (!list.isEmpty() && list.size() == 1) {
@@ -196,4 +198,14 @@ public class WXLoginController extends BaseController {
         }
 
     }
+
+    @RequestMapping("/getEmpName")
+    public Result getEmpName() {
+        if (EmployeeUtils.getEmployee() != null) {
+            return ResultUtils.success(EmployeeUtils.getEmployee().getName());
+        } else {
+            return ResultUtils.success(null);
+        }
+    }
+
 }
