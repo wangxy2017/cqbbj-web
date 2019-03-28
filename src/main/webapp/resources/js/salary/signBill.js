@@ -10,7 +10,7 @@ layui.use(["table", "layer", "laydate", "jquery"], function () {
         data: {
             order_no: "",
             name: "",
-            status: "",
+            status: 0,
         },
         methods: {
             /**
@@ -51,7 +51,7 @@ layui.use(["table", "layer", "laydate", "jquery"], function () {
                     id: "signBillList",
                     url: "/signBill/queryPageList",
                     page: true,
-                    where: {},
+                    where: {"status": 0},
                     parseData: function (res) {
                         return {
                             "code": res.code,
@@ -96,7 +96,7 @@ layui.use(["table", "layer", "laydate", "jquery"], function () {
 
                     // 收款
                     if (layEvent === 'receive') {
-                        if(data.status == 1){
+                        if (data.status == 1) {
                             layer.msg("该订单已收款，无需操作");
                             return;
                         }
@@ -144,8 +144,20 @@ layui.use(["table", "layer", "laydate", "jquery"], function () {
                         });
                     }
                 });
+            },
+            /**
+             * 导出
+             */
+            download: function () {
+                layer.confirm("导出数据属于敏感操作，确认继续吗？", function (index) {
+                    layer.close(index);
+                    window.location.href = "/signBill/download?name=" + main.name +
+                        "&status=" + main.status +
+                        "&order_no=" + main.order_no +
+                        "&startTime=" + $("#startTime").val() +
+                        "&finishTime=" + $("#finishTime").val();
+                });
             }
-
         },
         mounted: function () {
             // 初始化表格
