@@ -9,7 +9,7 @@ var main = new Vue({
          */
         submit: function () {
             $.ajax({
-                url: "http://192.168.0.100:9000/wx/salary/update",
+                url: "/wx/salary/update",
                 data: {
                     "id":main.salary.id,
                     "emp_name":main.salary.emp_name,
@@ -53,7 +53,7 @@ var main = new Vue({
         var n2 = url.indexOf("=");//取得=号的位置
         var id = url.substr(n2 + 1, n1 - n2);//从=号后面的内容
         console.log(id);
-        this.$http.post("http://192.168.0.100:9000/wx/salary/queryById", {"id": id}, {emulateJSON: true}).then(function (res) {
+        this.$http.post("/wx/salary/queryById", {"id": id}, {emulateJSON: true}).then(function (res) {
             // console.log(res.body);
             // return;
             if (res.body.code == 1) {

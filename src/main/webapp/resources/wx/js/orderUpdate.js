@@ -11,7 +11,7 @@ var main = new Vue({
         },
         methods: {
             clickMoneyEmps:function(){
-                main.$http.post("http://192.168.0.100:9000/wx/employee/queryPageList", {}, {emulateJSON: true}).then(function (res) {
+                main.$http.post("/wx/employee/queryPageList", {}, {emulateJSON: true}).then(function (res) {
                     console.log(res.body);
                     // [{name:xxx,emp_no:xxx},{name:xxx,emp_no:xxx},{name:xxx,emp_no:xxx}]
                     main.moneyEmps = res.body.data;
@@ -20,7 +20,7 @@ var main = new Vue({
                 });
             },
             clickDriveEmps:function(){
-                main.$http.post("http://192.168.0.100:9000/wx/employee/queryPageList", {}, {emulateJSON: true}).then(function (res) {
+                main.$http.post("/wx/employee/queryPageList", {}, {emulateJSON: true}).then(function (res) {
                     console.log(res.body);
                     // [{name:xxx,emp_no:xxx},{name:xxx,emp_no:xxx},{name:xxx,emp_no:xxx}]
                     main.driveEmps = res.body.data;
@@ -29,7 +29,7 @@ var main = new Vue({
                 });
             },
             clickMoveEmps:function(){
-                main.$http.post("http://192.168.0.100:9000/wx/employee/queryPageList", {}, {emulateJSON: true}).then(function (res) {
+                main.$http.post("/wx/employee/queryPageList", {}, {emulateJSON: true}).then(function (res) {
                     console.log(res.body);
                     // [{name:xxx,emp_no:xxx},{name:xxx,emp_no:xxx},{name:xxx,emp_no:xxx}]
                     main.moveEmps = res.body.data;
@@ -38,7 +38,7 @@ var main = new Vue({
                 });
             },
             clickAirEmps:function(){
-                main.$http.post("http://192.168.0.100:9000/wx/employee/queryPageList", {}, {emulateJSON: true}).then(function (res) {
+                main.$http.post("/wx/employee/queryPageList", {}, {emulateJSON: true}).then(function (res) {
                     console.log(res.body);
                     // [{name:xxx,emp_no:xxx},{name:xxx,emp_no:xxx},{name:xxx,emp_no:xxx}]
                     main.airEmps = res.body.data;
@@ -112,7 +112,7 @@ var main = new Vue({
 
         },
         mounted: function () {
-            this.$http.post("http://192.168.0.100:9000/wx/order/queryById", {"id": $("#table").attr("data_id")}, {emulateJSON: true}).then(function (res) {
+            this.$http.post("/wx/order/queryById", {"id": $("#table").attr("data_id")}, {emulateJSON: true}).then(function (res) {
                 console.log(res.body);
                 if (res.body.code == 1) {
                     this.order = res.body.data;
