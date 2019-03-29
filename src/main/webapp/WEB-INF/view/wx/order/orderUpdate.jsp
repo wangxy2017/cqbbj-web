@@ -152,7 +152,7 @@
             <div class="title">选择员工 <span class="glyphicon glyphicon-remove"></span></div>
             <div class="container">
                 <div class="row">
-                    <div class="col-sm-4" v-for="item in moneyEmps">
+                    <div class="col-sm-4" v-for="item in money">
                         <button :data-emp_no="item.emp_no" class="btn btn-default btn-lg"
                                 @click="checkMoneyEmps($event)">{{item.name}}({{item.account}})
                         </button>
@@ -177,7 +177,7 @@
             <div class="title">选择员工 <span class="glyphicon glyphicon-remove"></span></div>
             <div class="container">
                 <div class="row">
-                    <div class="col-sm-4" v-for="item in driveEmps">
+                    <div class="col-sm-4" v-for="item in drive">
                         <button :data-emp_no="item.emp_no" class="btn btn-default btn-lg"
                                 @click="checkDriveEmps($event)">{{item.name}}({{item.account}})
                         </button>
@@ -201,7 +201,7 @@
             <div class="title">选择员工 <span class="glyphicon glyphicon-remove"></span></div>
             <div class="container">
                 <div class="row">
-                    <div class="col-sm-4" v-for="item in moveEmps">
+                    <div class="col-sm-4" v-for="item in move">
                         <button :data-emp_no="item.emp_no" class="btn btn-default btn-lg"
                                 @click="checkMoveEmps($event)">{{item.name}}({{item.account}})
                         </button>
@@ -226,7 +226,7 @@
             <div class="title">选择员工 <span class="glyphicon glyphicon-remove"></span></div>
             <div class="container">
                 <div class="row">
-                    <div class="col-sm-4" v-for="item in airEmps">
+                    <div class="col-sm-4" v-for="item in air">
                         <button :data-emp_no="item.emp_no" class="btn btn-default btn-lg"
                                 @click="checkAirEmps($event)">{{item.name}}({{item.account}})
                         </button>

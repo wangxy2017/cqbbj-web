@@ -3,18 +3,22 @@ var main = new Vue({
         data: {
             order: {},
             isDispatch: false,
+            money: [],
+            drive: [],
+            move: [],
+            air: [],
 
-            moneyEmps:[],
-            driveEmps:[],
-            moveEmps:[],
-            airEmps:[]
+            moneyEmps: "",
+            driveEmps: "",
+            moveEmps: "",
+            airEmps: "",
         },
         methods: {
             clickMoneyEmps:function(){
                 main.$http.post("/wx/employee/queryPageList", {}, {emulateJSON: true}).then(function (res) {
                     console.log(res.body);
                     // [{name:xxx,emp_no:xxx},{name:xxx,emp_no:xxx},{name:xxx,emp_no:xxx}]
-                    main.moneyEmps = res.body.data;
+                    main.order.moneyEmps = res.body.data;
                 }, function (res) {
                     toastr.warning('提交异常');
                 });
@@ -23,7 +27,7 @@ var main = new Vue({
                 main.$http.post("/wx/employee/queryPageList", {}, {emulateJSON: true}).then(function (res) {
                     console.log(res.body);
                     // [{name:xxx,emp_no:xxx},{name:xxx,emp_no:xxx},{name:xxx,emp_no:xxx}]
-                    main.driveEmps = res.body.data;
+                    main.drive = res.body.data;
                 }, function (res) {
                     toastr.warning('提交异常');
                 });
@@ -32,7 +36,7 @@ var main = new Vue({
                 main.$http.post("/wx/employee/queryPageList", {}, {emulateJSON: true}).then(function (res) {
                     console.log(res.body);
                     // [{name:xxx,emp_no:xxx},{name:xxx,emp_no:xxx},{name:xxx,emp_no:xxx}]
-                    main.moveEmps = res.body.data;
+                    main.move = res.body.data;
                 }, function (res) {
                     toastr.warning('提交异常');
                 });
@@ -41,7 +45,7 @@ var main = new Vue({
                 main.$http.post("/wx/employee/queryPageList", {}, {emulateJSON: true}).then(function (res) {
                     console.log(res.body);
                     // [{name:xxx,emp_no:xxx},{name:xxx,emp_no:xxx},{name:xxx,emp_no:xxx}]
-                    main.airEmps = res.body.data;
+                    main.air = res.body.data;
                 }, function (res) {
                     toastr.warning('提交异常');
                 });
@@ -72,6 +76,52 @@ var main = new Vue({
                 }
             },
 
+            checkMoveEmps:function(event){
+
+                var _this = $(event.target);
+                var info = _this.hasClass("btn-info");
+                if (info) {// 取消选中
+                    _this.removeClass('btn-info').addClass('btn-default');
+                    var name = _this.text() + " ";
+                    $("#moveEmps_name").val($("#moveEmps_name").val().replace(name,""));
+                    // 删值 ,123,456
+                    var emp_no = "," + _this.attr("data-emp_no");
+                    main.driveEmps.replace(emp_no, "");
+                } else {// 选中
+                    _this.removeClass('btn-default').addClass('btn-info');
+                    // 赋值
+                    var divNum = _this.attr("data-divNum");//编号
+                    var name = _this.text() + " ";
+                    $("#moveEmps_name").val($("#moveEmps_name").val() + name);
+                    $("#divNum").val(divNum);
+                    // 赋值
+                    var emp_no = "," + _this.attr("data-emp_no");
+                    main.moveEmps += emp_no;
+                }
+            },
+            checkAirEmps:function(event){
+
+                var _this = $(event.target);
+                var info = _this.hasClass("btn-info");
+                if (info) {// 取消选中
+                    _this.removeClass('btn-info').addClass('btn-default');
+                    var name = _this.text() + " ";
+                    $("#airEmps_name").val($("#airEmps_name").val().replace(name,""));
+                    // 删值 ,123,456
+                    var emp_no = "," + _this.attr("data-emp_no");
+                    main.driveEmps.replace(emp_no, "");
+                } else {// 选中
+                    _this.removeClass('btn-default').addClass('btn-info');
+                    // 赋值
+                    var divNum = _this.attr("data-divNum");//编号
+                    var name = _this.text() + " ";
+                    $("#airEmps_name").val($("#airEmps_name").val() + name);
+                    $("#divNum").val(divNum);
+                    // 赋值
+                    var emp_no = "," + _this.attr("data-emp_no");
+                    main.airEmps += emp_no;
+                }
+            },
 
             reset: function () {
                 window.location.reload();

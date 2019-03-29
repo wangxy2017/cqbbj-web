@@ -3,7 +3,8 @@ var main = new Vue({
     data: {
         order_no: "",
         receiveMoney: "",
-        receiveText: ""
+        receiveText: "",
+        isNotPay:""
     },
     methods: {
         /**
@@ -11,13 +12,14 @@ var main = new Vue({
          * */
         submit: function () {
             $.ajax({
-                url: "/wx/order/update",
+                url: "/wx/order/helpDone",
                 dataType: "json",
                 data: {
                     "order_no": main.order_no,
                     "receiveMoney": main.receiveMoney,
                     "receiveText": main.receiveText,
                     "endTime":new Date(),
+                    "isNotPay":main.isNotPay,
                     "status": 2,
                     "id":$("#main").attr("data_id")
                 },

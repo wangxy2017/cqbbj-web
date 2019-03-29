@@ -4,13 +4,19 @@ import com.cqbbj.entity.Employee;
 
 public class EmployeeUtils {
 
-    private static Employee employee;
+    private  static Employee employee=null;
 
-    public static void setEmployee(Employee emp){
-        employee=emp;
+    public static void setEmployee(Employee emp) {
+        employee = emp;
     }
-    public static Employee getEmployee(){
-            return employee;
+
+    public static Employee getEmployee() {
+        if(employee!= null){
+        return employee;
+        }else{
+            return new Employee();
+        }
+
     }
 
 
