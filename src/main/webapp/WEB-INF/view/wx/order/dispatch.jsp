@@ -68,17 +68,13 @@
                                 <button class="btn btn-success" data-dismiss="modal">提交</button>
                             </div>
                             <div class="col-sm-6">
-                                <button class="btn btn-default" type="reset">重置</button>
+                                <button class="btn btn-default" type="reset" @click="replacement">重置</button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
-
-
-
 
 
         <!--随车司机模态框-->
@@ -114,7 +110,7 @@
                             <button class="btn btn-success" data-dismiss="modal">提交</button>
                         </div>
                         <div class="col-sm-6">
-                            <button class="btn btn-default" type="reset" @click="reset">重置</button>
+                            <button class="btn btn-default" type="reset" @click="replacement">重置</button>
                         </div>
                     </div>
                 </div>
@@ -159,7 +155,7 @@
                             <button class="btn btn-success" data-dismiss="modal">提交</button>
                         </div>
                         <div class="col-sm-6">
-                            <button class="btn btn-default" type="reset" @click="reset">重置</button>
+                            <button class="btn btn-default" type="reset" @click="replacement">重置</button>
                         </div>
                     </div>
                 </div>
@@ -200,7 +196,7 @@
                             <button class="btn btn-success" data-dismiss="modal">提交</button>
                         </div>
                         <div class="col-sm-6">
-                            <button class="btn btn-default" type="reset" @click="reset">重置</button>
+                            <button class="btn btn-default" type="reset" @click="replacement">重置</button>
                         </div>
                     </div>
                 </div>
