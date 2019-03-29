@@ -14,10 +14,11 @@
     <meta http-equiv="Pragma" content="no-cache"/>
     <meta http-equiv="Expires" content="0"/>
     <title>订单管理</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/plugin/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <link rel="stylesheet"
+          href="${pageContext.request.contextPath}/resources/wx/plugin/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/css/header.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/css/orderFinish.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/plugin/toastr/toastr.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/css/header.css">
 </head>
 <body>
 <header>
@@ -26,37 +27,47 @@
     </div>
     <p>辅助完成</p>
 </header>
-<div class="container-fluid" id="main" data_id="<%=request.getParameter("id")%>" data_no="<%=request.getParameter("order_no")%>">
-    <form action="" class="form-horizontal">
-        <div class="form-group">
+<div class="container-fluid" id="main" data_id="<%=request.getParameter("id")%>"
+     data_no="<%=request.getParameter("order_no")%>">
+    <div class="form-group">
+        <div class="row">
             <label class="col-sm-3 control-label">订单编号:</label>
             <div class="col-sm-9">
-                <input  class="form-control" disabled v-model="order_no">
+                <input class="form-control" disabled v-model="order_no">
             </div>
         </div>
-        <div class="form-group">
+        <div class="row">
             <label class="col-sm-3 control-label">实际收款:</label>
             <div class="col-sm-9">
                 <input type="text" class="form-control" v-model="receiveMoney">
             </div>
         </div>
-        <div class="form-group">
+        <div class="row">
             <label class="col-sm-3 control-label">收款备注:</label>
             <div class="col-sm-9">
                 <textarea class="form-control" v-model="receiveText" rows="6"> </textarea>
             </div>
         </div>
-        <div class="form-group">
-            <div class="row">
-                <div class="col-sm-6">
-                    <button type="button" @click="submit" class="btn btn-success btn-lg">确认</button>
-                </div>
-                <div class="col-sm-6">
-                    <button type="button" class="btn btn-info btn-lg" onclick="javaScript:window.history.back()">取消</button>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="checkbox">
+                    <label id="checkBox">
+                        <input type="checkbox">是否收款：
+                    </label>
                 </div>
             </div>
         </div>
-    </form>
+        <div class="row">
+            <div class="col-sm-6">
+                <button type="button" @click="submit" class="btn btn-success btn-lg">确认</button>
+            </div>
+            <div class="col-sm-6">
+                <button type="button" class="btn btn-info btn-lg" onclick="javaScript:window.history.back()">取消
+                </button>
+            </div>
+        </div>
+
+    </div>
 </div>
 
 

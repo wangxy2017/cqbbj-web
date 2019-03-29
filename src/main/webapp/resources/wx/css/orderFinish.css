@@ -19,3 +19,13 @@
      height: 10rem;
      font-size: 4rem;
  }
+ #checkBox{
+     width: 100%;
+     height: 10rem;
+ }
+ #checkBox input{
+     width: 5rem;
+     height: 5rem;
+     margin-left: 20rem;
+     margin-top: 2rem;
+ }
