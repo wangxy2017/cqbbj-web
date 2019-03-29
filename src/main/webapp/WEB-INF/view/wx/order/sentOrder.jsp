@@ -83,7 +83,7 @@
             <div class="alert_model" @click.stop="end">
                 <div class="alert_body">
                     <input type="hidden" id="checkId" value="">
-                    <input type="hidden" id="checkEmpNo" value="">
+                    <input type="hidden" id="checkOrderNo" value="">
                     <div class="alert-title">
                         <p>提示</p>
                         <span @click.stop="hide" class="glyphicon glyphicon-remove"></span>

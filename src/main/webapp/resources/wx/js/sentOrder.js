@@ -68,7 +68,7 @@ var main = new Vue({
         cancel: function (id, order_no, event) {
             // 设置选中id
             $("#checkId").val(id);
-            $("#checkEmpNo").val(order_no);
+            $("#checkOrderNo").val(order_no);
             // 模态框弹出
             var _this = $(event.currentTarget);
             var mask = _this.parents("li").siblings("div");
@@ -81,15 +81,14 @@ var main = new Vue({
          * 模态框点击确定事件
          */
         ascertain: function () {
-            var id = $("#checked").val();
-            var order_no = $("#checkEmpNo").val();
-            console.log(id);
+            var id = $("#checkId").val();
+            var order_no = $("#checkOrderNo").val();
             $.ajax({
                 url: "/wx/order/cancelOrderStatus",
                 data: {
                     "id": id,
                     "status": 3,
-                    order_no: order_no
+                    "order_no": order_no
                 },
                 dataType: "json",
                 type: "post",

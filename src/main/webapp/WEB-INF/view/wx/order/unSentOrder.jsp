@@ -76,14 +76,15 @@
                     </div>
                     <div class="col-sm-3">
                         <a class="abolish">
-                            <button type="button" class="btn btn-default" @click.stop="cancel(item.id,$event)">作废</button>
+                            <button type="button" class="btn btn-default" @click.stop="cancel(item.id,item.order_no,$event)">作废</button>
                         </a>
                     </div>
                 </div>
             </li>
             <div class="alert_model" @click.stop="end">
                 <div class="alert_body">
-                    <input type="hidden" id="checked" value="">
+                    <input type="hidden" id="checkId" value="">
+                    <input type="hidden" id="checkOrderNo" value="">
                     <div class="alert-title">
                         <p>提示</p>
                         <span @click.stop="hide" class="glyphicon glyphicon-remove"></span>

@@ -65,11 +65,12 @@ var main = new Vue({
          * 模态框点击确定事件
          */
         ascertain: function () {
-            var id = $("#checked").val();
+            var id = $("#checkId").val();
+            var order_no = $("#checkOrderNo").val();
             console.log(id);
             $.ajax({
                 url: "/wx/order/updateOrderStatus",
-                data: {"id": id, "status": 3},
+                data: {"id": id, "status": 3, "order_no": order_no},
                 dataType: "json",
                 type: "post",
                 success: function (res) {
@@ -108,8 +109,9 @@ var main = new Vue({
         /**
          * 作废订单事件
          */
-        cancel: function (id, event) {
-            $("#checked").val(id);
+        cancel: function (id, order_no, event) {
+            $("#checkId").val(id);
+            $("#checkOrderNo").val(order_no);
             var _this = $(event.currentTarget);
             var mask = _this.parents("li").siblings("div");
             console.log(mask);
