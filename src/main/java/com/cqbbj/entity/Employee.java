@@ -59,6 +59,10 @@ public class Employee extends BaseEntity {
      * 离职原因
      */
     private String reason;
+    /**
+     * 微信登录 0：未登录 1：已登录
+     */
+    private Integer is_wxLogin;
 
     /**
      * ================关联字段=============
@@ -183,5 +187,13 @@ public class Employee extends BaseEntity {
 
     public void setReason(String reason) {
         this.reason = reason;
+    }
+
+    public Integer getIs_wxLogin() {
+        return is_wxLogin;
+    }
+
+    public void setIs_wxLogin(Integer is_wxLogin) {
+        this.is_wxLogin = is_wxLogin;
     }
 }
