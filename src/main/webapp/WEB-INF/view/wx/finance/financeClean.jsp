@@ -66,6 +66,14 @@
                             <p class="pull-right">{{item.price}}￥</p>
                         </div>
                     </div>
+                    <div class="row display">
+                        <div class="col-sm-6">
+                            <button type="button" class="btn btn-danger" @click.stop="2">查看</button>
+                        </div>
+                        <div class="col-sm-6">
+                            <button type="button" class="btn btn-info" @click.stop="0">结算</button>
+                        </div>
+                    </div>
                 </li>
             </ul>
         </div>

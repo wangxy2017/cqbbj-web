@@ -30,8 +30,13 @@ var main = new Vue({
     },
 
     methods: {
-
-
+        /**
+         * 模态框重置事件
+         */
+        replacement: function () {
+            console.log("你点了");
+            window.location.reload();
+        },
         /**
          * 选择收款人员
          */
