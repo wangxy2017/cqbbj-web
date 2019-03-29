@@ -49,8 +49,7 @@ var main = new Vue({
         },
         open: function (event) {
             // console.log("123");
-            var el = event.currentTarget;
-            $(el).children('.display').toggle(500).css('display');
+            $(event.currentTarget).children('.display').fadeToggle(500);
         },
         /**
          * 加载数据
