@@ -79,6 +79,7 @@
         where m.deleteStatus = 0
         and dm.dept_id = #{dept_id}
         and m.type = 0
+        and m.is_disabled = 0
     </select>
     <!-- 查询微信菜单 -->
     <select id="queryWXMenuByDept" parameterType="int" resultType="menu">
@@ -95,6 +96,7 @@
         where m.deleteStatus = 0
         and dm.dept_id = #{dept_id}
         and m.type = 1
+        and m.is_disabled = 0
     </select>
     <!-- 根据ID查询 -->
     <select id="queryById" parameterType="int" resultType="menu">
