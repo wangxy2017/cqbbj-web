@@ -1,26 +1,83 @@
-header{
+
+.container-fluid{
+    padding: 4rem;
+}
+.row{
+    font-size: 4rem;
+}
+.col-sm-3{
+    height: 10rem;
+    line-height: 10rem;
+    padding: 2rem;
+}
+.col-sm-4{
+    height: 12rem;
+    line-height: 12rem;
+    padding: 2rem;
+}
+.col-sm-8{
+    height: 10rem;
+    font-size: 4rem;
+}
+#file{
     width: 100%;
-    background: darkslateblue;
-    margin: 0 auto;
-    text-align: center;
-    color: white;
-    font-size: 6rem;
-    position: relative;
-}
-header p{
-    line-height: 150px;
-}
-header .pic{
-    width: 150px;
-    height: 150px;
-    float: left;
-    /*border:1px solid black;*/
-    /*margin-top: 30px;*/
+    height: 10rem;
+    padding: 4rem;
+    font-size: 4rem;
+    display: none;
     position: absolute;
 }
-.pic img{
-    width: auto;
-    height: auto;
-    max-width: 100%;
-    max-height: 100%;
+.col-sm-8 .fileBox{
+    position: relative;
+    line-height: 10rem;
+    color: white;
+    width: 100%;
+    height: 10rem;
+    /*border-radius: 50%;*/
+    display: block;
+    margin-top: 4rem;
+    color: #777777;
+    border:1px solid #ccc;
+    background: none;
+    text-align: center;
+    border-radius: 2rem;
+    text-decoration: none;
+
 }
+.row input{
+    margin-top: 2rem;
+    height: 10rem;
+    font-size: 4rem;
+    padding-left: 2rem;
+}
+
+.btn-group label{
+    margin-top: 4rem;
+    height: 10rem;
+    width: 50%;
+    font-size: 4rem;
+    line-height: 10rem;
+}
+#submit{
+    letter-spacing: 10rem;
+    padding-left: 10rem;
+    margin-top: 6rem;
+    border-radius: 2rem;
+}
+#header{
+    background: darkslateblue;
+    margin-bottom: 4rem;
+}
+#heade{
+    width: 260px;
+    height: 260px;
+    border-radius: 50%;
+    margin: 4rem auto;
+    margin-bottom: 4rem;
+}
+#heade img{
+    width: 260px;
+    height: 260px;
+    border-radius: 50%;
+}
+

@@ -120,10 +120,10 @@ layui.use(["table", "layer", "laydate", "jquery", "form"], function () {
                                 var text = "";
                                 switch (d.status) {
                                     case 0:
-                                        text = "<span style='color: #1E9FFF'>只询问</span>";
+                                        text = "<span style='color: #1E9FFF'>录入</span>";
                                         break;
                                     case 1:
-                                        text = "<span style='color: #FF5722'>有意向</span>";
+                                        text = "<span style='color: #FF5722'>继谈</span>";
                                         break;
                                     case 2:
                                         text = "<span style='color: #009688'>成交</span>";
@@ -147,7 +147,7 @@ layui.use(["table", "layer", "laydate", "jquery", "form"], function () {
                             }
                         }
                         , {
-                            field: 'createTime', title: '创建时间', templet: function (d) {
+                            field: 'createTime', title: '录入时间', templet: function (d) {
                                 return formatDateTime(d.createTime);
                             }
                         }
@@ -221,6 +221,18 @@ layui.use(["table", "layer", "laydate", "jquery", "form"], function () {
                             }
                         );
                     }
+                });
+            },
+            /**
+             * 导出
+             */
+            download: function () {
+                layer.confirm("导出数据属于敏感操作，确认继续吗？", function (index) {
+                    layer.close(index);
+                    window.location.href = "/intentionOrder/download?name=" + main.name +
+                        "&inten_no=" + main.inten_no +
+                        "&createTime1=" + $("#createTime1").val() +
+                        "&createTime2=" + $("#createTime2").val();
                 });
             }
         },

@@ -64,6 +64,18 @@
     </select>
     <!-- 根据Id查询公告 -->
     <select id="queryById" resultType="notice" parameterType="int">
-        select <include refid="query_all_fields"></include> from sys_notice where id =#{id}
+        select
+        <include refid="query_all_fields"/>
+        from sys_notice where id =#{id}
+    </select>
+
+    <!-- 查询最新公告 -->
+    <select id="queryTopNews" resultType="notice">
+        select
+        <include refid="query_all_fields"/>
+        from sys_notice where deleteStatus = 0
+        and status = 1
+        order by createTime desc
+        limit 0,1
     </select>
 </mapper>

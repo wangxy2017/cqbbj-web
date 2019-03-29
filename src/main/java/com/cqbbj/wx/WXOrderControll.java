@@ -8,6 +8,7 @@ import com.cqbbj.entity.*;
 import com.cqbbj.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -32,11 +33,13 @@ public class WXOrderControll extends BaseController {
     private ICompanyInfoService companyInfoService;
     @Autowired
     private IMessageLogService messageLogService;
+    @Autowired
+    private ISignBillService signBillService;
 
     /**
      * 进入添加订单页面
      */
-    @RequestMapping("/OrderAdd")
+    @RequestMapping("/orderAdd")
     public String OrderAdd() {
         return "wx/order/orderAdd";
     }
@@ -102,22 +105,37 @@ public class WXOrderControll extends BaseController {
      */
     @RequestMapping("/completeOrder")
     public String completeOrder() {
-    return "wx/order/completeOrder";
+        return "wx/order/completeOrder";
     }
+
     /**
      * 进入完成订单页面
      */
     @RequestMapping("/canceledOrder")
     public String canceledOrder() {
+
         return "wx/order/canceledOrder";
     }
+
     /**
      * 进入回访页面
      */
     @RequestMapping("/callback")
     public String callback() {
+
         return "wx/order/callback";
     }
+
+
+    /**
+     * 进入回访页面
+     */
+    @RequestMapping("/myTask")
+    public String myTask() {
+        return "wx/myTask/myTask";
+    }
+
+
     /**
      * 添加订单
      *
@@ -176,13 +194,10 @@ public class WXOrderControll extends BaseController {
      */
     @RequestMapping("/queryPageListEmployee")
     @ResponseBody
-    public Result queryPageList(HttpServletRequest request, Order order, int pageNum, int pageSize) {
+    public Result queryPageList(Order order, int pageNum, int pageSize) {
 
         Employee empUser = EmployeeUtils.getEmployee();
         order.setEmp_no(empUser.getEmp_no());
-        System.out.println("##########" + empUser.getEmp_no());
-
-//            order.setEmp_no(getWXEmpUser(request).getEmp_no());
 
         PageModel<Order> orderPageModel = orderService.queryPageList(order, pageNum, pageSize);
 
@@ -236,8 +251,20 @@ public class WXOrderControll extends BaseController {
      * 变更订单状态
      */
     @RequestMapping("/updateOrderStatus")
+    @ResponseBody
     public Result updateOrderStatus(Integer id, Integer status) {
         orderService.updateOrderStatus(id, status);
+        return ResultUtils.success();
+
+    }
+
+    /**
+     * 变更订单状态
+     */
+    @RequestMapping("/finishOrderStatus")
+    @ResponseBody
+    public Result finishOrderStatus(Order order, Integer status) {
+        orderService.updateOrderStatus(order.getId(), status);
         return ResultUtils.success();
 
     }
@@ -246,6 +273,7 @@ public class WXOrderControll extends BaseController {
      * 取消订单状态
      */
     @RequestMapping("/cancelOrderStatus")
+    @ResponseBody
     public Result cancelOrderStatus(Integer id, Integer status, String order_no) {
         orderService.updateOrderStatus(id, status);
         sendOrderService.deleteSendOrder(order_no);
@@ -290,24 +318,18 @@ public class WXOrderControll extends BaseController {
                          String moneyEmps, String driveEmps, String moveEmps,
                          String airEmps) {
 
-        if (order.getStatus() == 0 || order.getStatus() == 3||order.getStatus() == null) {
-            order.setStatus(null);
-            // 更新订单
-            orderService.updateEntity(order);
-        } else {
-            order.setStatus(null);
-            // 更新订单
-            orderService.updateEntity(order);
-            // 更新派单
-            if (moneyEmps != null || driveEmps != null || moneyEmps != null || airEmps != null)
-                orderService.dispatchOrder(order.getOrder_no(),
-                        CommUtils.toStringArray(moneyEmps),
-                        CommUtils.toStringArray(driveEmps),
-                        CommUtils.toStringArray(moveEmps),
-                        CommUtils.toStringArray(airEmps));
-            // 记录日志
-            operationLogService.saveEntity(createLog(request, "修改订单：" + order.getOrder_no()));
-        }
+        // 更新订单
+        orderService.updateEntity(order);
+        // 更新派单
+        if (moneyEmps != null || driveEmps != null || moneyEmps != null || airEmps != null)
+            orderService.dispatchOrder(order.getOrder_no(),
+                    CommUtils.toStringArray(moneyEmps),
+                    CommUtils.toStringArray(driveEmps),
+                    CommUtils.toStringArray(moveEmps),
+                    CommUtils.toStringArray(airEmps));
+        // 记录日志
+        operationLogService.saveEntity(createLog(request, EmployeeUtils.getEmployee().getName(), "修改订单：" + order.getOrder_no()));
+
 
         return ResultUtils.success();
     }
@@ -316,19 +338,81 @@ public class WXOrderControll extends BaseController {
      * 查询订单
      */
     @RequestMapping("/search")
+
+    public String search(Order order,Integer pageNum,Integer pageSize, ModelMap map) {
+        PageModel<Order> pageModel = orderService.queryPageList(order,pageNum,pageSize);
+        map.put("list",pageModel.getList());
+        return "wx/order/searchResult.jsp";
+    }
+
+    /**
+     * 辅助完成
+     *
+     * @param request
+     * @param order
+     * @return
+     */
+    @RequestMapping("/helpDone")
     @ResponseBody
-    public Result search(Order order) {
-        Order o = orderService.queryByProperties(order);
-        return ResultUtils.success(o);
+    public Result helpDone(HttpServletRequest request, Order order, Integer isNotPay) {
+        Order order1 = orderService.queryById(order.getId());
+        if (order1 != null) {
+            // 暂不付款
+            if (isNotPay != null && isNotPay == 1) {
+                order1.setPayState(0);
+                order1.setStatus(2);
+                order1.setEndTime(new Date());
+                orderService.updateEntity(order1);
+                // 生成欠条
+                SignBill bill = new SignBill();
+                bill.setCreateTime(new Date());
+                bill.setDeleteStatus(0);
+                bill.setName(order1.getName());
+                bill.setPhone(order1.getPhone());
+                bill.setStart(order1.getStart());
+                bill.setEnd(order1.getEnd());
+                bill.setContent(order1.getContent());
+                bill.setBeginTime(order1.getBeginTime());
+                bill.setPrice(order1.getPrice());
+                bill.setEndTime(order1.getEndTime());
+                bill.setStatus(0);
+                bill.setOrder_no(order1.getOrder_no());
+                bill.setCustomer_no(order1.getCust_no());
+                bill.setBill_no(CommUtils.getCode(ConstantUtils.SIGN_BILL));
+                signBillService.saveEntity(bill);
+            } else {
+                order1.setReceiveMoney(order.getReceiveMoney());
+                order1.setReceiveText(order.getReceiveText());
+                order1.setPayState(1);
+                order1.setStatus(2);
+                order1.setEndTime(new Date());
+                orderService.updateEntity(order1);
+            }
+            // 记录日志
+            operationLogService.saveEntity(createLog(request, "辅助完成订单：" + order1.getOrder_no()));
+            return ResultUtils.success();
+        }
+        return ResultUtils.error();
     }
 
     /**
      * 登出
      */
     @RequestMapping("/loginOut")
-    @ResponseBody
-    public Result loginOut() {
+    public String loginOut() {
         EmployeeUtils.setEmployee(null);
-        return ResultUtils.success();
+        return "wx/login";
+    }
+
+    /**
+     * 查询关键词配置
+     *
+     * @return
+     */
+    @RequestMapping("queryKeys")
+    @ResponseBody
+    public Result queryKeys() {
+        CompanyInfo info = companyInfoService.queryById(1);
+        return ResultUtils.success(info.getKeyword());
     }
 }

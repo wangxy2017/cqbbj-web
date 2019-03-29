@@ -19,12 +19,12 @@ layui.use(["table", "layer", "laydate", "jquery"], function () {
             initCalander: function () {
                 //开始时间
                 laydate.render({
-                    elem: '#beginTime1',
+                    elem: '#endTime1',
                     type: "datetime"
                 });
                 //结束时间
                 laydate.render({
-                    elem: '#beginTime2',
+                    elem: '#endTime2',
                     type: "datetime"
                 });
             },
@@ -34,8 +34,8 @@ layui.use(["table", "layer", "laydate", "jquery"], function () {
                         "order_no": main.order_no,
                         "name": main.name,
                         "is_clean": main.is_clean,
-                        "beginTime1": $("#beginTime1").val(),
-                        "beginTime2": $("#beginTime2").val()
+                        "endTime1": $("#endTime1").val(),
+                        "endTime2": $("#endTime2").val()
                     }
                 });
             },
@@ -51,7 +51,6 @@ layui.use(["table", "layer", "laydate", "jquery"], function () {
                     id: "financeCleanList",
                     url: "/financeClean/queryPageList",
                     page: true,
-                    where: {},
                     parseData: function (res) {
                         return {
                             "code": res.code,
@@ -87,7 +86,7 @@ layui.use(["table", "layer", "laydate", "jquery"], function () {
                         }
                         , {
                             field: 'money', title: '收款员', templet: function (d) {
-                                return d.moneyEmps[0].emp_name;
+                                return isEmpty(d.moneyEmps) || d.moneyEmps.length == 0 ? "" : d.moneyEmps[0].emp_name;
                             }
                         }
                         , {
@@ -145,8 +144,20 @@ layui.use(["table", "layer", "laydate", "jquery"], function () {
                         });
                     }
                 });
+            },
+            /**
+             * 导出
+             */
+            download: function () {
+                layer.confirm("导出数据属于敏感操作，确认继续吗？", function (index) {
+                    layer.close(index);
+                    window.location.href = "/financeClean/download?name=" + main.name +
+                        "&order_no=" + main.order_no +
+                        "&is_clean=" + main.is_clean +
+                        "&endTime1=" + $("#endTime1").val() +
+                        "&endTime2=" + $("#endTime2").val();
+                });
             }
-
         },
         mounted: function () {
             // 初始化表格

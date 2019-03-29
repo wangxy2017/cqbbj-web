@@ -143,7 +143,7 @@ public class OrderServiceImpl implements IOrderService {
                 SmsUtils.config(companyInfo.getMsg_username(), companyInfo.getMsg_password(), companyInfo.getMsg_sign(), companyInfo.getMsg_domain());
                 SmsUtils.sendSmsBatch(phones, content);
                 // 记录短信日志
-                MessageLog mlog = null;
+                MessageLog mlog = new MessageLog();
                 for (String phone : phones) {
                     mlog.setCreateTime(new Date());
                     mlog.setDeleteStatus(0);
@@ -188,5 +188,18 @@ public class OrderServiceImpl implements IOrderService {
     @Override
     public Order queryByProperties(Order order) {
         return orderMapper.queryByProperties(order);
+    }
+
+    @Override
+    public Map<String, Object> queryTotal(Map<String, Object> params) {
+        return orderMapper.queryTotal(params);
+    }
+
+    @Override
+    public PageModel<Order> queryMyTasks(Order order, Integer pageNum, Integer pageSize) {
+        PageHelper.startPage(pageNum, pageSize);
+        List<Order> list = orderMapper.queryMyTasks(order);
+        PageInfo<Order> pageInfo = new PageInfo<>(list);
+        return new PageModel(pageInfo);
     }
 }

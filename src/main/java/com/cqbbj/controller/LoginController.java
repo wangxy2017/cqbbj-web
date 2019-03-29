@@ -48,16 +48,6 @@ public class LoginController extends BaseController {
     }
 
     /**
-     * 跳转欢迎界面
-     *
-     * @return
-     */
-    @RequestMapping("/welcome")
-    public String welcome() {
-        return "welcome";
-    }
-
-    /**
      * 跳转登录界面
      *
      * @return
@@ -124,7 +114,7 @@ public class LoginController extends BaseController {
     @ResponseBody
     public Result loginInfo(HttpServletRequest request) {
         Employee loginUser = getLoginUser(request);
-        List<Menu> menus = menuService.queryMenuByDept(loginUser.getDept_id());
+        List<Menu> menus = menuService.queryPCMenuByDept(loginUser.getDept_id());
         return ResultUtils.success(menus);
     }
 }

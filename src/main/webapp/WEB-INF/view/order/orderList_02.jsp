@@ -17,6 +17,10 @@
 </head>
 <body>
 <div class="main" id="main">
+    <%-- 工具栏 --%>
+    <div class="layui-btn-container">
+        <button class="layui-btn" @click="download">导出数据</button>
+    </div>
     <div class="search-tools">
         <div class="search-item">
             订单编号：

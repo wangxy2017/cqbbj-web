@@ -8,11 +8,11 @@
 #main textarea{
     font-size: 4rem;
 }
-#main input{
+ #main input{
     height: 10rem;
     padding: 2rem;
     font-size: 4rem;
     margin-top: 4rem;
-    letter-spacing: 10rem;
-    padding-left: 10rem;
+   letter-spacing: 10rem;
+   padding-left: 10rem;
 }

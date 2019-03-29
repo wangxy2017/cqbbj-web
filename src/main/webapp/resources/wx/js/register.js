@@ -27,7 +27,7 @@ var main = new Vue({
                 return;
             }
             // 发送请求
-            main.$http.post("http://192.168.0.100:9000/wx/login/regist", {
+            main.$http.post("/wx/login/regist", {
                 "name": main.name,
                 "phone": main.phone,
                 "code": main.code
@@ -43,7 +43,7 @@ var main = new Vue({
          * 获取验证码
          */
         getCode: function () {
-            main.$http.post("http://192.168.0.100:9000/wx/login/getCode", {
+            main.$http.post("/wx/login/getCode", {
                 "phone": main.phone
             }, {emulateJSON: true}).then(function (res) {
                 console.log(res.body);

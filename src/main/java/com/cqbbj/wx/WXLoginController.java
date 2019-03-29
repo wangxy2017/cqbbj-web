@@ -1,25 +1,25 @@
 package com.cqbbj.wx;
 
 import com.cqbbj.core.base.BaseController;
-import com.cqbbj.core.util.*;
+import com.cqbbj.core.base.PageModel;
 import com.cqbbj.core.base.Result;
+import com.cqbbj.core.util.*;
 import com.cqbbj.entity.Code;
 import com.cqbbj.entity.Customer;
 import com.cqbbj.entity.Employee;
-import com.cqbbj.service.ICodeService;
-import com.cqbbj.service.ICustomerService;
-import com.cqbbj.service.IEmployeeService;
+import com.cqbbj.entity.Order;
+import com.cqbbj.service.*;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/wx/login")
@@ -33,6 +33,8 @@ public class WXLoginController extends BaseController {
     private ICustomerService customerService;// 用户业务层
     @Autowired
     private IEmployeeService employeeService;// 员工
+    @Autowired
+    private IOrderService orderService;// 订单
 
     /**
      * 登录页面跳转
@@ -43,6 +45,7 @@ public class WXLoginController extends BaseController {
     public String toLogin() {
         return "wx/login";
     }
+
     /**
      * home页面跳转
      *
@@ -52,6 +55,7 @@ public class WXLoginController extends BaseController {
     public String toHome() {
         return "wx/home";
     }
+
     /**
      * 手机号注册
      *
@@ -172,7 +176,7 @@ public class WXLoginController extends BaseController {
      */
     @RequestMapping("/empLogin")
     @ResponseBody
-    public Result empLogin(HttpServletRequest request, String account,String password) {
+    public Result empLogin(HttpServletRequest request, String account, String password) {
         // 查询员工
         List<Employee> list = employeeService.queryByAccount(account);
         if (!list.isEmpty() && list.size() == 1) {
@@ -181,6 +185,7 @@ public class WXLoginController extends BaseController {
                 Employee employee = list.get(0);
                 if (employee.getIs_disabled() == 0) {
                     EmployeeUtils.setEmployee(employee);
+                    return ResultUtils.success(employee);
 //                    HttpSession session = getSession(request);
 //                    session.setAttribute("empUser", employee);
 //                    session.setAttribute("loginer",0);
@@ -193,6 +198,29 @@ public class WXLoginController extends BaseController {
         } else {
             return ResultUtils.error(-1, "参数错误");
         }
-        return ResultUtils.success();
+
     }
+
+    @RequestMapping("/getEmpName")
+    @ResponseBody
+    public Result getEmpName() {
+        // 获取当前登录用户
+        Employee employee = EmployeeUtils.getEmployee();
+        if (employee != null) {
+            Map<String, Object> data = new HashMap<>();
+            // 查询我的任务
+            Order order = new Order();
+            order.setStatus(1);
+            order.setEmp_no(employee.getEmp_no());
+            PageModel<Order> pageModel = orderService.queryMyTasks(order, 1, 4);
+            data.put("task", pageModel.getTotal());
+            // 查询我的金额
+            data.put("money", employee.getMoney());
+            // 查询我的名称
+            data.put("name", employee.getName());
+            return ResultUtils.success(data);
+        }
+        return ResultUtils.error();
+    }
+
 }

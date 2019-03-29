@@ -76,4 +76,25 @@
         <if test="endTime!=null and endTime!=''"><![CDATA[ and pr.payTime  <= #{endTime}]]></if>
         order by pr.createTime desc
     </select>
+    <!-- 查询支付记录详情 -->
+    <select id="queryById" resultType="payRecord" parameterType="int">
+        select
+        pr.id,
+        pr.order_no,
+        c.name as custName,
+        pr.payWay,
+        pr.payMoney,
+        pr.payTime,
+        pr.trans_no,
+        e.name as empName,
+        pr.record_no,
+        pr.createTime
+        from sys_pay_record pr
+        left join sys_customer c on c.cust_no = pr.cust_no
+        left join sys_employee e on e.emp_no = pr.emp_no
+        where pr.deleteStatus = 0
+       and id=#{id}
+
+        order by pr.createTime desc
+    </select>
 </mapper>

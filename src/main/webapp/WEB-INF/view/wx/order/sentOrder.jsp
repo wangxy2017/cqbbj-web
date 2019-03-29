@@ -6,20 +6,24 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <title>已派订单</title>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
+    <meta http-equiv="Pragma" content="no-cache"/>
+    <meta http-equiv="Expires" content="0"/>
+    <title>订单管理</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/plugin/bootstrap-3.3.7-dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/css/haveSent.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/css/header.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/css/sentOrder.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/plugin/toastr/toastr.css">
 </head>
 <body>
 <header>
     <div class="pic">
         <div class="pic">
-            <img src="${pageContext.request.contextPath}/resources/wx/imge/comeback.png"
-                 onclick="javaScript:window.history.back()" alt="">
+            <span class="glyphicon glyphicon-menu-left" onclick="javaScript:window.history.back()"></span>
         </div>
     </div>
     <p>已派订单</p>
@@ -66,28 +70,61 @@
                     </div>
                     <div class="col-sm-3">
                         <a class="assist">
-                            <button type="button"  @click.stop="finish(item.order_no)" class="btn btn-info">辅助</button>
+                            <button type="button"  @click.stop="finish(item.id,item.order_no)" class="btn btn-info">辅助</button>
                         </a>
                     </div>
                     <div class="col-sm-3">
                         <a class="abolish">
-                            <button type="button" class="btn btn-default"  @click.stop="cancel(item.id,item.order_no)">取消</button>
+                            <button type="button" class="btn btn-default"  @click.stop="cancel(item.id,item.order_no,$event)">作废</button>
                         </a>
                     </div>
                 </div>
             </li>
-
+            <div class="alert_model" @click.stop="end">
+                <div class="alert_body">
+                    <input type="hidden" id="checkId" value="">
+                    <input type="hidden" id="checkOrderNo" value="">
+                    <div class="alert-title">
+                        <p>提示</p>
+                        <span @click.stop="hide" class="glyphicon glyphicon-remove"></span>
+                    </div>
+                    <div class="container-fluid">
+                        <div class="modal-text">
+                            <p>是否确定作废?</p>
+                        </div>
+                        <div class="col-sm-6">
+                            <input type="button" class="btn btn-info btn-lg btn-block" @click.stop="ascertain"  value="确定">
+                        </div>
+                        <div class="col-sm-6">
+                            <input type="button" class="btn btn-default btn-lg btn-block" value="取消">
+                        </div>
+                    </div>
+                </div>
+            </div>
         </ul>
-        <div class="loading" style="display: none;">.....我是有底线的....</div>
     </form>
 </div>
-
-
+<div class="row loading">
+    <div class="col-sm-5">
+        <img class="pull-right" src="${pageContext.request.contextPath}/resources/wx/imge/loading.gif" alt="">
+    </div>
+    <div class="col-sm-7">
+        <P class="pull-left">页面加载中...</P>
+    </div>
+</div>
+<div class=" row baseLine">
+    <p>---------我是有底线的----------</p>
+</div>
+<div class="notFind">
+    <img src="${pageContext.request.contextPath}/resources/wx/imge/undefind.png" alt="">
+    <p>-.-.-.-.-.-暂无数据-.-.-.-.-.-</p>
+</div>
 <script src="${pageContext.request.contextPath}/resources/wx/plugin/jquery-3.3.1.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/wx/plugin/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/wx/plugin/Vue/vue.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/wx/plugin/Vue/vue-resource.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/wx/js/common.js"></script>
+<script src="${pageContext.request.contextPath}/resources/wx/plugin/toastr/toastr.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/wx/js/sentOrder.js"></script>
 </body>
 </html>

@@ -82,7 +82,8 @@ public class PayRecordServiceImpl implements IPayRecordService {
 
     @Override
     public PayRecord queryById(Integer id) {
-        return null;
+        PayRecord payRecord=  payRecordMapper.queryById(id);
+        return payRecord;
     }
 
     @Override

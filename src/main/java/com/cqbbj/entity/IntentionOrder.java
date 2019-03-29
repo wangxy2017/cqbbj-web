@@ -46,11 +46,7 @@ public class IntentionOrder extends BaseEntity {
      */
     private Integer is_follow;
     /**
-     * 跟进日志
-     */
-    private String followInfo;
-    /**
-     * 意向程度 0：询问  1：犹豫  2：成交 3：放弃
+     * 意向程度 0：录入 1：续谈  2：成交  3：放弃
      */
     private Integer status;
     /**
@@ -75,6 +71,10 @@ public class IntentionOrder extends BaseEntity {
      * 跟进记录
      */
     private List<IntentionFollow> follows;
+    /**
+     * 预估起价
+     */
+    private Double price;
 
     /**
      * ========== 范围筛选 ===============
@@ -150,14 +150,6 @@ public class IntentionOrder extends BaseEntity {
         this.is_follow = is_follow;
     }
 
-    public String getFollowInfo() {
-        return followInfo;
-    }
-
-    public void setFollowInfo(String followInfo) {
-        this.followInfo = followInfo;
-    }
-
     public Integer getStatus() {
         return status;
     }
@@ -220,5 +212,13 @@ public class IntentionOrder extends BaseEntity {
 
     public void setCreateTime2(Date createTime2) {
         this.createTime2 = createTime2;
+    }
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
     }
 }

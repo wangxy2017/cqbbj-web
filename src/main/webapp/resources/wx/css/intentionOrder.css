@@ -1,0 +1,160 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+i{
+    font-style: normal;
+}
+html,body{
+    width: 100%;
+    height: 100%;
+    font-size: 50%;
+}
+#main{
+    width: 100%;
+    padding: 2rem;
+    /*background: red;*/
+    overflow: hidden;
+}
+form{
+    font-size: 4rem;
+    color: #737373;
+}
+dl{
+    width: 100%;
+    height: 8rem;
+
+}
+#main dt{
+    width: 25%;
+    height: 10rem;
+    line-height: 10rem;
+    float: left;
+    text-align: right;
+    padding-right: 2rem;
+    /*border: 1px solid black;*/
+}
+dd{
+    width: 75%;
+    height: 10rem;
+    float: left;
+}
+#main dd input{
+    width: 100%;
+    height: 100%;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid #cccccc;
+    padding-left: 2rem;
+}
+#main #dlText{
+    width: 100%;
+    margin-top: 6rem;
+    height: 30rem;
+    padding-left: 2rem;
+}
+#dlText dt{
+    line-height: 30rem;
+    width: 25%;
+}
+#dlText dd{
+    width: 75%;
+    height: 100%;
+    border:1px solid #737373 ;
+
+}
+textarea{
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+#main ul{
+    width: 100%;
+    margin-top: 4rem;
+    height: 100%;
+    border: 1px red;
+    margin-bottom: 4rem;
+}
+ul li{
+    width: 100%;
+    height: 100%;
+    padding: 2rem;
+
+}
+li input{
+    margin:2rem;
+    border:none;
+    border: 1px solid #737373;
+    color: #737373;
+    width: 25rem;
+    height: 10rem;
+    line-height: 10rem;
+    background: none;
+    outline: none;
+    /*float: right;*/
+}
+.active{
+    background: #1e9fff;
+    color: white;
+    border-color:#1e9fff;
+}
+
+#main div{
+    width: 100%;
+    height: 10rem;
+    padding: 2rem;
+    font-size: 4rem;
+    position: relative;
+}
+#main div p{
+    font-size: 4.5rem;
+}
+#main div label{
+    position: absolute;
+    top: -1rem;
+    left: 30%;
+}
+#submit{
+    width: 100%;
+    height: 14rem;
+    margin-top: 6rem;
+    margin-bottom: 6rem;
+    text-align: center;
+    font-size: 4rem;
+    background: #1e9fff;
+    line-height: 8rem;
+    font-size: 5rem;
+    letter-spacing:10rem;
+    outline: none;
+    padding-left: 10rem;
+}
+
+
+/*单选框样式*/
+#main dd input.radio{
+    width: 8%;
+}
+#main dd .left{
+    float: left;
+    position: absolute;
+}
+#main dd.demo{
+    position: relative;
+    height: 12rem;
+}
+#main dd .right{
+    float: left;
+    margin-left: 20rem;
+    position: absolute;
+}
+.col-sm-9 button{
+    font-size: 4rem;
+    width: 30%;
+    height: 10rem;
+}
+
+.col-sm-3 span{
+    color: red;
+    right: 2rem;
+}

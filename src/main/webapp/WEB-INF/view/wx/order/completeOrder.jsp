@@ -6,15 +6,18 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
+    <meta http-equiv="Pragma" content="no-cache"/>
+    <meta http-equiv="Expires" content="0"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/plugin/bootstrap-3.3.7-dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/plugin/toastr/toastr.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/css/header.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/css/completeOrder.css">
-    <title>完成订单</title>
+    <title>订单管理</title>
 </head>
 <body>
 <header>
@@ -25,9 +28,9 @@
 </header>
 <div class="container-fluid" id="main">
     <ul class="list-ul">
-        <li class="row list-li" @click.stop="display">
+        <li class="row list-li" @click.stop="display($event)" v-for="order in orders">
             <div class="zhang">
-                <img src="${pageContext.request.contextPath}/resources/wx/imge/wc.png" alt="">
+                <img src="${pageContext.request.contextPath}/resources/wx/imge/wc.png"  alt="">
             </div>
             <div class="row li-title">
                 <div class="col-sm-7">
@@ -61,7 +64,7 @@
                     <button  class="btn btn-success" @click.stop="callback(order.id)">回访</button>
                 </div>
             </div>
-
+        </li>
     </ul>
 </div>
 

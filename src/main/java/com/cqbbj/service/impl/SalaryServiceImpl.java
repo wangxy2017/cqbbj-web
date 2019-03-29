@@ -11,6 +11,7 @@ import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -31,9 +32,12 @@ public class SalaryServiceImpl implements ISalaryService {
 
     @Override
     public int saveEntity(Salary salary) {
-
-        //salary.setDeleteStatus(0);
-        //salary.setCreateTime(new Date());
+        if (salary.getDeleteStatus() == null) {
+            salary.setDeleteStatus(0);
+        }
+        if (salary.getCreateTime() == null) {
+            salary.setCreateTime(new Date());
+        }
         salary.setSalary_no(CommUtils.getCode(ConstantUtils.SALARY));
         return salaryMapper.save(salary);
     }
@@ -62,6 +66,9 @@ public class SalaryServiceImpl implements ISalaryService {
     public PageModel<Salary> queryPageList(Salary salary, int pageNum, int pageSize) {
         PageHelper.startPage(pageNum, pageSize);
         List<Salary> list = salaryMapper.queryList(salary);
+//        for(Salary s: list){
+//            System.out.println("FGHJKL:SDFGHJKL:FGHJKL:"+s.getId());
+//        }
         PageInfo<Salary> pageInfo = new PageInfo<>(list);
         return new PageModel(pageInfo);
     }

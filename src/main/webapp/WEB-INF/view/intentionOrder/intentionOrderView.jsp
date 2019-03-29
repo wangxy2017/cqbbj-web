@@ -26,6 +26,9 @@ To change this template use File | Settings | File Templates.
         <p>
             <label class="order-item">客户名称：{{order.name}}</label>
             <label class="order-item">电话：{{order.phone}}</label>
+        </p>
+        <p>
+            <label class="order-item">预估起价：{{order.price}}</label>
             <label class="order-item">预约时间：{{formatDateTime(order.beginTime)}}</label>
         </p>
         <p>

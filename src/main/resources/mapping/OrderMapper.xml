@@ -189,12 +189,52 @@
     </select>
     <!-- 查询财务账单 -->
     <select id="queryFinanceOrder" parameterType="order" resultType="order">
-        select <include refid="query_all_fields"/> from sys_order where deleteStatus = 0 and status = 2
+        select
+        <include refid="query_all_fields"/>
+        from sys_order where deleteStatus = 0 and status = 2
         <if test="is_clean != null">and is_clean = #{is_clean}</if>
         <if test="payState != null">and payState = #{payState}</if>
         <if test="order_no != null and order_no !=''">and order_no = #{order_no}</if>
         <if test="name != null and name !=''">and name like concat("%",#{name},"%")</if>
-        <if test="beginTime1 != null"><![CDATA[and beginTime >= #{beginTime1}]]></if>
-        <if test="beginTime2 != null"><![CDATA[and beginTime <= #{beginTime2}]]></if>
+        <if test="endTime1 != null"><![CDATA[and endTime >= #{endTime1}]]></if>
+        <if test="endTime2 != null"><![CDATA[and endTime <= #{endTime2}]]></if>
+    </select>
+
+    <!-- 订单统计 -->
+    <select id="queryTotal" resultType="map" parameterType="map">
+        select count(id) as f1,sum(price) as f2 from sys_order where deleteStatus = 0
+        <if test="startTime != null"><![CDATA[and createTime >= #{startTime}]]></if>
+        <if test="endTime != null"><![CDATA[and createTime <= #{endTime}]]></if>
+        <if test="status != null">and status = #{status}</if>
+        <if test="payState != null">and payState = #{payState}</if>
+        <if test="is_clean != null">and is_clean = #{is_clean}</if>
+    </select>
+
+    <!-- 查询我的派单 -->
+    <select id="queryMyTasks" resultType="order" parameterType="order">
+        SELECT
+        o.id,
+        o.`start`,
+        o.`end`,
+        o.`name`,
+        o.phone,
+        o.price,
+        o.beginTime,
+        o.`status`,
+        o.order_no,
+        o.endTime,
+        so.emp_no,
+        so.createTime AS dispatchTime
+        FROM
+        sys_order AS o
+        LEFT JOIN sys_send_order AS so ON so.order_no = o.order_no
+        WHERE o.deleteStatus = 0 and so.emp_no = #{emp_no}
+        <if test="status != null">and o.status = #{status}</if>
+        <if test="beginTime1 != null"><![CDATA[and o.beginTime >= #{beginTime1}]]></if>
+        <if test="beginTime2 != null"><![CDATA[and o.beginTime <= #{beginTime2}]]></if>
+        GROUP BY
+        o.order_no
+        ORDER BY
+        dispatchTime DESC
     </select>
 </mapper>

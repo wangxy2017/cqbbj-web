@@ -1,0 +1,124 @@
+li{
+    list-style: none;
+}
+
+.form-horizontal{
+    padding: 2rem;
+}
+.list-div{
+    padding: 2rem;
+    font-size: 4rem;
+}
+.list-div label{
+    line-height: 10rem;
+}
+ .list-div button{
+    width: 100%;
+    height: 10rem;
+     font-size: 4rem;
+}
+.col-sm-2 button{
+    font-size: 3rem;
+}
+.list-div input{
+    width: 100%;
+    height: 10rem;
+    font-size: 4rem;
+}
+
+.modal-content{
+    width: 150%;
+    margin: 0 auto;
+    margin-left: -3.8em;
+    margin-top: 6rem;
+}
+.modal-title{
+    font-size: 4rem;
+    padding: 2rem;
+    border-bottom:1px solid #737373 ;
+    text-align: center;
+}
+.modal-title h4{
+    font-size: 4rem;
+}
+.row{
+    padding-top: 2rem;
+}
+.modal-footer button{
+    padding: 2rem;
+}
+/*司机模块样式*/
+#motorMan{
+    /*margin: 0 auto;*/
+    font-size: 4rem;
+}
+#motorMan .row{
+    padding-top: 2rem;
+    height: 10rem;
+}
+#motorMan .modal-body button{
+    width: 100%;
+    height: 10rem;
+    margin-top: 2rem;
+    font-size: 4rem;
+}
+#motorMan .modal-footer{
+    width: 100%;
+    height: 100%;
+}
+#motorMan .modal-footer button{
+    width: 100%;
+    height: 10rem;
+    font-size: 4rem;
+}
+/*搬运工模块样式*/
+#porter{
+    /*margin: 0 auto;*/
+    font-size: 4rem;
+}
+#porter .row{
+    padding-top: 2rem;
+    height: 10rem;
+}
+#porter .modal-body button{
+    width: 100%;
+    height: 10rem;
+    margin-top: 2rem;
+    font-size: 4rem;
+}
+#porter .modal-footer{
+    width: 100%;
+    height: 100%;
+}
+#porter .modal-footer button{
+    width: 100%;
+    height: 10rem;
+    font-size: 4rem;
+}
+/*空调工模块样式*/
+#hvac{
+    /*margin: 0 auto;*/
+    font-size: 4rem;
+}
+#hvac .row{
+    padding-top: 2rem;
+    height: 10rem;
+}
+#hvac .modal-body button{
+    width: 100%;
+    height: 10rem;
+    margin-top: 2rem;
+    font-size: 4rem;
+}
+#hvac .modal-footer{
+    width: 100%;
+    height: 100%;
+}
+#hvac .modal-footer button{
+    width: 100%;
+    height: 10rem;
+    font-size: 4rem;
+}
+.emp{
+    padding: 2rem;
+}

@@ -11,21 +11,18 @@ var main = new Vue({
                 dataType: "json",
                 data: {
                     "id": $("#main").attr("dataid"),
-                    "receiveText": $("#receiveText").text(),
+                    "visit": $("#visit").val()
 
                 },
                 type: "POST",
                 success: function (result) {
                     toastr.success('提交成功');
-                    window.location.href = "completeOrder.html";
+                    window.location.href = "/wx/order/completeOrder";
                 },
                 error: function (result) {
                     toastr.warning('提交异常');
                 }
             });
         }
-    },
-    mounted: function () {
-
     }
 });

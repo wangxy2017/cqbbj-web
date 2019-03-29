@@ -24,6 +24,16 @@ To change this template use File | Settings | File Templates.
 		<%-- 表单区域 --%>
 		<form class="layui-form" action="">
 			<div class="layui-form-item">
+				<label class="layui-form-label">菜单类型</label>
+				<div class="layui-input-block">
+					<select name="type" lay-verify="required">
+						<option value="">请选择</option>
+						<option value="0">PC端</option>
+						<option value="1">微信端</option>
+					</select>
+				</div>
+			</div>
+			<div class="layui-form-item">
 				<label class="layui-form-label">菜单名称</label>
 				<div class="layui-input-block">
 					<input type="text" name="name" required lay-verify="required" placeholder="请输入菜单名称" autocomplete="off"
@@ -43,6 +53,13 @@ To change this template use File | Settings | File Templates.
 				<label class="layui-form-label">菜单路径</label>
 				<div class="layui-input-block">
 					<input type="text" name="url" placeholder="请输入菜单路径" autocomplete="off"
+					class="layui-input">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">图标路径</label>
+				<div class="layui-input-block">
+					<input type="text" name="icon" placeholder="请输入图标路径" autocomplete="off"
 					class="layui-input">
 				</div>
 			</div>

@@ -25,4 +25,20 @@ public interface OrderMapper extends BaseMapper<Order> {
      * @return
      */
     List<Order> queryFinanceOrder(Order order);
+
+    /**
+     * 订单统计
+     *
+     * @param params
+     * @return
+     */
+    Map<String, Object> queryTotal(Map<String, Object> params);
+
+    /**
+     * 查询我的派单
+     *
+     * @param order
+     * @return
+     */
+    List<Order> queryMyTasks(Order order);
 }

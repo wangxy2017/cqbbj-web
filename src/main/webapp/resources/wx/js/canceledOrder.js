@@ -1,19 +1,20 @@
 var main = new Vue({
     el: "#main",
     data: {
-
-        order: {},
-        flag: true,
+        orders: [],
+        locked: false,
         loaded: 0,
-        total: 0
+        total: 0,
+        pageNum: 0,
+        pageSize: 4
     },
     //方法
     methods: {
         /**
          * 点击卡片显示隐藏查看和回访
          * **/
-        display: function () {
-            $(".list-li").children('.display').toggle(500).css('display');
+        display: function (event) {
+            $(event.currentTarget).children('.display').fadeToggle(500);
         },
         /**
          * 查看跳转页面
@@ -41,7 +42,9 @@ var main = new Vue({
                     //{code:1,msg:success}
                     if (result.code == 1) {
                         toastr.success('恢复成功');
-                        window.location.herf = "/wx/order/";
+                        setTimeout(function () {
+                            window.location.reload();
+                        }, 1000);
                     } else {
                         toastr.error("操作失败");
                     }
@@ -50,68 +53,77 @@ var main = new Vue({
                     toastr.warning("服务器异常");
                 }
             });
-
-
         },
+        /**
+         * 加载数据
+         */
+        loadData: function () {
+            var _this = this;
+            $.ajax({
+                url: '/wx/financeClean/queryPageList',
+                dataType: 'json',
+                data: {
+                    "pageNum": _this.pageNum++,
+                    "pageSize": _this.pageSize
+                },
+                type: "POST",
+                beforeSend: function () {
+                    $(".loading").show();
+                },
+                complete: function () {
+                    $(".loading").hide();
+                },
+                success: function (result) {
+                    // console.log(result);
+                    if (result.code == 1) {
+                        // 1.请求成功，渲染数据
+                        _this.orders.push.apply(_this.orders, result.data.list);
+                        // 2.更新已经加载的条数
+                        _this.loaded += result.data.list.length;
+                        // 3.把锁打开
+                        _this.locked = false;
+                        // 4.如果已加载的条数 == 总条数 ，显示已经到底
+                        if (_this.loaded >= _this.total) {
+                            $(".baseLine").show();
+                        } else {
+                            $(".baseLine").hide();
+                        }
+                        // 5.如果没有数据，则显示没有数据
+                        if (_this.orders.length == 0) {
+                            $(".notFind").show();
+                            $(".baseLine").hide();
+                        } else {
+                            $(".notFind").hide();
+                        }
+                    } else {
+                        toastr.error("数据加载失败!");
+                    }
+                },
+                error: function () {
+                    toastr.error("服务器异常!");
+                }
+            });
+        }
     },
     mounted: function () {
-        this.$http.post("/wx/order/queryPageListEmployee", {
-            status: 3,
-            pageNum: 1,
-            pageSize: 4
-        }, {emulateJSON: true})
-            .then(function (res) {
-                console.log(res);
-                this.order = res.body.data;
-            }, function () {
-                toastr.error("数据异常");
-            });
-        // 分页
+        var _this = this;
+        _this.loadData();
+        /**
+         * 分页
+         */
         $(function () {
-            // 监听滚动事件
+            //监听屏幕滚动事件
             $(window).scroll(function () {
-                // 当滚动到底的时候，异步加载数据
-                if ($(document).height() - $(window).height() - $(window).scrollTop() == 50) {
-                    // 当已加载的条数 >= 总条数，关闭开关，显示已经到底
-                    if (main.loaded >= main.total) {
-                        main.flag = false;
-                        $(".loading").show();
-                    }
-                    // 当开关打开时，发送请求
-                    if (main.flag) {
-                        $.ajax({
-                            url: '/wx/order/queryPageList',
-                            dataType: 'json',
-                            data: {
-                                "pageNum": 2,
-                                "pageSize": 4
-                            },
-                            type: "POST",
-                            success: function (result) {
-                                console.log(result);
-                                if (result.code == 1) {
-                                    var orders = main.orders;
-                                    orders.push.apply(orders, result.data.list);
-                                    // 当数据成功加载后，再次打开开关，方便下一次请求
-                                    main.flag = true;
-                                    // 更新已经加载的条数
-                                    main.loaded += result.data.list.length;
-                                    console.log("已经加载" + main.loaded + "条");
-                                }
-                            },
-                            beforeSend: function () {
-                                // $loading.show();
-                            },
-                            complete: function () {
-                                // $loading.hide();
-                            },
-                            error: function () {
-
-                            }
-                        });
-                        // 关闭开关
-                        main.flag = false;
-                    }
+                // 满足以下条件，请求数据
+                // 1.请求锁未锁
+                // 2.滚动条到底
+                // 3.已经加载的条数 < 总条数
+                var i = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
+                if (!_this.locked && ($(document).height() - (i + $(window).height()) == 1 || $(document).height() - (i + $(window).height()) < i) && _this.loaded < _this.total) {
+                    // 先上锁，避免多次请求
+                    _this.locked = true;
+                    // 发送请求
+                    _this.loadData();
                 }
             });
         });

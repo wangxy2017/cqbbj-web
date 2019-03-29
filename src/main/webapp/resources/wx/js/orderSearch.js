@@ -15,17 +15,17 @@ $("#submit").on("click", function () {
             "order_no": $("#order_no").val(),
             "name": $("#name").val(),
             "phone": $("#phone").val(),
-            "beginTime1": $("#beginTime1").val()+":00",
-            "beginTime2":$("#beginTime2").val()+":00"
+            "beginTime1": $("#beginTime1").val() + ":00",
+            "beginTime2": $("#beginTime2").val() + ":00"
         },
         dataType: "json",
         type: "post",
         success: function (res) {
             console.log(res.data);
-
+            window.location.href = "/wx/order/searchResult";
 
         }, error: function () {
-
+            toastr.error("查询失败")
         }
 
     })

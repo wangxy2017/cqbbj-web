@@ -32,7 +32,7 @@ public class Customer extends BaseEntity {
     }
 
     /**
-     * 是否微信登录
+     * 微信登录 0：未登录 1：已经登录
      */
     private Integer is_wxLogin;
     public String getName() {

@@ -6,15 +6,18 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
+    <meta http-equiv="Pragma" content="no-cache"/>
+    <meta http-equiv="Expires" content="0"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/plugin/bootstrap-3.3.7-dist/css/bootstrap.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/plugin/toastr/toastr.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/css/callback.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/css/header.css">
-    <title>重庆棒棒军管理有限公司回访系统</title>
+    <title>订单管理</title>
 </head>
 <body>
 <header>
@@ -25,7 +28,7 @@
 </header>
 <div class="container-fluid" id="main" dataid="<%=request.getParameter("id")%>">
     <h1>备注记录</h1>
-    <textarea class="form-control" rows="12" id="receiveText" placeholder="请输入内容"></textarea>
+    <textarea class="form-control" rows="12" id="visit" placeholder="请输入内容"></textarea>
     <div class="row">
         <input type="button" class="btn btn-success btn-lg btn-block" value="提交" @click.stop="submit">
     </div>

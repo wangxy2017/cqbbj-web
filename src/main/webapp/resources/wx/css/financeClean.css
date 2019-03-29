@@ -1,49 +1,54 @@
-html,body{
-    width: 100%;
-    height: 100%;
-    font-size: 50%;
+
+*{
+    margin: 0;
+    padding: 0;
 }
 body{
     background: #e7e7e7;
-    position: relative;
 }
-
-
-
-header{
-    width: 100%;
-    background: darkslateblue;
-    margin: 0 auto;
+.center{
+    width: 96%;
+    margin: auto;
+    margin-top: -2rem;
+}
+.title{
+    background: white;
+    /*border-radius: 2rem;*/
+}
+.col-sm-5{
     text-align: center;
-    color: white;
-    font-size: 6rem;
-    position: relative;
+    font-size: 4rem;
 }
-header p{
-    line-height: 150px;
+.col-sm-2{
+    height: 10rem;
+    text-align: center;
+
 }
-header .pic{
-    width: 150px;
-    height: 150px;
-    float: left;
-    /*border:1px solid black;*/
-    /*margin-top: 30px;*/
-    position: absolute;
+.col-sm-2 div{
+    margin-top: 2rem;
+    height: 100%;
+    width: 100%;
+    background-image: url("/resources/wx/imge/xian.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: -moz-element(1px);
+    background-size: 34%;
 }
-.pic img{
-    width: auto;
-    height: auto;
-    max-width: 100%;
-    max-height: 100%;
+.col-sm-2 div{
+
 }
-.list-ul{
-    padding: 0 1.5rem;
+.border_bottom{
+    border-bottom: 4px solid darkslateblue;
 }
-.container-fluid{
-    font-size: 5rem;
-    padding-top:2rem
+.complete{
+    margin-top: 4rem;
+    font-size: 4rem;
+    color: #737383;
 }
 /*Li卡片的样式*/
+.list-ul{
+    /*margin-top: 0;*/
+}
 .list-li{
     background: white;
     border-radius: 2.5rem;
@@ -70,7 +75,7 @@ header .pic{
 }
 /*起点样式*/
 .toAdd{
-    background-image: url("../imge/foadd.png");
+    background-image: url("/resources/wx/imge/foadd.png");
     background-repeat: no-repeat;
     background-position: 1rem;
     background-size:6%;
@@ -78,7 +83,7 @@ header .pic{
 }
 /*终点样式*/
 .formAdd{
-    background-image: url("../imge/toAd.png");
+    background-image: url("/resources/wx/imge/toAd.png");
     background-repeat: no-repeat;
     background-position: 1rem;
     background-size: 6%;
@@ -109,4 +114,15 @@ header .pic{
     width: 100%;
     height: 12rem;
     font-size: 4rem;
+}
+/*未结算隐藏*/
+.unfinished{
+    padding: 0 2rem;
+    margin-top: 4rem;
+    font-size: 4rem;
+    display: none;
+    color: #737383;
+}
+.unfinished .col-sm-7 a{
+    color: #1e9fff;
 }

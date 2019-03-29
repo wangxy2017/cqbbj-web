@@ -14,12 +14,12 @@
         end,
         beginTime,
         is_follow,
-        followInfo,
         status,
         inten_no,
         emp_no,
         content,
-        reason
+        reason,
+        price
     </sql>
     <sql id="insert_all_values">
         #{createTime},
@@ -32,12 +32,12 @@
         #{end},
         #{beginTime},
         #{is_follow},
-        #{followInfo},
         #{status},
         #{inten_no},
         #{emp_no},
         #{content},
-        #{reason}
+        #{reason},
+        #{price}
     </sql>
     <sql id="query_all_fields">
         id,
@@ -47,9 +47,9 @@
         source,
         start,
         end,
+        price,
         beginTime,
         is_follow,
-        followInfo,
         status,
         inten_no,
         emp_no,
@@ -75,9 +75,9 @@
             <if test="end != null and end != ''">end = #{end},</if>
             <if test="beginTime != null">beginTime = #{beginTime},</if>
             <if test="is_follow != null">is_follow = #{is_follow},</if>
-            <if test="followInfo != null and followInfo != ''">followInfo = #{followInfo},</if>
             <if test="status != null">status = #{status},</if>
             <if test="emp_no != null and emp_no != ''">emp_no = #{emp_no},</if>
+            <if test="price != null">price = #{price},</if>
             <if test="content != null and content != ''">content = #{content},</if>
             <if test="reason != null and reason != ''">reason = #{reason},</if>
         </set>
@@ -100,5 +100,12 @@
     <!-- 根据Id查询意向订单 -->
     <select id="queryById" resultType="intentionOrder" parameterType="int">
         select <include refid="query_all_fields"></include> from sys_intention_order where id =#{id}
+    </select>
+
+    <!-- 意向订单统计 -->
+    <select id="queryTotal" resultType="map" parameterType="map">
+        select count(id) as f1,sum(price) as f2 from sys_intention_order where deleteStatus = 0
+        <if test="startTime != null"><![CDATA[and createTime >= #{startTime}]]></if>
+        <if test="endTime != null"><![CDATA[and createTime <= #{endTime}]]></if>
     </select>
 </mapper>

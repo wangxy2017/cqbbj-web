@@ -2,49 +2,129 @@ var main = new Vue({
     el: "#main",
     data: {
         orders: [],
-        flag: true,
+        status: 0,
+        locked: false,
         loaded: 0,
-        total: 0
+        total: 0,
+        pageNum: 0,
+        pageSize: 4
     },
     methods: {
-
-
-
         /**
-         * 请求数据
+         * 加载数据
          */
-        requestData: function () {
+        loadData: function () {
+            var _this = this;
+            $.ajax({
+                url: '/wx/order/queryPageListEmployee',
+                dataType: 'json',
+                data: {
+                    "pageNum": _this.pageNum++,
+                    "pageSize": _this.pageSize,
+                    "status": _this.status
+                },
+                type: "POST",
+                beforeSend: function () {
+                    $(".loading").show();
+                },
+                complete: function () {
+                    $(".loading").hide();
+                },
+                success: function (result) {
+                    console.log(result);
+                    if (result.code == 1) {
+                        // 1.请求成功，渲染数据
+                        _this.orders.push.apply(_this.orders, result.data.list);
+                        // 2.更新已经加载的条数
+                        _this.loaded += result.data.list.length;
+                        // 3.把锁打开
+                        _this.locked = false;
+                        // 4.如果已加载的条数 == 总条数 ，显示已经到底
+                        if (_this.loaded >= _this.total) {
+                            $(".baseLine").show();
+                        } else {
+                            $(".baseLine").hide();
+                        }
+                        // 5.如果没有数据，则显示没有数据
+                        if (_this.orders.length == 0) {
+                            $(".notFind").show();
+                            $(".baseLine").hide();
+                        } else {
+                            $(".notFind").hide();
+                        }
+                    } else {
+                        toastr.error("数据加载失败!");
+                    }
+                },
+                error: function () {
+                    toastr.error("服务器异常!");
+                }
+            });
+        },
+        /**
+         * 模态框点击确定事件
+         */
+        ascertain: function () {
+            var id = $("#checkId").val();
+            var order_no = $("#checkOrderNo").val();
+            console.log(id);
+            $.ajax({
+                url: "/wx/order/updateOrderStatus",
+                data: {"id": id, "status": 3, "order_no": order_no},
+                dataType: "json",
+                type: "post",
+                success: function (res) {
+                    console.log(res.data);
+                    window.location.reload();
+                }, error: function () {
+
+
+                }
+            });
+            // 刷新列表
+        },
+        /**
+         * 点击任意地方关闭弹窗
+         */
+        end: function () {
+            $(".alert_body").animate({
+                marginTop: '-50rem',
+            });
+            setTimeout(function () {
+                $(".alert_model").css("display", "none");
+            }, 500);
+        },
+        /**
+         * 点击关闭按钮动画
+         */
+        hide: function () {
+            $(".alert_body").animate({
+                marginTop: '-50rem',
+            });
+            setTimeout(function () {
+                $(".alert_model").css("display", "none");
+            }, 500);
 
         },
         /**
-         * 取消订单
+         * 作废订单事件
          */
-        cancel: function (id) {
-            if (confirm("确定取消该订单吗？")) {
-                console.log("点击的确定修改!");
-                // 发送异步请求，跟新订单
-                $.ajax({
-                    url: "/wx/order/updateOrderStatus",
-                    data: {"id": id, "status": 3},
-                    dataType: "json",
-                    type: "post",
-                    success: function (res) {
-                        console.log(res.data);
-                        window.location.href = "/wx/order/unSentOrder";
-                    }, error: function () {
+        cancel: function (id, order_no, event) {
+            $("#checkId").val(id);
+            $("#checkOrderNo").val(order_no);
+            var _this = $(event.currentTarget);
+            var mask = _this.parents("li").siblings("div");
+            console.log(mask);
+            mask.show().find(".alert_body").animate({
+                marginTop: '40rem'
+            });
 
-
-                    }
-                });
-                // 刷新列表
-            }
         },
         /**
          * 显示操作按钮
          */
         showBtns: function (event) {
-            var el = event.currentTarget;// 获取当前元素
-            $(el).children('.display').toggle(500).css('display');
+            $(event.currentTarget).children('.display').fadeToggle(500);
         },
         /**
          * 查看按钮
@@ -66,71 +146,28 @@ var main = new Vue({
          * 修改按钮
          */
         modify: function (id) {
-            window.location.href = "/wx/order/orderUpdate?id=" +id;
+            window.location.href = "/wx/order/orderUpdate?id=" + id;
         },
     },
     mounted: function () {
-        // 初始化
-        this.$http.post("/wx/order/queryPageListEmployee", {
-            "status": 0
-
-        }, {emulateJSON: true}).then(function (res) {
-            console.log(res.body);
-            if (res.body.code == 1) {
-                main.orders = res.body.data.list;
-                // 分页准备工作--赋值
-                main.loaded = res.body.data.list.length;
-                main.loaded = res.body.data.total;
-            }
-        }, function (res) {
-            console.log(res.body);
-        });
-        // 分页
+        var _this = this;
+        _this.loadData();
+        /**
+         * 分页
+         */
         $(function () {
-            // 监听滚动事件
+            //监听屏幕滚动事件
             $(window).scroll(function () {
-                // 当滚动到底的时候，异步加载数据
-                if ($(document).height() - $(window).height() - $(window).scrollTop() == 50) {
-                    // 当已加载的条数 >= 总条数，关闭开关，显示已经到底
-                    if (main.loaded >= main.total) {
-                        main.flag = false;
-                        $(".loading").show();
-                    }
-                    // 当开关打开时，发送请求
-                    if (main.flag) {
-                        $.ajax({
-                            url: '/wx/order/queryPageList',
-                            dataType: 'json',
-                            data: {
-                                "pageNum": 2,
-                                "pageSize": 4
-                            },
-                            type: "POST",
-                            success: function (result) {
-                                console.log(result);
-                                if (result.code == 1) {
-                                    var orders = main.orders;
-                                    orders.push.apply(orders, result.data.list);
-                                    // 当数据成功加载后，再次打开开关，方便下一次请求
-                                    main.flag = true;
-                                    // 更新已经加载的条数
-                                    main.loaded += result.data.list.length;
-                                    console.log("已经加载" + main.loaded + "条");
-                                }
-                            },
-                            beforeSend: function () {
-                                // $loading.show();
-                            },
-                            complete: function () {
-                                // $loading.hide();
-                            },
-                            error: function () {
-
-                            }
-                        });
-                        // 关闭开关
-                        main.flag = false;
-                    }
+                // 满足以下条件，请求数据
+                // 1.请求锁未锁
+                // 2.滚动条到底
+                // 3.已经加载的条数 < 总条数
+                var i = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
+                if (!_this.locked && ($(document).height() - (i + $(window).height()) == 1 || $(document).height() - (i + $(window).height()) < i) && _this.loaded < _this.total) {
+                    // 先上锁，避免多次请求
+                    _this.locked = true;
+                    // 发送请求
+                    _this.loadData();
                 }
             });
         });

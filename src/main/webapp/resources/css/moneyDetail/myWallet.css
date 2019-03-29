@@ -1,51 +1,18 @@
-/* layui样式更改 */
+/* 更改layui样式 */
 .layui-table-view .layui-form-checkbox{
     top:5px !important;
 }
-.go-back {
-    padding-left: 5px !important;
-    padding-right: 15px !important;
-}
 
-/* 菜单列表 */
-.menu-table {
-    border: 1px solid #009688;
-    width: 800px;
-    border-radius: 2px;
-}
 
-.menu-table .menu-table-title {
-    height: 24px;
-    line-height: 24px;
-    padding: 5px;
-    background-color: #009688;
-    color: white;
+.title{
+    margin-left: 10px;margin-top: 12px;
 }
-
-.menu-table .menu-table-list .menu-table-list-li {
-    display: block;
-    padding-left: 12px;
-    min-height: 60px;
-    line-height: 30px;
-    border-bottom: 1px solid #009688;
+.title .flag{
+    background: #009688;margin-right: 10px;
 }
-
-.menu-table .menu-table-list {
-    padding: 5px;
+.moneyInfo{
+    margin-left: 10px;margin-top: 20px;line-height: 32px;
 }
-
-.menu-table .menu-table-list .menu-table-list-li:last-child {
-    border-bottom: none;
-}
-
-.menu-table label {
-    margin-right: 10px;
-    user-select: none;
-    cursor: pointer;
-}
-
-.menu-actions {
-    text-align: right;
-    width: 800px;
-    margin-top: 10px;
+.moneyInfo .money{
+    font-size: 26px;font-style: normal;margin-right: 10px;color: #ff5722;font-weight: bold;
 }

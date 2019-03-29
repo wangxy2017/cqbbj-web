@@ -6,21 +6,24 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <title>订单详情页</title>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
+    <meta http-equiv="Pragma" content="no-cache"/>
+    <meta http-equiv="Expires" content="0"/>
+    <title>订单管理</title>
     <link rel="stylesheet"
           href="${pageContext.request.contextPath}/resources/wx/plugin/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/css/header.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/css/orderdetail.css">
 </head>
 <body>
 <form class="form-group" id="main">
     <header>
         <div class="pic">
-            <img src="${pageContext.request.contextPath}/resources/wx/imge/comeback.png"
-                 onclick="javaScript:window.history.back()" alt="">
+            <span class="glyphicon glyphicon-menu-left" onclick="javaScript:window.history.back()"></span>
         </div>
         <p>订单详情</p>
     </header>
@@ -28,6 +31,11 @@
         <tr>
             <th>订单编号:</th>
             <td style="color: #1e9fff">{{order.order_no}}</td>
+        </tr>
+        <tr>
+            <th>客户类型:</th>
+            <td v-if="order.type==0">个人</td>
+            <td v-else>公司</td>
         </tr>
         <tr>
             <th>客户名称:</th>
@@ -46,7 +54,7 @@
             <td>{{order.end}}</td>
         </tr>
         <tr>
-            <th>客户备注:</th>
+            <th>搬运备注:</th>
             <td>{{order.content}}</td>
         </tr>
         <tr>
@@ -55,7 +63,19 @@
         </tr>
         <tr>
             <th>预约时间:</th>
-            <td>{{order.beginTime}}</td>
+            <td>{{formatDateTime(order.beginTime)}}</td>
+        </tr>
+        <tr v-show="isComplete">
+            <th>实际收款:</th>
+            <td>{{order.receiveMoney}}</td>
+        </tr>
+        <tr v-show="isComplete">
+            <th>收款备注:</th>
+            <td>{{order.receiveText}}</td>
+        </tr>
+        <tr v-show="isComplete">
+            <th>回访记录:</th>
+            <td>{{order.visit}}</td>
         </tr>
 
         <tr v-show="isDispatch">

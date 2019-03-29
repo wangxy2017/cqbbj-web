@@ -1,7 +1,9 @@
 package com.cqbbj.entity;
 
 import com.cqbbj.core.base.BaseEntity;
+import org.apache.commons.lang3.StringUtils;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -121,19 +123,19 @@ public class Order extends BaseEntity {
     /**
      * 收款人员
      */
-    private List<SendOrder> moneyEmps;
+    private List<SendOrder> moneyEmps = new ArrayList<>();
     /**
      * 随车司机
      */
-    private List<SendOrder> driveEmps;
+    private List<SendOrder> driveEmps = new ArrayList<>();
     /**
      * 随车搬运工
      */
-    private List<SendOrder> moveEmps;
+    private List<SendOrder> moveEmps = new ArrayList<>();
     /**
      * 随车空调工
      */
-    private List<SendOrder> airEmps;
+    private List<SendOrder> airEmps = new ArrayList<>();
 
 
     /**
@@ -151,14 +153,40 @@ public class Order extends BaseEntity {
      */
     private Date beginTime1;
     private Date beginTime2;
+
+    /**
+     * 完成时间
+     */
+    private Date endTime1;
+    private Date endTime2;
     /**
      * =============== 关联字段 =================
      */
 
     /**
-     * 员工编号
+     * 派遣员工编号
      */
     private String emp_no;
+    /**
+     * 派单时间
+     */
+    private Date dispatchTime;
+    /**
+     * 收款员
+     */
+    private String moneyEmpsInfo;
+    /**
+     * 司机
+     */
+    private String driveEmpsInfo;
+    /**
+     * 搬运工
+     */
+    private String moveEmpsInfo;
+    /**
+     * 空调工
+     */
+    private String airEmpsInfo;
 
     public String getName() {
         return name;
@@ -414,5 +442,86 @@ public class Order extends BaseEntity {
 
     public void setCleanText(String cleanText) {
         this.cleanText = cleanText;
+    }
+
+    public Date getDispatchTime() {
+        return dispatchTime;
+    }
+
+    public void setDispatchTime(Date dispatchTime) {
+        this.dispatchTime = dispatchTime;
+    }
+
+    public Date getEndTime1() {
+        return endTime1;
+    }
+
+    public void setEndTime1(Date endTime1) {
+        this.endTime1 = endTime1;
+    }
+
+    public Date getEndTime2() {
+        return endTime2;
+    }
+
+    public void setEndTime2(Date endTime2) {
+        this.endTime2 = endTime2;
+    }
+
+    public String getMoneyEmpsInfo() {
+        String[] arr = new String[this.moneyEmps.size()];
+        int i = 0;
+        for (SendOrder so : this.moneyEmps) {
+            arr[i] = so.getEmp_name();
+            i++;
+        }
+        return StringUtils.join(arr, ",");
+    }
+
+    public void setMoneyEmpsInfo(String moneyEmpsInfo) {
+        this.moneyEmpsInfo = moneyEmpsInfo;
+    }
+
+    public String getDriveEmpsInfo() {
+        String[] arr = new String[this.driveEmps.size()];
+        int i = 0;
+        for (SendOrder so : this.driveEmps) {
+            arr[i] = so.getEmp_name();
+            i++;
+        }
+        StringUtils.join(arr, ",");
+        return StringUtils.join(arr, ",");
+    }
+
+    public void setDriveEmpsInfo(String driveEmpsInfo) {
+        this.driveEmpsInfo = driveEmpsInfo;
+    }
+
+    public String getMoveEmpsInfo() {
+        String[] arr = new String[this.moveEmps.size()];
+        int i = 0;
+        for (SendOrder so : this.moveEmps) {
+            arr[i] = so.getEmp_name();
+            i++;
+        }
+        return StringUtils.join(arr, ",");
+    }
+
+    public void setMoveEmpsInfo(String moveEmpsInfo) {
+        this.moveEmpsInfo = moveEmpsInfo;
+    }
+
+    public String getAirEmpsInfo() {
+        String[] arr = new String[this.airEmps.size()];
+        int i = 0;
+        for (SendOrder so : this.airEmps) {
+            arr[i] = so.getEmp_name();
+            i++;
+        }
+        return StringUtils.join(arr, ",");
+    }
+
+    public void setAirEmpsInfo(String airEmpsInfo) {
+        this.airEmpsInfo = airEmpsInfo;
     }
 }

@@ -65,17 +65,17 @@ layui.use(["table", "layer", "jquery", "laydate"], function () {
                     },
                     cols: [[
                         {type: 'checkbox'}
-                        , {field: 'money_no', title: '交易单号'}
+                        , {field: 'money_no', title: '交易单号', width: 200}
                         , {
-                            field: 'type', title: '收支类型', align: "center", templet: function (d) {
+                            field: 'type', title: '收支类型', align: "center", width: 120, templet: function (d) {
                                 return d.type == 0 ? "<span style='color: #009688'>收入</span>" : "<span style='color: #FF5722'>支出</span>";
                             }
                         }
-                        , {field: 'money', title: '交易金额', align: "center"}
-                        , {field: 'restMoney', title: '可用余额', align: "center"}
-                        , {field: 'remark', title: '备注'}
+                        , {field: 'money', title: '收入金额', align: "center", width: 120}
+                        , {field: 'restMoney', title: '可用余额', align: "center", width: 120}
+                        , {field: 'remark', title: '备注', align: "center"}
                         , {
-                            field: 'createTime', title: '修改时间', sort: true, templet: function (d) {
+                            field: 'createTime', title: '创建时间', width: 200, sort: true, templet: function (d) {
                                 return formatDateTime(d.createTime);
                             }
                         }

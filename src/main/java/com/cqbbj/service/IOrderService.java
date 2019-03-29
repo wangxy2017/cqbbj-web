@@ -5,6 +5,7 @@ import com.cqbbj.core.base.PageModel;
 import com.cqbbj.entity.Order;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author wangxy
@@ -40,4 +41,22 @@ public interface IOrderService extends BaseService<Order> {
      */
     PageModel<Order> queryFinanceOrder(Order order, Integer pageNum, Integer pageSize);
 
+    /**
+     * 订单统计
+     *
+     * @param params
+     * @return
+     */
+    Map<String, Object> queryTotal(Map<String, Object> params);
+
+
+    /**
+     * 查询我的派单
+     *
+     * @param order
+     * @param pageNum
+     * @param pageSize
+     * @return
+     */
+    PageModel<Order> queryMyTasks(Order order, Integer pageNum, Integer pageSize);
 }

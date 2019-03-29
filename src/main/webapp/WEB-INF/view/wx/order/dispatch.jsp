@@ -6,22 +6,26 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <title>未派订单</title>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
+    <meta http-equiv="Pragma" content="no-cache"/>
+    <meta http-equiv="Expires" content="0"/>
+    <title>订单管理</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/plugin/bootstrap-3.3.7-dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/css/sentOrder.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/css/header.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/css/dispatch.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/plugin/toastr/toastr.css">
     <link rel="icon" type="image/x-icon" href="${pageContext.request.contextPath}/resources/wx/favicon.ico"/>
 </head>
 <body>
 <header>
     <div class="pic">
-        <img src="${pageContext.request.contextPath}/resources/wx/imge/comeback.png" onclick="javaScript:window.history.back()" alt="">
+        <span class="glyphicon glyphicon-menu-left" onclick="javaScript:window.history.back()"></span>
     </div>
-    <p>派单管理</p>
+    <p>未派订单</p>
 </header>
 <div class="container-fluid" id="main" dataid="<%=request.getParameter("order_no")%>">
     <!--<form action="" class="form-horizontal">-->
@@ -64,17 +68,13 @@
                                 <button class="btn btn-success" data-dismiss="modal">提交</button>
                             </div>
                             <div class="col-sm-6">
-                                <button class="btn btn-default" type="reset">重置</button>
+                                <button class="btn btn-default" type="reset" @click="replacement">重置</button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
-
-
-
 
 
         <!--随车司机模态框-->
@@ -110,7 +110,7 @@
                             <button class="btn btn-success" data-dismiss="modal">提交</button>
                         </div>
                         <div class="col-sm-6">
-                            <button class="btn btn-default" type="reset" @click="reset">重置</button>
+                            <button class="btn btn-default" type="reset" @click="replacement">重置</button>
                         </div>
                     </div>
                 </div>
@@ -155,7 +155,7 @@
                             <button class="btn btn-success" data-dismiss="modal">提交</button>
                         </div>
                         <div class="col-sm-6">
-                            <button class="btn btn-default" type="reset" @click="reset">重置</button>
+                            <button class="btn btn-default" type="reset" @click="replacement">重置</button>
                         </div>
                     </div>
                 </div>
@@ -196,7 +196,7 @@
                             <button class="btn btn-success" data-dismiss="modal">提交</button>
                         </div>
                         <div class="col-sm-6">
-                            <button class="btn btn-default" type="reset" @click="reset">重置</button>
+                            <button class="btn btn-default" type="reset" @click="replacement">重置</button>
                         </div>
                     </div>
                 </div>

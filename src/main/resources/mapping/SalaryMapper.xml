@@ -79,6 +79,7 @@
         s.salary_no,
         s.createTime,
         e.`name` emp_name,
+        e.sex as emp_sex,
         p.`name` emp_pos
         from sys_salary s
         LEFT JOIN sys_employee e ON s.emp_no=e.emp_no
@@ -105,10 +106,11 @@
         s.salary_no,
         s.createTime,
         e.`name` emp_name,
+        e.sex as emp_sex,
         p.`name` emp_pos
         from sys_salary s
         LEFT JOIN sys_employee e ON s.emp_no=e.emp_no
         LEFT JOIN sys_position p on e.position_id=p.id
-        where s.id = #{id}
+        where s.id = #{id} and s.deleteStatus=0
     </select>
 </mapper>
