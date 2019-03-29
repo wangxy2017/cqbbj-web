@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/css/header.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/css/home.css">
 
-    <title>会员中心</title>
+    <title>员工中心</title>
 </head>
 <body>
 <div class="container-fluid" id="main">
@@ -32,7 +32,7 @@
             </a>
         </div>
         <p>{{empName}}</p>
-        <div class="row">
+        <div class="row" style="margin-bottom: 4rem">
             <div class="col-sm-6" @click="wallet">
                 <p>钱包</p>
                 <p><span class="glyphicon glyphicon-yen"></span>{{money}}</p>
