@@ -13,8 +13,10 @@
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
     <meta http-equiv="Pragma" content="no-cache"/>
     <meta http-equiv="Expires" content="0"/>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/plugin/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <link rel="stylesheet"
+          href="${pageContext.request.contextPath}/resources/wx/plugin/bootstrap-3.3.7-dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/plugin/toastr/toastr.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/css/header.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/css/home.css">
 
     <title>会员中心</title>
@@ -41,7 +43,7 @@
             </div>
         </div>
     </header>
-    <div >
+    <div>
         <ul>
             <li v-for="menu in menus">
                 <a @click.stop="tiaozhuan(menu.url)">
@@ -51,9 +53,12 @@
                     <p>{{menu.name}}</p>
                 </a>
             </li>
-
         </ul>
     </div>
+</div>
+<div class="notFind" style="padding: 0">
+    <img src="${pageContext.request.contextPath}/resources/wx/imge/undefind.png" alt="">
+    <p>-.-.-.-.-.-暂无数据-.-.-.-.-.-</p>
 </div>
 <!--<footer></footer>-->
 <script src="${pageContext.request.contextPath}/resources/wx/plugin/jquery-3.3.1.min.js"></script>

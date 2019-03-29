@@ -92,11 +92,18 @@ var main = new Vue({
         }
     },
     mounted: function () {
-        this.$http.post("/wx/menu/queryPageList", {}, {emulateJSON: true}).then(function (res) {
+        var _this = this;
+        _this.$http.post("/wx/menu/queryPageList", {}, {emulateJSON: true}).then(function (res) {
             //   console.log(res.body);
             // return;
             if (res.body.code == 1) {
-                this.menus = res.body.data[0].childs;
+                _this.menus = res.body.data[0].childs;
+                // 如果没有数据，则显示没有数据
+                if (_this.menus.length == 0) {
+                    $(".notFind").show();
+                } else {
+                    $(".notFind").hide();
+                }
             } else {
                 toastr.info("数据异常");
             }
