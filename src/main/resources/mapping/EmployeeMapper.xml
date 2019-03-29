@@ -17,7 +17,8 @@
         position_id,
         money,
         is_onjob,
-        reason
+        reason,
+        is_wxLogin
     </sql>
     <sql id="insert_all_values">
         #{createTime},
@@ -33,7 +34,8 @@
         #{position_id},
         #{money},
         #{is_onjob},
-        #{reason}
+        #{reason},
+        #{is_wxLogin}
     </sql>
     <sql id="query_all_fields">
         id,
@@ -49,6 +51,7 @@
         money,
         is_onjob,
         reason,
+        is_wxLogin,
         createTime
     </sql>
     <!-- 保存员工 -->
@@ -70,6 +73,7 @@
             <if test="money != null">money = #{money},</if>
             <if test="is_onjob != null">is_onjob = #{is_onjob},</if>
             <if test="reason != null and reason != ''">reason = #{reason},</if>
+            <if test="is_wxLogin != null">is_wxLogin = #{is_wxLogin},</if>
         </set>
         where id = #{id}
     </update>
@@ -97,6 +101,7 @@
         e.money,
         e.is_onjob,
         e.reason,
+        e.is_wxLogin,
         e.createTime,
         d.name as deptName,
         p.name as positionName
