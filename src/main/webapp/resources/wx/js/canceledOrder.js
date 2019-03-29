@@ -13,7 +13,7 @@ var main = new Vue({
         /**
          * 点击卡片显示隐藏查看和回访
          * **/
-        display:function (event) {
+        display: function (event) {
             $(event.currentTarget).children('.display').fadeToggle(500);
         },
         /**
@@ -44,8 +44,7 @@ var main = new Vue({
                         toastr.success('恢复成功');
                         setTimeout(function () {
                             window.location.reload();
-                        },1000)
-                      window.location.href = "/wx/order/unSentOrder";
+                        }, 1000);
                     } else {
                         toastr.error("操作失败");
                     }
