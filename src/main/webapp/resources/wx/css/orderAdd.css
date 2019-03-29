@@ -1,112 +1,117 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-i{
-    font-style: normal;
-}
-#main dd input{
-    color: black;
-    /*font-weight: bold;*/
-}
-html,body{
-    width: 100%;
-    height: 100%;
-    font-size: 50%;
-}
-#main{
-    width: 100%;
-    padding: 2rem;
-    /*background: red;*/
-    overflow: hidden;
-}
-form{
-    font-size: 4rem;
-    color: #737373;
-}
-dl{
-    width: 100%;
-    height: 8rem;
 
-}
-#main dt{
-    width: 25%;
+
+/*文字提示*/
+.col-sm-2{
+    font-size: 4rem;
     height: 10rem;
+    text-align: center;
     line-height: 10rem;
-    float: left;
-    text-align: right;
-    padding-right: 2rem;
-    /*border: 1px solid black;*/
 }
-dd{
-    width: 75%;
+.col-sm-2 span{
+    line-height: 10rem;
+    margin-top: 2rem;
+    font-size: 4rem;
+}
+/*输入框*/
+.col-sm-10 input{
+    font-size: 4rem;
     height: 10rem;
-    float: left;
-}
-#main dd input{
-    width: 100%;
-    height: 100%;
-    outline: none;
-    border: none;
-    border-bottom: 1px solid #cccccc;
-    padding-left: 2rem;
-}
-#main #dlText{
-    width: 100%;
-    margin-top: 6rem;
-    height: 30rem;
-    padding-left: 2rem;
-}
-#dlText dt{
-    line-height: 30rem;
-    width: 25%;
-}
-#dlText dd{
-    width: 75%;
-    height: 100%;
-    font-size: 4rem;
-    border:1px solid #737373 ;
-
-}
-.col-sm-9 textarea{
-    width: 100%;
-    font-size: 4rem;
-    height: 100%;
-    overflow: hidden;
+    margin-top: 2rem;
 }
 
+#toAdd {
+    text-align: center;
+    margin-top: 2rem;
+}
+#formAdd{
+    text-align: center;
+    margin-top: 2rem;
+}
+/*按钮区域*/
 #main ul{
     width: 100%;
-    margin-top: 32rem;
     height: 100%;
-    border: 1px red;
+    margin-top: 4rem;
+}
+#items{
+    width: 100%;
+}
+#items .col-sm-4{
+    height: 10rem;
+    width: 25%;
 }
 ul li{
     width: 100%;
     height: 100%;
-    padding: 2rem;
-
+    /*padding: 2rem;*/
+    font-size: 4rem;
 }
+/*按钮的样式*/
 li input{
-    margin:2rem;
-    border:none;
-    border: 1px solid #737373;
-    color: #737373;
-    width: 25rem;
-    height: 10rem;
-    line-height: 10rem;
-    background: none;
-    outline: none;
-    /*float: right;*/
-}
+     margin:2rem;
+     border:none;
+     border: 1px solid #737373;
+     color: #737373;
+     /*width: 25rem;*/
+     height: 10rem;
+     line-height: 10rem;
+     background: none;
+     outline: none;
+    border-radius: 1rem;
+     /*float: right;*/
+ }
+/*点击按钮添加active的类*/
 .active{
     background: #1e9fff;
     color: white;
     border-color:#1e9fff;
 }
-.checkbox-min{
+/*提交按钮*/
+#submit{
+    width: 100%;
+    height: 10rem;
     margin-top: 4rem;
+    margin-bottom: 6rem;
+    background:#1e9fff ;
+    color: white;
+    /*font-size: 4rem;*/
+    line-height: 10rem;
+    font-size: 5rem;
+    letter-spacing:5rem;
+    outline: none;
+    /*padding: 4rem;*/
+}
+
+/*备注框*/
+ textarea{
+    margin-top: 2rem;
+    font-size: 4rem !important;
+}
+
+/*number去掉后面的小三角*/
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+input[type="number"]{
+    -moz-appearance: textfield;
+}
+/*企业和个人下拉选择*/
+#typeSelect{
+    margin-top: 2rem;
+    width: 100%;
+    height: 10rem;
+    font-size: 4rem;
+    padding-left: 2rem;
+    -webkit-appearance: none;
+}
+/*短信提示*/
+#massge{
+    font-size: 4rem;
+}
+/*复选框样式*/
+.checkbox-min{
+    margin-top: 3rem;
     height: 5rem;
     position: absolute;
     text-align: center;
@@ -129,13 +134,14 @@ li input{
     border-color: #1e9fff;
     position: relative;
 }
+/*复选框里面的沟*/
 .checkbox-min input:checked +span::before{
     content: "";
     position: absolute;
     width: 2.5rem;
     height: 1.5rem;
-    top: 1.3rem;
-    left: 1rem;
+    top: 1rem;
+    left: 0.8rem;
     border-left: 0.4rem solid white;
     border-bottom: 0.4rem solid white;
     -ms-transform: rotate(-45deg);
@@ -150,54 +156,6 @@ li input{
     float: right;
     font-size: 4rem;
 }
-#main div{
-    width: 100%;
-    height: 10rem;
-    padding: 2rem;
-    font-size: 4rem;
-    position: relative;
-}
-#main div p{
-    font-size: 4.5rem;
-}
-#main div label{
-    position: absolute;
-    top: -1rem;
-    left: 30%;
-}
-#submit{
-    width: 100%;
-    height: 10rem;
-    margin-top: 4rem;
-    margin-bottom: 6rem;
-    background:#1e9fff ;
-    color: white;
-    /*font-size: 4rem;*/
-    line-height: 10rem;
-    font-size: 5rem;
-    letter-spacing:5rem;
-    outline: none;
-    /*padding: 4rem;*/
-}
-
-
-#main dd input.radio{
-    width: 8%;
-}
-#main dd .left{
-    float: left;
-    position: absolute;
-}
-#main dd.demo{
-    position: relative;
-    height: 12rem;
-}
-#main dd .right{
-    float: left;
-    margin-left: 20rem;
-    position: absolute;
-}
-
 
 
 

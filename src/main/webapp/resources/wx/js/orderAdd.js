@@ -20,7 +20,7 @@ $(function () {
                 var html = "";
                 for (var i = 0; i < keys.length; i++) {
                     if (!isEmpty(keys[i])) {
-                        html += "<input type='button' value='" + keys[i] + "'/>";
+                        html += "<input class='col-sm-4' type='button' value='" + keys[i] + "'/>";
                     }
                 }
                 $("#items").empty().append(html);
@@ -57,6 +57,10 @@ $(function () {
      * 表单提交
      */
     $("#submit").on("click", function () {
+        if (isEmpty($("#typeSelect").val())) {
+            toastr.info("请选择类型");
+            return;
+        }
         $.ajax({
             url: "/wx/order/addOrder",
             data: {
@@ -67,7 +71,7 @@ $(function () {
                 "price": $("#price").val(),
                 "beginTime": $("#beginTime").val() + ":00",
                 "content": $("#content").val(),
-                "type": $("input[name='type']:checked").val(),
+                "type": $("#typeSelect").val(),
                 "isNotice": $("#isNotice").is(":checked") ? 1 : 0
             },
             dataType: "JSON",
