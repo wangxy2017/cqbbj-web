@@ -126,6 +126,14 @@ public class WXOrderControll extends BaseController {
         return "wx/order/callback";
     }
 
+    /**
+     * 进入在线下单页面
+     */
+    @RequestMapping("/onlineOrder")
+    public String onlineOrder() {
+
+        return "wx/order/onlineOrder";
+    }
 
     /**
      * 进入回访页面
