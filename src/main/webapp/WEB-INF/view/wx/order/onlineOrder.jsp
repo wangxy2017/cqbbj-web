@@ -46,7 +46,7 @@
                 搬出地址<span class="glyphicon glyphicon-map-marker"></span>
             </label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" placeholder="搬出地址">
+                <input id="start" name="start" type="text" class="form-control" placeholder="搬出地址">
             </div>
         </div>
         <div class="form-group">
@@ -54,7 +54,7 @@
                搬入地址<span class="glyphicon glyphicon-map-marker"></span>
             </label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" placeholder="搬入地址">
+                <input id="end" name="end" type="text" class="form-control" placeholder="搬入地址">
             </div>
         </div>
         <div class="form-group">
@@ -62,7 +62,7 @@
                 <p>姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名<span class="glyphicon glyphicon-asterisk" style="font-size: 1.5rem"></span></p>
             </label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" placeholder="请输入您的姓名">
+                <input id="name" name="name" type="text" class="form-control" placeholder="请输入您的姓名">
             </div>
         </div>
         <div class="form-group">
@@ -70,7 +70,7 @@
                 <p>电话号码<span class="glyphicon glyphicon-asterisk" style="font-size: 1.5rem"></span></p>
             </label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" placeholder="请输入您的联系方式">
+                <input name="phone" id="phone" type="text" class="form-control" placeholder="请输入您的联系方式">
             </div>
         </div>
         <div class="form-group">
