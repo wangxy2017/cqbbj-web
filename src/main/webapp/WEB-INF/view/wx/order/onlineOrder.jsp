@@ -23,11 +23,33 @@
 <body>
 <%--herder区--%>
 <header>
-    <p>重庆棒棒军服务有限公司在线下单系统</p>
+    <p>重庆棒棒军在线下单系统</p>
 </header>
 <%--banner区--%>
-<div class="banner">
-    <img src="${pageContext.request.contextPath}/resources/wx/imge/banner.jpg" alt="">
+<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+        <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+        <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+    </ol>
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner" role="listbox">
+        <div class="item">
+            <img src="${pageContext.request.contextPath}/resources/wx/imge/banner.jpg" alt="">
+        </div>
+        <div class="item active">
+            <img src="${pageContext.request.contextPath}/resources/wx/imge/bannerTow%20.jpg" alt="">
+        </div>
+    </div>
+
+    <!-- Controls -->
+    <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
 </div>
 <%--广告区--%>
 <div class="advertising row">
@@ -70,12 +92,12 @@
                 <p>电话号码<span class="glyphicon glyphicon-asterisk" style="font-size: 1.5rem"></span></p>
             </label>
             <div class="col-sm-10">
-                <input name="phone" id="phone" type="text" class="form-control" placeholder="请输入您的联系方式">
+                <input name="phone" id="phone" type="number" class="form-control" placeholder="请输入您的联系方式">
             </div>
         </div>
         <div class="form-group">
             <div class="col-sm-12">
-                <input @click.stop="submit" id="submit" class="btn btn-block" type="button" value="提交">
+                <input @click.stop="submit" id="submit" class="btn btn-block" type="button" value="下单">
             </div>
         </div>
     </form>

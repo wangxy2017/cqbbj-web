@@ -6,6 +6,9 @@ var main = new Vue({
          * 点击提交事件
          */
         submit:function () {
+            // if () {
+            //
+            // }
             $.ajax({
                 url: "/wx/order/addIntentionOrder",
                 data: {
