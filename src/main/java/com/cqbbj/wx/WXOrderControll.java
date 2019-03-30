@@ -35,7 +35,8 @@ public class WXOrderControll extends BaseController {
     private IMessageLogService messageLogService;
     @Autowired
     private ISignBillService signBillService;
-
+    @Autowired
+    private IIntentionOrderService intentionOrderService;
     /**
      * 进入添加订单页面
      */
@@ -127,6 +128,7 @@ public class WXOrderControll extends BaseController {
     }
 
     /**
+     *
      * 进入在线下单页面
      */
     @RequestMapping("/onlineOrder")
@@ -141,6 +143,29 @@ public class WXOrderControll extends BaseController {
     @RequestMapping("/myTask")
     public String myTask() {
         return "wx/myTask/myTask";
+    }
+
+
+    /**
+     * 添加意向订单
+     *
+     * @param
+     * @return
+     */
+    @RequestMapping("/addIntentionOrder")
+    @ResponseBody
+    public Result addIntentionOrder(String name, String phone, String start, String end ) {
+
+        //添加意向订单
+        IntentionOrder order = new IntentionOrder();
+        order.setName(name);
+        order.setPhone(phone);
+        order.setStart(start);
+        order.setEnd(end);
+        order.setInten_no(CommUtils.getCode(ConstantUtils.INTENTION_ORDER));
+        order.setStatus(0);
+        intentionOrderService.saveEntity(order);
+        return ResultUtils.success();
     }
 
 
