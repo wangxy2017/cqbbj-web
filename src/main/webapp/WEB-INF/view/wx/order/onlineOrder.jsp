@@ -23,7 +23,7 @@
 <body>
 <%--herder区--%>
 <header>
-    <p>重庆棒棒军在线下单系统</p>
+    <p>重庆棒棒军服务有限公司在线下单系统</p>
 </header>
 <%--banner区--%>
 <div class="banner">
