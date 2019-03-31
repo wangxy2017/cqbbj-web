@@ -32,7 +32,7 @@
             </a>
         </div>
         <p>{{empName}}</p>
-        <div class="row" style="margin-bottom: 4rem">
+        <div class="row" style="margin-bottom: 6rem">
             <div class="col-sm-6" @click="wallet">
                 <p>钱包</p>
                 <p><span class="glyphicon glyphicon-yen"></span>{{money}}</p>

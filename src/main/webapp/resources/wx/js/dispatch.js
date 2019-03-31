@@ -231,16 +231,30 @@ var main = new Vue({
                 //异步请求
                 type: "post",
                 success: function (res) {
+                    /**
+                     * 判断收款人员不能为空
+                     */
+                    if ($("#moneyEmp").val() == ""){
+                        toastr.warning("收款人员不能为空");
+                        return;
+                    }
+                    if ($("#driver").val() == ""){
+                        toastr.warning("随车司机不能为空");
+                        return;
+                    }
+
                     if(res.code==1) {
                         console.log(res);
                         //    请求成功执行的代码
                         toastr.success("派单成功");
-                            //派单成功刷新页面
-                            window.location.reload();
+                            //派单成功回退到未派界面页面
+                        setTimeout(function () {
+                            window.location.href ="/wx/order/unSentOrder";
+                        },1000)
                     }
                 }, error: function (res) {
                     console.log(res);
-                    toastr.error("提交失败!");
+                    toastr.error("派单失败!");
                 }   //    请求失败执行的代码
             });
         },
