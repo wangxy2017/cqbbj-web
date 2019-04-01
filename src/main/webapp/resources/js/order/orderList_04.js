@@ -59,7 +59,11 @@ layui.use(["table", "layer", "laydate"], function () {
                         , {field: 'start', title: '搬出地址'}
                         , {field: 'end', title: '搬入地址'}
                         , {field: 'price', title: '订单价格'}
-                        , {field: 'receiveMoney', title: '实际收款'}
+                        , {
+                            field: 'receiveMoney', title: '实际收款', templet: function (d) {
+                                return d.payState == 0 ? "<span style='color: #FF5722'>未收款</span>" : d.receiveMoney;
+                            }
+                        }
                         , {
                             field: 'endTime', title: '完成时间', templet: function (d) {
                                 return formatDateTime(d.endTime);
