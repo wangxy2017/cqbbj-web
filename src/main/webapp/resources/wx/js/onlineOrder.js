@@ -6,16 +6,24 @@ var main = new Vue({
          * 点击提交事件
          */
         submit:function () {
+            // if () {
+            //
+            // }
             $.ajax({
-                url: "",
-                dataType: "json",
-                data: {},
-                type: "POST",
-                success: function (result) {
-                    toastr.success("提交成功");
+                url: "/wx/order/addIntentionOrder",
+                data: {
+                    "name": $("#name").val(),
+                    "phone": $("#phone").val(),
+                    "start": $("#start").val(),
+                    "end": $("#end").val()
                 },
-                error: function () {
-                    toastr.error("数据出错");
+                dataType: "JSON",
+                type: "POST",
+                success: function (res) {
+                    console.log(res);
+                    toastr.info("提交成功");
+                }, error: function () {
+                    toastr.error("提交异常");
                 }
             });
         }

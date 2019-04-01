@@ -27,7 +27,11 @@ header{
     background: darkslateblue;
     position:relative;
 }
-
+header .row{
+    margin-bottom: 6rem;
+    /*position: absolute;*/
+    margin-top: -4rem;
+}
 header .set {
     width: 10rem;
     height: 10rem;

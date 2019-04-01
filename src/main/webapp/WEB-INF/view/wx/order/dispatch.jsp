@@ -25,7 +25,7 @@
     <div class="pic">
         <span class="glyphicon glyphicon-menu-left" onclick="javaScript:window.history.back()"></span>
     </div>
-    <p>未派订单</p>
+    <p>开始派单</p>
 </header>
 <div class="container-fluid" id="main" dataid="<%=request.getParameter("order_no")%>">
     <!--<form action="" class="form-horizontal">-->
