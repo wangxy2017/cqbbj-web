@@ -63,7 +63,7 @@ var main = new Vue({
             });
         },
         /**
-         * 作废订单事件
+         * 点击作废订单事件
          */
         cancel: function (id, order_no, event) {
             // 设置选中id

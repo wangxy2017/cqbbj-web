@@ -72,17 +72,61 @@
                         </div>
                     </div>
                     <div class="row display">
-                        <div class="col-sm-4">
-                            <button type="button" class="btn btn-info" @click.stop="0">支付</button>
+                        <div class="col-sm-6">
+                            <button type="button" class="btn btn-danger btn-block" @click.stop="view(order.id)">查看
+                            </button>
                         </div>
-                        <div class="col-sm-4">
-                            <button type="button" class="btn btn-success" @click.stop="finish(order.id)">完成</button>
-                        </div>
-                        <div class="col-sm-4">
-                            <button type="button" class="btn btn-danger" @click.stop="view(order.id)">查看</button>
+                        <div class="col-sm-6">
+                            <button type="button" class="btn btn-success btn-block"
+                                    @click.stop="finish(order.id,order.order_no,$event)">完成
+                            </button>
                         </div>
                     </div>
                 </li>
+                <%--模态框--%>
+                <div class="alert_model" @click.stop="end">
+                    <div class="alert_body">
+                        <input type="hidden" id="checkId" value="">
+                        <input type="hidden" id="checkOrderNo" value="">
+                        <div class="alert-title">
+                            <p>选择付款方式</p>
+                            <span @click.stop="hide" class="glyphicon glyphicon-remove"></span>
+                        </div>
+                        <div class="container-fluid">
+                            <div class="modal-text">
+                                <div class="row">
+                                    <div class="col-sm-3">微信支付</div>
+                                    <div class="col-sm-9">
+                                        <input type="button" class="btn btn-success btn-block" @click.stop="0" value="微信支付">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-3">现金支付</div>
+                                    <div class="col-sm-9">
+                                        <input type="number" @click.stop="2" class="form-control" placeholder="请输入收款金额" onfocus="this.placeholder=''" onblur="this.placeholder='请输入收款金额'">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-3">暂不收款:</div>
+                                    <div class="col-sm-9">
+                                        <div class="checkbox" @click.stop="1">
+                                            <label id="checkBox">
+                                                <input type="checkbox">
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <input type="button" class="btn btn-primary btn-lg btn-block" @click.stop="ascertain"
+                                       value="确定">
+                            </div>
+                            <div class="col-sm-6">
+                                <input type="button" class="btn btn-default btn-lg btn-block" value="取消">
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </ul>
         </div>
     </div>

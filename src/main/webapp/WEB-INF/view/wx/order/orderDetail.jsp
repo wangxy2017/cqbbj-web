@@ -67,11 +67,11 @@
         </tr>
         <tr v-show="isComplete">
             <th>实际收款:</th>
-            <td>{{order.receiveMoney}}</td>
+            <td>{{order.payState==0?"未付款":returnDouble(order.receiveMoney)}}</td>
         </tr>
         <tr v-show="isComplete">
             <th>收款备注:</th>
-            <td>{{order.receiveText}}</td>
+            <td>{{order.payState==0?"未付款":order.receiveText}}</td>
         </tr>
         <tr v-show="isComplete">
             <th>回访记录:</th>
