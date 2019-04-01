@@ -57,7 +57,7 @@
             <div class="col-sm-12">
                 <div class="checkbox">
                     <label id="checkBox">
-                        是否收款： <input type="checkbox" value="1" v-model="isNotPay" name="isNotPay"><span style="color:gray">暂不收款</span>
+                        是否收款： <input type="checkbox" id="notPay"><span style="color:gray">暂不收款</span>
                     </label>
                 </div>
             </div>

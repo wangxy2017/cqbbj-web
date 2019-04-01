@@ -418,7 +418,7 @@ public class WXOrderControll extends BaseController {
                 orderService.updateEntity(order1);
             }
             // 记录日志
-            operationLogService.saveEntity(createLog(request, "辅助完成订单：" + order1.getOrder_no()));
+            operationLogService.saveEntity(createLog(request, EmployeeUtils.getEmployee().getName(),"辅助完成订单：" + order1.getOrder_no()));
             return ResultUtils.success();
         }
         return ResultUtils.error();
