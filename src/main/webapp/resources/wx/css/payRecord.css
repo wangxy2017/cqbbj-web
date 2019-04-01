@@ -1,7 +1,9 @@
 li{
     list-style: none;
 }
-
+#main{
+    margin-top: 16rem;
+}
 .row h1{
     text-align: center;
     font-size: 5rem;

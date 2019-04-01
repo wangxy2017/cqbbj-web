@@ -22,10 +22,15 @@
 </head>
 <body>
 <header>
-    <div class="pic">
+    <div class="pull-left col-sm-2">
         <span class="glyphicon glyphicon-menu-left" onclick="javaScript:window.history.back()"></span>
     </div>
-    <p>辅助完成</p>
+    <div class="col-sm-8">
+        <p>辅助完成</p>
+    </div>
+    <div class="pull-right col-sm-2">
+        <span class="glyphicon glyphicon-home" onclick="javaScript:window.location.href='/wx/login/toHome'"></span>
+    </div>
 </header>
 <div class="container-fluid" id="main" data_id="<%=request.getParameter("id")%>"
      data_no="<%=request.getParameter("order_no")%>">

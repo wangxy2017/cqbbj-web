@@ -21,15 +21,15 @@ header p{
     line-height: 150px;
     margin: 0;
 }
-header .pic{
+header .col-sm-2{
     width: 150px;
     height: 150px;
-    float: left;
-    position: absolute;
+    /*float: left;*/
 }
-.pic span{
+.col-sm-2 span{
    line-height: 150px;
     color: white;
+    font-size: 6rem !important;
 }
 /*页面没有元素显示画面*/
 .notFind{

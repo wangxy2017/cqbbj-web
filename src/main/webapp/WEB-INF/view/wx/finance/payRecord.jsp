@@ -20,10 +20,15 @@
 </head>
 <body>
 <header>
-    <div class="pic">
-        <span class="glyphicon glyphicon-menu-left" onclick="javaScript:window.history.back()" ></span>
+    <div class="pull-left col-sm-2">
+        <span class="glyphicon glyphicon-menu-left" onclick="javaScript:window.history.back()"></span>
     </div>
-    <p>支付记录</p>
+    <div class="col-sm-8">
+        <p>支付记录</p>
+    </div>
+    <div class="pull-right col-sm-2">
+        <span class="glyphicon glyphicon-home" onclick="javaScript:window.location.href='/wx/login/toHome'"></span>
+    </div>
 </header>
 <div class="container-fluid" id="main">
     <form action="" class="form-horizontal">
