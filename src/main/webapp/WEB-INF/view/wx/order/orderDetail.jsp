@@ -84,15 +84,15 @@
         </tr>
         <tr v-show="isDispatch">
             <th>司机:</th>
-            <td><span v-for="item in order.driveEmps">{{item.emp_name}}</span></td>
+            <td><span v-for="item in order.driveEmps">{{item.emp_name}}&nbsp;&nbsp;</span></td>
         </tr>
         <tr v-show="isDispatch">
             <th>搬运工:</th>
-            <td><span v-for="item in order.moveEmps">{{item.emp_name}}</span></td>
+            <td><span v-for="item in order.moveEmps">{{item.emp_name}}&nbsp;&nbsp;</span></td>
         </tr>
         <tr v-show="isDispatch">
             <th>空调工:</th>
-            <td><span v-for="item in order.airEmps">{{item.emp_name}}</span></td>
+            <td><span v-for="item in order.airEmps">{{item.emp_name}}&nbsp;&nbsp;</span></td>
         </tr>
         <tr>
             <th>订单状态:</th>

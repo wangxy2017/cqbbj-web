@@ -62,7 +62,7 @@
                         <input type="button" class="btn btn-info btn-lg btn-block" @click.stop="ascertain(item.id)"  value="确定">
                     </div>
                     <div class="col-sm-6">
-                        <input type="button" class="btn btn-default btn-lg btn-block" @click="outMolde" value="取消">
+                        <input type="button" class="btn btn-default btn-lg btn-block" value="取消">
                     </div>
                 </div>
             </div>

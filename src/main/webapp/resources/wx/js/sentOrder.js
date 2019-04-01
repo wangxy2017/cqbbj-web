@@ -94,8 +94,11 @@ var main = new Vue({
                 type: "post",
                 success: function (res) {
                     if (res.code == 1) {
-                        console.log(res.data);
-                        window.location.href = "/wx/order/sentOrder";
+                        toastr.success("操作成功");
+                        // console.log(res.data);
+                        setTimeout(function () {
+                            window.location.href = "/wx/order/sentOrder";
+                        },500)
                     }
                 }, error: function () {
                     toastr.error("数据异常");

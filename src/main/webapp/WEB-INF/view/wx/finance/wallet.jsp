@@ -29,7 +29,7 @@
 <div id="main">
 <div class="main">
     <div class="main-center">
-        <p>余额账户（元）</p>
+        <p>账户余额（元）</p>
         <h1>{{employee.money}}</h1>
     </div>
 </div>

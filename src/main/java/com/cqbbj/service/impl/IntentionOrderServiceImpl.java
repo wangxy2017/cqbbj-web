@@ -9,6 +9,7 @@ import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -30,6 +31,12 @@ public class IntentionOrderServiceImpl implements IIntentionOrderService {
 
     @Override
     public int saveEntity(IntentionOrder intentionOrder) {
+        if (intentionOrder.getCreateTime() == null) {
+            intentionOrder.setCreateTime(new Date());
+        }
+        if (intentionOrder.getDeleteStatus() == null) {
+            intentionOrder.setDeleteStatus(0);
+        }
         return intentionOrderMapper.save(intentionOrder);
     }
 

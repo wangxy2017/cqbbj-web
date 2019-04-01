@@ -74,8 +74,11 @@ var main = new Vue({
                 dataType: "json",
                 type: "post",
                 success: function (res) {
-                    console.log(res.data);
-                    window.location.reload();
+                    toastr.success("操作成功");
+                    // console.log(res.data);
+                    setTimeout(function () {
+                        window.location.reload();
+                    },500)
                 }, error: function () {
 
 
