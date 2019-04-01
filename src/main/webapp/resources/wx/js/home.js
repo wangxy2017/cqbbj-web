@@ -94,9 +94,9 @@ var main = new Vue({
     mounted: function () {
         var _this = this;
         _this.$http.post("/wx/menu/queryPageList", {}, {emulateJSON: true}).then(function (res) {
-            //   console.log(res.body);
+              console.log(res.body);
             // return;
-            if (res.body.code == 1) {
+            if (res.body.code == 1&&res.body.data.length > 0) {
                 _this.menus = res.body.data[0].childs;
                 // 如果没有数据，则显示没有数据
                 if (_this.menus.length == 0) {

@@ -6,7 +6,8 @@ var main = new Vue({
         loaded: 0,
         total: 0,
         pageNum: 0,
-        pageSize: 4
+        pageSize: 4,
+        status: 3
     },
     //方法
     methods: {
@@ -60,11 +61,12 @@ var main = new Vue({
         loadData: function () {
             var _this = this;
             $.ajax({
-                url: '/wx/financeClean/queryPageList',
+                url: '/wx/order/queryPageListEmployee',
                 dataType: 'json',
                 data: {
                     "pageNum": _this.pageNum++,
-                    "pageSize": _this.pageSize
+                    "pageSize": _this.pageSize,
+                    "status":_this.status
                 },
                 type: "POST",
                 beforeSend: function () {
@@ -74,7 +76,7 @@ var main = new Vue({
                     $(".loading").hide();
                 },
                 success: function (result) {
-                    // console.log(result);
+                    console.log(result);
                     if (result.code == 1) {
                         // 1.请求成功，渲染数据
                         _this.orders.push.apply(_this.orders, result.data.list);

@@ -26,7 +26,7 @@ var main = new Vue({
                 type: "POST",
                 success: function (result) {
                     console.log(result);
-                    if(result.code==1){
+                    if(result.code == 1){
                     toastr.success('提交成功');
                     window.location.href = "/wx/order/completeOrder";
                     }
