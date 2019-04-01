@@ -229,12 +229,7 @@ public class WXOrderControll extends BaseController {
     @RequestMapping("/queryPageListEmployee")
     @ResponseBody
     public Result queryPageList(Order order, int pageNum, int pageSize) {
-
-        Employee empUser = EmployeeUtils.getEmployee();
-        order.setEmp_no(empUser.getEmp_no());
-
         PageModel<Order> orderPageModel = orderService.queryPageList(order, pageNum, pageSize);
-
         return ResultUtils.success(orderPageModel);
     }
 
