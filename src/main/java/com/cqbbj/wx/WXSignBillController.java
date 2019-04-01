@@ -3,6 +3,7 @@ package com.cqbbj.wx;
 import com.cqbbj.core.base.BaseController;
 import com.cqbbj.core.base.PageModel;
 import com.cqbbj.core.base.Result;
+import com.cqbbj.core.util.EmployeeUtils;
 import com.cqbbj.core.util.ResultUtils;
 import com.cqbbj.entity.OperationLog;
 import com.cqbbj.entity.Order;
@@ -72,7 +73,7 @@ public class WXSignBillController extends BaseController {
             // 更新欠条
             signBill1.setReceiveMoney(signBill.getReceiveMoney());
             signBill1.setReceiveText(signBill.getReceiveText());
-            signBill1.setEmp_no(getLoginUser(request).getEmp_no());
+            signBill1.setEmp_no(EmployeeUtils.getEmployee().getEmp_no());
             signBill1.setStatus(1);
             signBillService.updateEntity(signBill1);
             // 更新订单
@@ -85,7 +86,7 @@ public class WXSignBillController extends BaseController {
             order1.setPayState(1);
             orderService.updateEntity(order1);
             // 记录日志
-            OperationLog log = createLog(request, "完成未收款订单收款：" + signBill1.getOrder_no());
+            OperationLog log = createLog(request, EmployeeUtils.getEmployee().getName(),"完成未收款订单收款：" + signBill1.getOrder_no());
             operationLogService.saveEntity(log);
             return ResultUtils.success();
         }
