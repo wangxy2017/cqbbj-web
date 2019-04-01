@@ -60,7 +60,7 @@ var main = new Vue({
         loadData: function () {
             var _this = this;
             $.ajax({
-                url: '/wx/financeClean/queryPageList',
+                url: '/wx/order/queryPageListEmployee',
                 dataType: 'json',
                 data: {
                     "pageNum": _this.pageNum++,
