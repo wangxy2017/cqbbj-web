@@ -86,7 +86,7 @@
                 </div>
             </div>
         </li>
-        <li class="list-li havePaid" @click.stop="taskSwitch($event)" v-for="item in signBills">
+        <li class="list-li havePaid"  v-for="item in signBills">
             <div class="row order-No">
                 <div class="col-sm-3">订单编号:</div>
                 <div class="col-sm-5">
@@ -124,14 +124,7 @@
                 <div class="col-sm-3">预估起价:</div>
                 <div class="col-sm-9">{{item.price}}</div>
             </div>
-            <div class="row display">
-                <!--<div class="col-sm-6" style="display: none">-->
-                <!--<input type="button" class="btn btn-danger btn-lg btn-block  view"  value="查看">-->
-                <!--</div>-->
-                <div class="col-sm-12">
-                    <input type="button" class="btn btn-info btn-lg btn-block" @click.stop="receipt" value="收款">
-                </div>
-            </div>
+
         </li>
         <div class="row loading">
             <div class="col-sm-5">

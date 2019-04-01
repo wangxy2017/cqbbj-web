@@ -25,30 +25,8 @@ var main = new Vue({
              * 把当前页面的订单号码传送给跳转的页面
              * @type {string}
              */
-            var url = "/wx/signBill/payment?id=" + "order_no=" + encodeURI($("#order_no").text());
+            var url = "/wx/signBill/payment?id=" + id + "&order_no=" + encodeURI($("#order_no").text());
             window.location.href = url;
-            var _this = $(event.currentTarget);
-            $.ajax({
-                url: "/wx/signBill/receive",
-                dataType: "json",
-                data: {
-                    "pageNum": this.pageNum
-                    //展示数据
-                    , "pageSize": this.pageSize
-                    , "status": _this.status
-                },
-                type: "POST",
-                success: function (result) {
-                    console.log(result);
-                    if (result.code == 1) {
-                        main.status = 1;
-                    } else {
-                        toastr.error("数据出错啦");
-                    }
-                },
-                error: function () {
-                }
-            });
         },
         /**
          * 点击已付款
