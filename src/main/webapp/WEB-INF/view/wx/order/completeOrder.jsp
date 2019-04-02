@@ -13,7 +13,8 @@
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
     <meta http-equiv="Pragma" content="no-cache"/>
     <meta http-equiv="Expires" content="0"/>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/plugin/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <link rel="stylesheet"
+          href="${pageContext.request.contextPath}/resources/wx/plugin/bootstrap-3.3.7-dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/plugin/toastr/toastr.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/css/header.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/css/completeOrder.css">
@@ -28,58 +29,68 @@
         <p>完成订单</p>
     </div>
     <div class="pull-right col-sm-2">
-        <span class="glyphicon glyphicon-home" onclick="javaScript:window.location.href='/wx/login/toHome'" style="color: white"></span>
+        <span class="glyphicon glyphicon-home" onclick="javaScript:window.location.href='/wx/login/toHome'"
+              style="color: white"></span>
     </div>
 </header>
-<div class="container-fluid" id="main">
-    <ul class="list-ul">
-        <li class="row list-li" @click.stop="display($event)" v-for="order in orders">
-            <div class="zhang">
-                <img src="${pageContext.request.contextPath}/resources/wx/imge/wc.png"  alt="">
-            </div>
-            <div class="row li-title">
-                <div class="col-sm-7">
-                    <p>订单号：<a href="javascript:;">{{order.order_no}}</a></p>
+<div class="scrollTop">
+    <div class="container-fluid" id="main">
+        <ul class="list-ul">
+            <li class="row list-li" @click.stop="display($event)" v-for="order in orders">
+                <div class="zhang">
+                    <img src="${pageContext.request.contextPath}/resources/wx/imge/wc.png" alt="">
                 </div>
-                <div class="col-sm-5">
-                    <p class="pull-right">客户姓名：{{order.name}}</p>
+                <div class="row li-title">
+                    <div class="col-sm-7">
+                        <p>订单号：<a href="javascript:;">{{order.order_no}}</a></p>
+                    </div>
+                    <div class="col-sm-5">
+                        <p class="pull-right">客户姓名：{{order.name}}</p>
+                    </div>
                 </div>
-            </div>
-            <div class="col-sm-12 li-content">
-                <p class="toAdd">{{order.start}}</p>
-            </div>
-            <div class="col-sm-12">
-                <p class="formAdd">{{order.end}}</p>
-            </div>
-            <div class="row li-footer">
-                <div class="col-sm-8">
-                    <p>{{formatDateTime(order.beginTime)}}</p>
+                <div class="col-sm-12 li-content">
+                    <p class="toAdd">{{order.start}}</p>
                 </div>
-                <div class="col-sm-4">
-                    <p class="pull-right">
-                        <span>{{order.price}}￥</span>
-                    </p>
+                <div class="col-sm-12">
+                    <p class="formAdd">{{order.end}}</p>
                 </div>
-            </div>
-            <div class="row display">
-                <div class="col-sm-6">
-                    <button class="btn btn-primary" @click.stop="view(order.id)">查看</button>
+                <div class="row li-footer">
+                    <div class="col-sm-8">
+                        <p>{{formatDateTime(order.beginTime)}}</p>
+                    </div>
+                    <div class="col-sm-4">
+                        <p class="pull-right">
+                            <span>{{order.price}}￥</span>
+                        </p>
+                    </div>
                 </div>
-                <div class="col-sm-6">
-                    <button  class="btn btn-success" @click.stop="callback(order.id)">回访</button>
+                <div class="row display">
+                    <div class="col-sm-6">
+                        <button class="btn btn-primary" @click.stop="view(order.id)">查看</button>
+                    </div>
+                    <div class="col-sm-6">
+                        <button class="btn btn-success" @click.stop="callback(order.id)">回访</button>
+                    </div>
                 </div>
-            </div>
-        </li>
-    </ul>
+            </li>
+        </ul>
+    </div>
+    <div class="row loading">
+        <div class="col-sm-5">
+            <img class="pull-right" src="${pageContext.request.contextPath}/resources/wx/imge/loading.gif" alt="">
+        </div>
+        <div class="col-sm-7">
+            <P class="pull-left">页面加载中...</P>
+        </div>
+    </div>
+    <div class=" row baseLine">
+        <p>---------我是有底线的----------</p>
+    </div>
+    <div class="notFind">
+        <img src="${pageContext.request.contextPath}/resources/wx/imge/undefind.png" alt="">
+        <p>-.-.-.-.-.-暂无数据-.-.-.-.-.-</p>
+    </div>
 </div>
-<div class=" row baseLine">
-    <p>---------我是有底线的----------</p>
-</div>
-<div class="notFind">
-    <img src="${pageContext.request.contextPath}/resources/wx/imge/undefind.png" alt="">
-    <p>-.-.-.-.-.-暂无数据-.-.-.-.-.-</p>
-</div>
-
 <script src="${pageContext.request.contextPath}/resources/wx/plugin/jquery-3.3.1.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/wx/plugin/Vue/vue.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/wx/plugin/Vue/vue-resource.min.js"></script>

@@ -14,14 +14,73 @@ var main = new Vue({
             airEmps: "",
         },
         methods: {
-            clickMoneyEmps:function(){
+
+            /**
+             * 点击修改收款人员执行的方法
+             * @param event
+             */
+            openModel: function(event){
+                // 模态框弹出
+                $("#moneyEmp").show().find(".alert_body").animate({
+                    marginTop: '40rem'
+                 });
                 main.$http.post("/wx/employee/queryPageList", {}, {emulateJSON: true}).then(function (res) {
                     console.log(res.body);
                     // [{name:xxx,emp_no:xxx},{name:xxx,emp_no:xxx},{name:xxx,emp_no:xxx}]
-                    main.order.moneyEmps = res.body.data;
+                    main.money = res.body.data;
+                    console.log(main.money);
+                    return;
                 }, function (res) {
                     toastr.warning('提交异常');
                 });
+            },
+            /**
+             * 点击任意地方关闭模态框
+             */
+            end: function () {
+                $(".alert_body").animate({
+                    marginTop: '-50rem',
+                });
+                setTimeout(function () {
+                    $(".alert_model").css("display", "none");
+                }, 500);
+            },
+            /**
+             * 点击关闭按钮动画
+             */
+            hide: function () {
+                $(".alert_body").animate({
+                    marginTop: '-50rem',
+                });
+                setTimeout(function () {
+                    $(".alert_model").css("display", "none");
+                }, 500);
+
+            },
+            /**
+             * 模态框button点击事件
+             */
+            choose:function(event){
+                var _this = $(event.target);
+                var info = _this.hasClass("btn-info");
+                if (info) {// 取消选中
+                    _this.removeClass('btn-info').addClass('btn-default');
+                    $("#moneyEmp").val("");
+                    // 删值
+                    main.moneyEmps = "";
+                } else {// 选中
+                    _this.removeClass('btn-default').addClass('btn-info');
+                    // 赋值
+                    var empNo = _this.attr("data-empNo");//编号
+                    var name = _this.text();
+                    $("#moneyEmp").val(name);
+                    $("#moneyEmpNo").val(empNo);
+                    // 存值
+                    main.moneyEmps = _this.attr("data-emp_no");
+                }
+
+
+
             },
             clickDriveEmps:function(){
                 main.$http.post("/wx/employee/queryPageList", {}, {emulateJSON: true}).then(function (res) {

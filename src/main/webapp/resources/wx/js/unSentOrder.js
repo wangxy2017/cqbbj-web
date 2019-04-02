@@ -6,7 +6,7 @@ var main = new Vue({
         locked: false,
         loaded: 0,
         total: 0,
-        pageNum: 0,
+        pageNum: 1,
         pageSize: 4
     },
     methods: {
@@ -35,11 +35,13 @@ var main = new Vue({
                     if (result.code == 1) {
                         // 1.请求成功，渲染数据
                         _this.orders.push.apply(_this.orders, result.data.list);
-                        // 2.更新已经加载的条数
+                        // 2.更新已经加载的条数和总条数
                         _this.loaded += result.data.list.length;
+                        // console.log(result);
+                        _this.total = result.data.total;
                         // 3.把锁打开
                         _this.locked = false;
-                        // 4.如果已加载的条数 == 总条数 ，显示已经到底
+                        // 4.如果已加载的条数 >= 总条数 ，显示已经到底
                         if (_this.loaded >= _this.total) {
                             $(".baseLine").show();
                         } else {
@@ -168,6 +170,7 @@ var main = new Vue({
                 var i = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
                 if (!_this.locked && ($(document).height() - (i + $(window).height()) == 1 || $(document).height() - (i + $(window).height()) < i) && _this.loaded < _this.total) {
                     // 先上锁，避免多次请求
+                    console.log("已加载" + _this.loaded + "条" + "总条数" + _this.total + "条");
                     _this.locked = true;
                     // 发送请求
                     _this.loadData();

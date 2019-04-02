@@ -6,8 +6,8 @@ var main = new Vue({
         loaded: 0,
         total: 0,
         status: 0,
-        pageNum: 1,
-        pageSize: 4
+        pageNum: 0,
+        pageSize: 0
     },
     methods: {
         /**
@@ -44,7 +44,7 @@ var main = new Vue({
                 data: {
                     "pageNum": this.pageNum
                     //展示数据
-                    , "pageSize": this.pageSize
+                    , "pageSize": 4
                     , "status": 1
                 },
                 type: "POST",
@@ -106,7 +106,7 @@ var main = new Vue({
             if (res.body.code == 1) {
                 main.signBills = res.body.data.list;
                 // 分页准备工作--赋值
-                main.loaded = res.body.data.list.length;
+                main.loaded = main.signBills.length;
                 main.total = res.body.data.total;
             }
         }, function (res) {
@@ -121,7 +121,7 @@ var main = new Vue({
             $(window).scroll(function () {
                 // 当滚动到底且有未加载的数据的时候，开启开关，异步加载数据
                 var i = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
-                if ($(document).height() - (i + $(window).height()) == 1) {
+                if ($(document).height() -$(window).height() === i) {
                     console.log("滚动到底打印：", main.loaded, main.total);
                     // 当已加载的条数 >= 总条数，关闭开关，显示已经到底
                     if (main.loaded >= main.total) {
@@ -140,8 +140,8 @@ var main = new Vue({
                         url: '/wx/signBill/queryPageList',
                         dataType: 'json',
                         data: {
-                            "pageNum": main.pageNum++,
-                            "pageSize": main.pageSize,
+                            "pageNum": main.pageNum,
+                            "pageSize": main.pageSize ++,
                             "status": main.status
                         },
                         type: "POST",
@@ -158,7 +158,8 @@ var main = new Vue({
                                 signBills.push.apply(signBills, result.data.list);
                                 // 更新已经加载的条数
                                 main.loaded += result.data.list.length;
-                                console.log("已经加载" + main.loaded + "条");
+                                main.total = result.data.total;
+                                console.log("已经加载" + main.loaded + "条" +"总条数" + main.total + "条");
                             }
                         },
                         error: function () {

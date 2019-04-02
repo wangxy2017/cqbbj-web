@@ -171,8 +171,7 @@
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#hvac" @click="chooseHvac">添加人员</button>
             </div>
         </div>
-        <div id="hvac" class="modal fade" tabindex="-1" role="dialog"
-             aria-labelledby="myLargeModalLabel">
+        <div id="hvac" class="modal fade" tabindex="-1" role="dialog"aria-labelledby="myLargeModalLabel">
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-title">

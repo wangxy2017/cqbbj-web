@@ -61,6 +61,8 @@ var main = new Vue({
                         _this.orders.push.apply(_this.orders, result.data.list);
                         // 2.更新已经加载的条数
                         _this.loaded += result.data.list.length;
+                        // 更新总条数
+                        _this.total = result.data.total;
                         // 3.把锁打开
                         _this.locked = false;
                         // 4.如果已加载的条数 == 总条数 ，显示已经到底

@@ -1,7 +1,9 @@
 li{
     list-style: none;
 }
-
+#main{
+    margin-top: 150px;
+}
 .form-horizontal{
     padding: 2rem;
 }
@@ -25,7 +27,7 @@ li{
     height: 10rem;
     font-size: 4rem;
 }
-
+/*模态框样式开始*/
 .modal-content{
     width: 150%;
     margin: 0 auto;
@@ -122,3 +124,4 @@ li{
 .emp{
     padding: 2rem;
 }
+/*模态框结束*/

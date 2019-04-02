@@ -76,22 +76,19 @@
             <th class="col-sm-3">预约时间:</th>
             <td class="col-sm-9"><input type="text" class="form-control" name="beginTime" id="beginTime" v-model="order.beginTime">
             </td>
-
         </tr>
 
         <tr class="row" v-show="isDispatch">
-            <th class="col-sm-3">收款人:<span v-show="false" id="moneyEmpsList" v-for="item in order.moneyEmps">{{item.emp_name}} </span>
-            </th>
+            <th class="col-sm-3">收款人:<span v-show="false" id="moneyEmpsList" v-for="item in order.moneyEmps">{{item.emp_name}} </span></th>
             <td class="col-sm-9">
                 <div class="col-sm-6">
                     <input type="text" class="form-control" name="moneyEmps_name" id="moneyEmps_name">
                     <input type="hidden" name="moneyEmps" id="moneyEmps">
                 </div>
                 <div class="col-sm-3">
-                    <input type="button" @click="clickMoneyEmps()" class="btn btn-success btn-lg btn-block update" value="修改员工">
+                    <input type="button" @click.stop="openModel($event)" class="btn btn-success btn-lg btn-block update" value="修改员工">
                 </div>
             </td>
-
         </tr>
         <tr class="row" v-show="isDispatch">
             <th class="col-sm-3">司机:<span v-show="false" id="driveEmpsList" v-for="item in order.driveEmps">{{item.emp_name}}</span>
@@ -132,7 +129,6 @@
                 </div>
             </td>
         </tr>
-
         <tr class="row">
             <th class="col-sm-3">订单状态:</th>
             <td id="picImg" class="col-sm-9">
@@ -152,15 +148,13 @@
 
 
     <%--收款人model框--%>
-    <div class="model">
-        <div class="center">
-            <div class="title">选择员工 <span class="glyphicon glyphicon-remove"></span></div>
-            <div class="container">
-                <div class="row">
+    <div id="moneyEmp" class="alert_model" @click.stop="end">
+        <div class="alert_body">
+            <div class="alert-title">选择员工<span  @click.stop="hide" class="glyphicon glyphicon-remove"></span></div>
+            <div class="container-fluid">
+                <div class="modal-text">
                     <div class="col-sm-4" v-for="item in money">
-                        <button :data-emp_no="item.emp_no" class="btn btn-default btn-lg"
-                                @click="checkMoneyEmps($event)">{{item.name}}({{item.account}})
-                        </button>
+                        <button :data-emp_no="item.emp_no" class="btn btn-default btn-lg"@click.stop="choose($event)">{{item.name}}({{item.account}})</button>
                     </div>
                 </div>
             </div>
