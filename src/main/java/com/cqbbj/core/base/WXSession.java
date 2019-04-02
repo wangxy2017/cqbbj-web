@@ -3,11 +3,11 @@ package com.cqbbj.core.base;
 /**
  * @author wangxy
  * @version 1.0
- * @ClassName: WXSessionData
+ * @ClassName: WXSession
  * @Description: 微信session(这里用一句话描述这个类的作用)
  * @date 2019/4/2 10:00
  */
-public class WXSessionData {
+public class WXSession {
     /**
      * key值
      */

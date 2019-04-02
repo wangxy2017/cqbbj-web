@@ -1,6 +1,7 @@
 package com.cqbbj.core.base;
 
-import com.cqbbj.core.util.WXSession;
+import com.cqbbj.core.util.WXSessionUtils;
+import com.cqbbj.entity.Customer;
 import com.cqbbj.entity.Employee;
 import com.cqbbj.entity.OperationLog;
 import org.apache.log4j.Logger;
@@ -52,17 +53,18 @@ public class BaseController {
      * @return
      */
     protected Employee getWXEmpUser(HttpServletRequest request) {
-        return (Employee) WXSession.getValue(request.getParameter("key"));
+        return (Employee) WXSessionUtils.getValue(request.getParameter("key"));
     }
 
-//    /**
-//     * 获取微信客户登录信息
-//     * @param request
-//     * @return
-//     */
-//    protected Employee getWXCosUser(HttpServletRequest request) {
-//        return (Employee) getSession(request).getAttribute("cosUser");
-//    }
+    /**
+     * 获取微信客户登录信息
+     *
+     * @param request
+     * @return
+     */
+    protected Customer getWXCosUser(HttpServletRequest request) {
+        return (Customer) WXSessionUtils.getValue(request.getParameter("key"));
+    }
 
     /**
      * 创建日志

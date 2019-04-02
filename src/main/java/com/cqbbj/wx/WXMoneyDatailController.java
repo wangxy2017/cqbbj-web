@@ -3,7 +3,6 @@ package com.cqbbj.wx;
 import com.cqbbj.core.base.BaseController;
 import com.cqbbj.core.base.PageModel;
 import com.cqbbj.core.base.Result;
-import com.cqbbj.core.util.EmployeeUtils;
 import com.cqbbj.core.util.ResultUtils;
 import com.cqbbj.entity.Employee;
 import com.cqbbj.entity.MoneyDetail;
@@ -16,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+
 @Controller
 @RequestMapping("/wx/wallet")
 public class WXMoneyDatailController extends BaseController {
@@ -37,19 +37,18 @@ public class WXMoneyDatailController extends BaseController {
     }
 
 
-
     @RequestMapping("/queryResult")
     @ResponseBody
-    public Result queryResult() {
-        Employee e = EmployeeUtils.getEmployee();
+    public Result queryResult(HttpServletRequest request) {
+        Employee e = getWXEmpUser(request);
         return ResultUtils.success(e);
     }
 
     @RequestMapping("/queryPageList")
     @ResponseBody
-    public Result queryPageList( int pageNum, int pageSize) {
-        MoneyDetail moneyDetail=new MoneyDetail();
-        moneyDetail.setEmp_no(EmployeeUtils.getEmployee().getEmp_no());
+    public Result queryPageList(HttpServletRequest request,int pageNum, int pageSize) {
+        MoneyDetail moneyDetail = new MoneyDetail();
+        moneyDetail.setEmp_no(getWXEmpUser(request).getEmp_no());
         PageModel<MoneyDetail> pageModel = moneyDetailService.queryPageList(moneyDetail, pageNum, pageSize);
         return ResultUtils.success(pageModel);
     }

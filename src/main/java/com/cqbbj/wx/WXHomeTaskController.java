@@ -3,7 +3,6 @@ package com.cqbbj.wx;
 import com.cqbbj.core.base.BaseController;
 import com.cqbbj.core.base.PageModel;
 import com.cqbbj.core.base.Result;
-import com.cqbbj.core.util.EmployeeUtils;
 import com.cqbbj.core.util.ResultUtils;
 import com.cqbbj.entity.Order;
 import com.cqbbj.service.IOrderService;
@@ -32,9 +31,9 @@ public class WXHomeTaskController extends BaseController {
      */
     @RequestMapping("/queryTaskList")
     @ResponseBody
-    public Result queryTaskList( Order order, Integer pageNum, Integer pageSize) {
+    public Result queryTaskList(HttpServletRequest request, Order order, Integer pageNum, Integer pageSize) {
         // 查询我的任务
-        order.setEmp_no(EmployeeUtils.getEmployee().getEmp_no());
+        order.setEmp_no(getWXEmpUser(request).getEmp_no());
         PageModel<Order> pageModel = orderService.queryMyTasks(order, pageNum, pageSize);
         return ResultUtils.success(pageModel);
     }

@@ -184,7 +184,7 @@ public class WXLoginController extends BaseController {
                 // 做操作
                 Employee employee = list.get(0);
                 if (employee.getIs_disabled() == 0) {
-                    WXSession.pushValue(request.getParameter("key"), employee);
+                    WXSessionUtils.pushValue(request.getParameter("key"), employee);
                     return ResultUtils.success(employee);
                 } else {
                     return ResultUtils.error("账号已被禁用");
@@ -200,9 +200,9 @@ public class WXLoginController extends BaseController {
 
     @RequestMapping("/getEmpName")
     @ResponseBody
-    public Result getEmpName() {
+    public Result getEmpName(HttpServletRequest request) {
         // 获取当前登录用户
-        Employee employee = EmployeeUtils.getEmployee();
+        Employee employee = getWXEmpUser(request);
         if (employee != null) {
             Map<String, Object> data = new HashMap<>();
             // 查询我的任务

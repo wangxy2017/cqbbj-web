@@ -1,6 +1,6 @@
 package com.cqbbj.core.util;
 
-import com.cqbbj.core.base.WXSessionData;
+import com.cqbbj.core.base.WXSession;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
@@ -9,11 +9,11 @@ import java.util.Iterator;
 /**
  * @author wangxy
  * @version 1.0
- * @ClassName: WXSession
+ * @ClassName: WXSessionUtils
  * @Description: 微信SessionList(这里用一句话描述这个类的作用)
  * @date 2019/4/2 10:10
  */
-public class WXSession {
+public class WXSessionUtils {
     /**
      * 默认失效时间
      */
@@ -25,7 +25,7 @@ public class WXSession {
     /**
      * session数据
      */
-    private static ArrayList<WXSessionData> session = new ArrayList<>();
+    private static ArrayList<WXSession> sessions = new ArrayList<>();
 
     /**
      * 判断是否有值
@@ -34,9 +34,9 @@ public class WXSession {
      * @return
      */
     public static int search(String key) {
-        if (StringUtils.isNotBlank(key) && !session.isEmpty()) {
-            for (int i = 0; i < session.size(); i++) {
-                if (session.get(i).getKey().equals(key)) {
+        if (StringUtils.isNotBlank(key) && !sessions.isEmpty()) {
+            for (int i = 0; i < sessions.size(); i++) {
+                if (sessions.get(i).getKey().equals(key)) {
                     return i;
                 }
             }
@@ -56,15 +56,15 @@ public class WXSession {
             // 如果有值，则替换
             int i = search(key);
             if (i > 0) {
-                WXSessionData data = session.get(i);
+                WXSession data = sessions.get(i);
                 data.setValue(value);
                 data.setTime(time);
             } else {
-                WXSessionData data = new WXSessionData();
+                WXSession data = new WXSession();
                 data.setKey(key);
                 data.setValue(value);
                 data.setTime(time);
-                session.add(data);
+                sessions.add(data);
             }
         }
     }
@@ -80,9 +80,9 @@ public class WXSession {
      */
     public static void removeValue(String key) {
         if (StringUtils.isNotBlank(key)) {
-            Iterator iterator = session.iterator();
+            Iterator iterator = sessions.iterator();
             while (iterator.hasNext()) {
-                WXSessionData data = (WXSessionData) iterator.next();
+                WXSession data = (WXSession) iterator.next();
                 if (data.getKey().equals(key)) {
                     iterator.remove();
                     break;
@@ -99,11 +99,11 @@ public class WXSession {
      */
     public static Object getValue(String key) {
         if (StringUtils.isNotBlank(key)) {
-            Iterator iterator = session.iterator();
+            Iterator iterator = sessions.iterator();
             while (iterator.hasNext()) {
-                WXSessionData data = (WXSessionData) iterator.next();
+                WXSession data = (WXSession) iterator.next();
                 if (data.getKey().equals(key)) {
-                    return data;
+                    return data.getValue();
                 }
             }
         }
@@ -114,9 +114,9 @@ public class WXSession {
      * 设置超时数据并移除
      */
     public static void timeMin(long nums) {
-        Iterator iterator = session.iterator();
+        Iterator iterator = sessions.iterator();
         while (iterator.hasNext()) {
-            WXSessionData data = (WXSessionData) iterator.next();
+            WXSession data = (WXSession) iterator.next();
             data.timeMin(nums);
             if (data.timeStop()) {
                 iterator.remove();

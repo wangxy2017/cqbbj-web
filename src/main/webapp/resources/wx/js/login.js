@@ -11,7 +11,7 @@ function doLogin() {
     $.ajax({
         url: "/wx/login/empLogin",// 请求地址
         dataType: "JSON",// 返回数据类型
-        data: {"account": $("#account").val(), "password": $("#password").val()},// 请求数据
+        data: {"account": $("#account").val(), "password": $("#password").val(),"key":"EP201903042023137020919"},// 请求数据
         type: "POST",// 请求方式
         beforeSend:function(){
             $(".preloader").show();
