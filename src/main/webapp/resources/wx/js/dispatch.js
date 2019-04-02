@@ -1,4 +1,3 @@
-
 var main = new Vue({
     el: "#main",
     data: {
@@ -37,7 +36,7 @@ var main = new Vue({
          * 选择收款人员
          */
         chooseEmp: function () {
-            main.$http.post("/wx/employee/queryPageList", {}, {emulateJSON: true}).then(function (res) {
+            main.$http.post("/wx/employee/queryPageList", {"userKey": myCache.userKey}, {emulateJSON: true}).then(function (res) {
                 console.log(res.body);
                 // [{name:xxx,emp_no:xxx},{name:xxx,emp_no:xxx},{name:xxx,emp_no:xxx}]
                 main.emps = res.body.data;
@@ -72,7 +71,7 @@ var main = new Vue({
         *添加随车司机
         */
         chooseDriver: function () {
-            main.$http.post("/wx/employee/queryPageList", {}, {emulateJSON: true}).then(function (res) {
+            main.$http.post("/wx/employee/queryPageList", {"userKey": myCache.userKey}, {emulateJSON: true}).then(function (res) {
                 console.log(res.body);
                 // [{name:xxx,emp_no:xxx},{name:xxx,emp_no:xxx},{name:xxx,emp_no:xxx}]
                 main.motorMans = res.body.data;
@@ -91,7 +90,7 @@ var main = new Vue({
             if (info) {// 取消选中
                 _this.removeClass('btn-info').addClass('btn-default');
                 var name = _this.text() + " ";
-                $("#driver").val($("#driver").val().replace(name,""));
+                $("#driver").val($("#driver").val().replace(name, ""));
                 // 删值 ,123,456
                 var emp_no = "," + _this.attr("data-emp_no");
                 main.driveEmps.replace(emp_no, "");
@@ -112,7 +111,7 @@ var main = new Vue({
          */
 
         chooseHamal: function () {
-            main.$http.post("/wx/employee/queryPageList", {}, {emulateJSON: true}).then(function (res) {
+            main.$http.post("/wx/employee/queryPageList", {"userKey": myCache.userKey}, {emulateJSON: true}).then(function (res) {
                 console.log(res.body);
                 // [{name:xxx,emp_no:xxx},{name:xxx,emp_no:xxx},{name:xxx,emp_no:xxx}]
                 main.hamals = res.body.data;
@@ -133,7 +132,7 @@ var main = new Vue({
                 $("#hamal").val("");
                 //删值
                 var emp_no = "," + _this.attr("data-emp_no");
-                main.airEmps.replace(emp_no,"");
+                main.airEmps.replace(emp_no, "");
             } else {// 选中
                 _this.removeClass('btn-default').addClass('btn-info');
                 // 赋值
@@ -154,7 +153,7 @@ var main = new Vue({
          */
 
         chooseHvac: function () {
-            main.$http.post("/wx/employee/queryPageList", {}, {emulateJSON: true}).then(function (res) {
+            main.$http.post("/wx/employee/queryPageList", {"userKey": myCache.userKey}, {emulateJSON: true}).then(function (res) {
                 console.log(res.body);
                 // [{name:xxx,emp_no:xxx},{name:xxx,emp_no:xxx},{name:xxx,emp_no:xxx}]
                 main.hvacs = res.body.data;
@@ -175,7 +174,7 @@ var main = new Vue({
                 $("#techniCian").val("");
                 //删值
                 var emp_no = "," + _this.attr("data-emp_no");
-                main.moveEmps.replace(emp_no,"");
+                main.moveEmps.replace(emp_no, "");
             } else {// 选中
                 _this.removeClass('btn-default').addClass('btn-info');
                 // 赋值
@@ -230,23 +229,23 @@ var main = new Vue({
                     /**
                      * 判断收款人员不能为空
                      */
-                    if ($("#moneyEmp").val() == ""){
+                    if ($("#moneyEmp").val() == "") {
                         toastr.warning("收款人员不能为空");
                         return;
                     }
-                    if ($("#driver").val() == ""){
+                    if ($("#driver").val() == "") {
                         toastr.warning("随车司机不能为空");
                         return;
                     }
 
-                    if(res.code==1) {
+                    if (res.code == 1) {
                         console.log(res);
                         //    请求成功执行的代码
                         toastr.success("派单成功");
-                            //派单成功回退到未派界面页面
+                        //派单成功回退到未派界面页面
                         setTimeout(function () {
-                            window.location.href ="/wx/order/unSentOrder";
-                        },500)
+                            window.location.href = "/wx/order/unSentOrder?userKey=" + myCache.userKey;
+                        }, 500)
                     }
                 }, error: function (res) {
                     console.log(res);
@@ -257,8 +256,8 @@ var main = new Vue({
 
 
     },
-    mounted:function () {
-         this.order_no=$("#main").attr("dataid");
+    mounted: function () {
+        this.order_no = $("#main").attr("dataid");
 
     }
 });

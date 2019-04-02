@@ -23,7 +23,7 @@ var main = new Vue({
          * */
         view: function (id) {
 
-            window.location.href = "/wx/order/orderDetail?id=" + id;
+            window.location.href = "/wx/order/orderDetail?userKey=" + myCache.userKey + "&id=" + id;
 
         },
         /**
@@ -31,7 +31,7 @@ var main = new Vue({
          * */
         callback: function (id) {
 
-            window.location.href = "/wx/order/callback?id=" + id;
+            window.location.href = "/wx/order/callback?userKey=" + myCache.userKey + "&id=" + id;
 
         },
         /**
@@ -43,6 +43,7 @@ var main = new Vue({
                 url: "/wx/order/queryPageListEmployee",
                 dataType: 'json',
                 data: {
+                    "userKey": myCache.userKey,
                     "pageNum": _this.pageNum++,
                     "pageSize": _this.pageSize,
                     "status": _this.status
@@ -88,30 +89,30 @@ var main = new Vue({
             });
         }
     },
-        mounted: function () {
-            // 初始化
-            var _this = this;
-            _this.loadData();
-            /**
-             * 分页
-             */
-            $(function () {
-                //监听屏幕滚动事件
-                $(window).scroll(function () {
-                    // 满足以下条件，请求数据
-                    // 1.请求锁未锁
-                    // 2.滚动条到底
-                    // 3.已经加载的条数 < 总条数
-                    var i = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
-                    if (!_this.locked && ($(document).height() - (i + $(window).height()) == 1 || $(document).height() - (i + $(window).height()) < i) && _this.loaded < _this.total) {
-                        // 先上锁，避免多次请求
-                        _this.locked = true;
-                        // 发送请求
-                        _this.loadData();
-                    }
-                });
+    mounted: function () {
+        // 初始化
+        var _this = this;
+        _this.loadData();
+        /**
+         * 分页
+         */
+        $(function () {
+            //监听屏幕滚动事件
+            $(window).scroll(function () {
+                // 满足以下条件，请求数据
+                // 1.请求锁未锁
+                // 2.滚动条到底
+                // 3.已经加载的条数 < 总条数
+                var i = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
+                if (!_this.locked && ($(document).height() - (i + $(window).height()) == 1 || $(document).height() - (i + $(window).height()) < i) && _this.loaded < _this.total) {
+                    // 先上锁，避免多次请求
+                    _this.locked = true;
+                    // 发送请求
+                    _this.loadData();
+                }
             });
-        }
+        });
+    }
 
 });
 

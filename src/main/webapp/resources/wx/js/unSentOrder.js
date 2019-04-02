@@ -19,6 +19,7 @@ var main = new Vue({
                 url: '/wx/order/queryPageListEmployee',
                 dataType: 'json',
                 data: {
+                    "userKey":myCache.userKey,
                     "pageNum": _this.pageNum++,
                     "pageSize": _this.pageSize,
                     "status": _this.status
@@ -72,7 +73,7 @@ var main = new Vue({
             console.log(id);
             $.ajax({
                 url: "/wx/order/updateOrderStatus",
-                data: {"id": id, "status": 3, "order_no": order_no},
+                data: {"userKey":myCache.userKey,"id": id, "status": 3, "order_no": order_no},
                 dataType: "json",
                 type: "post",
                 success: function (res) {
@@ -136,7 +137,7 @@ var main = new Vue({
          */
         view: function (id) {
 
-            window.location.href = "/wx/order/orderDetail?id=" + id;
+            window.location.href = "/wx/order/orderDetail?userKey="+myCache.userKey+"&id=" + id;
 
         },
 
@@ -144,14 +145,14 @@ var main = new Vue({
          * 派单按钮
          */
         dispatch: function (order_no) {
-            window.location.href = "/wx/order/dispatch?order_no=" + order_no;
+            window.location.href = "/wx/order/dispatch?userKey="+myCache.userKey+"&order_no=" + order_no;
         },
 
         /**
          * 修改按钮
          */
         modify: function (id) {
-            window.location.href = "/wx/order/orderUpdate?id=" + id;
+            window.location.href = "/wx/order/orderUpdate?userKey="+myCache.userKey+"&id=" + id;
         },
     },
     mounted: function () {

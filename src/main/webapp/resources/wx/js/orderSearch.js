@@ -12,6 +12,7 @@ $("#submit").on("click", function () {
     $.ajax({
         url: "/wx/order/search",
         data: {
+            "userKey": myCache.userKey,
             "order_no": $("#order_no").val(),
             "name": $("#name").val(),
             "phone": $("#phone").val(),
@@ -22,7 +23,7 @@ $("#submit").on("click", function () {
         type: "post",
         success: function (res) {
             console.log(res.data);
-            window.location.href = "/wx/order/searchResult";
+            window.location.href = "/wx/order/searchResult?userKey=" + myCache.userKey;
 
         }, error: function () {
             toastr.error("查询失败")

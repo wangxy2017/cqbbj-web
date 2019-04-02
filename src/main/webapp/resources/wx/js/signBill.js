@@ -25,7 +25,7 @@ var main = new Vue({
              * 把当前页面的订单号码传送给跳转的页面
              * @type {string}
              */
-            var url = "/wx/signBill/payment?id=" + id + "&order_no=" + encodeURI($("#order_no").text());
+            var url = "/wx/signBill/payment?userKey=" + myCache.userKey + "&id=" + id + "&order_no=" + encodeURI($("#order_no").text());
             window.location.href = url;
         },
         /**
@@ -42,6 +42,7 @@ var main = new Vue({
                 url: "/wx/signBill/queryPageList",
                 dataType: "json",
                 data: {
+                    "userKey": myCache.userKey,
                     "pageNum": this.pageNum
                     //展示数据
                     , "pageSize": 4
@@ -73,6 +74,7 @@ var main = new Vue({
                 url: "/wx/signBill/queryPageList",
                 dataType: "json",
                 data: {
+                    "userKey": myCache.userKey,
                     "pageNum": this.pageNum
                     //展示数据
                     , "pageSize": this.pageSize
@@ -96,6 +98,7 @@ var main = new Vue({
          * 加载数据
          */
         this.$http.post("/wx/signBill/queryPageList", {
+            "userKey": myCache.userKey,
             //当前页面
             "pageNum": this.pageNum
             //展示数据
@@ -121,7 +124,7 @@ var main = new Vue({
             $(window).scroll(function () {
                 // 当滚动到底且有未加载的数据的时候，开启开关，异步加载数据
                 var i = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
-                if ($(document).height() -$(window).height() === i) {
+                if ($(document).height() - $(window).height() === i) {
                     console.log("滚动到底打印：", main.loaded, main.total);
                     // 当已加载的条数 >= 总条数，关闭开关，显示已经到底
                     if (main.loaded >= main.total) {
@@ -140,8 +143,9 @@ var main = new Vue({
                         url: '/wx/signBill/queryPageList',
                         dataType: 'json',
                         data: {
+                            "userKey":myCache.userKey,
                             "pageNum": main.pageNum,
-                            "pageSize": main.pageSize ++,
+                            "pageSize": main.pageSize++,
                             "status": main.status
                         },
                         type: "POST",
@@ -159,7 +163,7 @@ var main = new Vue({
                                 // 更新已经加载的条数
                                 main.loaded += result.data.list.length;
                                 main.total = result.data.total;
-                                console.log("已经加载" + main.loaded + "条" +"总条数" + main.total + "条");
+                                console.log("已经加载" + main.loaded + "条" + "总条数" + main.total + "条");
                             }
                         },
                         error: function () {
