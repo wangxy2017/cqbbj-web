@@ -17,11 +17,11 @@ public class WXSessionUtils {
     /**
      * 默认失效时间
      */
-    private static final long DEFAULT_TIME = 30 * 60 * 1000;
+    public static final long DEFAULT_TIME = 30 * 60 * 1000;
     /**
      * 默认递减时间(一分钟)
      */
-    private static final long DEFAULT_STEP_TIME = 60 * 1000;
+    public static final long DEFAULT_STEP_TIME = 60 * 1000;
     /**
      * session数据
      */
