@@ -53,7 +53,7 @@ public class BaseController {
      * @return
      */
     protected Employee getWXEmpUser(HttpServletRequest request) {
-        return (Employee) WXSessionUtils.getValue(request.getParameter("key"));
+        return (Employee) WXSessionUtils.getValue(request.getParameter("userKey"));
     }
 
     /**
@@ -63,7 +63,7 @@ public class BaseController {
      * @return
      */
     protected Customer getWXCosUser(HttpServletRequest request) {
-        return (Customer) WXSessionUtils.getValue(request.getParameter("key"));
+        return (Customer) WXSessionUtils.getValue(request.getParameter("userKey"));
     }
 
     /**

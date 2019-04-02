@@ -24,7 +24,7 @@ function doLogin() {
                 //console.log(result.data.name);
                 // 将员工号存入缓存
                 myCache.userKey = result.data.emp_no;
-                window.location.href = "/wx/login/toHome?key=" + myCache.userKey;
+                window.location.href = "/wx/login/toHome?userKey=" + myCache.userKey;
             } else {
                 toastr.error(result.msg);
             }

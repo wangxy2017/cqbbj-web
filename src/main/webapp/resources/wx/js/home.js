@@ -13,25 +13,25 @@ var main = new Vue({
          */
         tiaozhuan: function (url) {
             if (!isEmpty(url)) {
-                window.location.href = url + "?key=" + myCache.userKey;
+                window.location.href = url + "?userKey=" + myCache.userKey;
             }
         },
         /**
          * 我的任务
          */
         myTask: function () {
-            window.location.href = "/wx/order/myTask" + "?key=" + myCache.userKey;
+            window.location.href = "/wx/order/myTask" + "?userKey=" + myCache.userKey;
         },
         /**
          * 我的钱包
          */
         wallet: function () {
-            window.location.href = "/wx/payRecord/wallet" + "?key=" + myCache.userKey;
+            window.location.href = "/wx/payRecord/wallet" + "?userKey=" + myCache.userKey;
         }
     },
     mounted: function () {
         var _this = this;
-        _this.$http.post("/wx/menu/queryPageList", {"key": myCache.userKey}, {emulateJSON: true}).then(function (res) {
+        _this.$http.post("/wx/menu/queryPageList", {"userKey": myCache.userKey}, {emulateJSON: true}).then(function (res) {
             console.log(res.body);
             // return;
             if (res.body.code == 1 && res.body.data.length > 0) {
@@ -48,7 +48,7 @@ var main = new Vue({
         }, function (res) {
             toastr.error("服务器异常");
         });
-        this.$http.post("/wx/login/getEmpName", {"key": myCache.userKey}, {emulateJSON: true}).then(function (res) {
+        this.$http.post("/wx/login/getEmpName", {"userKey": myCache.userKey}, {emulateJSON: true}).then(function (res) {
 
             if (res.body.code == 1) {
                 this.empName = res.body.data.name;
