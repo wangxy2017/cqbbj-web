@@ -10,9 +10,9 @@ var main = new Vue({
                 url: "/wx/order/update",
                 dataType: "json",
                 data: {
+                    "userKey": myCache.userKey,
                     "id": $("#main").attr("dataid"),
                     "visit": $("#visit").val()
-
                 },
                 type: "POST",
                 success: function (result) {

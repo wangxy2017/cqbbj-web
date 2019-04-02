@@ -19,6 +19,7 @@ var main = new Vue({
                 url: '/wx/order/queryPageListEmployee',
                 dataType: 'json',
                 data: {
+                    "userKey": myCache.userKey,
                     "pageNum": _this.pageNum++,
                     "pageSize": _this.pageSize,
                     "is_clean": _this.is_clean,
@@ -88,6 +89,7 @@ var main = new Vue({
             $.ajax({
                 url: "/wx/order/cancelOrderStatus",
                 data: {
+                    "userKey": myCache.userKey,
                     "id": id,
                     "status": 3,
                     "order_no": order_no
@@ -99,8 +101,8 @@ var main = new Vue({
                         toastr.success("操作成功");
                         // console.log(res.data);
                         setTimeout(function () {
-                            window.location.href = "/wx/order/sentOrder";
-                        },500)
+                            window.location.href = "/wx/order/sentOrder?userKey=" + myCache.userKey;
+                        }, 500)
                     }
                 }, error: function () {
                     toastr.error("数据异常");
@@ -142,19 +144,19 @@ var main = new Vue({
          * 查看按钮
          */
         view: function (id) {
-            window.location.href = "/wx/order/orderDetail?id=" + id;
+            window.location.href = "/wx/order/orderDetail?userKey=" + myCache.userKey + "&id=" + id;
         },
         /**
          * 修改按钮
          */
         modify: function (id) {
-            window.location.href = "/wx/order/orderUpdate?id=" + id;
+            window.location.href = "/wx/order/orderUpdate?userKey=" + myCache.userKey + "&id=" + id;
         },
         /**
          * 辅助完成
          */
         finish: function (id, order_no) {
-            window.location.href = "/wx/order/finishOrder?id=" + id + "&order_no=" + order_no;
+            window.location.href = "/wx/order/finishOrder?userKey=" + myCache.userKey + "&id=" + id + "&order_no=" + order_no;
         }
     },
     mounted: function () {
@@ -174,7 +176,7 @@ var main = new Vue({
                 if (!_this.locked && ($(document).height() - (i + $(window).height()) == 1 || $(document).height() - (i + $(window).height()) < i) && _this.loaded < _this.total) {
                     // 先上锁，避免多次请求
                     _this.locked = true;
-                    console.log("已加载" + _this.loaded + "条" +"总条数"+_this.total +"条")
+                    console.log("已加载" + _this.loaded + "条" + "总条数" + _this.total + "条")
                     // 发送请求
                     _this.loadData();
                 }

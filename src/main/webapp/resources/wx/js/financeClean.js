@@ -62,6 +62,7 @@ var main = new Vue({
                 url: '/wx/financeClean/queryPageList',
                 dataType: 'json',
                 data: {
+                    "userKey": myCache.userKey,
                     "pageNum": _this.pageNum++,
                     "pageSize": _this.pageSize,
                     "is_clean": _this.is_clean

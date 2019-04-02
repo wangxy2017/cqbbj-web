@@ -49,30 +49,6 @@ var main = new Vue({
          */
         ascertain: function () {
             toastr.info("你选择了确定");
-            // var id = $("#checkId").val();
-            // var order_no = $("#checkOrderNo").val();
-            // $.ajax({
-            //     url: "",
-            //     data: {
-            //         "id": id,
-            //         "status": 3,
-            //         "order_no": order_no
-            //     },
-            //     dataType: "json",
-            //     type: "post",
-            //     success: function (res) {
-            //         if (res.code == 1) {
-            //             toastr.success("操作成功");
-            //             // console.log(res.data);
-            //             setTimeout(function () {
-            //                 window.location.href = "";
-            //             },500)
-            //         }
-            //     }, error: function () {
-            //         toastr.error("数据异常");
-            //     }
-            // });
-            // 刷新列表
         },
 
         /**
@@ -112,7 +88,7 @@ var main = new Vue({
          */
         view: function (id) {
             setTimeout(function () {
-                window.location.href = "/wx/order/orderDetail?id=" + id;
+                window.location.href = "/wx/order/orderDetail?userKey="+myCache.userKey+"&id=" + id;
             }, 100)
 
         },
@@ -139,6 +115,7 @@ var main = new Vue({
                 url: '/wx/myTask/queryTaskList',
                 dataType: 'json',
                 data: {
+                    "userKey": myCache.userKey,
                     "pageNum": _this.pageNum++,
                     "pageSize": _this.pageSize,
                     "status": _this.status

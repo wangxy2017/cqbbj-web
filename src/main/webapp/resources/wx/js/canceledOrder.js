@@ -21,7 +21,7 @@ var main = new Vue({
          * 查看跳转页面
          * */
         view: function (id) {
-            window.location.href = "/wx/order/orderDetail?id=" + id;
+            window.location.href = "/wx/order/orderDetail?userKey=" + myCache.userKey + "&id=" + id;
         },
         /**
          * 还原跳转页面
@@ -32,6 +32,7 @@ var main = new Vue({
                 url: "/wx/order/updateOrderStatus",
                 dataType: "json",
                 data: {
+                    "userKey": myCache.userKey,
                     "id": id,
                     "status": 0
                 },
@@ -64,9 +65,10 @@ var main = new Vue({
                 url: '/wx/order/queryPageListEmployee',
                 dataType: 'json',
                 data: {
+                    "userKey": myCache.userKey,
                     "pageNum": _this.pageNum++,
                     "pageSize": _this.pageSize,
-                    "status":_this.status
+                    "status": _this.status
                 },
                 type: "POST",
                 beforeSend: function () {

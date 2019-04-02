@@ -16,7 +16,7 @@ var main = new Vue({
          * 修改点击事件
          */
         update: function (id) {
-            window.location.href = "/wx/salary/salaryUpdate?id=" + id;
+            window.location.href = "/wx/salary/salaryUpdate?userKey=" + myCache.userKey + "&id=" + id;
         },
         /**
          * 点击确定事件
@@ -28,6 +28,7 @@ var main = new Vue({
                 url: "/wx/salary/delete",
                 dataType: "json",
                 data: {
+                    "userKey": myCache.userKey,
                     "id": id
                 },
                 type: "POST",
@@ -93,6 +94,7 @@ var main = new Vue({
     mounted: function () {
         // 初始化
         this.$http.post("/wx/salary/queryPageList", {
+            "userKey": myCache.userKey,
             //当前页面
             "pageNum": this.pageNum
             //展示数据
@@ -130,6 +132,7 @@ var main = new Vue({
                         url: '/wx/salary/queryPageList',
                         dataType: 'json',
                         data: {
+                            "userKey": myCache.userKey,
                             "pageNum": main.pageNum++,
                             "pageSize": main.pageSize
                         },

@@ -14,6 +14,7 @@ var main = new Vue({
                 url: "/wx/order/helpDone",
                 dataType: "json",
                 data: {
+                    "userKey": myCache.userKey,
                     "order_no": main.order_no,
                     "receiveMoney": main.receiveMoney,
                     "receiveText": main.receiveText,
@@ -26,8 +27,8 @@ var main = new Vue({
                     if (result.code == 1) {
                         toastr.success('操作成功');
                         setTimeout(function () {
-                            window.location.href = "/wx/order/completeOrder";
-                        },500);
+                            window.location.href = "/wx/order/completeOrder?userKey=" + myCache.userKey;
+                        }, 500);
                     }
                 },
                 error: function (result) {

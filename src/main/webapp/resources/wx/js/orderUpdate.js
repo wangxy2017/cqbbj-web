@@ -19,12 +19,12 @@ var main = new Vue({
              * 点击修改收款人员执行的方法
              * @param event
              */
-            openModel: function(event){
+            openModel: function (event) {
                 // 模态框弹出
                 $("#moneyEmp").show().find(".alert_body").animate({
                     marginTop: '40rem'
-                 });
-                main.$http.post("/wx/employee/queryPageList", {}, {emulateJSON: true}).then(function (res) {
+                });
+                main.$http.post("/wx/employee/queryPageList", {"userKey": myCache.userKey}, {emulateJSON: true}).then(function (res) {
                     console.log(res.body);
                     // [{name:xxx,emp_no:xxx},{name:xxx,emp_no:xxx},{name:xxx,emp_no:xxx}]
                     main.money = res.body.data;
@@ -60,7 +60,7 @@ var main = new Vue({
             /**
              * 模态框button点击事件
              */
-            choose:function(event){
+            choose: function (event) {
                 var _this = $(event.target);
                 var info = _this.hasClass("btn-info");
                 if (info) {// 取消选中
@@ -80,10 +80,9 @@ var main = new Vue({
                 }
 
 
-
             },
-            clickDriveEmps:function(){
-                main.$http.post("/wx/employee/queryPageList", {}, {emulateJSON: true}).then(function (res) {
+            clickDriveEmps: function () {
+                main.$http.post("/wx/employee/queryPageList", {"userKey": myCache.userKey}, {emulateJSON: true}).then(function (res) {
                     console.log(res.body);
                     // [{name:xxx,emp_no:xxx},{name:xxx,emp_no:xxx},{name:xxx,emp_no:xxx}]
                     main.drive = res.body.data;
@@ -91,8 +90,8 @@ var main = new Vue({
                     toastr.warning('提交异常');
                 });
             },
-            clickMoveEmps:function(){
-                main.$http.post("/wx/employee/queryPageList", {}, {emulateJSON: true}).then(function (res) {
+            clickMoveEmps: function () {
+                main.$http.post("/wx/employee/queryPageList", {"userKey": myCache.userKey}, {emulateJSON: true}).then(function (res) {
                     console.log(res.body);
                     // [{name:xxx,emp_no:xxx},{name:xxx,emp_no:xxx},{name:xxx,emp_no:xxx}]
                     main.move = res.body.data;
@@ -100,8 +99,8 @@ var main = new Vue({
                     toastr.warning('提交异常');
                 });
             },
-            clickAirEmps:function(){
-                main.$http.post("/wx/employee/queryPageList", {}, {emulateJSON: true}).then(function (res) {
+            clickAirEmps: function () {
+                main.$http.post("/wx/employee/queryPageList", {"userKey": myCache.userKey}, {emulateJSON: true}).then(function (res) {
                     console.log(res.body);
                     // [{name:xxx,emp_no:xxx},{name:xxx,emp_no:xxx},{name:xxx,emp_no:xxx}]
                     main.air = res.body.data;
@@ -111,14 +110,14 @@ var main = new Vue({
             },
 
 
-            checkDriveEmps:function(event){
+            checkDriveEmps: function (event) {
 
                 var _this = $(event.target);
                 var info = _this.hasClass("btn-info");
                 if (info) {// 取消选中
                     _this.removeClass('btn-info').addClass('btn-default');
                     var name = _this.text() + " ";
-                    $("#driveEmps_name").val($("#driveEmps_name").val().replace(name,""));
+                    $("#driveEmps_name").val($("#driveEmps_name").val().replace(name, ""));
                     // 删值 ,123,456
                     var emp_no = "," + _this.attr("data-emp_no");
                     main.driveEmps.replace(emp_no, "");
@@ -135,14 +134,14 @@ var main = new Vue({
                 }
             },
 
-            checkMoveEmps:function(event){
+            checkMoveEmps: function (event) {
 
                 var _this = $(event.target);
                 var info = _this.hasClass("btn-info");
                 if (info) {// 取消选中
                     _this.removeClass('btn-info').addClass('btn-default');
                     var name = _this.text() + " ";
-                    $("#moveEmps_name").val($("#moveEmps_name").val().replace(name,""));
+                    $("#moveEmps_name").val($("#moveEmps_name").val().replace(name, ""));
                     // 删值 ,123,456
                     var emp_no = "," + _this.attr("data-emp_no");
                     main.driveEmps.replace(emp_no, "");
@@ -158,14 +157,14 @@ var main = new Vue({
                     main.moveEmps += emp_no;
                 }
             },
-            checkAirEmps:function(event){
+            checkAirEmps: function (event) {
 
                 var _this = $(event.target);
                 var info = _this.hasClass("btn-info");
                 if (info) {// 取消选中
                     _this.removeClass('btn-info').addClass('btn-default');
                     var name = _this.text() + " ";
-                    $("#airEmps_name").val($("#airEmps_name").val().replace(name,""));
+                    $("#airEmps_name").val($("#airEmps_name").val().replace(name, ""));
                     // 删值 ,123,456
                     var emp_no = "," + _this.attr("data-emp_no");
                     main.driveEmps.replace(emp_no, "");
@@ -192,6 +191,7 @@ var main = new Vue({
                 $.ajax({
                     url: "/wx/order/update",
                     data: {
+                        "userKey": myCache.userKey,
                         "id": $("#table").attr("data_id"),
                         "order_no": order.order_no,
                         "phone": order.phone,
@@ -209,10 +209,12 @@ var main = new Vue({
                     type: "post",
                     success: function () {
                         toastr.success("修改成功");
-                        if($("status").val()==0){
-                        window.location.herf = "/wx/order/unSentOrder";}
-                        if($("status").val()==1){
-                            window.location.herf = "/wx/order/sentOrder";}
+                        if ($("status").val() == 0) {
+                            window.location.herf = "/wx/order/unSentOrder?userKey=" + myCache.userKey;
+                        }
+                        if ($("status").val() == 1) {
+                            window.location.herf = "/wx/order/sentOrder?userKey=" + myCache.userKey;
+                        }
                     }, error: function () {
                         toastr.success("修改失败");
                     }
@@ -221,7 +223,10 @@ var main = new Vue({
 
         },
         mounted: function () {
-            this.$http.post("/wx/order/queryById", {"id": $("#table").attr("data_id")}, {emulateJSON: true}).then(function (res) {
+            this.$http.post("/wx/order/queryById", {
+                "userKey": myCache.userKey,
+                "id": $("#table").attr("data_id")
+            }, {emulateJSON: true}).then(function (res) {
                 console.log(res.body);
                 if (res.body.code == 1) {
                     this.order = res.body.data;

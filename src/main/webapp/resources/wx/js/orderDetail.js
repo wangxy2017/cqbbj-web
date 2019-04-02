@@ -8,7 +8,7 @@ var main = new Vue({
         methods: {},
         mounted: function () {
 
-            this.$http.post("/wx/order/queryById", {"id": $("#table").attr("data_id")}, {emulateJSON: true}).then(function (res) {
+            this.$http.post("/wx/order/queryById", {"userKey": myCache.userKey,"id": $("#table").attr("data_id")}, {emulateJSON: true}).then(function (res) {
                 console.log(res.body);
                 if (res.body.code == 1) {
                     this.order = res.body.data;

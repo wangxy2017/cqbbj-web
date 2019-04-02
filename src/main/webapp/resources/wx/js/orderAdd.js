@@ -10,7 +10,7 @@ $(function () {
      */
     $.ajax({
         url: "/wx/order/queryKeys",
-        data: {},
+        data: {"userKey": myCache.userKey},
         dataType: "JSON",
         type: "POST",
         success: function (result) {
