@@ -22,8 +22,8 @@ public class StartupListener implements ApplicationListener<ContextRefreshedEven
                 public void run() {
                     while (true) {
                         try {
-                            Thread.sleep(WXSessionUtils.DEFAULT_STEP_TIME);
-                            WXSessionUtils.timeMin(WXSessionUtils.DEFAULT_STEP_TIME);
+                            Thread.sleep(1000 * 60 * 30);
+                            WXSessionUtils.timeMin(1000 * 60 * 30);
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }

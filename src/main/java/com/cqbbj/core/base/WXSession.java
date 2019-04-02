@@ -34,20 +34,4 @@ public class WXSession extends HashMap<String, Object> {
     public void setOutTime(long outTime) {
         this.outTime = outTime;
     }
-
-    /**
-     * session 计时器
-     */
-    public void timeMin(long time) {
-        outTime = outTime - time;
-    }
-
-    /**
-     * 判断计时器是否停止
-     *
-     * @return
-     */
-    public boolean timeStop() {
-        return outTime <= 0;
-    }
 }

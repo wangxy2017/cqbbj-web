@@ -1,7 +1,6 @@
 package com.cqbbj.core.util;
 
 import com.cqbbj.core.base.WXSession;
-import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -35,14 +34,12 @@ public class WXSessionUtils {
             throw new RuntimeException("userKey参数错误");
         }
         WXSession session = null;
-        if (!sessions.isEmpty()) {
-            Iterator iterator = sessions.iterator();
-            while (iterator.hasNext()) {
-                WXSession s = (WXSession) iterator.next();
-                if (session.getUserKey().equals(userKey)) {
-                    session = s;
-                    break;
-                }
+        Iterator iterator = sessions.iterator();
+        while (iterator.hasNext()) {
+            WXSession s = (WXSession) iterator.next();
+            if (session.getUserKey().equals(userKey)) {
+                session = s;
+                break;
             }
         }
         if (session == null) {
@@ -60,13 +57,15 @@ public class WXSessionUtils {
      * @param userKey
      */
     public static void delSession(String userKey) {
-        if (StringUtils.isNotBlank(userKey) && !sessions.isEmpty()) {
-            Iterator iterator = sessions.iterator();
-            while (iterator.hasNext()) {
-                WXSession session = (WXSession) iterator.next();
-                if (session.getUserKey().equals(userKey)) {
-                    iterator.remove();
-                }
+        // 判断参数
+        if (userKey == null || userKey.equals("")) {
+            throw new RuntimeException("userKey参数错误");
+        }
+        Iterator iterator = sessions.iterator();
+        while (iterator.hasNext()) {
+            WXSession session = (WXSession) iterator.next();
+            if (session.getUserKey().equals(userKey)) {
+                iterator.remove();
             }
         }
     }
@@ -78,8 +77,8 @@ public class WXSessionUtils {
         Iterator iterator = sessions.iterator();
         while (iterator.hasNext()) {
             WXSession session = (WXSession) iterator.next();
-            session.timeMin(time <= 0 ? DEFAULT_TIME : time);
-            if (session.timeStop()) {
+            session.setOutTime(session.getOutTime() - time);
+            if (session.getOutTime() <= 0) {
                 iterator.remove();
             }
         }
