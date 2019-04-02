@@ -17,7 +17,7 @@ public class WXSession extends HashMap<String, Object> {
     /**
      * 超时时间
      */
-    private long time;
+    private long outTime;
 
     public String getUserKey() {
         return userKey;
@@ -27,19 +27,19 @@ public class WXSession extends HashMap<String, Object> {
         this.userKey = userKey;
     }
 
-    public long getTime() {
-        return time;
+    public long getOutTime() {
+        return outTime;
     }
 
-    public void setTime(long time) {
-        this.time = time;
+    public void setOutTime(long outTime) {
+        this.outTime = outTime;
     }
 
     /**
-     * 计时器
+     * session 计时器
      */
-    public void timeMin(long nums) {
-        time = time - nums;
+    public void timeMin(long time) {
+        outTime = outTime - time;
     }
 
     /**
@@ -48,6 +48,6 @@ public class WXSession extends HashMap<String, Object> {
      * @return
      */
     public boolean timeStop() {
-        return time <= 0;
+        return outTime <= 0;
     }
 }
