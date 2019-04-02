@@ -1,5 +1,7 @@
 package com.cqbbj.core.base;
 
+import java.util.HashMap;
+
 /**
  * @author wangxy
  * @version 1.0
@@ -7,34 +9,22 @@ package com.cqbbj.core.base;
  * @Description: 微信session(这里用一句话描述这个类的作用)
  * @date 2019/4/2 10:00
  */
-public class WXSession {
+public class WXSession extends HashMap<String, Object> {
     /**
-     * key值
+     * 获取用户对应session
      */
-    private String key;
-    /**
-     * value值
-     */
-    private Object value;
+    private String userKey;
     /**
      * 超时时间
      */
     private long time;
 
-    public String getKey() {
-        return key;
+    public String getUserKey() {
+        return userKey;
     }
 
-    public void setKey(String key) {
-        this.key = key;
-    }
-
-    public Object getValue() {
-        return value;
-    }
-
-    public void setValue(Object value) {
-        this.value = value;
+    public void setUserKey(String userKey) {
+        this.userKey = userKey;
     }
 
     public long getTime() {

@@ -3,6 +3,7 @@ package com.cqbbj.wx;
 import com.cqbbj.core.base.BaseController;
 import com.cqbbj.core.base.PageModel;
 import com.cqbbj.core.base.Result;
+import com.cqbbj.core.base.WXSession;
 import com.cqbbj.core.util.*;
 import com.cqbbj.entity.Code;
 import com.cqbbj.entity.Customer;
@@ -184,7 +185,11 @@ public class WXLoginController extends BaseController {
                 // 做操作
                 Employee employee = list.get(0);
                 if (employee.getIs_disabled() == 0) {
-                    WXSessionUtils.pushValue(employee.getEmp_no(), employee);
+                    // 存入session
+                    WXSession session = new WXSession();
+                    session.setUserKey(employee.getEmp_no());
+                    session.setTime(WXSessionUtils.DEFAULT_TIME);
+                    session.put("wxEmpUser", employee);
                     return ResultUtils.success(employee);
                 } else {
                     return ResultUtils.error("账号已被禁用");

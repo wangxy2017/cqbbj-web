@@ -6,6 +6,7 @@
  */
 package com.cqbbj.interceptor;
 
+import com.cqbbj.core.base.WXSession;
 import com.cqbbj.core.util.WXSessionUtils;
 import com.cqbbj.entity.Employee;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -34,8 +35,8 @@ public class LoginInterceptor implements HandlerInterceptor {
         // 2.判断是否登录
         if (uri.startsWith("/wx/")) {// 判断微信登录
             System.out.println("微信操作：" + uri);
-            String key = request.getParameter("userKey");
-            Employee employee = (Employee) WXSessionUtils.getValue(key);
+            WXSession session = WXSessionUtils.getSession(request.getParameter("userKey"));
+            Employee employee = (Employee) session.get("wxEmpUser");
             if (employee != null) {
                 return true;
             } else {

@@ -28,82 +28,18 @@ public class WXSessionUtils {
     private static ArrayList<WXSession> sessions = new ArrayList<>();
 
     /**
-     * 判断是否有值
+     * 根据userKey
      *
-     * @param key
+     * @param userKey
      * @return
      */
-    public static int search(String key) {
-        if (StringUtils.isNotBlank(key) && !sessions.isEmpty()) {
-            for (int i = 0; i < sessions.size(); i++) {
-                if (sessions.get(i).getKey().equals(key)) {
-                    return i;
-                }
-            }
-        }
-        return -1;
-    }
-
-    /**
-     * 添加数据
-     *
-     * @param key
-     * @param value
-     * @param time
-     */
-    public static void pushValue(String key, Object value, long time) {
-        if (StringUtils.isNotBlank(key)) {
-            // 如果有值，则替换
-            int i = search(key);
-            if (i > 0) {
-                WXSession data = sessions.get(i);
-                data.setValue(value);
-                data.setTime(time);
-            } else {
-                WXSession data = new WXSession();
-                data.setKey(key);
-                data.setValue(value);
-                data.setTime(time);
-                sessions.add(data);
-            }
-        }
-    }
-
-    public static void pushValue(String key, Object value) {
-        pushValue(key, value, DEFAULT_TIME);
-    }
-
-    /**
-     * 移除数据
-     *
-     * @param key
-     */
-    public static void removeValue(String key) {
-        if (StringUtils.isNotBlank(key)) {
+    public static WXSession getSession(String userKey) {
+        if (StringUtils.isNotBlank(userKey) && !sessions.isEmpty()) {
             Iterator iterator = sessions.iterator();
             while (iterator.hasNext()) {
-                WXSession data = (WXSession) iterator.next();
-                if (data.getKey().equals(key)) {
-                    iterator.remove();
-                    break;
-                }
-            }
-        }
-    }
-
-    /**
-     * 获取数据
-     *
-     * @param key
-     * @return
-     */
-    public static Object getValue(String key) {
-        if (StringUtils.isNotBlank(key)) {
-            Iterator iterator = sessions.iterator();
-            while (iterator.hasNext()) {
-                WXSession data = (WXSession) iterator.next();
-                if (data.getKey().equals(key)) {
-                    return data.getValue();
+                WXSession session = (WXSession) iterator.next();
+                if (session.getUserKey().equals(userKey)) {
+                    return session;
                 }
             }
         }
@@ -116,15 +52,11 @@ public class WXSessionUtils {
     public static void timeMin(long nums) {
         Iterator iterator = sessions.iterator();
         while (iterator.hasNext()) {
-            WXSession data = (WXSession) iterator.next();
-            data.timeMin(nums);
-            if (data.timeStop()) {
+            WXSession session = (WXSession) iterator.next();
+            session.timeMin(nums);
+            if (session.timeStop()) {
                 iterator.remove();
             }
         }
-    }
-
-    public static void timeMin() {
-        timeMin(DEFAULT_STEP_TIME);
     }
 }
