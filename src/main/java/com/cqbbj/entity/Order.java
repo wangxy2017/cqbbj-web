@@ -115,7 +115,10 @@ public class Order extends BaseEntity {
      * 业务员
      */
     private String salesman;
-
+    /**
+     * 支出花费备注
+     */
+    private String costText;
     /**
      * 结算人
      */
@@ -529,7 +532,13 @@ public class Order extends BaseEntity {
     public void setAirEmpsInfo(String airEmpsInfo) {
         this.airEmpsInfo = airEmpsInfo;
     }
+    public String getCostText() {
+        return costText;
+    }
 
+    public void setCostText(String costText) {
+        this.costText = costText;
+    }
     public String getCleanEmp() {
         return cleanEmp;
     }

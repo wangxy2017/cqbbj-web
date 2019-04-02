@@ -3,7 +3,9 @@ var main = new Vue({
     data: {
         order_no: "",
         receiveMoney: 0.00,
-        receiveText: ""
+        receiveText: "",
+        costMoney:0.00,
+        costText:""
     },
     methods: {
         /**
@@ -18,6 +20,8 @@ var main = new Vue({
                     "order_no": main.order_no,
                     "receiveMoney": main.receiveMoney,
                     "receiveText": main.receiveText,
+                    "costMoney":main.costMoney,
+                    "costText":main.costText,
                     "isNotPay": $("#notPay").is(":checked") ? 1 : 0,
                     "id": $("#main").attr("data_id")
                 },

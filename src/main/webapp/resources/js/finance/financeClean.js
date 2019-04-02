@@ -132,7 +132,16 @@ layui.use(["table", "layer", "laydate", "jquery"], function () {
 
                     // 结算
                     if (layEvent === 'clean') {
-
+                        layer.open({
+                            type: 2,
+                            content: "/finance/cleanDetail?id=" + data.id,
+                            area: ["700px", "550px"],
+                            anim: 5,
+                            title: "结算方式",
+                            success:function (result,index) {
+                                
+                            }
+                        });
                     }
                     // 查看
                     if (layEvent === 'view') {
@@ -140,6 +149,7 @@ layui.use(["table", "layer", "laydate", "jquery"], function () {
                             type: 2,
                             content: "/order/orderView?id=" + data.id,
                             area: ["700px", "550px"],
+                            anim: 5,
                             title: "订单详情"
                         });
                     }
