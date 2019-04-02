@@ -83,7 +83,7 @@
             <th class="col-sm-3">收款人:<span v-show="false" id="moneyEmpsList" v-for="item in order.moneyEmps">{{item.emp_name}}&nbsp;</span></th>
             <td class="col-sm-9">
                 <div class="col-sm-6">
-                    <input type="text" class="form-control" name="moneyEmps_name" id="moneyEmp_name">
+                    <input type="text" class="form-control" name="moneyEmps_name" id="moneyEmps_name">
                     <input type="hidden" name="moneyEmps" id="moneyEmpNo">
                 </div>
                 <div class="col-sm-3">

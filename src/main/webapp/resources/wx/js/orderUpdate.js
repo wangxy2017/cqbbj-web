@@ -65,7 +65,7 @@ var main = new Vue({
                 var info = _this.hasClass("btn-info");
                 if (info) {// 取消选中
                     _this.removeClass('btn-info').addClass('btn-default');
-                    $("#moneyEmp_name").val("");
+                    $("#moneyEmps_name").val("");
                     // 删值
                     main.moneyEmps = "";
                 } else {// 选中
@@ -73,7 +73,7 @@ var main = new Vue({
                     // 赋值
                     var empNo = _this.attr("data-empNo");//编号
                     var name = _this.text();
-                    $("#moneyEmp_name").val(name);
+                    $("#moneyEmps_name").val(name);
                     $("#moneyEmpNo").val(empNo);
                     // 存值
                     main.moneyEmps = _this.attr("data-emp_no");

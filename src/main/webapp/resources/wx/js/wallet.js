@@ -95,16 +95,6 @@ var main = new Vue({
         }, function () {
             toastr.error("数据异常");
         });
-        // this.$http.post("/wx/wallet/queryPageList", {
-        //     pageNum: 1,
-        //     pageSize: 4
-        // }, {emulateJSON: true}).then(function (res) {
-        //     console.log(res.body);
-        //     if (res.body.code == 1)
-        //         main.wallets = res.body.data.list;
-        // }, function () {
-        //     toastr.error("数据异常");
-        // });
     }
 
 });
