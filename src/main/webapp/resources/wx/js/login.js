@@ -11,20 +11,20 @@ function doLogin() {
     $.ajax({
         url: "/wx/login/empLogin",// 请求地址
         dataType: "JSON",// 返回数据类型
-        data: {"account": $("#account").val(), "password": $("#password").val(),"key":"EP201903042023137020919"},// 请求数据
+        data: {"account": $("#account").val(), "password": $("#password").val()},// 请求数据
         type: "POST",// 请求方式
-        beforeSend:function(){
+        beforeSend: function () {
             $(".preloader").show();
         },
-        complete:function(){
+        complete: function () {
             $(".preloader").hide();
         },
         success: function (result) {// 请求成功函数
-
             if (result.code == 1) {
                 //console.log(result.data.name);
-
-                window.location.href = "/wx/login/toHome";
+                // 将员工号存入缓存
+                myCache.userKey = result.data.emp_no;
+                window.location.href = "/wx/login/toHome?key=" + myCache.userKey;
             } else {
                 toastr.error(result.msg);
             }

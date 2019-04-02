@@ -176,7 +176,7 @@ public class WXLoginController extends BaseController {
      */
     @RequestMapping("/empLogin")
     @ResponseBody
-    public Result empLogin(HttpServletRequest request, String account, String password) {
+    public Result empLogin(String account, String password) {
         // 查询员工
         List<Employee> list = employeeService.queryByAccount(account);
         if (!list.isEmpty() && list.size() == 1) {
@@ -184,7 +184,7 @@ public class WXLoginController extends BaseController {
                 // 做操作
                 Employee employee = list.get(0);
                 if (employee.getIs_disabled() == 0) {
-                    WXSessionUtils.pushValue(request.getParameter("key"), employee);
+                    WXSessionUtils.pushValue(employee.getEmp_no(), employee);
                     return ResultUtils.success(employee);
                 } else {
                     return ResultUtils.error("账号已被禁用");
