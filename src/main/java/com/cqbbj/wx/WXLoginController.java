@@ -186,9 +186,7 @@ public class WXLoginController extends BaseController {
                 Employee employee = list.get(0);
                 if (employee.getIs_disabled() == 0) {
                     // 存入session
-                    WXSession session = new WXSession();
-                    session.setUserKey(employee.getEmp_no());
-                    session.setTime(WXSessionUtils.DEFAULT_TIME);
+                    WXSession session = WXSessionUtils.getSession(employee.getEmp_no());
                     session.put("wxEmpUser", employee);
                     return ResultUtils.success(employee);
                 } else {

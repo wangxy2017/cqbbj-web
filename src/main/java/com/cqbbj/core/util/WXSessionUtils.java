@@ -1,7 +1,6 @@
 package com.cqbbj.core.util;
 
 import com.cqbbj.core.base.WXSession;
-import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -19,42 +18,67 @@ public class WXSessionUtils {
      */
     public static final long DEFAULT_TIME = 30 * 60 * 1000;
     /**
-     * 默认递减时间(一分钟)
-     */
-    public static final long DEFAULT_STEP_TIME = 60 * 1000;
-    /**
      * session数据
      */
     private static ArrayList<WXSession> sessions = new ArrayList<>();
 
     /**
-     * 根据userKey
+     * 获取session
      *
      * @param userKey
      * @return
      */
     public static WXSession getSession(String userKey) {
-        if (StringUtils.isNotBlank(userKey) && !sessions.isEmpty()) {
-            Iterator iterator = sessions.iterator();
-            while (iterator.hasNext()) {
-                WXSession session = (WXSession) iterator.next();
-                if (session.getUserKey().equals(userKey)) {
-                    return session;
-                }
+        // 判断参数
+        if (userKey == null || userKey.equals("")) {
+            throw new RuntimeException("userKey参数错误");
+        }
+        WXSession session = null;
+        Iterator iterator = sessions.iterator();
+        while (iterator.hasNext()) {
+            WXSession s = (WXSession) iterator.next();
+            if (s.getUserKey().equals(userKey)) {
+                session = s;
+                break;
             }
         }
-        return null;
+        if (session == null) {
+            session = new WXSession();
+            session.setUserKey(userKey);
+            session.setOutTime(DEFAULT_TIME);
+            sessions.add(session);
+        }
+        return session;
     }
 
     /**
-     * 设置超时数据并移除
+     * 移除session
+     *
+     * @param userKey
      */
-    public static void timeMin(long nums) {
+    public static void delSession(String userKey) {
+        // 判断参数
+        if (userKey == null || userKey.equals("")) {
+            throw new RuntimeException("userKey参数错误");
+        }
         Iterator iterator = sessions.iterator();
         while (iterator.hasNext()) {
             WXSession session = (WXSession) iterator.next();
-            session.timeMin(nums);
-            if (session.timeStop()) {
+            if (session.getUserKey().equals(userKey)) {
+                iterator.remove();
+            }
+        }
+    }
+
+    /**
+     * session 计时
+     */
+    public static void timeMin(long time) {
+        Iterator iterator = sessions.iterator();
+        while (iterator.hasNext()) {
+            WXSession session = (WXSession) iterator.next();
+            session.setOutTime(session.getOutTime() - time);
+            if (session.getOutTime() <= 0) {
                 iterator.remove();
             }
         }
