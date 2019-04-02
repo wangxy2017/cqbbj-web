@@ -37,16 +37,16 @@ public class WXSessionUtils {
         Iterator iterator = sessions.iterator();
         while (iterator.hasNext()) {
             WXSession s = (WXSession) iterator.next();
-            if (session.getUserKey().equals(userKey)) {
+            if (s.getUserKey().equals(userKey)) {
                 session = s;
                 break;
             }
         }
         if (session == null) {
-            WXSession newSession = new WXSession();
-            newSession.setUserKey(userKey);
-            newSession.setOutTime(DEFAULT_TIME);
-            sessions.add(newSession);
+            session = new WXSession();
+            session.setUserKey(userKey);
+            session.setOutTime(DEFAULT_TIME);
+            sessions.add(session);
         }
         return session;
     }
