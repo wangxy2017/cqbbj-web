@@ -1,6 +1,5 @@
 package com.cqbbj.wx;
 
-import com.cqbbj.core.base.PageModel;
 import com.cqbbj.core.base.Result;
 import com.cqbbj.core.util.ResultUtils;
 import com.cqbbj.entity.Employee;

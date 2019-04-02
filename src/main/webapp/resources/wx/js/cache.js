@@ -1,0 +1,1 @@
+var myCache = window.localStorage ? window.localStorage : {};

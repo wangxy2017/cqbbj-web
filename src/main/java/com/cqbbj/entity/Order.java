@@ -117,6 +117,11 @@ public class Order extends BaseEntity {
     private String salesman;
 
     /**
+     * 结算人
+     */
+    private String cleanEmp;
+
+    /**
      * ============ 关联属性 =============
      */
 
@@ -523,5 +528,13 @@ public class Order extends BaseEntity {
 
     public void setAirEmpsInfo(String airEmpsInfo) {
         this.airEmpsInfo = airEmpsInfo;
+    }
+
+    public String getCleanEmp() {
+        return cleanEmp;
+    }
+
+    public void setCleanEmp(String cleanEmp) {
+        this.cleanEmp = cleanEmp;
     }
 }

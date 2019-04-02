@@ -67,6 +67,7 @@
 <script src="${pageContext.request.contextPath}/resources/wx/plugin/Vue/vue.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/wx/plugin/Vue/vue-resource.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/wx/js/common.js"></script>
+<script src="${pageContext.request.contextPath}/resources/wx/js/cache.js"></script>
 <script src="${pageContext.request.contextPath}/resources/wx/js/home.js"></script>
 </body>
 </html>

@@ -1,5 +1,7 @@
 package com.cqbbj.core.base;
 
+import com.cqbbj.core.util.WXSessionUtils;
+import com.cqbbj.entity.Customer;
 import com.cqbbj.entity.Employee;
 import com.cqbbj.entity.OperationLog;
 import org.apache.log4j.Logger;
@@ -44,23 +46,27 @@ public class BaseController {
         return (Employee) getSession(request).getAttribute("loginUser");
     }
 
-//    /**
-//     * 获取微信登录员工信息
-//     * @param request
-//     * @return
-//     */
-//    protected Employee getWXEmpUser(HttpServletRequest request) {
-//        return (Employee) getSession(request).getAttribute("empUser");
-//    }
+    /**
+     * 获取微信登录员工信息
+     *
+     * @param request
+     * @return
+     */
+    protected Employee getWXEmpUser(HttpServletRequest request) {
+        WXSession session = WXSessionUtils.getSession(request.getParameter("userKey"));
+        return (Employee) session.get("wxEmpUser");
+    }
 
-//    /**
-//     * 获取微信客户登录信息
-//     * @param request
-//     * @return
-//     */
-//    protected Employee getWXCosUser(HttpServletRequest request) {
-//        return (Employee) getSession(request).getAttribute("cosUser");
-//    }
+    /**
+     * 获取微信客户登录信息
+     *
+     * @param request
+     * @return
+     */
+    protected Customer getWXCosUser(HttpServletRequest request) {
+        WXSession session = WXSessionUtils.getSession(request.getParameter("userKey"));
+        return (Customer) session.get("cosEmpUser");
+    }
 
     /**
      * 创建日志

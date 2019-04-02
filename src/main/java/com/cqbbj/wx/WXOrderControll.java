@@ -37,6 +37,7 @@ public class WXOrderControll extends BaseController {
     private ISignBillService signBillService;
     @Autowired
     private IIntentionOrderService intentionOrderService;
+
     /**
      * 进入添加订单页面
      */
@@ -128,7 +129,6 @@ public class WXOrderControll extends BaseController {
     }
 
     /**
-     *
      * 进入在线下单页面
      */
     @RequestMapping("/onlineOrder")
@@ -146,7 +146,6 @@ public class WXOrderControll extends BaseController {
     }
 
 
-
     /**
      * 添加意向订单
      *
@@ -155,7 +154,7 @@ public class WXOrderControll extends BaseController {
      */
     @RequestMapping("/addIntentionOrder")
     @ResponseBody
-    public Result addIntentionOrder(String name, String phone, String start, String end ) {
+    public Result addIntentionOrder(String name, String phone, String start, String end) {
 
         //添加意向订单
         IntentionOrder order = new IntentionOrder();
@@ -332,7 +331,7 @@ public class WXOrderControll extends BaseController {
                 CommUtils.toStringArray(moveEmps),
                 CommUtils.toStringArray(airEmps));
         // 记录日志
-        operationLogService.saveEntity(createLog(request, EmployeeUtils.getEmployee().getName(), "派单：" + order_no));
+        operationLogService.saveEntity(createLog(request, getWXEmpUser(request).getName(), "派单：" + order_no));
         return ResultUtils.success();
     }
 
@@ -357,7 +356,7 @@ public class WXOrderControll extends BaseController {
                     CommUtils.toStringArray(moveEmps),
                     CommUtils.toStringArray(airEmps));
         // 记录日志
-        operationLogService.saveEntity(createLog(request, EmployeeUtils.getEmployee().getName(), "修改订单：" + order.getOrder_no()));
+        operationLogService.saveEntity(createLog(request, getWXEmpUser(request).getName(), "修改订单：" + order.getOrder_no()));
 
 
         return ResultUtils.success();
@@ -368,9 +367,9 @@ public class WXOrderControll extends BaseController {
      */
     @RequestMapping("/search")
 
-    public String search(Order order,Integer pageNum,Integer pageSize, ModelMap map) {
-        PageModel<Order> pageModel = orderService.queryPageList(order,pageNum,pageSize);
-        map.put("list",pageModel.getList());
+    public String search(Order order, Integer pageNum, Integer pageSize, ModelMap map) {
+        PageModel<Order> pageModel = orderService.queryPageList(order, pageNum, pageSize);
+        map.put("list", pageModel.getList());
         return "wx/order/searchResult.jsp";
     }
 
@@ -428,8 +427,8 @@ public class WXOrderControll extends BaseController {
      * 登出
      */
     @RequestMapping("/loginOut")
-    public String loginOut() {
-        EmployeeUtils.setEmployee(null);
+    public String loginOut(String key) {
+        WXSessionUtils.removeValue(key);
         return "wx/login";
     }
 

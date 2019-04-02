@@ -3,6 +3,7 @@ package com.cqbbj.wx;
 import com.cqbbj.core.base.BaseController;
 import com.cqbbj.core.base.PageModel;
 import com.cqbbj.core.base.Result;
+import com.cqbbj.core.base.WXSession;
 import com.cqbbj.core.util.*;
 import com.cqbbj.entity.Code;
 import com.cqbbj.entity.Customer;
@@ -176,7 +177,7 @@ public class WXLoginController extends BaseController {
      */
     @RequestMapping("/empLogin")
     @ResponseBody
-    public Result empLogin(HttpServletRequest request, String account, String password) {
+    public Result empLogin(String account, String password) {
         // 查询员工
         List<Employee> list = employeeService.queryByAccount(account);
         if (!list.isEmpty() && list.size() == 1) {
@@ -184,11 +185,12 @@ public class WXLoginController extends BaseController {
                 // 做操作
                 Employee employee = list.get(0);
                 if (employee.getIs_disabled() == 0) {
-                    EmployeeUtils.setEmployee(employee);
+                    // 存入session
+                    WXSession session = new WXSession();
+                    session.setUserKey(employee.getEmp_no());
+                    session.setTime(WXSessionUtils.DEFAULT_TIME);
+                    session.put("wxEmpUser", employee);
                     return ResultUtils.success(employee);
-//                    HttpSession session = getSession(request);
-//                    session.setAttribute("empUser", employee);
-//                    session.setAttribute("loginer",0);
                 } else {
                     return ResultUtils.error("账号已被禁用");
                 }
@@ -203,9 +205,9 @@ public class WXLoginController extends BaseController {
 
     @RequestMapping("/getEmpName")
     @ResponseBody
-    public Result getEmpName() {
+    public Result getEmpName(HttpServletRequest request) {
         // 获取当前登录用户
-        Employee employee = EmployeeUtils.getEmployee();
+        Employee employee = getWXEmpUser(request);
         if (employee != null) {
             Map<String, Object> data = new HashMap<>();
             // 查询我的任务
