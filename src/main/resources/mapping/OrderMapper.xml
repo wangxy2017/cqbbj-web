@@ -28,7 +28,9 @@
         is_clean,
         cleanText,
         payState,
-        salesman
+        salesman,
+        costText,
+        cleanEmp
     </sql>
     <sql id="insert_all_values">
         #{createTime},
@@ -55,7 +57,9 @@
         #{is_clean},
         #{cleanText},
         #{payState},
-        #{salesman}
+        #{salesman},
+        #{costText},
+        #{cleanEmp}
     </sql>
     <sql id="query_all_fields">
         id,
@@ -82,7 +86,9 @@
         is_clean,
         cleanText,
         payState,
-        salesman
+        salesman,
+        costText,
+        cleanEmp
     </sql>
     <!-- 保存订单 -->
     <insert id="save" parameterType="order" useGeneratedKeys="true" keyProperty="id">
@@ -112,6 +118,8 @@
             <if test="is_clean != null">is_clean = #{is_clean},</if>
             <if test="cleanText != null and cleanText != ''">cleanText = #{cleanText},</if>
             <if test="payState != null">payState = #{payState},</if>
+            <if test="costText != null and costText != ''">costText = #{costText},</if>
+            <if test="cleanEmp != null and cleanEmp != ''">cleanEmp = #{cleanEmp},</if>
         </set>
         where id = #{id}
     </update>
