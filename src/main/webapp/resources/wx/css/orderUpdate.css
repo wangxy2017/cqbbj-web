@@ -50,12 +50,9 @@ table{
 .update{
     width: 100%;
     height: 10rem;
-    /*float: right;*/
     margin-left: 20rem;
 }
-#moneyEmp{
-    /*display: block;*/
-}
+
 /*-------模态框开始-------*/
 .alert_model{
     width: 100%;
