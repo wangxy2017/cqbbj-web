@@ -48,7 +48,7 @@
     <div class="center">
         <div class="complete">
             <ul class="list-ul">
-                <li class="row list-li" v-for="item in orders">
+                <li class="row list-li" @click.stop="showBtn" v-for="item in orders">
                     <div class="row li-title">
                         <div class="col-sm-7">
                             <p>订单号：<a href="javascript:;">{{item.order_no}}</a></p>

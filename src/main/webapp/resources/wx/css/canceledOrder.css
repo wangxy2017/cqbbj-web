@@ -14,8 +14,16 @@ body{
     background: #e7e7e7;
     position: relative;
 }
+.scrollTop{
+    width: 102%;
+    height: 100%;
+}
 #main{
-    margin-top: 20rem;
+    width: 102%;
+    overflow-y: auto;
+    padding: 2rem;
+    margin-top: 166px !important;
+
 }
 .list-ul{
     padding: 0 1.5rem;

@@ -5,11 +5,20 @@ var main = new Vue({
         locked: false,
         loaded: 0,
         total: 0,
-        pageNum: 0,
+        pageNum: 1,
         pageSize: 4,
         is_clean: 0// 未结算
     },
+
     methods: {
+        /**
+         * 显示按钮
+         * @param event
+         */
+        showBtn:function(event){
+            var _this=$(event.currentTarget);
+            _this.children('.display').toggle(500).css('display');
+        },
         /**
          * 点击未结算
          */
@@ -71,6 +80,8 @@ var main = new Vue({
                         _this.orders.push.apply(_this.orders, result.data.list);
                         // 2.更新已经加载的条数
                         _this.loaded += result.data.list.length;
+                        //更新总条数
+                        _this.total = result.data.total;
                         // 3.把锁打开
                         _this.locked = false;
                         // 4.如果已加载的条数 == 总条数 ，显示已经到底
@@ -113,6 +124,7 @@ var main = new Vue({
                 if (!_this.locked && ($(document).height() - (i + $(window).height()) == 1 || $(document).height() - (i + $(window).height()) < i) && _this.loaded < _this.total) {
                     // 先上锁，避免多次请求
                     _this.locked = true;
+                    console.log("已加载" + main.loaded + "条" + "总条数" + main.total + "条");
                     // 发送请求
                     _this.loadData();
                 }

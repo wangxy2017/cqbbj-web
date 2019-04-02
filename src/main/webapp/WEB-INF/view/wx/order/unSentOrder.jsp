@@ -14,7 +14,8 @@
     <meta http-equiv="Pragma" content="no-cache"/>
     <meta http-equiv="Expires" content="0"/>
     <title>订单管理</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/plugin/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <link rel="stylesheet"
+          href="${pageContext.request.contextPath}/resources/wx/plugin/bootstrap-3.3.7-dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/plugin/toastr/toastr.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/css/unSentOrder.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/css/header.css">
@@ -31,8 +32,8 @@
         <span class="glyphicon glyphicon-home" onclick="javaScript:window.location.href='/wx/login/toHome'"></span>
     </div>
 </header>
-<div class="container-fluid" id="main">
-    <form action="" class="form-group">
+<div class="scorllTop">
+    <div class="container-fluid" id="main">
         <ul class="list-ul">
             <li class="row list-li" v-for="(item, index) in orders" @click="showBtns($event)">
                 <input type="hidden" name="orderId" id="orderId" v-model="item.id">
@@ -43,7 +44,7 @@
                     <div class="col-sm-7">
                         <p>
                             订单号：
-                            <a  href="javascript:;" @click.stop="view(item.id)"><span >{{item.order_no}}</span></a></p>
+                            <a href="javascript:;" @click.stop="view(item.id)"><span>{{item.order_no}}</span></a></p>
                     </div>
                     <div class="col-sm-5">
                         <p class="pull-right">客户姓名：{{item.name}}</p>
@@ -71,7 +72,8 @@
                     </div>
                     <div class="col-sm-3">
                         <a class="sent">
-                            <button type="button" class="btn btn-success" @click.stop="dispatch(item.order_no)">派单</button>
+                            <button type="button" class="btn btn-success" @click.stop="dispatch(item.order_no)">派单
+                            </button>
                         </a>
                     </div>
                     <div class="col-sm-3">
@@ -81,7 +83,9 @@
                     </div>
                     <div class="col-sm-3">
                         <a class="abolish">
-                            <button type="button" class="btn btn-default" @click.stop="cancel(item.id,item.order_no,$event)">作废</button>
+                            <button type="button" class="btn btn-default"
+                                    @click.stop="cancel(item.id,item.order_no,$event)">作废
+                            </button>
                         </a>
                     </div>
                 </div>
@@ -99,7 +103,8 @@
                             <p>是否确定作废?</p>
                         </div>
                         <div class="col-sm-6">
-                            <input type="button" class="btn btn-info btn-lg btn-block" @click.stop="ascertain"  value="确定">
+                            <input type="button" class="btn btn-info btn-lg btn-block" @click.stop="ascertain"
+                                   value="确定">
                         </div>
                         <div class="col-sm-6">
                             <input type="button" class="btn btn-default btn-lg btn-block" value="取消">
@@ -108,23 +113,22 @@
                 </div>
             </div>
         </ul>
-        <div class="loading" style="display: none;">.....我是有底线的....</div>
-    </form>
-</div>
-<div class="row loading">
-    <div class="col-sm-5">
-        <img class="pull-right" src="${pageContext.request.contextPath}/resources/wx/imge/loading.gif" alt="">
     </div>
-    <div class="col-sm-7">
-        <P class="pull-left">页面加载中...</P>
+    <div class="row loading">
+        <div class="col-sm-5">
+            <img class="pull-right" src="${pageContext.request.contextPath}/resources/wx/imge/loading.gif" alt="">
+        </div>
+        <div class="col-sm-7">
+            <P class="pull-left">页面加载中...</P>
+        </div>
     </div>
-</div>
-<div class=" row baseLine">
-    <p>---------我是有底线的----------</p>
-</div>
-<div class="notFind">
-    <img src="${pageContext.request.contextPath}/resources/wx/imge/undefind.png" alt="">
-    <p>-.-.-.-.-.-暂无数据-.-.-.-.-.-</p>
+    <div class=" row baseLine">
+        <p>---------我是有底线的----------</p>
+    </div>
+    <div class="notFind">
+        <img src="${pageContext.request.contextPath}/resources/wx/imge/undefind.png" alt="">
+        <p>-.-.-.-.-.-暂无数据-.-.-.-.-.-</p>
+    </div>
 </div>
 <script src="${pageContext.request.contextPath}/resources/wx/plugin/jquery-3.3.1.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/wx/plugin/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
