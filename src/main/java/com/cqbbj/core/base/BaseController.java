@@ -1,5 +1,6 @@
 package com.cqbbj.core.base;
 
+import com.cqbbj.core.util.WXSession;
 import com.cqbbj.entity.Employee;
 import com.cqbbj.entity.OperationLog;
 import org.apache.log4j.Logger;
@@ -44,14 +45,15 @@ public class BaseController {
         return (Employee) getSession(request).getAttribute("loginUser");
     }
 
-//    /**
-//     * 获取微信登录员工信息
-//     * @param request
-//     * @return
-//     */
-//    protected Employee getWXEmpUser(HttpServletRequest request) {
-//        return (Employee) getSession(request).getAttribute("empUser");
-//    }
+    /**
+     * 获取微信登录员工信息
+     *
+     * @param request
+     * @return
+     */
+    protected Employee getWXEmpUser(HttpServletRequest request) {
+        return (Employee) WXSession.getValue(request.getParameter("key"));
+    }
 
 //    /**
 //     * 获取微信客户登录信息

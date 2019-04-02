@@ -184,11 +184,8 @@ public class WXLoginController extends BaseController {
                 // 做操作
                 Employee employee = list.get(0);
                 if (employee.getIs_disabled() == 0) {
-                    EmployeeUtils.setEmployee(employee);
+                    WXSession.pushValue(request.getParameter("key"), employee);
                     return ResultUtils.success(employee);
-//                    HttpSession session = getSession(request);
-//                    session.setAttribute("empUser", employee);
-//                    session.setAttribute("loginer",0);
                 } else {
                     return ResultUtils.error("账号已被禁用");
                 }
