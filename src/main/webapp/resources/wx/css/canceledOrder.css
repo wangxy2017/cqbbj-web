@@ -14,7 +14,9 @@ body{
     background: #e7e7e7;
     position: relative;
 }
-
+#main{
+    margin-top: 20rem;
+}
 .list-ul{
     padding: 0 1.5rem;
 }

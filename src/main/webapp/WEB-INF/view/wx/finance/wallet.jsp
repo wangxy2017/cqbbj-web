@@ -21,15 +21,20 @@
 </head>
 <body>
 <header>
-    <div class="pic">
+    <div class="pull-left col-sm-2">
         <span class="glyphicon glyphicon-menu-left" onclick="javaScript:window.history.back()"></span>
     </div>
-    <p>我的钱包</p>
+    <div class="col-sm-8">
+        <p>我的钱包</p>
+    </div>
+    <div class="pull-right col-sm-2">
+        <span class="glyphicon glyphicon-home" onclick="javaScript:window.location.href='/wx/login/toHome'"></span>
+    </div>
 </header>
 <div id="main">
 <div class="main">
     <div class="main-center">
-        <p>余额账户（元）</p>
+        <p>账户余额（元）</p>
         <h1>{{employee.money}}</h1>
     </div>
 </div>

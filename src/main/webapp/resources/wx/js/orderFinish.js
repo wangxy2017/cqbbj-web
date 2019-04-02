@@ -2,9 +2,8 @@ var main = new Vue({
     el: "#main",
     data: {
         order_no: "",
-        receiveMoney: "",
-        receiveText: "",
-        isNotPay:""
+        receiveMoney: 0.00,
+        receiveText: ""
     },
     methods: {
         /**
@@ -18,17 +17,17 @@ var main = new Vue({
                     "order_no": main.order_no,
                     "receiveMoney": main.receiveMoney,
                     "receiveText": main.receiveText,
-                    "endTime":new Date(),
-                    "isNotPay":main.isNotPay,
-                    "status": 2,
-                    "id":$("#main").attr("data_id")
+                    "isNotPay": $("#notPay").is(":checked") ? 1 : 0,
+                    "id": $("#main").attr("data_id")
                 },
                 type: "POST",
                 success: function (result) {
                     console.log(result);
-                    if(result.code == 1){
-                    toastr.success('提交成功');
-                    window.location.href = "/wx/order/completeOrder";
+                    if (result.code == 1) {
+                        toastr.success('操作成功');
+                        setTimeout(function () {
+                            window.location.href = "/wx/order/completeOrder";
+                        },500);
                     }
                 },
                 error: function (result) {

@@ -21,10 +21,15 @@
 </head>
 <body>
 <header>
-    <div class="pic">
-        <span class="glyphicon glyphicon-menu-left" onclick="javaScript:window.history.back()" ></span>
+    <div class="pull-left col-sm-2">
+        <span class="glyphicon glyphicon-menu-left" onclick="javaScript:window.history.back()"></span>
     </div>
-    <p>工资管理</p>
+    <div class="col-sm-8">
+        <p>工资管理</p>
+    </div>
+    <div class="pull-right col-sm-2">
+        <span class="glyphicon glyphicon-home" onclick="javaScript:window.location.href='/wx/login/toHome'"></span>
+    </div>
 </header>
 <div class="container-fluid" id="main">
     <div class="row list-li" @click.stop="display($event)" v-for="item in salarys">
@@ -62,7 +67,7 @@
                         <input type="button" class="btn btn-info btn-lg btn-block" @click.stop="ascertain(item.id)"  value="确定">
                     </div>
                     <div class="col-sm-6">
-                        <input type="button" class="btn btn-default btn-lg btn-block" @click="outMolde" value="取消">
+                        <input type="button" class="btn btn-default btn-lg btn-block" value="取消">
                     </div>
                 </div>
             </div>

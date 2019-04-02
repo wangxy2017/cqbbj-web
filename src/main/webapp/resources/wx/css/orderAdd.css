@@ -1,5 +1,7 @@
 
-
+#main{
+    margin-top: 18rem;
+}
 /*文字提示*/
 .col-sm-2{
     font-size: 4rem;

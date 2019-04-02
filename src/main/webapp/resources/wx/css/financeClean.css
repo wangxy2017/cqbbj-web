@@ -6,6 +6,9 @@
 body{
     background: #e7e7e7;
 }
+#main{
+    margin-top: 12rem;
+}
 .center{
     width: 96%;
     margin: auto;

@@ -11,7 +11,7 @@ var main = new Vue({
     },
     methods: {
         /**
-         * 点击未完成
+         * 点击未完成执行的函数
          */
         unComplete: function () {
             // 样式切换
@@ -27,6 +27,9 @@ var main = new Vue({
             main.pageSize = 4;
             main.loadData();
         },
+        /**
+         * 点击已完成执行的函数
+         */
         complete: function () {
             // 样式切换
             $("#right").addClass("border_bottom");
@@ -41,15 +44,91 @@ var main = new Vue({
             main.pageSize = 4;
             main.loadData();
         },
+        /**
+         * 模态框点击确定事件
+         */
+        ascertain: function () {
+            toastr.info("你选择了确定");
+            // var id = $("#checkId").val();
+            // var order_no = $("#checkOrderNo").val();
+            // $.ajax({
+            //     url: "",
+            //     data: {
+            //         "id": id,
+            //         "status": 3,
+            //         "order_no": order_no
+            //     },
+            //     dataType: "json",
+            //     type: "post",
+            //     success: function (res) {
+            //         if (res.code == 1) {
+            //             toastr.success("操作成功");
+            //             // console.log(res.data);
+            //             setTimeout(function () {
+            //                 window.location.href = "";
+            //             },500)
+            //         }
+            //     }, error: function () {
+            //         toastr.error("数据异常");
+            //     }
+            // });
+            // 刷新列表
+        },
+
+        /**
+         * 点击任意地方关闭模态框
+         */
+        end: function () {
+            $(".alert_body").animate({
+                marginTop: '-70rem',
+            });
+            setTimeout(function () {
+                $(".alert_model").css("display", "none");
+            }, 500);
+        },
+        /**
+         * 点击关闭按钮隐藏模态框动画
+         */
+        hide: function () {
+            $(".alert_body").animate({
+                marginTop: '-70rem',
+            });
+            setTimeout(function () {
+                $(".alert_model").css("display", "none");
+            }, 500);
+
+        },
+        /**
+         * 点击卡片显示隐藏的查看和收款按钮
+         * @param event
+         */
+        open: function (event) {
+            // console.log("123");
+            $(event.currentTarget).children('.display').fadeToggle(500);
+        },
+        /**
+         * 点击查看跳转页面
+         * @param id
+         */
         view: function (id) {
             setTimeout(function () {
                 window.location.href = "/wx/order/orderDetail?id=" + id;
             }, 100)
 
         },
-        open: function (event) {
-            // console.log("123");
-            $(event.currentTarget).children('.display').fadeToggle(500);
+        /**
+         * 点击完成按钮执行的函数
+         */
+        finish: function(id, order_no, event){
+            // 设置选中id
+            $("#checkId").val(id);
+            $("#checkOrderNo").val(order_no);
+            // 模态框弹出
+            var _this = $(event.currentTarget);
+            var mask = _this.parents("li").siblings("div");
+            mask.show().find(".alert_body").animate({
+                marginTop: '40rem'
+            });
         },
         /**
          * 加载数据

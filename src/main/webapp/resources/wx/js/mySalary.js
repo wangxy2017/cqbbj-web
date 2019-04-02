@@ -54,15 +54,7 @@ var main = new Vue({
                 }
             });
         },
-        /**
-         * 点击取消事件
-         */
-        outMolde: function () {
-            setTimeout(function () {
-                toastr.info("你放弃了操作");
-            }, 500)
 
-        },
         /**
          * 点击删除事件
          */

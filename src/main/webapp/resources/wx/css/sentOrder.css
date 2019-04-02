@@ -7,12 +7,12 @@ body{
     background: #e7e7e7;
     position: relative;
 }
-
 .list-ul{
-    padding: 0 1.5rem;
+    padding: 0 2rem;
 }
 .container-fluid{
     font-size: 5rem;
+    margin-top: 20rem !important;
     padding-top:2rem
 }
 /*Li卡片的样式*/

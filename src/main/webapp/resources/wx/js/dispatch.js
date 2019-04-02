@@ -250,7 +250,7 @@ var main = new Vue({
                             //派单成功回退到未派界面页面
                         setTimeout(function () {
                             window.location.href ="/wx/order/unSentOrder";
-                        },1000)
+                        },500)
                     }
                 }, error: function (res) {
                     console.log(res);
