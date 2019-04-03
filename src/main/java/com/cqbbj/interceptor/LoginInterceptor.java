@@ -6,17 +6,17 @@
  */
 package com.cqbbj.interceptor;
 
+import com.alibaba.fastjson.JSON;
 import com.cqbbj.core.base.WXSession;
+import com.cqbbj.core.util.ResultUtils;
 import com.cqbbj.core.util.WXSessionUtils;
 import com.cqbbj.entity.Employee;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.io.OutputStream;
 
 public class LoginInterceptor implements HandlerInterceptor {
 
@@ -43,7 +43,7 @@ public class LoginInterceptor implements HandlerInterceptor {
                 session = WXSessionUtils.getSession(request.getParameter("userKey"));
             } catch (Exception e) {
                 response.setContentType("text/html;charset=UTF-8");
-                response.getWriter().println("<span style='font-size:4rem'>参数错误</span>");
+                response.getWriter().println(JSON.toJSONString(ResultUtils.error("参数错误")));
                 return false;
             }
             Employee employee = (Employee) session.get("wxEmpUser");
