@@ -38,43 +38,50 @@
         <input type="hidden" name="status" id="status" v-model="order.status">
         <tr class="row">
             <th class="col-sm-3">订单编号:</th>
-            <td class="col-sm-9" style="color: #1e9fff"><input type="text" class="form-control" name="order_no" disabled
-                                                               id="order_no" v-model="order.order_no"></td>
-
+            <td class="col-sm-9" style="color: #1e9fff">
+                <input type="text" class="form-control" name="order_no" disabled id="order_no" v-model="order.order_no">
+            </td>
         </tr>
         <tr class="row">
             <th class="col-sm-3">客户名称:</th>
-            <td class="col-sm-9"><input type="text" class="form-control" name="name" id="name" v-model="order.name"></td>
-
+            <td class="col-sm-9">
+                <input type="text" class="form-control" name="name" id="name" v-model="order.name">
+            </td>
         </tr>
         <tr class="row">
             <th class="col-sm-3">客户电话:</th>
-            <td class="col-sm-9"><input type="number" class="form-control" name="phone" id="phone" v-model="order.phone"></td>
-
+            <td class="col-sm-9">
+                <input type="number" class="form-control" name="phone" id="phone" v-model="order.phone">
+            </td>
         </tr>
         <tr class="row">
             <th class="col-sm-3">搬出地址:</th>
-            <td class="col-sm-9"><input type="text" class="form-control" name="start" id="start" v-model="order.start"></td>
-
+            <td class="col-sm-9">
+                <input type="text" class="form-control" name="start" id="start" v-model="order.start">
+            </td>
         </tr>
         <tr class="row">
             <th class="col-sm-3">搬入地址:</th>
-            <td class="col-sm-9"><input type="text" class="form-control" name="end" id="end" v-model="order.end"></td>
-
+            <td class="col-sm-9">
+                <input type="text" class="form-control" name="end" id="end" v-model="order.end">
+            </td>
         </tr>
         <tr class="row">
             <th class="col-sm-3">客户备注:</th>
-            <td class="col-sm-9"><input type="text" class="form-control" name="remark" id="remark" v-model="order.content"></td>
+            <td class="col-sm-9">
+                <input type="text" class="form-control" name="remark" id="remark" v-model="order.content"></td>
 
         </tr>
         <tr class="row">
             <th class="col-sm-3">预估起价:</th>
-            <td class="col-sm-9"><input type="text" class="form-control" name="price" id="price" v-model="order.price"></td>
+            <td class="col-sm-9">
+                <input type="text" class="form-control" name="price" id="price" v-model="order.price"></td>
 
         </tr>
         <tr class="row">
             <th class="col-sm-3">预约时间:</th>
-            <td class="col-sm-9"><input type="text" class="form-control" name="beginTime" id="beginTime" v-model="order.beginTime">
+            <td class="col-sm-9">
+                <input type="text" class="form-control" name="beginTime" id="beginTime" :value="formatDateTime(order.beginTime)">
             </td>
         </tr>
 
@@ -84,7 +91,7 @@
             <td class="col-sm-9">
                 <div class="col-sm-6">
                     <input type="text" class="form-control" name="moneyEmps_name" id="moneyEmps_name">
-                    <input type="hidden" name="moneyEmps" id="moneyEmpNo">
+                    <input type="hidden" name="moneyEmpsNo" id="moneyEmpNo">
                 </div>
                 <div class="col-sm-3">
                     <input type="button" @click.stop="openMoneyEmpModel($event)" class="btn btn-success btn-lg btn-block update" value="修改员工">
