@@ -20,6 +20,11 @@ public class WXHomeTaskController extends BaseController {
     @Autowired
     private IOrderService orderService;// 订单
 
+    @RequestMapping("/myTask")
+    public String myTask() {
+        return "wx/myTask/myTask";
+    }
+
     /**
      * 查询我的任务
      *

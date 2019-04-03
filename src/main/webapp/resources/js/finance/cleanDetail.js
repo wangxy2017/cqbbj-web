@@ -12,44 +12,61 @@ layui.use(["table", "layer", "laydate", "jquery"], function () {
         },
         methods: {
             //选择收款人
-            chooseMoney:function () {
-                layer.open({
+            chooseEmp:function (type) {
+                parent.layer.open({
                     type: 2,
-                    content: "/finance/cleanDetail?id=" ,
-                    area: ["500px", "400px"],
-                    title: "选择收款人"
+                    title: "选择员工",
+                    content: "/order/searchEmpList",
+                    area: ["980px", "450px"],
+                    maxmin: true,
+                    moveOut: true,
+                    end: function () {
+                        // 关闭弹层回调
+                        // console.log(parent.checkedEmps);
+                        if (type == "money") {
+                            main.moneyEmp = parent.checkedEmps[0];
+                        }
+                        if (type == "drive") {
+                            main.margeEmps(parent.checkedEmps, main.driveEmps);
+                        }
+                        if (type == "move") {
+                            main.margeEmps(parent.checkedEmps, main.moveEmps);
+                        }
+                        if (type == "air") {
+                            main.margeEmps(parent.checkedEmps, main.airEmps);
+                        }
+                    }
                 });
             },
-
-            //选择司机
-            chooseDrive:function () {
-                layer.open({
-                    type: 2,
-                    content: "/finance/cleanDetail?id=" ,
-                    area: ["500px", "400px"],
-                    title: "选择司机"
-                });
-            },
-
-            //选择搬用工
-            chooseMove:function () {
-                layer.open({
-                    type: 2,
-                    content: "/finance/cleanDetail?id=" ,
-                    area: ["500px", "400px"],
-                    title: "选择搬用工"
-                });
-            },
-
-            //选择空调工
-            chooseMove:function () {
-                layer.open({
-                    type: 2,
-                    content: "/finance/cleanDetail?id=" ,
-                    area: ["500px", "400px"],
-                    title: "选择空调工"
-                });
-            },
+            /**
+             * 合并员工数组
+             *
+             * @param checkedEmps 选择的员工
+             * @param dispatchEmps 派单员工数组
+             */
+            margeEmps: function (checkedEmps, dispatchEmps) {
+                // 去重
+                var tempArr = [];
+                for (var i = 0; i < checkedEmps.length; i++) {
+                    var check = checkedEmps[i];
+                    var isPush = true
+                    for (var j = 0; j < dispatchEmps.length; j++) {
+                        var emp = dispatchEmps[j];
+                        if (emp.emp_no == check.emp_no) {
+                            isPush = false;
+                        }
+                    }
+                    if (isPush) {
+                        tempArr.push(check);
+                    }
+                }
+                // 追加
+                for (var i = 0; i < tempArr.length; i++) {
+                    dispatchEmps.push(tempArr[i]);
+                }
+            }
         }
+
+
     });
 });

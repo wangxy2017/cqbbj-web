@@ -138,8 +138,8 @@ layui.use(["table", "layer", "laydate", "jquery"], function () {
                             area: ["700px", "550px"],
                             anim: 5,
                             title: "结算方式",
-                            success:function (result,index) {
-                                
+                            success:function (layero, index) {
+                                console.log(layero, index);
                             }
                         });
                     }

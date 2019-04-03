@@ -414,7 +414,7 @@ public class WXOrderControll extends BaseController {
                 order1.setReceiveMoney(order.getReceiveMoney());
                 order1.setReceiveText(order.getReceiveText());
                 order1.setCostMoney(order.getCostMoney());
-                order1.setCostText(order.getCostText());
+                order1.setCostText(order.getCostText()==null?"":order.getCostText());
                 order1.setPayState(1);
                 order1.setStatus(2);
                 order1.setEndTime(new Date());
