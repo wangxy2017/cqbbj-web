@@ -64,6 +64,7 @@ $(function () {
         $.ajax({
             url: "/wx/order/addOrder",
             data: {
+                "userKey": myCache.userKey,
                 "name": $("#name").val(),
                 "phone": $("#phone").val(),
                 "start": $("#start").val(),
@@ -78,10 +79,15 @@ $(function () {
             type: "POST",
             success: function (res) {
                 console.log(res);
-                toastr.info("提交成功");
-                setTimeout(function () {
-                    window.location.href = "/wx/login/toHome";
-                }, 1000);
+                if (res.code == 1){
+                    toastr.info("提交成功");
+                    setTimeout(function () {
+                        window.location.href = "/wx/login/toHome?userKey=" + myCache.userKey;
+                    }, 1000);
+                }else {
+                    toastr.error("提交失败");
+                    return;
+                }
             }, error: function () {
                 toastr.error("提交异常");
             }
