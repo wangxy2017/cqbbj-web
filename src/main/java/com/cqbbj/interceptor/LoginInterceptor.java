@@ -8,6 +8,7 @@ package com.cqbbj.interceptor;
 
 import com.alibaba.fastjson.JSON;
 import com.cqbbj.core.base.WXSession;
+import com.cqbbj.core.util.CommUtils;
 import com.cqbbj.core.util.ResultUtils;
 import com.cqbbj.core.util.WXSessionUtils;
 import com.cqbbj.entity.Employee;
@@ -43,11 +44,14 @@ public class LoginInterceptor implements HandlerInterceptor {
                 session = WXSessionUtils.getSession(request.getParameter("userKey"));
             } catch (Exception e) {
                 response.setContentType("text/html;charset=UTF-8");
-                response.getWriter().println(JSON.toJSONString(ResultUtils.error("参数错误")));
+                response.getWriter().write(JSON.toJSONString(ResultUtils.error("参数错误")));
                 return false;
             }
             Employee employee = (Employee) session.get("wxEmpUser");
             if (employee != null) {
+                // 重置session时间
+                session.setOutTime(WXSessionUtils.DEFAULT_TIME);
+                // 放行
                 return true;
             } else {
                 response.sendRedirect("/wx/login/toLogin");
