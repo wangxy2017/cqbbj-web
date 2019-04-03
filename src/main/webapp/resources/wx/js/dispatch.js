@@ -37,7 +37,7 @@ var main = new Vue({
          */
         chooseEmp: function () {
             main.$http.post("/wx/employee/queryPageList", {"userKey": myCache.userKey}, {emulateJSON: true}).then(function (res) {
-                console.log(res.body);
+                // console.log(res.body);
                 // [{name:xxx,emp_no:xxx},{name:xxx,emp_no:xxx},{name:xxx,emp_no:xxx}]
                 main.emps = res.body.data;
             }, function (res) {
@@ -72,7 +72,7 @@ var main = new Vue({
         */
         chooseDriver: function () {
             main.$http.post("/wx/employee/queryPageList", {"userKey": myCache.userKey}, {emulateJSON: true}).then(function (res) {
-                console.log(res.body);
+                // console.log(res.body);
                 // [{name:xxx,emp_no:xxx},{name:xxx,emp_no:xxx},{name:xxx,emp_no:xxx}]
                 main.motorMans = res.body.data;
             }, function (res) {
@@ -112,7 +112,7 @@ var main = new Vue({
 
         chooseHamal: function () {
             main.$http.post("/wx/employee/queryPageList", {"userKey": myCache.userKey}, {emulateJSON: true}).then(function (res) {
-                console.log(res.body);
+                // console.log(res.body);
                 // [{name:xxx,emp_no:xxx},{name:xxx,emp_no:xxx},{name:xxx,emp_no:xxx}]
                 main.hamals = res.body.data;
             }, function (res) {
@@ -154,7 +154,7 @@ var main = new Vue({
 
         chooseHvac: function () {
             main.$http.post("/wx/employee/queryPageList", {"userKey": myCache.userKey}, {emulateJSON: true}).then(function (res) {
-                console.log(res.body);
+                // console.log(res.body);
                 // [{name:xxx,emp_no:xxx},{name:xxx,emp_no:xxx},{name:xxx,emp_no:xxx}]
                 main.hvacs = res.body.data;
             }, function (res) {
@@ -196,20 +196,27 @@ var main = new Vue({
             window.location.reload();
         },
 
-
-        /*
-        * 派单提交点击事件
-        *
-        * */
+        /**
+         * 提交事件
+         */
 
         submit: function () {
-            // console.log(main.driveEmps);
-            // console.log(main.moveEmps);
-            // console.log(main.moveEmps);
-            // return;
+            /**
+             * 判断收款人员不能为空
+             */
+            if ($("#moneyEmp").val() == "") {
+                toastr.warning("收款人员不能为空");
+                return;
+            }
+            if ($("#driver").val() == "") {
+                toastr.warning("随车司机不能为空");
+                return;
+            }
+
             $.ajax({
                 url: "/wx/order/dispatchOrder",
                 data: {
+                    "userKey": myCache.userKey,
                     // 订单编号
                     order_no: main.order_no
                     //收款人员
@@ -226,30 +233,20 @@ var main = new Vue({
                 //异步请求
                 type: "post",
                 success: function (res) {
-                    /**
-                     * 判断收款人员不能为空
-                     */
-                    if ($("#moneyEmp").val() == "") {
-                        toastr.warning("收款人员不能为空");
-                        return;
-                    }
-                    if ($("#driver").val() == "") {
-                        toastr.warning("随车司机不能为空");
-                        return;
-                    }
-
+                    console.log(res);
                     if (res.code == 1) {
-                        console.log(res);
                         //    请求成功执行的代码
                         toastr.success("派单成功");
                         //派单成功回退到未派界面页面
                         setTimeout(function () {
                             window.location.href = "/wx/order/unSentOrder?userKey=" + myCache.userKey;
                         }, 500)
+                    } else {
+                        toastr.error("派单失败");
                     }
-                }, error: function (res) {
-                    console.log(res);
-                    toastr.error("派单失败!");
+                },
+                error: function (res) {
+                    toastr.error("服务器异常!");
                 }   //    请求失败执行的代码
             });
         },

@@ -6,9 +6,7 @@ var main = new Vue({
          * 点击提交事件
          */
         submit:function () {
-            // if () {
-            //
-            // }
+
             $.ajax({
                 url: "/wx/order/addIntentionOrder",
                 data: {
@@ -19,10 +17,20 @@ var main = new Vue({
                 },
                 dataType: "JSON",
                 type: "POST",
+                /**
+                 * 成功执行判断
+                 * @param res
+                 */
                 success: function (res) {
                     console.log(res);
-                    toastr.info("提交成功");
-                }, error: function () {
+                    if (res.code == 1){
+                        toastr.info("提交成功");
+                    }else {
+                        toastr.error("提交失败");
+                    }
+                },
+
+                error: function () {
                     toastr.error("提交异常");
                 }
             });

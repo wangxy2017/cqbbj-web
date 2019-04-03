@@ -29,8 +29,7 @@
         <p>完成订单</p>
     </div>
     <div class="pull-right col-sm-2">
-        <span class="glyphicon glyphicon-home" onclick="javaScript:window.location.href='/wx/login/toHome'"
-              style="color: white"></span>
+        <span class="glyphicon glyphicon-home"  onclick="javaScript:window.location.href='/wx/login/toHome?userKey='+ myCache.userKey" style="color: white"></span>
     </div>
 </header>
 <div class="scrollTop">

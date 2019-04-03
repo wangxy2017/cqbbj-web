@@ -29,7 +29,7 @@
         <p>开始派单</p>
     </div>
     <div class="pull-right col-sm-2">
-        <span class="glyphicon glyphicon-home" onclick="javaScript:window.location.href='/wx/login/toHome'"></span>
+        <span class="glyphicon glyphicon-home"  onclick="javaScript:window.location.href='/wx/login/toHome?userKey='+ myCache.userKey"></span>
     </div>
 </header>
 <div class="container-fluid" id="main" dataid="<%=request.getParameter("order_no")%>">

@@ -127,6 +127,11 @@ body{
 .unfinished .col-sm-7 a{
     color: #1e9fff;
 }
+/*备注文本域*/
+
+.col-sm-9 textarea{
+    font-size: 4rem;
+}
 /*-------模态框开始-------*/
 .alert_model{
     width: 100%;

@@ -48,7 +48,39 @@ var main = new Vue({
          * 模态框点击确定事件
          */
         ascertain: function () {
-            toastr.info("你选择了确定");
+            $.ajax({
+                url: "/wx/order/helpDone",
+                dataType: "json",
+                data: {
+                    "userKey": myCache.userKey,
+                    "id": $("#checkId").val(),
+                    "order_no": $("#checkOrderNo").val(),
+                    "cashPay": $("#cashPay").val(),
+                    "payNote": $("#payNote").val(),
+                    "isNotPay": $("#isNotPay").is(":checked") ? 1 : 0
+                },
+                type: "POST",
+                success:  function (result) {
+                        console.log(result);
+                        if (result.code == 1) {
+                            //关闭模态框
+                            main.end();
+                            //弹出提示信息
+                            setTimeout(function () {
+                                toastr.success("操作成功");
+                            },500);
+                            //刷新当前页面
+                            setTimeout(function () {
+                                window.location.reload();
+                            },200);
+                        } else {
+                            toastr.error("操作失败");
+                        }
+                    },
+                error: function () {
+                    toastr.error("服务器异常");
+                }
+            });
         },
 
         /**
@@ -59,27 +91,20 @@ var main = new Vue({
                 marginTop: '-70rem',
             });
             setTimeout(function () {
-                $(".alert_model").css("display", "none");
+                $(".alert_model").hide();
             }, 500);
         },
         /**
          * 点击关闭按钮隐藏模态框动画
          */
         hide: function () {
-            $(".alert_body").animate({
-                marginTop: '-70rem',
-            });
-            setTimeout(function () {
-                $(".alert_model").css("display", "none");
-            }, 500);
-
+           main.end();
         },
         /**
          * 点击卡片显示隐藏的查看和收款按钮
          * @param event
          */
         open: function (event) {
-            // console.log("123");
             $(event.currentTarget).children('.display').fadeToggle(500);
         },
         /**
@@ -88,14 +113,14 @@ var main = new Vue({
          */
         view: function (id) {
             setTimeout(function () {
-                window.location.href = "/wx/order/orderDetail?userKey="+myCache.userKey+"&id=" + id;
+                window.location.href = "/wx/order/orderDetail?userKey=" + myCache.userKey + "&id=" + id;
             }, 100)
 
         },
         /**
          * 点击完成按钮执行的函数
          */
-        finish: function(id, order_no, event){
+        finish: function (id, order_no, event) {
             // 设置选中id
             $("#checkId").val(id);
             $("#checkOrderNo").val(order_no);
@@ -128,7 +153,7 @@ var main = new Vue({
                     $(".preloader").hide();
                 },
                 success: function (result) {
-                    console.log(result);
+                    // console.log(result);
                     if (result.code == 1) {
                         // 1.请求成功，渲染数据
                         _this.orders.push.apply(_this.orders, result.data.list);

@@ -29,7 +29,7 @@
         <p>我的任务</p>
     </div>
     <div class="pull-right col-sm-2">
-        <span class="glyphicon glyphicon-home" onclick="javaScript:window.location.href='/wx/login/toHome'"></span>
+        <span class="glyphicon glyphicon-home" onclick="javaScript:window.location.href='/wx/login/toHome?userKey='+ myCache.userKey"></span>
     </div>
 </header>
 <div class="container-fluid" id="main">
@@ -88,13 +88,14 @@
                         </div>
                     </div>
                 </li>
-                <%--模态框--%>
+
+                <%--模态框开始--%>
                 <div class="alert_model" @click.stop="end">
                     <div class="alert_body">
                         <input type="hidden" id="checkId" value="">
                         <input type="hidden" id="checkOrderNo" value="">
                         <div class="alert-title">
-                            <p>选择付款方式</p>
+                            <p>选择收款方式</p>
                             <span @click.stop="hide" class="glyphicon glyphicon-remove"></span>
                         </div>
                         <div class="container-fluid">
@@ -102,13 +103,22 @@
                                 <div class="row">
                                     <div class="col-sm-3">微信支付</div>
                                     <div class="col-sm-9">
-                                        <input type="button" class="btn btn-success btn-block" @click.stop="0" value="微信支付">
+                                        <input id="weChatPay" name="weChatPay" type="button" class="btn btn-success btn-block" @click.stop="0" value="微信支付">
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-sm-3">现金支付</div>
                                     <div class="col-sm-9">
-                                        <input type="number" @click.stop="2" class="form-control" placeholder="请输入收款金额" onfocus="this.placeholder=''" onblur="this.placeholder='请输入收款金额'">
+                                        <input id="cashPay" name="casPay" type="number" @click.stop="2" class="form-control" placeholder="请输入收款金额"
+                                               onfocus="this.placeholder=''" onblur="this.placeholder='请输入收款金额'">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-3">支付备注</div>
+                                    <div class="col-sm-9">
+                                        <textarea id="payNote" name="payNote" @click.stop="0" class="form-control" rows="3" placeholder="请输入备注"
+                                                  onfocus="this.placeholder=''"
+                                                  onblur="this.placeholder='请输入备注'"></textarea>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -116,7 +126,7 @@
                                     <div class="col-sm-9">
                                         <div class="checkbox" @click.stop="1">
                                             <label id="checkBox">
-                                                <input type="checkbox">
+                                                <input id="isNotPay" name="isNotPay" type="checkbox">
                                             </label>
                                         </div>
                                     </div>
@@ -132,6 +142,8 @@
                         </div>
                     </div>
                 </div>
+                <%--模态框结束--%>
+
             </ul>
         </div>
     </div>
