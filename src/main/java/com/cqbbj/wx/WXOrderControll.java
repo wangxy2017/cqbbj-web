@@ -343,26 +343,12 @@ public class WXOrderControll extends BaseController {
      */
     @RequestMapping("/update")
     @ResponseBody
-    public Result update(HttpServletRequest request, Order order,
-                         String moneyEmpNo, String driveEmpNo, String moveEmpNo,
-                         String airEmpNo) throws Exception {
+    public Result update(HttpServletRequest request, Order order) throws Exception {
 
         // 更新订单
         orderService.updateEntity(order);
-        // 更新派单
-        if (StringUtils.isNotBlank(moneyEmpNo)
-                || StringUtils.isNotBlank(driveEmpNo)
-                || StringUtils.isNotBlank(moveEmpNo)
-                || StringUtils.isNotBlank(airEmpNo))
-            orderService.dispatchOrder(order.getOrder_no(),
-                    CommUtils.toStringArray(moneyEmpNo),
-                    CommUtils.toStringArray(driveEmpNo),
-                    CommUtils.toStringArray(moveEmpNo),
-                    CommUtils.toStringArray(airEmpNo));
         // 记录日志
         operationLogService.saveEntity(createWXLog(request, "修改订单：" + order.getOrder_no()));
-
-
         return ResultUtils.success();
     }
 

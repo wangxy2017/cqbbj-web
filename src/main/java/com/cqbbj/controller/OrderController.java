@@ -183,18 +183,9 @@ public class OrderController extends BaseController {
      */
     @RequestMapping("/update")
     @ResponseBody
-    public Result update(HttpServletRequest request, Order order,
-                         String moneyEmps, String driveEmps, String moveEmps,
-                         String airEmps) {
+    public Result update(HttpServletRequest request, Order order) {
         // 更新订单
         orderService.updateEntity(order);
-        // 更新派单
-        if (moneyEmps != null || driveEmps != null || moneyEmps != null || airEmps != null)
-            orderService.dispatchOrder(order.getOrder_no(),
-                    CommUtils.toStringArray(moneyEmps),
-                    CommUtils.toStringArray(driveEmps),
-                    CommUtils.toStringArray(moveEmps),
-                    CommUtils.toStringArray(airEmps));
         // 记录日志
         operationLogService.saveEntity(createPCLog(request, "修改订单：" + order.getOrder_no()));
         return ResultUtils.success();
