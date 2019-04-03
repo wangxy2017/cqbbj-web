@@ -87,10 +87,7 @@
 
     <div class="order-info">
         <table>
-            <tr>
-                <td align="right">结算方式:</td>
-                <td><select v-model="cleanStyle"></select></td>
-            </tr>
+
             <tr>
                 <td align="right">预估报价：</td>
                 <td><input type="text" disabled v-model="order.price" /></td>
@@ -105,7 +102,7 @@
             </tr>
             <tr>
                 <td align="right">支出备注：</td>
-                <td><textarea  type="text" disabled v-model="order.costText" ></textarea></td>
+                <td><textarea  type="text"  v-model="order.costText" ></textarea></td>
             </tr>
             <tr>
                 <td align="right">收款备注：</td>
@@ -113,22 +110,25 @@
             </tr>
             <tr>
                 <td align="right">收款人员：</td>
-                <td><input type="text" @click="chooseEmp('money')" v-model="money">
+                <td><input type="text"  v-model="money">
+
                 </td>
             </tr>
             <tr>
                 <td align="right">随车司机：</td>
-                <td><input type="text" @click="chooseEmp('drive')" v-model="drive">
+                <td>{{order.driveEmps}}:<input type="text"  v-model="drive">
+
                 </td>
             </tr>
             <tr>
                 <td align="right">随车搬运工：</td>
-                <td><input type="text" @click="chooseEmp('move')"  v-model="move">
+                <td>{{order.moveEmps}}:<input type="text" @click="chooseEmp('move')"  v-model="move">
+
                 </td>
             </tr>
             <tr>
                 <td align="right">随车空调工：</td>
-                <td><input type="text" @click="chooseEmp('air')" v-model="air">
+                <td>{{order.airEmps}}:<input type="text" @click="chooseEmp('air')" v-model="air">
 
                 </td>
             </tr>

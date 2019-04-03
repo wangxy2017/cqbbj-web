@@ -8,7 +8,10 @@ layui.use(["table", "layer", "laydate", "jquery"], function () {
         el: "#main",
         data: {
             order: "",
-
+            moneyEmp:{},
+            driveEmps:[],
+            moveEmps:[],
+            airEmps:[]
         },
         methods: {
             //选择收款人
