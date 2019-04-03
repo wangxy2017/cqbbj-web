@@ -52,7 +52,7 @@ public class BaseController {
      * @param request
      * @return
      */
-    protected Employee getWXEmpUser(HttpServletRequest request) {
+    protected Employee getWXEmpUser(HttpServletRequest request) throws Exception {
         WXSession session = WXSessionUtils.getSession(request.getParameter("userKey"));
         return (Employee) session.get("wxEmpUser");
     }
@@ -63,7 +63,7 @@ public class BaseController {
      * @param request
      * @return
      */
-    protected Customer getWXCosUser(HttpServletRequest request) {
+    protected Customer getWXCosUser(HttpServletRequest request) throws Exception {
         WXSession session = WXSessionUtils.getSession(request.getParameter("userKey"));
         return (Customer) session.get("cosEmpUser");
     }

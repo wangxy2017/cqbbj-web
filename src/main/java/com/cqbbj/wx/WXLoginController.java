@@ -177,7 +177,7 @@ public class WXLoginController extends BaseController {
      */
     @RequestMapping("/empLogin")
     @ResponseBody
-    public Result empLogin(String account, String password) {
+    public Result empLogin(String account, String password)throws Exception  {
         // 查询员工
         List<Employee> list = employeeService.queryByAccount(account);
         if (!list.isEmpty() && list.size() == 1) {
@@ -203,7 +203,7 @@ public class WXLoginController extends BaseController {
 
     @RequestMapping("/getEmpName")
     @ResponseBody
-    public Result getEmpName(HttpServletRequest request) {
+    public Result getEmpName(HttpServletRequest request) throws Exception {
         // 获取当前登录用户
         Employee employee = getWXEmpUser(request);
         if (employee != null) {

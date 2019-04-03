@@ -22,7 +22,7 @@ public class WXMenuController extends BaseController {
 
     @RequestMapping("/queryPageList")
     @ResponseBody
-    public Result queryPageList(HttpServletRequest request) {
+    public Result queryPageList(HttpServletRequest request) throws Exception {
         List<Menu> list = menuService.queryWXMenuByDept(getWXEmpUser(request).getDept_id());
         return ResultUtils.success(list);
     }

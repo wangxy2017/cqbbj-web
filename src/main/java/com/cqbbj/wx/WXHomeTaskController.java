@@ -31,7 +31,7 @@ public class WXHomeTaskController extends BaseController {
      */
     @RequestMapping("/queryTaskList")
     @ResponseBody
-    public Result queryTaskList(HttpServletRequest request, Order order, Integer pageNum, Integer pageSize) {
+    public Result queryTaskList(HttpServletRequest request, Order order, Integer pageNum, Integer pageSize) throws Exception {
         // 查询我的任务
         order.setEmp_no(getWXEmpUser(request).getEmp_no());
         PageModel<Order> pageModel = orderService.queryMyTasks(order, pageNum, pageSize);

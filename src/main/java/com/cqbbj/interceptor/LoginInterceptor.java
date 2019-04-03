@@ -12,9 +12,11 @@ import com.cqbbj.entity.Employee;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.OutputStream;
 
 public class LoginInterceptor implements HandlerInterceptor {
 
@@ -22,7 +24,7 @@ public class LoginInterceptor implements HandlerInterceptor {
      * 配置不需要拦截的路径
      */
     private static final String[] rule = {"/resources/", "/upload/",
-            "/login", "/doLogin", "/wx/login/toLogin", "/wx/login/empLogin","/wx/order/onlineOrder"};
+            "/login", "/doLogin", "/wx/login/toLogin", "/wx/login/empLogin", "/wx/order/onlineOrder"};
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
@@ -36,7 +38,14 @@ public class LoginInterceptor implements HandlerInterceptor {
         // 2.判断是否登录
         if (uri.startsWith("/wx/")) {// 判断微信登录
             System.out.println("微信操作：" + uri);
-            WXSession session = WXSessionUtils.getSession(request.getParameter("userKey"));
+            WXSession session = null;
+            try {
+                session = WXSessionUtils.getSession(request.getParameter("userKey"));
+            } catch (Exception e) {
+                response.setContentType("text/html;charset=UTF-8");
+                response.getWriter().println("<span style='font-size:4rem'>参数错误</span>");
+                return false;
+            }
             Employee employee = (Employee) session.get("wxEmpUser");
             if (employee != null) {
                 return true;
