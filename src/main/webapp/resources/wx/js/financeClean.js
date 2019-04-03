@@ -9,7 +9,6 @@ var main = new Vue({
         pageSize: 4,
         is_clean: 0// 未结算
     },
-
     methods: {
         /**
          * 显示按钮
@@ -18,6 +17,19 @@ var main = new Vue({
         showBtn:function(event){
             var _this=$(event.currentTarget);
             _this.children('.display').toggle(500).css('display');
+        },
+        /**
+         * 查看详情
+         * @param id
+         */
+        view:function(id){
+            window.location.href="/wx/order/orderDetail?id="+id;
+        },
+        /**
+         * 结算
+         */
+        clean:function(){
+            window.location.href="/wx/order/cleanDetail?id="+id;
         },
         /**
          * 点击未结算
@@ -125,7 +137,6 @@ var main = new Vue({
                 if (!_this.locked && ($(document).height() - (i + $(window).height()) == 1 || $(document).height() - (i + $(window).height()) < i) && _this.loaded < _this.total) {
                     // 先上锁，避免多次请求
                     _this.locked = true;
-                    console.log("已加载" + main.loaded + "条" + "总条数" + main.total + "条");
                     // 发送请求
                     _this.loadData();
                 }

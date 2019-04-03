@@ -54,6 +54,18 @@
             </div>
         </div>
         <div class="row">
+            <label class="col-sm-3 control-label">支出费用:</label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control" v-model="costMoney">
+            </div>
+        </div>
+        <div class="row">
+            <label class="col-sm-3 control-label">支出费用备注:</label>
+            <div class="col-sm-9">
+                <textarea class="form-control" v-model="costText" rows="6"> </textarea>
+            </div>
+        </div>
+        <div class="row">
             <div class="col-sm-12">
                 <div class="checkbox">
                     <label id="checkBox">

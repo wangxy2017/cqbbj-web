@@ -390,6 +390,8 @@ public class WXOrderControll extends BaseController {
                 order1.setPayState(0);
                 order1.setStatus(2);
                 order1.setEndTime(new Date());
+                order1.setCostMoney(order.getCostMoney());
+                order1.setCostText(order.getCostText());
                 orderService.updateEntity(order1);
                 // 生成欠条
                 SignBill bill = new SignBill();
@@ -411,13 +413,15 @@ public class WXOrderControll extends BaseController {
             } else {
                 order1.setReceiveMoney(order.getReceiveMoney());
                 order1.setReceiveText(order.getReceiveText());
+                order1.setCostMoney(order.getCostMoney());
+                order1.setCostText(order.getCostText()==null?"":order.getCostText());
                 order1.setPayState(1);
                 order1.setStatus(2);
                 order1.setEndTime(new Date());
                 orderService.updateEntity(order1);
             }
             // 记录日志
-            operationLogService.saveEntity(createLog(request, getWXEmpUser(request).getName(), "辅助完成订单：" + order1.getOrder_no()));
+            operationLogService.saveEntity(createLog(request, "辅助完成订单：" + order1.getOrder_no()));
             return ResultUtils.success();
         }
         return ResultUtils.error();
