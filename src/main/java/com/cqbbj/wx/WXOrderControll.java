@@ -6,6 +6,7 @@ import com.cqbbj.core.base.Result;
 import com.cqbbj.core.util.*;
 import com.cqbbj.entity.*;
 import com.cqbbj.service.*;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -343,18 +344,21 @@ public class WXOrderControll extends BaseController {
     @RequestMapping("/update")
     @ResponseBody
     public Result update(HttpServletRequest request, Order order,
-                         String moneyEmps, String driveEmps, String moveEmps,
-                         String airEmps) throws Exception {
+                         String moneyEmpNo, String driveEmpNo, String moveEmpNo,
+                         String airEmpNo) throws Exception {
 
         // 更新订单
         orderService.updateEntity(order);
         // 更新派单
-        if (moneyEmps != null || driveEmps != null || moneyEmps != null || airEmps != null)
+        if (StringUtils.isNotBlank(moneyEmpNo)
+                || StringUtils.isNotBlank(driveEmpNo)
+                || StringUtils.isNotBlank(moveEmpNo)
+                || StringUtils.isNotBlank(airEmpNo))
             orderService.dispatchOrder(order.getOrder_no(),
-                    CommUtils.toStringArray(moneyEmps),
-                    CommUtils.toStringArray(driveEmps),
-                    CommUtils.toStringArray(moveEmps),
-                    CommUtils.toStringArray(airEmps));
+                    CommUtils.toStringArray(moneyEmpNo),
+                    CommUtils.toStringArray(driveEmpNo),
+                    CommUtils.toStringArray(moveEmpNo),
+                    CommUtils.toStringArray(airEmpNo));
         // 记录日志
         operationLogService.saveEntity(createWXLog(request, "修改订单：" + order.getOrder_no()));
 

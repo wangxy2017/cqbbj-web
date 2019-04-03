@@ -30,7 +30,8 @@
         <p>订单修改</p>
     </div>
     <div class="pull-right col-sm-2">
-        <span class="glyphicon glyphicon-home"  onclick="javaScript:window.location.href='/wx/login/toHome?userKey='+ myCache.userKey"></span>
+        <span class="glyphicon glyphicon-home"
+              onclick="javaScript:window.location.href='/wx/login/toHome?userKey='+myCache.userKey"></span>
     </div>
 </header>
 <div class="container-fluid" id="main">
@@ -81,163 +82,9 @@
         <tr class="row">
             <th class="col-sm-3">预约时间:</th>
             <td class="col-sm-9">
-                <input type="text" class="form-control" name="beginTime" id="beginTime" :value="formatDateTime(order.beginTime)">
+                <input type="text" class="form-control" name="beginTime" id="beginTime"
+                       :value="formatDateTime(order.beginTime)">
             </td>
-        </tr>
-
-        <%--选择要修改的收款人员--%>
-        <tr class="row" v-show="isDispatch">
-            <th class="col-sm-3">收款人:<span v-show="false" id="moneyEmpsList" v-for="item in order.moneyEmps">{{item.emp_name}}&nbsp;</span></th>
-            <td class="col-sm-9">
-                <div class="col-sm-6">
-                    <input type="text" class="form-control" name="moneyEmps_name" id="moneyEmps_name">
-                    <input type="hidden" name="moneyEmpsNo" id="moneyEmpNo">
-                </div>
-                <div class="col-sm-3">
-                    <input type="button" @click.stop="openMoneyEmpModel($event)" class="btn btn-success btn-lg btn-block update" value="修改员工">
-                </div>
-            </td>
-
-            <%--收款人模态框框--%>
-            <div id="moneyEmp" class="alert_model" @click.stop="end">
-                <div class="alert_body">
-                    <div class="alert-title">
-                        <p>选择员工</p>
-                        <span  @click.stop="hide" class="glyphicon glyphicon-remove"></span></div>
-                    <div class="container-fluid">
-                        <div class="modal-text">
-                            <div class="col-sm-4" v-for="item in money">
-                                <button :data-emp_no="item.emp_no" class="btn btn-default btn-lg"@click.stop=" moneyEmpChoose($event)">{{item.name}}({{item.account}})</button>
-                            </div>
-                        </div>
-                    </div>
-                    <footer class="row">
-                        <div class="col-sm-6">
-                            <input type="button" class="btn btn-info btn-lg btn-block" value="添加">
-                        </div>
-                        <div class="col-sm-6">
-                            <input class="btn btn-danger btn-lg btn-block" type="reset" @click="reset" value="重置">
-                        </div>
-                    </footer>
-                </div>
-            </div>
-        </tr>
-
-        <%--选择要修改的司机--%>
-        <tr class="row" v-show="isDispatch">
-            <th class="col-sm-3">司机:<span v-show="false" id="driveEmpsList" v-for="item in order.driveEmps">{{item.emp_name}}&nbsp;</span>
-            </th>
-            <td class="col-sm-9">
-                <div class="col-sm-6">
-                    <input type="text" class="form-control" name="driveEmps_name" id="driveEmps_name">
-                    <input type="hidden" name="driveEmps" id="driveEmps">
-                </div>
-                <div class="col-sm-3">
-                    <input type="button" @click="openDriveEmp($event)" class="btn btn-success btn-lg btn-block update" value="修改员工">
-                </div>
-            </td>
-
-            <%--司机模态框框--%>
-            <div id="drive" class="alert_model" @click.stop="end">
-                <div class="alert_body">
-                    <div class="alert-title">
-                        <p>选择员工</p>
-                        <span  @click.stop="hide" class="glyphicon glyphicon-remove"></span></div>
-                    <div class="container-fluid">
-                        <div class="modal-text">
-                            <div class="col-sm-4" v-for="item in drive">
-                                <button :data-emp_no="item.emp_no" class="btn btn-default btn-lg"@click.stop="DriveEmpChoose($event)">{{item.name}}({{item.account}})</button>
-                            </div>
-                        </div>
-                    </div>
-                    <footer class="row">
-                        <div class="col-sm-6">
-                            <input type="button" class="btn btn-info btn-lg btn-block" value="添加">
-                        </div>
-                        <div class="col-sm-6">
-                            <input class="btn btn-danger btn-lg btn-block" type="reset" @click="reset" value="重置">
-                        </div>
-                    </footer>
-                </div>
-            </div>
-        </tr>
-
-        <%--选择要修改的搬运工--%>
-        <tr class="row" v-show="isDispatch">
-            <th class="col-sm-3">搬运工:<span v-show="false" id="moveEmpsList" v-for="item in order.moveEmps">{{item.emp_name}}&nbsp;</span>
-            </th>
-            <td class="col-sm-9">
-                <div class="col-sm-6">
-                    <input type="text" class="form-control" name="moveEmps_name" id="moveEmps_name">
-                    <input type="hidden" name="moveEmps" id="moveEmps">
-                </div>
-                <div class="col-sm-3">
-                    <input type="button" @click="openMoveEmp($event)" class="btn btn-success btn-lg btn-block update" value="修改员工">
-                </div>
-            </td>
-
-            <%--搬用工model框--%>
-            <div id="move" class="alert_model" @click.stop="end">
-                <div class="alert_body">
-                    <div class="alert-title">
-                        <p>选择员工</p>
-                        <span  @click.stop="hide" class="glyphicon glyphicon-remove"></span></div>
-                    <div class="container-fluid">
-                        <div class="modal-text">
-                            <div class="col-sm-4" v-for="item in move">
-                                <button :data-emp_no="item.emp_no" class="btn btn-default btn-lg"@click.stop="MoveEmpChoose($event)">{{item.name}}({{item.account}})</button>
-                            </div>
-                        </div>
-                    </div>
-                    <footer class="row">
-                        <div class="col-sm-6">
-                            <input type="button" class="btn btn-info btn-lg btn-block" value="添加">
-                        </div>
-                        <div class="col-sm-6">
-                            <input class="btn btn-danger btn-lg btn-block" type="reset" @click="reset" value="重置">
-                        </div>
-                    </footer>
-                </div>
-            </div>
-        </tr>
-
-        <%--选择要修改的空调工--%>
-        <tr class="row" v-show="isDispatch">
-            <th class="col-sm-3">空调工:<span v-show="false" id="airEmpsList" v-for="item in order.airEmps">{{item.emp_name}}&nbsp;</span>
-            </th>
-            <td class="col-sm-9">
-                <div class="col-sm-6">
-                    <input type="text" class="form-control" name="airEmps_name" id="airEmps_name">
-                    <input type="hidden" name="airEmps" id="airEmps">
-                </div>
-                <div class="col-sm-3">
-                    <input type="button" @click="openAirEmp($event)" class="btn btn-success btn-lg btn-block update" value="修改员工">
-                </div>
-            </td>
-
-            <%--空调工模态框--%>
-            <div id="air" class="alert_model" @click.stop="end">
-                <div class="alert_body">
-                    <div class="alert-title">
-                        <p>选择员工</p>
-                        <span  @click.stop="hide" class="glyphicon glyphicon-remove"></span></div>
-                    <div class="container-fluid">
-                        <div class="modal-text">
-                            <div class="col-sm-4" v-for="item in air">
-                                <button :data-emp_no="item.emp_no" class="btn btn-default btn-lg"@click.stop="AirEmpChoose($event)">{{item.name}}({{item.account}})</button>
-                            </div>
-                        </div>
-                    </div>
-                    <footer class="row">
-                        <div class="col-sm-6">
-                            <input type="button" class="btn btn-info btn-lg btn-block" value="添加">
-                        </div>
-                        <div class="col-sm-6">
-                            <input class="btn btn-danger btn-lg btn-block" type="reset" @click="reset" value="重置">
-                        </div>
-                    </footer>
-                </div>
-            </div>
         </tr>
         <tr class="row">
             <th class="col-sm-3">订单状态:</th>
