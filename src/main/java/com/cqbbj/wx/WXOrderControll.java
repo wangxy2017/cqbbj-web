@@ -323,7 +323,7 @@ public class WXOrderControll extends BaseController {
     @ResponseBody
     public Result dispatchOrder(HttpServletRequest request, String order_no,
                                 String moneyEmps, String driveEmps, String moveEmps,
-                                String airEmps) {
+                                String airEmps) throws Exception {
         // 派单
         orderService.dispatchOrder(order_no,
                 CommUtils.toStringArray(moneyEmps),
@@ -344,7 +344,7 @@ public class WXOrderControll extends BaseController {
     @ResponseBody
     public Result update(HttpServletRequest request, Order order,
                          String moneyEmps, String driveEmps, String moveEmps,
-                         String airEmps) {
+                         String airEmps) throws Exception {
 
         // 更新订单
         orderService.updateEntity(order);
@@ -382,7 +382,7 @@ public class WXOrderControll extends BaseController {
      */
     @RequestMapping("/helpDone")
     @ResponseBody
-    public Result helpDone(HttpServletRequest request, Order order, Integer isNotPay) {
+    public Result helpDone(HttpServletRequest request, Order order, Integer isNotPay) throws Exception {
         Order order1 = orderService.queryById(order.getId());
         if (order1 != null) {
             // 暂不付款
@@ -431,7 +431,7 @@ public class WXOrderControll extends BaseController {
      * 登出
      */
     @RequestMapping("/loginOut")
-    public String loginOut(HttpServletRequest request) {
+    public String loginOut(HttpServletRequest request) throws Exception {
         WXSessionUtils.delSession(request.getParameter("userKey"));
         return "wx/login";
     }

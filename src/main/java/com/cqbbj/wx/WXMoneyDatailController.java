@@ -39,14 +39,14 @@ public class WXMoneyDatailController extends BaseController {
 
     @RequestMapping("/queryResult")
     @ResponseBody
-    public Result queryResult(HttpServletRequest request) {
+    public Result queryResult(HttpServletRequest request) throws Exception {
         Employee e = getWXEmpUser(request);
         return ResultUtils.success(e);
     }
 
     @RequestMapping("/queryPageList")
     @ResponseBody
-    public Result queryPageList(HttpServletRequest request,int pageNum, int pageSize) {
+    public Result queryPageList(HttpServletRequest request, int pageNum, int pageSize) throws Exception {
         MoneyDetail moneyDetail = new MoneyDetail();
         moneyDetail.setEmp_no(getWXEmpUser(request).getEmp_no());
         PageModel<MoneyDetail> pageModel = moneyDetailService.queryPageList(moneyDetail, pageNum, pageSize);

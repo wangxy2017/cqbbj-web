@@ -28,7 +28,7 @@ public class WXSessionUtils {
      * @param userKey
      * @return
      */
-    public static WXSession getSession(String userKey) {
+    public static WXSession getSession(String userKey) throws Exception {
         // 判断参数
         if (userKey == null || userKey.equals("")) {
             throw new RuntimeException("userKey参数错误");
@@ -56,7 +56,7 @@ public class WXSessionUtils {
      *
      * @param userKey
      */
-    public static void delSession(String userKey) {
+    public static void delSession(String userKey) throws Exception {
         // 判断参数
         if (userKey == null || userKey.equals("")) {
             throw new RuntimeException("userKey参数错误");
