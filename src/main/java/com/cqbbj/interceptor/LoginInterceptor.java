@@ -21,7 +21,8 @@ public class LoginInterceptor implements HandlerInterceptor {
     /**
      * 配置不需要拦截的路径
      */
-    private static final String[] rule = {"/resources/", "/upload/", "/login", "/doLogin", "/wx/login/toLogin", "/wx/login/empLogin"};
+    private static final String[] rule = {"/resources/", "/upload/",
+            "/login", "/doLogin", "/wx/login/toLogin", "/wx/login/empLogin","/wx/order/onlineOrder"};
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {

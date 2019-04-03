@@ -221,14 +221,14 @@ var main = new Vue({
                     data: {
                         "userKey": myCache.userKey,
                         "id": $("#table").attr("data_id"),
-                        "order_no": order.order_no,
-                        "phone": order.phone,
-                        "start": order.start,
-                        "end": order.end,
-                        "content": order.content,
-                        "price": order.price,
-                        "beginTime": order.beginTime,
-                        "moneyEmps": $("#moneyEmps").val(),
+                        "order_no": main.order.order_no,
+                        "phone": main.order.phone,
+                        "start": main.order.start,
+                        "end": main.order.end,
+                        "content": main.order.content,
+                        "price": main.order.price,
+                        "beginTime": $("#beginTime").val(),
+                        "moneyEmpsNo": $("moneyEmpsNo").val(),
                         "driveEmps": $("#driveEmps").val(),
                         "moveEmps": $("#moveEmps").val(),
                         "airEmps": $("#airEmps").val(),
@@ -244,13 +244,15 @@ var main = new Vue({
                             window.location.herf = "/wx/order/sentOrder?userKey=" + myCache.userKey;
                         }
                     }, error: function () {
-                        toastr.success("修改失败");
+                        toastr.error("服务器异常");
                     }
                 })
             }
 
         },
         mounted: function () {
+            // console.log($("#table").attr("data_id"));
+            // return;
             this.$http.post("/wx/order/queryById", {
                 "userKey": myCache.userKey,
                 "id": $("#table").attr("data_id")
