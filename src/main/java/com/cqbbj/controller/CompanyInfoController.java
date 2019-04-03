@@ -51,7 +51,7 @@ public class CompanyInfoController extends BaseController {
     private Result update(HttpServletRequest request, CompanyInfo companyInfo) {
         companyInfoService.updateEntity(companyInfo);
         // 记录日志
-        operationLogService.saveEntity(createLog(request, "修改商户配置"));
+        operationLogService.saveEntity(createPCLog(request, "修改商户配置"));
         return ResultUtils.success();
     }
 

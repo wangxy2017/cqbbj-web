@@ -88,7 +88,7 @@ public class WXSignBillController extends BaseController {
             order1.setPayState(1);
             orderService.updateEntity(order1);
             // 记录日志
-            OperationLog log = createLog(request, getWXEmpUser(request).getName(), "完成未收款订单收款：" + signBill1.getOrder_no());
+            OperationLog log = createWXLog(request, "完成未收款订单收款：" + signBill1.getOrder_no());
             operationLogService.saveEntity(log);
             return ResultUtils.success();
         }

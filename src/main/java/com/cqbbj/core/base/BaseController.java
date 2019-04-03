@@ -68,23 +68,29 @@ public class BaseController {
         return (Customer) session.get("cosEmpUser");
     }
 
+    protected OperationLog createPCLog(HttpServletRequest request, String content) {
+        return createLog(getLoginUser(request).getName(), content, request.getRemoteAddr());
+    }
+
+    protected OperationLog createWXLog(HttpServletRequest request, String content) throws Exception {
+        return createLog(getWXEmpUser(request).getName(), content, request.getRemoteAddr());
+    }
+
     /**
      * 创建日志
      *
+     * @param name
      * @param content
+     * @param ip
      * @return
      */
-    protected OperationLog createLog(HttpServletRequest request, String content) {
-        return createLog(request, getLoginUser(request).getName(), content);
-    }
-
-    protected OperationLog createLog(HttpServletRequest request, String name, String content) {
+    protected OperationLog createLog(String name, String content, String ip) {
         OperationLog log = new OperationLog();
         log.setCreateTime(new Date());
         log.setDeleteStatus(0);
         log.setName(name);
         log.setContent(content);
-        log.setIp(request.getRemoteAddr());
+        log.setIp(ip);
         return log;
     }
 

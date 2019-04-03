@@ -99,7 +99,7 @@ public class LoginController extends BaseController {
             HttpSession session = getSession(request);
             session.setAttribute("loginUser", list.get(0));
             // 记录操作日志
-            operationLogService.saveEntity(createLog(request, "登录系统"));
+            operationLogService.saveEntity(createPCLog(request, "登录系统"));
         }
         return ResultUtils.success();
     }

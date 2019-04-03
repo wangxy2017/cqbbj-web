@@ -113,7 +113,7 @@ public class IntentionOrderController extends BaseController {
         intentionOrderService.saveEntity(intentionOrder);
         // 记录日志
         operationLogService.saveEntity(
-                createLog(request, "新增意向订单：" + intentionOrder.getInten_no()));
+                createPCLog(request, "新增意向订单：" + intentionOrder.getInten_no()));
         return ResultUtils.success();
     }
 
@@ -130,7 +130,7 @@ public class IntentionOrderController extends BaseController {
         intentionOrderService.updateEntity(intentionOrder);
         // 记录日志
         operationLogService.saveEntity(
-                createLog(request, "修改意向订单信息：" + intentionOrder.getInten_no()));
+                createPCLog(request, "修改意向订单信息：" + intentionOrder.getInten_no()));
         return ResultUtils.success();
     }
 
@@ -163,7 +163,7 @@ public class IntentionOrderController extends BaseController {
         intentionOrder.setStatus(3);
         intentionOrderService.updateEntity(intentionOrder);
         // 记录日志
-        OperationLog log = createLog(request, "作废订单" + intentionOrder.getInten_no());
+        OperationLog log = createPCLog(request, "作废订单" + intentionOrder.getInten_no());
         operationLogService.saveEntity(log);
         return ResultUtils.success();
     }
@@ -229,7 +229,7 @@ public class IntentionOrderController extends BaseController {
             i++;
         }
         // 记录日志
-        OperationLog log = createLog(request, "导出意向订单");
+        OperationLog log = createPCLog(request, "导出意向订单");
         operationLogService.saveEntity(log);
         ExcelUtils.downloadExcel(fileName, sheetName, title, values, response);
     }

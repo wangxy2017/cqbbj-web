@@ -83,7 +83,7 @@ public class OperationLogController extends BaseController {
             i++;
         }
         // 记录日志
-        OperationLog log = createLog(request, "导出操作日志");
+        OperationLog log = createPCLog(request, "导出操作日志");
         operationLogService.saveEntity(log);
         try {
             ExcelUtils.downloadExcel(fileName, sheetName, title, values, response);

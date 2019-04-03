@@ -178,7 +178,7 @@ public class WXOrderControll extends BaseController {
     @RequestMapping("/addOrder")
     @ResponseBody
     public Result addOrder(String name, String phone, String start, String end, Double price, Date beginTime,
-                           String content, Integer type, Integer isNotice, HttpServletRequest request) {
+                           String content, Integer type, Integer isNotice, HttpServletRequest request) throws Exception {
         //添加客户信息
         Customer customer = new Customer();
         customer.setName(name);
@@ -205,7 +205,7 @@ public class WXOrderControll extends BaseController {
         order.setSource(1);
         orderService.saveEntity(order);
 
-        operationLogService.saveEntity(createLog(request, name, "新增订单：" + order.getOrder_no()));
+        operationLogService.saveEntity(createWXLog(request, "新增订单：" + order.getOrder_no()));
         if (isNotice != null && isNotice == 1) {
             log.debug("发送短信");
             CompanyInfo companyInfo = companyInfoService.queryById(1);
@@ -331,7 +331,7 @@ public class WXOrderControll extends BaseController {
                 CommUtils.toStringArray(moveEmps),
                 CommUtils.toStringArray(airEmps));
         // 记录日志
-        operationLogService.saveEntity(createLog(request, getWXEmpUser(request).getName(), "派单：" + order_no));
+        operationLogService.saveEntity(createWXLog(request, "派单：" + order_no));
         return ResultUtils.success();
     }
 
@@ -356,7 +356,7 @@ public class WXOrderControll extends BaseController {
                     CommUtils.toStringArray(moveEmps),
                     CommUtils.toStringArray(airEmps));
         // 记录日志
-        operationLogService.saveEntity(createLog(request, getWXEmpUser(request).getName(), "修改订单：" + order.getOrder_no()));
+        operationLogService.saveEntity(createWXLog(request, "修改订单：" + order.getOrder_no()));
 
 
         return ResultUtils.success();
@@ -414,14 +414,14 @@ public class WXOrderControll extends BaseController {
                 order1.setReceiveMoney(order.getReceiveMoney());
                 order1.setReceiveText(order.getReceiveText());
                 order1.setCostMoney(order.getCostMoney());
-                order1.setCostText(order.getCostText()==null?"":order.getCostText());
+                order1.setCostText(order.getCostText() == null ? "" : order.getCostText());
                 order1.setPayState(1);
                 order1.setStatus(2);
                 order1.setEndTime(new Date());
                 orderService.updateEntity(order1);
             }
             // 记录日志
-            operationLogService.saveEntity(createLog(request, "辅助完成订单：" + order1.getOrder_no()));
+            operationLogService.saveEntity(createWXLog(request, "辅助完成订单：" + order1.getOrder_no()));
             return ResultUtils.success();
         }
         return ResultUtils.error();
