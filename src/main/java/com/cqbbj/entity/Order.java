@@ -123,6 +123,10 @@ public class Order extends BaseEntity {
      * 结算人
      */
     private String cleanEmp;
+    /**
+     * 工时(一天8小时制)
+     */
+    private Integer workTime;
 
     /**
      * ============ 关联属性 =============
@@ -545,5 +549,13 @@ public class Order extends BaseEntity {
 
     public void setCleanEmp(String cleanEmp) {
         this.cleanEmp = cleanEmp;
+    }
+
+    public Integer getWorkTime() {
+        return workTime;
+    }
+
+    public void setWorkTime(Integer workTime) {
+        this.workTime = workTime;
     }
 }
