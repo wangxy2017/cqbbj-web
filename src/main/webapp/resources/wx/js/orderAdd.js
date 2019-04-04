@@ -1,5 +1,5 @@
 var calendardatetime = new lCalendar();
-calendardatetime.init({
+    calendardatetime.init({
     'trigger': '#beginTime',
     'type': 'datetime'
 });
