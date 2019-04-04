@@ -27,6 +27,21 @@ var main = new Vue({
          */
         wallet: function () {
             window.location.href = "/wx/payRecord/wallet" + "?userKey=" + myCache.userKey;
+        },
+        /**
+         * 退出系统
+         */
+        logout: function () {
+            main.$http.post("/wx/order/loginOut", {"userKey": myCache.userKey}, {emulateJSON: true}).then(function (res) {
+                if (res.body.code == 1) {
+                    window.localStorage.removeItem("userKey");
+                    window.location.href = "/wx/login/toLogin";
+                } else {
+                    toastr.info("操作失败");
+                }
+            }, function (res) {
+                toastr.error("服务器异常");
+            });
         }
     },
     mounted: function () {
@@ -36,19 +51,13 @@ var main = new Vue({
             // return;
             if (res.body.code == 1 && res.body.data.length > 0) {
                 _this.menus = res.body.data[0].childs;
-                // 如果没有数据，则显示没有数据
-                if (_this.menus.length == 0) {
-                    $(".notFind").show();
-                } else {
-                    $(".notFind").hide();
-                }
             } else {
                 toastr.info("数据异常");
             }
         }, function (res) {
             toastr.error("服务器异常");
         });
-        this.$http.post("/wx/login/getEmpName", {"userKey": myCache.userKey}, {emulateJSON: true}).then(function (res) {
+        _this.$http.post("/wx/login/getEmpName", {"userKey": myCache.userKey}, {emulateJSON: true}).then(function (res) {
 
             if (res.body.code == 1) {
                 this.empName = res.body.data.name;

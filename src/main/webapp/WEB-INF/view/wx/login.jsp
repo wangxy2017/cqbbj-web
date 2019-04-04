@@ -6,6 +6,11 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<script>
+    // 如果缓存有值，则跳转首页
+    var userKey = window.localStorage.userKey;
+    if (userKey) window.location.href = "/wx/login/toHome?userKey=" + userKey;
+</script>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
 <html lang="zh-CN">
 <head>
@@ -16,8 +21,10 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/css/login.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/plugin/toastr/toastr.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/css/header.css">
-    <link rel="stylesheet"  href="${pageContext.request.contextPath}/resources/wx/plugin/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <link rel="stylesheet"
+          href="${pageContext.request.contextPath}/resources/wx/plugin/bootstrap-3.3.7-dist/css/bootstrap.min.css">
     <title>员工登录</title>
+
 </head>
 <body>
 <div class="container-fluid">
@@ -37,7 +44,8 @@
                         <span class="glyphicon glyphicon-user"></span>
                     </div>
                     <div class="col-sm-11">
-                        <input id="account" type="text" placeholder="请输入账号\邮箱\手机号" onfocus="this.placeholder='' " onblur="this.placeholder='请输入账号\\邮箱\\手机号'" autocomplete="off">
+                        <input id="account" type="text" placeholder="请输入账号\邮箱\手机号" onfocus="this.placeholder='' "
+                               onblur="this.placeholder='请输入账号\\邮箱\\手机号'" autocomplete="off">
                     </div>
                 </div>
                 <div class="row">
@@ -45,7 +53,8 @@
                         <span class="glyphicon glyphicon-lock"></span>
                     </div>
                     <div class="col-sm-11">
-                        <input id="password" type="password" placeholder="请输入您的密码" onfocus="this.placeholder=''" onblur="this.placeholder='请输入您的密码'" autocomplete="off">
+                        <input id="password" type="password" placeholder="请输入您的密码" onfocus="this.placeholder=''"
+                               onblur="this.placeholder='请输入您的密码'" autocomplete="off">
                     </div>
                 </div>
                 <%--<div class="col-sm-6">--%>

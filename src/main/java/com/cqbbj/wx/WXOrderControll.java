@@ -421,9 +421,10 @@ public class WXOrderControll extends BaseController {
      * 登出
      */
     @RequestMapping("/loginOut")
-    public String loginOut(HttpServletRequest request) throws Exception {
+    @ResponseBody
+    public Result loginOut(HttpServletRequest request) throws Exception {
         WXSessionUtils.delSession(request.getParameter("userKey"));
-        return "wx/login";
+        return ResultUtils.success();
     }
 
     /**
