@@ -32,11 +32,10 @@ var main = new Vue({
          * 点击选择员工打开模态框
          */
         open: function () {
-            setTimeout(function () {
                 $(".alert_model").show();
-            }, 500);
-            $(".alert_body").find().animate({
-                marginTop: '-50rem',
+
+            $(".alert_body").animate({
+                marginTop: '40rem',
             });
         }
     },
