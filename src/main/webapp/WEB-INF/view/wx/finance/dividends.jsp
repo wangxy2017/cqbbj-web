@@ -34,7 +34,7 @@
     </div>
 </header>
 <div class="container-fluid" id="main">
-    <div class="card">
+    <div class="card" @click.stop="vive">
         <div class="row">
             <label class="col-sm-3 control-label">订单编号:</label>
             <div class="col-sm-9">
@@ -78,9 +78,7 @@
             </div>
         </div>
         <div class="display">
-            <div class="row">
-                <input type="button" class="btn btn-block btn-primary" value="查看">
-            </div>
+                <input type="button" class="btn btn-block btn-primary" value="查看" @click.stop="detail">
         </div>
     </div>
 </div>
