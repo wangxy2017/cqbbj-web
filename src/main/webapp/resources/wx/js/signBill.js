@@ -14,8 +14,7 @@ var main = new Vue({
          * 点击卡片打开隐藏的收款按钮
          */
         taskSwitch: function (event) {
-            var _this = $(event.currentTarget);
-            _this.children('.display').toggle(500).css('display');
+            $(event.currentTarget).children('.display').fadeToggle(500);
         },
         /**
          * 点击收款按钮事件

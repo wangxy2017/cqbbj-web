@@ -34,7 +34,12 @@
     </div>
 </header>
 <div class="container-fluid" id="main">
-
+    <div class="circulation">
+        <div class="row">
+            <div class="col-sm-3">订单编号:</div>
+            <div class="col-sm-9" style="color: red">DT20190406201212262220021545</div>
+        </div>
+    </div>
 </div>
 
 <script src="${pageContext.request.contextPath}/resources/wx/plugin/jquery-3.3.1.min.js"></script>

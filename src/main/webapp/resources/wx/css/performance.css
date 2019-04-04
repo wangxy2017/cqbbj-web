@@ -1,0 +1,14 @@
+html,body{
+    font-size: 50%;
+}
+body{
+    background: #f0f0f0;
+}
+#main{
+    margin-top: 160px;
+    font-size: 4rem;
+}
+.circulation{
+    padding: 4rem;
+    background: white;
+}

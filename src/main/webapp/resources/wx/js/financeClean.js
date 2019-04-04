@@ -15,8 +15,7 @@ var main = new Vue({
          * @param event
          */
         showBtn: function (event) {
-            var _this = $(event.currentTarget);
-            _this.children('.display').toggle(500).css('display');
+            $(event.currentTarget).children('.display').fadeToggle(500);
         },
         /**
          * 查看详情
