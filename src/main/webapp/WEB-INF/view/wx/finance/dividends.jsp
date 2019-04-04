@@ -42,20 +42,14 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-sm-3">客户姓名:</div>
+            <div class="col-sm-3">提成员工:</div>
             <div class="col-sm-9">
                 <p>熊超</p>
             </div>
         </div>
         <div class="row">
-            <div class="col-sm-3">客户电话:</div>
-            <div class="col-sm-9">
-                <p>15736072128</p>
-            </div>
-        </div>
-        <div class="row">
             <div class="col-sm-3" id="formAdd">搬出地址:</div>
-            <div class="col-sm-8">
+            <div class="col-sm-8 active">
                 <p>重庆市渝北区回兴街道办事处</p>
             </div>
             <div class="col-sm-1">
@@ -64,7 +58,7 @@
         </div>
         <div class="row">
             <div class="col-sm-3">搬入地址:</div>
-            <div class="col-sm-8">
+            <div class="col-sm-8 active">
                 <p>金开大道牛三北路一支路9888号</p>
             </div>
             <div class="col-sm-1" id="toAdd">

@@ -10,13 +10,13 @@ var main = new Vue({
          */
         vive:function () {
             // console.log("点击卡片")dividendDetails;
-            $(".display").slideToggle("slow");
+            $(".display").slideToggle("fast");
         },
         /**
          * 点击查看执行的跳转
          */
         detail: function () {
-            window.location.href = ""
+            window.location.href = "/wx/orderDivide/dividendDetails?userKey=" + myCache.userKey;
         }
     },
     mounted: function () {
