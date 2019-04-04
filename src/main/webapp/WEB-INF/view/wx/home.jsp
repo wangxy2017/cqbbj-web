@@ -13,7 +13,8 @@
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
     <meta http-equiv="Pragma" content="no-cache"/>
     <meta http-equiv="Expires" content="0"/>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/plugin/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <link rel="stylesheet"
+          href="${pageContext.request.contextPath}/resources/wx/plugin/bootstrap-3.3.7-dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/plugin/toastr/toastr.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/css/header.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/css/home.css">
@@ -51,12 +52,16 @@
                     <p>{{menu.name}}</p>
                 </a>
             </li>
+            <li>
+                <a @click="logout">
+                    <div>
+                        <img src="/resources/wx/imge/0008.png" alt="退出系统">
+                    </div>
+                    <p>退出系统</p>
+                </a>
+            </li>
         </ul>
     </div>
-</div>
-<div class="notFind" style="padding: 0">
-    <img src="${pageContext.request.contextPath}/resources/wx/imge/undefind.png" alt="">
-    <p>-.-.-.-.-.-暂无数据-.-.-.-.-.-</p>
 </div>
 <script src="${pageContext.request.contextPath}/resources/wx/plugin/jquery-3.3.1.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/wx/plugin/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>

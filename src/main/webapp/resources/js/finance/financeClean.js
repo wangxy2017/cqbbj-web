@@ -78,7 +78,11 @@ layui.use(["table", "layer", "laydate", "jquery"], function () {
                             }
                         }
                         , {field: 'price', title: '订单价格', align: "center"}
-                        , {field: 'receiveMoney', title: '实际收款', align: "center"}
+                        , {
+                            field: 'receiveMoney', title: '实际收款', align: "center", templet: function (d) {
+                                return d.payState == 0 ? "未收款" : d.receiveMoney;
+                            }
+                        }
                         , {
                             field: 'costMoney', title: '支出费用', align: "center", templet: function (d) {
                                 return isEmpty(d.costMoney) ? "<span style='color:#FF5722'>未结算</span>" : d.costMoney;
@@ -138,7 +142,7 @@ layui.use(["table", "layer", "laydate", "jquery"], function () {
                             area: ["700px", "550px"],
                             anim: 5,
                             title: "结算方式",
-                            success:function (layero, index) {
+                            success: function (layero, index) {
                                 console.log(layero, index);
                             }
                         });
