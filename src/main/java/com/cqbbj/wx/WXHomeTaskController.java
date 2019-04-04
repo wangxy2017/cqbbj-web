@@ -25,6 +25,11 @@ public class WXHomeTaskController extends BaseController {
         return "wx/myTask/myTask";
     }
 
+    @RequestMapping("/ performance")
+    public String  performance() {
+        return "wx/finance/ performance";
+    }
+
     /**
      * 查询我的任务
      *
@@ -42,4 +47,6 @@ public class WXHomeTaskController extends BaseController {
         PageModel<Order> pageModel = orderService.queryMyTasks(order, pageNum, pageSize);
         return ResultUtils.success(pageModel);
     }
+
+
 }
