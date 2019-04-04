@@ -22,10 +22,39 @@ public class WXOrderDivideController extends BaseController {
     public String orderDivide(){
         return "wx/finance/dividends";
     }
+
+    /**
+     * 跳转提成详情页面
+     * @return
+     */
+    @RequestMapping("/dividendDetails")
+    public String dividendDetails(){
+        return "wx/finance/dividendDetails";
+    }
+
+    /**
+     * 查询提成列表
+     * @param orderDivide
+     * @param pageNum
+     * @param pageSize
+     * @return
+     */
     @RequestMapping("/queryPageList")
     @ResponseBody
     public Result queryPageList(OrderDivide orderDivide,Integer pageNum,Integer pageSize){
        PageModel<OrderDivide> pageModel= orderDivideService.queryPageList(orderDivide,pageNum,pageNum);
        return ResultUtils.success(pageModel);
+    }
+
+    /**
+     * 查询提成详情
+     * @param id
+     * @return
+     */
+    @RequestMapping("/queryById")
+    @ResponseBody
+    public Result queryById(Integer id){
+        OrderDivide orderDivide=orderDivideService.queryById(id);
+        return ResultUtils.success(orderDivide);
     }
 }
