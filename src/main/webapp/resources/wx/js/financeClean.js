@@ -14,22 +14,22 @@ var main = new Vue({
          * 显示按钮
          * @param event
          */
-        showBtn:function(event){
-            var _this=$(event.currentTarget);
+        showBtn: function (event) {
+            var _this = $(event.currentTarget);
             _this.children('.display').toggle(500).css('display');
         },
         /**
          * 查看详情
          * @param id
          */
-        view:function(id){
-            window.location.href="/wx/order/orderDetail?id="+id;
+        view: function (id) {
+            window.location.href = "/wx/order/orderDetail?userKey=" + myCache.userKey + "&id=" + id;
         },
         /**
          * 结算
          */
-        clean:function(){
-            window.location.href="/wx/order/cleanDetail?id="+id;
+        clean: function (id) {
+            window.location.href = "/wx/order/cleanDetail?userKey=" + myCache.userKey + "&id=" + id;
         },
         /**
          * 点击未结算
