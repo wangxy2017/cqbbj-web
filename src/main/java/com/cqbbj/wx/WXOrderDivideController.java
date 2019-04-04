@@ -24,6 +24,15 @@ public class WXOrderDivideController extends BaseController {
     }
 
     /**
+     * 跳转提成详情页面
+     * @return
+     */
+    @RequestMapping("/dividendDetails")
+    public String dividendDetails(){
+        return "wx/finance/dividendDetails";
+    }
+
+    /**
      * 查询提成列表
      * @param orderDivide
      * @param pageNum
