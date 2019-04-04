@@ -21,9 +21,7 @@ header p{
     line-height: 150px;
     margin: 0;
 }
-header.col-sm-8 p{
-    border-bottom: none !important;
-}
+
 header .col-sm-2{
     width: 150px;
     height: 150px;

@@ -21,16 +21,71 @@
     <title>提成统计</title>
 </head>
 <body>
-<div class="pull-left col-sm-2">
-    <span class="glyphicon glyphicon-menu-left" onclick="javaScript:window.history.back()"></span>
-</div>
-<div class="col-sm-8">
-    <p>查看</p>
-</div>
-<div class="pull-right col-sm-2">
-    <span class="glyphicon glyphicon-home"  onclick="javaScript:window.location.href='/wx/login/toHome?userKey='+ myCache.userKey" style="color: white"></span>
-</div>
+<header>
+    <div class="pull-left col-sm-2">
+        <span class="glyphicon glyphicon-menu-left" onclick="javaScript:window.history.back()"></span>
+    </div>
+    <div class="col-sm-8">
+        <p>查看详情</p>
+    </div>
+    <div class="pull-right col-sm-2">
+        <span class="glyphicon glyphicon-home"
+              onclick="javaScript:window.location.href='/wx/login/toHome?userKey='+ myCache.userKey"
+              style="color: white"></span>
+    </div>
+</header>
+<div class="container-fluid" id="main">
 
+        <div class="row">
+            <div class="col-sm-3">订单编号:</div>
+            <div class="col-sm-9" style="color: red">DT2019080606060655566666</div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3">客户姓名:</div>
+            <div class="col-sm-9">罗小姐</div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3">客户电话:</div>
+            <div class="col-sm-9">15000000000</div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3">搬出地址:</div>
+            <div class="col-sm-9">北京市永定区长安街66号</div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3">搬入地址:</div>
+            <div class="col-sm-9">重庆市渝北区空港大道观月路观月山水E栋501</div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3">订单金额:</div>
+            <div class="col-sm-9" style="color: #e38d13">10000</div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3">完成时间:</div>
+            <div class="col-sm-9">2019-04-06 14:00:50</div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3">提成员工:</div>
+            <div class="col-sm-9">熊超&nbsp;刘磊&nbsp;王孝元&nbsp;甄军</div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3">提成金额:</div>
+            <div class="col-sm-9" style="color: #e38d13">500</div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3">提成方式:</div>
+            <div class="col-sm-9">比例提成</div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3">核算人:</div>
+            <div class="col-sm-9">李梓萌</div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3">结算时间:</div>
+            <div class="col-sm-9">2019-04-10 10:25:00</div>
+        </div>
+
+</div>
 
 <script src="${pageContext.request.contextPath}/resources/wx/plugin/jquery-3.3.1.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/wx/plugin/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
