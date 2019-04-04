@@ -25,9 +25,9 @@ public class WXHomeTaskController extends BaseController {
         return "wx/myTask/myTask";
     }
 
-    @RequestMapping("/ performance")
+    @RequestMapping("/performance")
     public String  performance() {
-        return "wx/finance/ performance";
+        return "wx/finance/performance";
     }
 
     /**
