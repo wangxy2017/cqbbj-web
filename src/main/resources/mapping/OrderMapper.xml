@@ -30,7 +30,8 @@
         payState,
         salesman,
         costText,
-        cleanEmp
+        cleanEmp,
+        workTime
     </sql>
     <sql id="insert_all_values">
         #{createTime},
@@ -59,7 +60,8 @@
         #{payState},
         #{salesman},
         #{costText},
-        #{cleanEmp}
+        #{cleanEmp},
+        #{workTime}
     </sql>
     <sql id="query_all_fields">
         id,
@@ -88,7 +90,8 @@
         payState,
         salesman,
         costText,
-        cleanEmp
+        cleanEmp,
+        workTime
     </sql>
     <!-- 保存订单 -->
     <insert id="save" parameterType="order" useGeneratedKeys="true" keyProperty="id">
@@ -120,6 +123,7 @@
             <if test="payState != null">payState = #{payState},</if>
             <if test="costText != null and costText != ''">costText = #{costText},</if>
             <if test="cleanEmp != null and cleanEmp != ''">cleanEmp = #{cleanEmp},</if>
+            <if test="workTime != null">workTime = #{workTime},</if>
         </set>
         where id = #{id}
     </update>
@@ -163,7 +167,8 @@
         r.payState,
         r.salesman,
         r.is_clean,
-        r.cleanText
+        r.cleanText,
+        r.workTime
         from sys_order r
         where r.deleteStatus = 0
         <if test="name != null and name != ''">and r.name = #{name}</if>
