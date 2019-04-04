@@ -14,7 +14,21 @@ layui.use(["table", "layer", "laydate", "jquery"], function () {
             airEmps:[]
         },
         methods: {
-            //选择收款人
+            /**
+             * 自动结算
+             */
+            auto:function(){
+                $("#clean2").hide();
+                $("#clean1").show();
+            },
+            /**
+             * 手动结算
+             */
+            manual:function(){
+                $("#clean1").hide();
+                $("#clean2").show();
+            },
+            //选择员工
             chooseEmp:function (type) {
                 parent.layer.open({
                     type: 2,

@@ -48,6 +48,15 @@ public class FinanceCleanController extends BaseController {
     public String financeClean() {
         return "finance/financeClean";
     }
+    /**
+     * 财务结算详情
+     *
+     * @return
+     */
+    @RequestMapping("/cleanDetail")
+    public String cleanDetail() {
+        return "finance/cleanDetail";
+    }
 
     /**
      * 财务结算列表查询

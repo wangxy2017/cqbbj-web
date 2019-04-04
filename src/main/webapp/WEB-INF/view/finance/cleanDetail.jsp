@@ -13,10 +13,11 @@
     <title>Title</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/plugin/layui/css/layui.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/order/orderView.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/order/cleanDetail.css">
 </head>
 <body>
 <div class="main" id="main" data-id="<%=request.getParameter("id")%>">
+    <div><table> <tr> <td><span @click="auto">自动结算</span></td> <td><span @click="manual">手动结算</span></td></tr></table> </div>
     <div class="order-info" id="clean1">
         <table>
             <tr>
@@ -115,24 +116,24 @@
             </tr>
             <tr ><td cosplan="2">随车司机：</td></tr>
             <tr>
-                <td v-for="item in order.driveEmps">{{item.driveEmps}}:<br/> </td>
-                <td v-for="item in order.driveEmps"><input type="text"  name="driveEmps"><br/>
+                <td v-for="item in order.driveEmps">{{item.emp_name}}&nbsp;<br/> </td>
+                <td ><input type="text"  name="driveEmps"><br/>
 
                 </td>
             </tr>
             <tr ><td cosplan="2">随车搬运工：</td></tr>
             <tr>
 
-                <td v-for="item in order.moveEmps">{{order.moveEmps}}: <br/></td>
-                <td v-for="item in order.moveEmps"><input type="text"  name="moveEmps"><br/>
+                <td v-for="item in order.moveEmps">{{item.emp_name}}&nbsp; <br/></td>
+                <td ><input type="text"  name="moveEmps"><br/>
 
                 </td>
             </tr>
             <tr ><td cosplan="2">随车空调工：</td></tr>
             <tr>
 
-                <td v-for="item in order.airEmps">{{order.airEmps}}:<br/> </td>
-                <td v-for="item in order.airEmps"><input type="text"  name="airEmps"><br/>
+                <td v-for="item in order.airEmps">{{item.emp_name}} &nbsp;</td>
+                <td><input type="text"  name="airEmps"><br/>
 
                 </td>
             </tr>
