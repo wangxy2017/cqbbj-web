@@ -6,11 +6,6 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<script>
-    // 如果缓存有值，则跳转首页
-    var userKey = window.localStorage.userKey;
-    if (userKey) window.location.href = "/wx/login/toHome?userKey=" + userKey;
-</script>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
 <html lang="zh-CN">
 <head>
@@ -24,7 +19,6 @@
     <link rel="stylesheet"
           href="${pageContext.request.contextPath}/resources/wx/plugin/bootstrap-3.3.7-dist/css/bootstrap.min.css">
     <title>员工登录</title>
-
 </head>
 <body>
 <div class="container-fluid">
