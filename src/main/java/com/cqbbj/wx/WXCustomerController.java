@@ -21,7 +21,15 @@ public class WXCustomerController extends BaseController {
     private ICustomerService customerService;
     @Autowired
     private IOrderService orderService;
-
+    /**
+     * 会员中心跳转
+     *
+     * @return
+     */
+    @RequestMapping("/customer")
+    public String customer() {
+        return "wx/customer/customer";
+    }
     /**
      * 会员信息查询
      * @param customer

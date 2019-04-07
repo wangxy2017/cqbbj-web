@@ -50,8 +50,16 @@
             </div>
         </div>
         <div class="row">
-            <input type="button" class="btn btn-block btn-success active" value="查询" style="margin-bottom: 2rem" @click.stop="vivw">
+            <div class="col-sm-6">
+                <input type="button" class="btn btn-block btn-success active" value="查询" style="margin-bottom: 2rem" @click.stop="vivw">
+            </div>
+            <div class="col-sm-6">
+                <input type="button" class="btn btn-block btn-default active" value="关闭" style="margin-bottom: 2rem" @click.stop="close">
+            </div>
         </div>
+        <%--<div class="row">--%>
+            <%--<span class="glyphicon glyphicon-remove"></span>--%>
+        <%--</div>--%>
         <div class="alert_model" @click.stop="end">
             <div class="alert_body">
                 <input type="hidden" id="checkId" value="">

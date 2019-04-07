@@ -48,16 +48,16 @@ var header = new Vue({
 
         },
         /**
-         * 点击查询打开模态框
+         * 点击关闭隐藏检索界面
          */
-        vivw: function () {
+        close: function () {
 
             $("#header").animate({
                 marginTop:'-60rem',
             });
         },
         /**
-         * 点击员工获取员工列表
+         * 点击员工打开模态框获取员工列表
          */
         open: function () {
             header.$http.post("/wx/employee/queryPageList", {"userKey": myCache.userKey}, {emulateJSON: true}).then(function (res) {

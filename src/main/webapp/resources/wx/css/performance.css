@@ -36,6 +36,11 @@ body{
     width: 100%;
     font-size: 4rem;
 }
+.search span{
+    height: 10rem;
+    color: black;
+    font-size: 4rem;
+}
 header .search .active{
     height: 15rem;
     width: 94%;
