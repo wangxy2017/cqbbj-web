@@ -138,7 +138,7 @@ layui.use(["table", "layer", "laydate", "jquery"], function () {
                     if (layEvent === 'clean') {
                         layer.open({
                             type: 2,
-                            content: "/finance/cleanDetail?id=" + data.id,
+                            content: "/financeClean/cleanDetail?id=" + data.id,
                             area: ["700px", "550px"],
                             anim: 5,
                             title: "结算方式",

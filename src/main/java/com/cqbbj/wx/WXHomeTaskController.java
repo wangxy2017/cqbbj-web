@@ -25,6 +25,10 @@ public class WXHomeTaskController extends BaseController {
         return "wx/myTask/myTask";
     }
 
+    /**
+     * 跳转至我的业绩页面
+     * @return
+     */
     @RequestMapping("/performance")
     public String  performance() {
         return "wx/finance/performance";

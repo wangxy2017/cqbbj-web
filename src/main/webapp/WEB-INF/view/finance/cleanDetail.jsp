@@ -13,134 +13,135 @@
     <title>Title</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/plugin/layui/css/layui.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/order/cleanDetail.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/finance/cleanDetail.css">
 </head>
 <body>
 <div class="main" id="main" data-id="<%=request.getParameter("id")%>">
-    <div><table> <tr> <td><span @click="auto">自动结算</span></td> <td><span @click="manual">手动结算</span></td></tr></table> </div>
-    <div class="order-info" id="clean1">
-        <table>
-            <tr>
-                <td rowspan="2" v-for=" item in order.moneyEmps">订单编号：{{order.order_no}}&nbsp;&nbsp;&nbsp;&nbsp;收款人：{{item.emp_name}}</td>
-            </tr>
-            <tr>
-                <td align="right">结算方式:</td>
-                <td><select v-model="cleanStyle"></select></td>
-            </tr>
-            <tr>
-                <td align="right">预估报价：</td>
-                <td><input type="text" disabled v-model="order.price" /></td>
-            </tr>
-            <tr>
-                <td align="right">实际收款：</td>
-                <td><input type="text" disabled v-model="order.receiveMoney" /></td>
-            </tr>
-            <tr>
-                <td align="right">支出费用：</td>
-                <td><input type="text" v-model="order.costMoney" /></td>
-            </tr>
-            <tr>
-                <td align="right">支出备注：</td>
-                <td><textarea  type="text" disabled v-model="order.costText" ></textarea></td>
-            </tr>
-            <tr>
-                <td align="right">收款备注：</td>
-                <td><textarea type="text" disabled v-model="order.receiveText" ></textarea></td>
-            </tr>
-            <tr>
-                <td align="right">收款人员：</td>
-                <td><input type="text" @click="chooseEmp('money')" v-model="money">
-                <input type="button" @click="chooseEmp('money')" value="修改员工">
-                </td>
-            </tr>
-            <tr>
-                <td align="right">随车司机：</td>
-                <td><input type="text" @click="chooseEmp('drive')" v-model="drive">
-                    <input type="button" @click="chooseEmp('drive')" value="修改员工">
-                </td>
-            </tr>
-            <tr>
-                <td align="right">随车搬运工：</td>
-                <td><input type="text" @click="chooseEmp('move')"  v-model="move">
-                    <input type="button" @click="chooseEmp('move')" value="修改员工">
-                </td>
-            </tr>
-            <tr>
-                <td align="right">随车空调工：</td>
-                <td><input type="text" @click="chooseEmp('air')" v-model="air">
-                    <input type="button" @click="chooseEmp('air')" value="修改员工">
-                </td>
-            </tr>
-        </table>
+    <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+        <ul class="layui-tab-title">
+            <li id="li1" class="layui-this" @click="auto">自动结算</li>
+            <li id="li2"  @click="manual">手动结算</li>
+        </ul>
+        <div class="layui-tab-content">
 
+            <div class="order-info" id="clean1">
+                <table>
+                    <tr>
+                        <td rowspan="2" v-for=" item in order.moneyEmps">订单编号：{{order.order_no}}&nbsp;&nbsp;&nbsp;&nbsp;收款人：{{item.emp_name}}</td>
+                    </tr>
+                    <tr>
+                        <td align="right">结算方式:</td>
+                        <td><select id="selectSM" @change="load" v-model="cleanStyle"></select></td>
+                    </tr>
+                    <tr>
+                        <td align="right">预估报价：</td>
+                        <td><input type="text" disabled v-model="order.price" /></td>
+                    </tr>
+                    <tr>
+                        <td align="right">实际收款：</td>
+                        <td><input type="text" disabled v-model="order.receiveMoney" /></td>
+                    </tr>
+                    <tr>
+                        <td align="right">支出费用：</td>
+                        <td><input type="text" v-model="order.costMoney" /></td>
+                    </tr>
+                    <tr>
+                        <td align="right">支出备注：</td>
+                        <td><textarea  type="text" disabled v-model="order.costText" ></textarea></td>
+                    </tr>
+                    <tr>
+                        <td align="right">收款备注：</td>
+                        <td><textarea type="text" disabled v-model="order.receiveText" ></textarea></td>
+                    </tr>
+                    <tr>
+                        <td align="right">收款人员：</td>
+                        <td><input type="text" @click="chooseEmp('money')" v-model="money">
+                            <input type="button" @click="chooseEmp('money')" value="修改员工">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="right">随车司机：</td>
+                        <td><input type="text" @click="chooseEmp('drive')" v-model="drive">
+                            <input type="button" @click="chooseEmp('drive')" value="修改员工">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="right">随车搬运工：</td>
+                        <td><input type="text" @click="chooseEmp('move')"  v-model="move">
+                            <input type="button" @click="chooseEmp('move')" value="修改员工">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="right">随车空调工：</td>
+                        <td><input type="text" @click="chooseEmp('air')" v-model="air">
+                            <input type="button" @click="chooseEmp('air')" value="修改员工">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" align="center"><input type="button" @click="submit" value="确认"/>&nbsp;
+                            &nbsp;<input type="button" @click="cancel" value="取消" /></td>
+                    </tr>
 
-        <p v-if="order.driveEmps" v-show="false">
-            <label class="order-item">司机：<span style="margin-right: 10px" v-for="item in order.driveEmps">{{item.emp_name}}&nbsp;</span></label>
-        </p>
-        <p v-if="order.moveEmps" v-show="false">
-            <label class="order-item">搬运工：<span style="margin-right: 10px" v-for="item in order.moveEmps">{{item.emp_name}}&nbsp;</span></label>
-        </p>
-        <p v-if="order.airEmps" v-show="false">
-            <label class="order-item">空调工：<span style="margin-right: 10px" v-for="item in order.airEmps">{{item.emp_name}}&nbsp;</span></label>
-        </p>
-        <p v-if="order.moneyEmps" v-show="false">
-            <label class="order-item">收款人：<span style="margin-right: 10px" v-for="item in order.moneyEmps">{{item.emp_name}}</span></label>
-        </p>
+                </table>
 
-    </div>
+            </div>
 
-    <div class="order-info" id="clean2">
-        <table>
-            <tr>
-                <td rowspan="2" v-for=" item in order.moneyEmps">订单编号：{{order.order_no}}&nbsp;&nbsp;&nbsp;&nbsp;收款人：{{item.emp_name}}</td>
-            </tr>
-            <tr>
-                <td align="right">预估报价：</td>
-                <td><input type="text" disabled v-model="order.price" /></td>
-            </tr>
-            <tr>
-                <td align="right">实际收款：</td>
-                <td><input type="text" disabled v-model="order.receiveMoney" /></td>
-            </tr>
-            <tr>
-                <td align="right">支出费用：</td>
-                <td><input type="text" v-model="order.costMoney" /></td>
-            </tr>
-            <tr>
-                <td align="right">支出备注：</td>
-                <td><textarea  type="text"  v-model="order.costText" ></textarea></td>
-            </tr>
-            <tr>
-                <td align="right">收款备注：</td>
-                <td><textarea type="text" disabled v-model="order.receiveText" ></textarea></td>
-            </tr>
-            <tr ><td cosplan="2">随车司机：</td></tr>
-            <tr>
-                <td v-for="item in order.driveEmps">{{item.emp_name}}&nbsp;<br/> </td>
-                <td ><input type="text"  name="driveEmps"><br/>
+            <div class="order-info" id="clean2">
+                <table>
+                    <tr>
+                        <td rowspan="2" v-for=" item in order.moneyEmps">订单编号：{{order.order_no}}&nbsp;&nbsp;&nbsp;&nbsp;收款人：{{item.emp_name}}</td>
+                    </tr>
+                    <tr>
+                        <td align="right">预估报价：</td>
+                        <td><input type="text" disabled v-model="order.price" /></td>
+                    </tr>
+                    <tr>
+                        <td align="right">实际收款：</td>
+                        <td><input type="text" disabled v-model="order.receiveMoney" /></td>
+                    </tr>
+                    <tr>
+                        <td align="right">支出费用：</td>
+                        <td><input type="text" v-model="order.costMoney" /></td>
+                    </tr>
+                    <tr>
+                        <td align="right">支出备注：</td>
+                        <td><textarea  type="text"  v-model="order.costText" ></textarea></td>
+                    </tr>
+                    <tr>
+                        <td align="right">收款备注：</td>
+                        <td><textarea type="text" disabled v-model="order.receiveText" ></textarea></td>
+                    </tr>
+                    <tr ><td colspan="2">随车司机：</td></tr>
+                    <tr>
+                        <td colspan="2" ><span v-for="item in order.driveEmps">{{item.emp_name}}&nbsp;
+                </span><input type="text"  name="driveEmps"><br/> </td>
 
-                </td>
-            </tr>
-            <tr ><td cosplan="2">随车搬运工：</td></tr>
-            <tr>
+                    </tr>
+                    <tr ><td colspan="2">随车搬运工：</td></tr>
+                    <tr>
 
-                <td v-for="item in order.moveEmps">{{item.emp_name}}&nbsp; <br/></td>
-                <td ><input type="text"  name="moveEmps"><br/>
+                        <td colspan="2" ><span v-for="item in order.driveEmps">{{item.emp_name}}&nbsp;
+                </span><input type="text"  name="moveEmps"> <br/></td>
 
-                </td>
-            </tr>
-            <tr ><td cosplan="2">随车空调工：</td></tr>
-            <tr>
+                    </tr>
+                    <tr ><td colspan="2">随车空调工：</td></tr>
+                    <tr>
 
-                <td v-for="item in order.airEmps">{{item.emp_name}} &nbsp;</td>
-                <td><input type="text"  name="airEmps"><br/>
+                        <td colspan="2" ><span v-for="item in order.driveEmps">{{item.emp_name}}&nbsp;
+                </span><input type="text"  name="airEmps"></td>
 
-                </td>
-            </tr>
-        </table>
+                    </tr>
+                    <tr>
+                        <td colspan="2" align="center"><input type="button" @click="submit" value="确认"/>&nbsp;
+                            &nbsp;<input type="button" @click="cancel" value="取消" /></td>
+                    </tr>
+                </table>
 
 
 
+            </div>
+
+        </div>
     </div>
 
 

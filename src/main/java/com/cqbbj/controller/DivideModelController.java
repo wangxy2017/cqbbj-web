@@ -129,6 +129,17 @@ public class DivideModelController extends BaseController {
     }
 
     /**
+     * 查询模板详情
+     */
+    @RequestMapping("/queryByModel_no")
+    @ResponseBody
+    public Result queryByModel_no(String model_no){
+        DivideModelDetails divideModelDetails=new DivideModelDetails();
+        divideModelDetails.setModel_no(model_no);
+        DivideModelDetails divideModelDetails1= divideModelDetailsService.queryByProperties(divideModelDetails);
+        return ResultUtils.success(divideModelDetails1);
+    }
+    /**
      * 删除模板
      *
      * @param id

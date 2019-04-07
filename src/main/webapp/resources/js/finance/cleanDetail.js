@@ -8,28 +8,47 @@ layui.use(["table", "layer", "laydate", "jquery"], function () {
         el: "#main",
         data: {
             order: "",
-            moneyEmp:{},
-            driveEmps:[],
-            moveEmps:[],
-            airEmps:[]
+
+            cleanStyle: "",
+
+            money: "",
+            drive: "",
+            move: "",
+            air: "",
+
+
         },
         methods: {
             /**
              * 自动结算
              */
-            auto:function(){
+            auto: function () {
                 $("#clean2").hide();
                 $("#clean1").show();
+                $("#li2").removeClass("layui-this");
+                $("#li1").addClass("layui-this");
             },
             /**
              * 手动结算
              */
-            manual:function(){
+            manual: function () {
                 $("#clean1").hide();
                 $("#clean2").show();
+                $("#li1").removeClass("layui-this");
+                $("#li2").addClass("layui-this");
             },
+               load:function(){
+                if(cleanStyle!=0){
+                    this.$http.post("/divideModel/queryPageList", {}, {emulateJSON: true}).then(function (res) {
+
+                    },function (reason) {
+
+                    })
+                }
+               },
+
             //选择员工
-            chooseEmp:function (type) {
+            chooseEmp: function (type) {
                 parent.layer.open({
                     type: 2,
                     title: "选择员工",
@@ -81,7 +100,36 @@ layui.use(["table", "layer", "laydate", "jquery"], function () {
                 for (var i = 0; i < tempArr.length; i++) {
                     dispatchEmps.push(tempArr[i]);
                 }
+            },
+            submit: function () {
+
+            },
+            cancel: function () {
+
             }
+        },
+        mounted: function () {
+            /**
+             * 默认使用自动结算
+             */
+            $("#clean2").hide();
+            $("#clean1").show();
+
+            /**
+             * 加载结算方式
+             */
+            this.$http.post("/divideModel/queryPageList", {}, {emulateJSON: true}).then(function (res) {
+
+                if(res.body.data.code==1){
+                    $("#selectSM").remove();//清空select列表数据
+                    $("#selectSM").prepend("<option value='0'>请选择</option>");//添加第一个option值
+                    for (var i = 0; i < res.body.data.list.length; i++) {
+                        $("#selectSM").append("<option value='"+res.body.data.list[i].model_no+"'>"+res.body.data.list[i].name+"</option>");
+                    }
+                }
+            },function () {
+                toastr.error("下拉框加载失败");
+            })
         }
 
 
