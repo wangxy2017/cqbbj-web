@@ -52,9 +52,34 @@
         <div class="row">
             <input type="button" class="btn btn-block btn-success active" value="查询" style="margin-bottom: 2rem" @click.stop="vivw">
         </div>
+        <div class="alert_model" @click.stop="end">
+            <div class="alert_body">
+                <input type="hidden" id="checkId" value="">
+                <input type="hidden" id="checkOrderNo" value="">
+                <div class="alert-title">
+                    <p>提示</p>
+                    <span @click.stop="hide" class="glyphicon glyphicon-remove"></span>
+                </div>
+                <div class="container-fluid">
+                    <div class="modal-text">
+                        <div class="row">
+                            <div class="col-sm-4" v-for="item in emps">
+                                <button @click.stop="0"  class="btn btn-default" :data-emp_no="item.emp_no">{{item.name}}({{item.account}})</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <input type="button" @click.stop="click" class="btn btn-info btn-lg btn-block"value="确定">
+                    </div>
+                    <div class="col-sm-6">
+                        <input type="button" class="btn btn-default btn-lg btn-block" value="取消">
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </header>
-<div id="magnifying" @click.stop="search">
+<div id="magnifying" @click="search">
     <img src="${pageContext.request.contextPath}/resources/wx/imge/search.png" alt="放大镜">
 </div>
 <div class="container-fluid" id="main">
@@ -86,28 +111,6 @@
         <div class="row">
             <div class="col-sm-3">订单状态:</div>
             <div class="col-sm-9" style="color: red">已结算</div>
-        </div>
-    </div>
-    <div class="alert_model" @click.stop="end">
-        <div class="alert_body">
-            <input type="hidden" id="checkId" value="">
-            <input type="hidden" id="checkOrderNo" value="">
-            <div class="alert-title">
-                <p>提示</p>
-                <span @click.stop="hide" class="glyphicon glyphicon-remove"></span>
-            </div>
-            <div class="container-fluid">
-                <div class="modal-text">
-                    <p>是否确定作废?</p>
-                </div>
-                <div class="col-sm-6">
-                    <input type="button" class="btn btn-info btn-lg btn-block" @click.stop="0"
-                           value="确定">
-                </div>
-                <div class="col-sm-6">
-                    <input type="button" class="btn btn-default btn-lg btn-block" value="取消">
-                </div>
-            </div>
         </div>
     </div>
 </div>
