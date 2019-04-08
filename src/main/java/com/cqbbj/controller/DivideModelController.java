@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author wangxy
@@ -126,6 +127,18 @@ public class DivideModelController extends BaseController {
     public Result queryPageList(DivideModel divideModel, Integer pageNum, Integer pageSize) {
         PageModel<DivideModel> pageModel = divideModelService.queryPageList(divideModel, pageNum, pageSize);
         return ResultUtils.success(pageModel);
+    }
+    /**
+     * 查询列表
+     *
+     * @param divideModel
+     * @return
+     */
+    @RequestMapping("/queryList")
+    @ResponseBody
+    public Result queryPageList(DivideModel divideModel) {
+        List<DivideModel> list = divideModelService.queryList(divideModel);
+        return ResultUtils.success(list);
     }
 
     /**

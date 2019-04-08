@@ -122,13 +122,13 @@ layui.use(["table", "layer", "laydate", "jquery"], function () {
             /**
              * 加载结算方式
              */
-            this.$http.post("/divideModel/queryPageList", {}, {emulateJSON: true}).then(function (res) {
-
+            this.$http.post("/divideModel/queryList", {}, {emulateJSON: true}).then(function (res) {
+                console.log(res);
                 if(res.body.data.code==1){
                     $("#selectSM").remove();//清空select列表数据
                     $("#selectSM").prepend("<option value='0'>请选择</option>");//添加第一个option值
-                    for (var i = 0; i < res.body.data.list.length; i++) {
-                        $("#selectSM").append("<option value='"+res.body.data.list[i].model_no+"'>"+res.body.data.list[i].name+"</option>");
+                    for (var i = 0; i < res.body.data.length; i++) {
+                        $("#selectSM").append("<option value='"+res.body.data[i].model_no+"'>"+res.body.data[i].name+"</option>");
                     }
                 }
             },function () {

@@ -57,6 +57,7 @@
         dm.name,
         dm.is_disabled,
         dm.createTime,
+        dm.model_no,
         dmd.id as did,
         dmd.name as dname,
         dmd.type as dtype,

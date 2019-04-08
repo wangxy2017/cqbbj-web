@@ -45,7 +45,13 @@ public class WXCustomerController extends BaseController {
     public String customerOrder(){
         return "wx/customer/hasPayMent";
     }
-
+    /**
+     *跳转至客户注册页面
+     */
+    @RequestMapping("/register")
+    public String register(){
+        return "wx/customer/register";
+    }
     /**
      * 会员信息查询
      * @param customer
