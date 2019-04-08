@@ -43,7 +43,7 @@
             </div>
         </div>
     </div>
-    <div class="center-body">
+    <%--<div class="center-body">--%>
         <%--<div class="row" style="border-bottom: 1px solid;color: #CFCFCF">--%>
             <%--<div class="col-sm-2">--%>
                 <%--<span class="glyphicon glyphicon-map-marker"></span>--%>
@@ -60,16 +60,16 @@
                 <%--账号管理--%>
             <%--</div>--%>
         <%--</div>--%>
-    </div>
-    <footer>
-        <div class="row" style="border-bottom: 1px solid;color: #CFCFCF">
-            <div class="col-sm-2">
-                <span class="glyphicon glyphicon-time" style="color: #F51211"></span>
-            </div>
-            <div class="col-sm-10">
-                我的预约
-            </div>
-        </div>
+    <%--</div>--%>
+    <%--<footer>--%>
+        <%--<div class="row" style="border-bottom: 1px solid;color: #CFCFCF" @click.stop="1">--%>
+            <%--<div class="col-sm-2">--%>
+                <%--<span class="glyphicon glyphicon-time" style="color: #F51211"></span>--%>
+            <%--</div>--%>
+            <%--<div class="col-sm-10">--%>
+                <%--我的预约--%>
+            <%--</div>--%>
+        <%--</div>--%>
         <%--<div class="row">--%>
             <%--<div class="col-sm-2">--%>
                 <%--<span class="glyphicon glyphicon-question-sign" style="color: #2E23D1"></span>--%>
@@ -78,7 +78,7 @@
                 <%--帮助--%>
             <%--</div>--%>
         <%--</div>--%>
-    </footer>
+    <%--</footer>--%>
 </div>
 
 

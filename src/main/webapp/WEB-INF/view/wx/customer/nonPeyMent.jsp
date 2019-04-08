@@ -53,13 +53,13 @@
             <div class="col-sm-3">搬入地址:</div>
             <div class="col-sm-9">重庆市合川区盐井镇荷花村六组21号</div>
         </div>
-        <div class="display">
-            <div class="row">
-                <div class="col-sm-12">
-                    <input type="button" class="btn btn-block btn-primary" value="查看" @click.stop="0">
-                </div>
-            </div>
-        </div>
+        <%--<div class="display">--%>
+            <%--<div class="row">--%>
+                <%--<div class="col-sm-12">--%>
+                    <%--<input type="button" class="btn btn-block btn-primary" value="查看" @click.stop="lineItem">--%>
+                <%--</div>--%>
+            <%--</div>--%>
+        <%--</div>--%>
     </div>
 </div>
 
