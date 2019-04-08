@@ -30,6 +30,22 @@ public class WXCustomerController extends BaseController {
     public String customer() {
         return "wx/customer/customer";
     }
+
+    /**
+     *跳转至未付款订单页面
+     */
+    @RequestMapping("/nonPeyMent")
+    public String nonPeyMent(){
+        return "wx/customer/nonPeyMent";
+    }
+    /**
+     *跳转至已付款订单页面
+     */
+    @RequestMapping("/hasPayMent")
+    public String customerOrder(){
+        return "wx/customer/hasPayMent";
+    }
+
     /**
      * 会员信息查询
      * @param customer
@@ -55,4 +71,10 @@ public class WXCustomerController extends BaseController {
         PageModel<Order> orderPageModel = orderService.queryPageList(order, pageNum, pageSize);
         return ResultUtils.success(orderPageModel);
     }
+
+
+    /**
+     * 退出登录
+     */
+
 }

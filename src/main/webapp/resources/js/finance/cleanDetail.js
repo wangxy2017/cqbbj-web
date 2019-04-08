@@ -37,7 +37,11 @@ layui.use(["table", "layer", "laydate", "jquery"], function () {
                 $("#li1").removeClass("layui-this");
                 $("#li2").addClass("layui-this");
             },
-               load:function(){
+
+            /**
+             * 选择结算方式时加载数据
+             */
+            load:function(){
                 if(cleanStyle!=0){
                     this.$http.post("/divideModel/queryPageList", {}, {emulateJSON: true}).then(function (res) {
 
