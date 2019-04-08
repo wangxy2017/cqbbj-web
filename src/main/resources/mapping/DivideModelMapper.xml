@@ -39,6 +39,7 @@
         <id property="id" column="id"/>
         <result property="name" column="name"/>
         <result property="is_disabled" column="is_disabled"/>
+        <result property="model_no" column="model_no"/>
         <result property="createTime" column="createTime"/>
         <!-- 配置一对多的关系 -->
         <collection property="details" javaType="list" ofType="divideModelDetails">

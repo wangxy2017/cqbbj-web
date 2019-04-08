@@ -1,22 +1,18 @@
-layui.use(["table", "layer", "laydate", "jquery"], function () {
+layui.use(["table", "layer", "jquery", "form"], function () {
+    var form = layui.form;
     var table = layui.table;
     var layer = layui.layer;
-    var laydate = layui.laydate;
     var $ = layui.$;
     // 创建vue实例
     var main = new Vue({
         el: "#main",
         data: {
-            order: "",
-
+            order: {},
             cleanStyle: "",
-
             money: "",
             drive: "",
             move: "",
             air: "",
-
-
         },
         methods: {
             /**
@@ -41,15 +37,15 @@ layui.use(["table", "layer", "laydate", "jquery"], function () {
             /**
              * 选择结算方式时加载数据
              */
-            load:function(){
-                if(cleanStyle!=0){
+            load: function () {
+                if (main.cleanStyle != 0) {
                     this.$http.post("/divideModel/queryPageList", {}, {emulateJSON: true}).then(function (res) {
 
-                    },function (reason) {
+                    }, function (reason) {
 
                     })
                 }
-               },
+            },
 
             //选择员工
             chooseEmp: function (type) {
@@ -113,6 +109,13 @@ layui.use(["table", "layer", "laydate", "jquery"], function () {
             }
         },
         mounted: function () {
+            // 初始化表单
+            form.render();
+            //监听手动结算提交
+            form.on('submit(handleClean)', function (data) {
+                layer.msg(JSON.stringify(data.field));
+                return false;
+            });
             /**
              * 默认使用自动结算
              */
@@ -123,17 +126,19 @@ layui.use(["table", "layer", "laydate", "jquery"], function () {
              * 加载结算方式
              */
             this.$http.post("/divideModel/queryList", {}, {emulateJSON: true}).then(function (res) {
-                console.log(res);
-                if(res.body.data.code==1){
-                    $("#selectSM").remove();//清空select列表数据
-                    $("#selectSM").prepend("<option value='0'>请选择</option>");//添加第一个option值
+                if (res.body.code == 1) {
+                    var html = "<option value=''>请选择</option>";
                     for (var i = 0; i < res.body.data.length; i++) {
-                        $("#selectSM").append("<option value='"+res.body.data[i].model_no+"'>"+res.body.data[i].name+"</option>");
+                        html += "<option >" + res.body.data[i].name + "</option>";
                     }
+                    $("#selectSM").empty().append(html);
+                    // 重新渲染表单
+                    form.render();
                 }
-            },function () {
+            }, function () {
                 toastr.error("下拉框加载失败");
-            })
+            });
+
         }
 
 

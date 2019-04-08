@@ -143,7 +143,7 @@ layui.use(["table", "layer", "laydate", "jquery"], function () {
                             anim: 5,
                             title: "结算方式",
                             success: function (layero, index) {
-                                console.log(layero, index);
+                                // console.log(layero, index);
                             }
                         });
                     }
