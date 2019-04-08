@@ -15,7 +15,6 @@
     <meta http-equiv="Expires" content="0"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/plugin/bootstrap-3.3.7-dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/plugin/toastr/toastr.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/css/header.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/css/customer.css">
     <title>会员中心</title>
 </head>
@@ -26,7 +25,7 @@
     </div>
         <p>姜小鱼</p>
 </div>
-<div class="container-fluid">
+<div class="container-fluid" id="main">
     <div class="center">
         <div class="center-titel">
             <div class="col-sm-12">
@@ -36,15 +35,15 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-sm-6">
+            <div class="col-sm-6" @click.stop="nonPeyment">
                 <img src="/resources/wx/imge/0-1.jpg" alt="代付款">待付款
             </div>
-            <div class="col-sm-6">
+            <div class="col-sm-6" @click.stop="1">
                 <img src="/resources/wx/imge/0-2.jpg" alt="已付款">已付款
             </div>
         </div>
     </div>
-    <%--<div class="center-body">--%>
+    <div class="center-body">
         <%--<div class="row" style="border-bottom: 1px solid;color: #CFCFCF">--%>
             <%--<div class="col-sm-2">--%>
                 <%--<span class="glyphicon glyphicon-map-marker"></span>--%>
@@ -61,7 +60,7 @@
                 <%--账号管理--%>
             <%--</div>--%>
         <%--</div>--%>
-    <%--</div>--%>
+    </div>
     <footer>
         <div class="row" style="border-bottom: 1px solid;color: #CFCFCF">
             <div class="col-sm-2">
@@ -71,14 +70,14 @@
                 我的预约
             </div>
         </div>
-        <div class="row">
-            <div class="col-sm-2">
-                <span class="glyphicon glyphicon-question-sign" style="color: #2E23D1"></span>
-            </div>
-            <div class="col-sm-10">
-                帮助
-            </div>
-        </div>
+        <%--<div class="row">--%>
+            <%--<div class="col-sm-2">--%>
+                <%--<span class="glyphicon glyphicon-question-sign" style="color: #2E23D1"></span>--%>
+            <%--</div>--%>
+            <%--<div class="col-sm-10">--%>
+                <%--帮助--%>
+            <%--</div>--%>
+        <%--</div>--%>
     </footer>
 </div>
 
