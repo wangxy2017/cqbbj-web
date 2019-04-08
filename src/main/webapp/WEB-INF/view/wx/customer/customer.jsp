@@ -38,7 +38,7 @@
             <div class="col-sm-6" @click.stop="nonPeyment">
                 <img src="/resources/wx/imge/0-1.jpg" alt="代付款">待付款
             </div>
-            <div class="col-sm-6" @click.stop="1">
+            <div class="col-sm-6" @click.stop="hasPayMent">
                 <img src="/resources/wx/imge/0-2.jpg" alt="已付款">已付款
             </div>
         </div>
