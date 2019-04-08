@@ -13,17 +13,17 @@ var main = new Vue({
             // 参数校验
             var name = main.name;
             if (isEmpty(name)) {
-                alert("姓名不能为空！");
+                toastr.error("姓名不能为空！");
                 return;
             }
             var phone = main.phone;
             if (isEmpty(phone)) {
-                alert("请输入您的手机号码！");
+                toastr.error("请输入您的手机号码！");
                 return;
             }
             var code = main.code;
             if (isEmpty(code)) {
-                alert("请输入您收到的6位数短信验证码");
+                toastr.error("请输入您收到的6位数短信验证码");
                 return;
             }
             // 发送请求
@@ -33,10 +33,10 @@ var main = new Vue({
                 "code": main.code
             }, {emulateJSON: true}).then(function (res) {
                 console.log(res.body);
-                window.location.href="home.html";
+                window.location.href="/wx/customer/customer?userKey=" + myCache.userKey;
             }, function (res) {
                 console.log(res.body);
-                alert("服务器异常！");
+                toastr.error("服务器异常！");
             });
         },
         /**

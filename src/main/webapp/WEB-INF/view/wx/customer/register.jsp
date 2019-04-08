@@ -16,6 +16,7 @@
     <meta http-equiv="Expires" content="0"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/css/register.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/plugin/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/plugin/toastr/toastr.css">
     <title>棒棒军注册界面</title>
     <link rel="icon" type="image/x-icon" href="../favicon.ico"/>
 </head>
@@ -35,6 +36,7 @@
 <script src="${pageContext.request.contextPath}/resources/wx/plugin/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/wx/plugin/Vue/vue.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/wx/plugin/Vue/vue-resource.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/wx/plugin/toastr/toastr.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/wx/js/common.js"></script>
 <script src="${pageContext.request.contextPath}/resources/wx/js/cache.js"></script>
 <script src="${pageContext.request.contextPath}/resources/wx/js/register.js"></script>
