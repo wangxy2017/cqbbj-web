@@ -115,6 +115,18 @@ public class Order extends BaseEntity {
      * 业务员
      */
     private String salesman;
+    /**
+     * 支出花费备注
+     */
+    private String costText;
+    /**
+     * 结算人
+     */
+    private String cleanEmp;
+    /**
+     * 工时(一天8小时制)
+     */
+    private Integer workTime;
 
     /**
      * ============ 关联属性 =============
@@ -523,5 +535,27 @@ public class Order extends BaseEntity {
 
     public void setAirEmpsInfo(String airEmpsInfo) {
         this.airEmpsInfo = airEmpsInfo;
+    }
+    public String getCostText() {
+        return costText;
+    }
+
+    public void setCostText(String costText) {
+        this.costText = costText;
+    }
+    public String getCleanEmp() {
+        return cleanEmp;
+    }
+
+    public void setCleanEmp(String cleanEmp) {
+        this.cleanEmp = cleanEmp;
+    }
+
+    public Integer getWorkTime() {
+        return workTime;
+    }
+
+    public void setWorkTime(Integer workTime) {
+        this.workTime = workTime;
     }
 }

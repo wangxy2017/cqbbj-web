@@ -21,10 +21,15 @@
 </head>
 <body>
 <header>
-    <div class="pic">
-        <span class="glyphicon glyphicon-menu-left" onclick="javaScript:window.history.back()" ></span>
+    <div class="pull-left col-sm-2">
+        <span class="glyphicon glyphicon-menu-left" onclick="javaScript:window.history.back()"></span>
     </div>
-    <p>工资管理</p>
+    <div class="col-sm-8">
+        <p>工资管理</p>
+    </div>
+    <div class="pull-right col-sm-2">
+        <span class="glyphicon glyphicon-home" onclick="javaScript:window.location.href='/wx/login/toHome?userKey='+ myCache.userKey"></span>
+    </div>
 </header>
 <div class="container-fluid" id="main">
     <div class="row list-li" @click.stop="display($event)" v-for="item in salarys">
@@ -62,7 +67,7 @@
                         <input type="button" class="btn btn-info btn-lg btn-block" @click.stop="ascertain(item.id)"  value="确定">
                     </div>
                     <div class="col-sm-6">
-                        <input type="button" class="btn btn-default btn-lg btn-block" @click="outMolde" value="取消">
+                        <input type="button" class="btn btn-default btn-lg btn-block" value="取消">
                     </div>
                 </div>
             </div>
@@ -79,6 +84,10 @@
     <div class=" row baseLine">
         <p>---------我是有底线的----------</p>
     </div>
+    <div class="notFind">
+        <img src="${pageContext.request.contextPath}/resources/wx/imge/undefind.png" alt="">
+        <p>-.-.-.-.-.-暂无数据-.-.-.-.-.-</p>
+    </div>
 </div>
 
 <script src="${pageContext.request.contextPath}/resources/wx/plugin/jquery-3.3.1.min.js"></script>
@@ -86,6 +95,7 @@
 <script src="${pageContext.request.contextPath}/resources/wx/plugin/Vue/vue-resource.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/wx/plugin/toastr/toastr.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/wx/plugin/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/wx/js/cache.js"></script>
 <script src="${pageContext.request.contextPath}/resources/wx/js/mySalary.js"></script>
 </body>
 </html>

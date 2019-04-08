@@ -1,13 +1,3 @@
-//
-// $.ajax({
-//     url: "",// 请求地址
-//     dataType: "json",// 请求参数类型
-//     data: {},// 请求参数
-//     type: "POST",// 请求方式
-//     success: function (result) {},// 请求成功回调
-//     error: function () {}// 请求失败回调
-// });
-
 var main = new Vue({
     el: "#main",
     data: {
@@ -29,6 +19,7 @@ var main = new Vue({
                 url: '/wx/wallet/queryPageList',
                 dataType: 'json',
                 data: {
+                    "userKey": myCache.userKey,
                     "pageNum": _this.pageNum++,
                     "pageSize": _this.pageSize
                 },
@@ -88,23 +79,13 @@ var main = new Vue({
                 }
             });
         });
-        this.$http.post("/wx/wallet/queryResult", {}, {emulateJSON: true}).then(function (res) {
+        this.$http.post("/wx/wallet/queryResult", {"userKey": myCache.userKey}, {emulateJSON: true}).then(function (res) {
             console.log(res.body);
             if (res.body.code == 1)
                 main.employee = res.body.data;
         }, function () {
             toastr.error("数据异常");
         });
-        // this.$http.post("/wx/wallet/queryPageList", {
-        //     pageNum: 1,
-        //     pageSize: 4
-        // }, {emulateJSON: true}).then(function (res) {
-        //     console.log(res.body);
-        //     if (res.body.code == 1)
-        //         main.wallets = res.body.data.list;
-        // }, function () {
-        //     toastr.error("数据异常");
-        // });
     }
 
 });
@@ -127,6 +108,7 @@ $(function () {
                 type: 'post',
                 url: '',
                 data: {
+                    "userKey": myCache.userKey,
                     pageSize: 10,
                     pageNum: pageNum++,
                 },

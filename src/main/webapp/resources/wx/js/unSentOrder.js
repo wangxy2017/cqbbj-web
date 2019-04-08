@@ -6,7 +6,7 @@ var main = new Vue({
         locked: false,
         loaded: 0,
         total: 0,
-        pageNum: 0,
+        pageNum: 1,
         pageSize: 4
     },
     methods: {
@@ -19,6 +19,7 @@ var main = new Vue({
                 url: '/wx/order/queryPageListEmployee',
                 dataType: 'json',
                 data: {
+                    "userKey":myCache.userKey,
                     "pageNum": _this.pageNum++,
                     "pageSize": _this.pageSize,
                     "status": _this.status
@@ -35,11 +36,13 @@ var main = new Vue({
                     if (result.code == 1) {
                         // 1.请求成功，渲染数据
                         _this.orders.push.apply(_this.orders, result.data.list);
-                        // 2.更新已经加载的条数
+                        // 2.更新已经加载的条数和总条数
                         _this.loaded += result.data.list.length;
+                        // console.log(result);
+                        _this.total = result.data.total;
                         // 3.把锁打开
                         _this.locked = false;
-                        // 4.如果已加载的条数 == 总条数 ，显示已经到底
+                        // 4.如果已加载的条数 >= 总条数 ，显示已经到底
                         if (_this.loaded >= _this.total) {
                             $(".baseLine").show();
                         } else {
@@ -70,12 +73,15 @@ var main = new Vue({
             console.log(id);
             $.ajax({
                 url: "/wx/order/updateOrderStatus",
-                data: {"id": id, "status": 3, "order_no": order_no},
+                data: {"userKey":myCache.userKey,"id": id, "status": 3, "order_no": order_no},
                 dataType: "json",
                 type: "post",
                 success: function (res) {
-                    console.log(res.data);
-                    window.location.reload();
+                    toastr.success("操作成功");
+                    // console.log(res.data);
+                    setTimeout(function () {
+                        window.location.reload();
+                    },500)
                 }, error: function () {
 
 
@@ -131,7 +137,7 @@ var main = new Vue({
          */
         view: function (id) {
 
-            window.location.href = "/wx/order/orderDetail?id=" + id;
+            window.location.href = "/wx/order/orderDetail?userKey="+myCache.userKey+"&id=" + id;
 
         },
 
@@ -139,14 +145,14 @@ var main = new Vue({
          * 派单按钮
          */
         dispatch: function (order_no) {
-            window.location.href = "/wx/order/dispatch?order_no=" + order_no;
+            window.location.href = "/wx/order/dispatch?userKey="+myCache.userKey+"&order_no=" + order_no;
         },
 
         /**
          * 修改按钮
          */
         modify: function (id) {
-            window.location.href = "/wx/order/orderUpdate?id=" + id;
+            window.location.href = "/wx/order/orderUpdate?userKey="+myCache.userKey+"&id=" + id;
         },
     },
     mounted: function () {
@@ -165,6 +171,7 @@ var main = new Vue({
                 var i = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
                 if (!_this.locked && ($(document).height() - (i + $(window).height()) == 1 || $(document).height() - (i + $(window).height()) < i) && _this.loaded < _this.total) {
                     // 先上锁，避免多次请求
+                    console.log("已加载" + _this.loaded + "条" + "总条数" + _this.total + "条");
                     _this.locked = true;
                     // 发送请求
                     _this.loadData();

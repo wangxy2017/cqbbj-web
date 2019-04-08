@@ -2,8 +2,10 @@ var main = new Vue({
     el: "#main",
     data: {
         order_no: "",
-        receiveMoney: "",
-        receiveText: ""
+        receiveMoney: 0.00,
+        receiveText: "",
+        costMoney:0.00,
+        costText:""
     },
     methods: {
         /**
@@ -11,22 +13,26 @@ var main = new Vue({
          * */
         submit: function () {
             $.ajax({
-                url: "/wx/order/update",
+                url: "/wx/order/helpDone",
                 dataType: "json",
                 data: {
+                    "userKey": myCache.userKey,
                     "order_no": main.order_no,
                     "receiveMoney": main.receiveMoney,
                     "receiveText": main.receiveText,
-                    "endTime":new Date(),
-                    "status": 2,
-                    "id":$("#main").attr("data_id")
+                    "costMoney":main.costMoney,
+                    "costText":main.costText,
+                    "isNotPay": $("#notPay").is(":checked") ? 1 : 0,
+                    "id": $("#main").attr("data_id")
                 },
                 type: "POST",
                 success: function (result) {
                     console.log(result);
-                    if(result.code==1){
-                    toastr.success('提交成功');
-                    window.location.href = "/wx/order/completeOrder";
+                    if (result.code == 1) {
+                        toastr.success('操作成功');
+                        setTimeout(function () {
+                            window.location.href = "/wx/order/completeOrder?userKey=" + myCache.userKey;
+                        }, 500);
                     }
                 },
                 error: function (result) {

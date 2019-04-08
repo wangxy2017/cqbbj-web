@@ -22,10 +22,15 @@
 <body>
 <form class="form-group" id="main">
     <header>
-        <div class="pic">
+        <div class="pull-left col-sm-2">
             <span class="glyphicon glyphicon-menu-left" onclick="javaScript:window.history.back()"></span>
         </div>
-        <p>订单详情</p>
+        <div class="col-sm-8">
+            <p>订单详情</p>
+        </div>
+        <div class="pull-right col-sm-2">
+            <span class="glyphicon glyphicon-home"  onclick="javaScript:window.location.href='/wx/login/toHome?userKey='+ myCache.userKey"></span>
+        </div>
     </header>
     <table class="table" id="table" data_id="<%=request.getParameter("id")%>">
         <tr>
@@ -67,11 +72,11 @@
         </tr>
         <tr v-show="isComplete">
             <th>实际收款:</th>
-            <td>{{order.receiveMoney}}</td>
+            <td>{{order.payState==0?"未付款":returnDouble(order.receiveMoney)}}</td>
         </tr>
         <tr v-show="isComplete">
             <th>收款备注:</th>
-            <td>{{order.receiveText}}</td>
+            <td>{{order.payState==0?"未付款":order.receiveText}}</td>
         </tr>
         <tr v-show="isComplete">
             <th>回访记录:</th>
@@ -84,15 +89,15 @@
         </tr>
         <tr v-show="isDispatch">
             <th>司机:</th>
-            <td><span v-for="item in order.driveEmps">{{item.emp_name}}</span></td>
+            <td><span v-for="item in order.driveEmps">{{item.emp_name}}&nbsp;&nbsp;</span></td>
         </tr>
         <tr v-show="isDispatch">
             <th>搬运工:</th>
-            <td><span v-for="item in order.moveEmps">{{item.emp_name}}</span></td>
+            <td><span v-for="item in order.moveEmps">{{item.emp_name}}&nbsp;&nbsp;</span></td>
         </tr>
         <tr v-show="isDispatch">
             <th>空调工:</th>
-            <td><span v-for="item in order.airEmps">{{item.emp_name}}</span></td>
+            <td><span v-for="item in order.airEmps">{{item.emp_name}}&nbsp;&nbsp;</span></td>
         </tr>
         <tr>
             <th>订单状态:</th>
@@ -113,6 +118,7 @@
 <script src="${pageContext.request.contextPath}/resources/wx/plugin/Vue/vue.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/wx/plugin/Vue/vue-resource.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/wx/js/common.js"></script>
+<script src="${pageContext.request.contextPath}/resources/wx/js/cache.js"></script>
 <script src="${pageContext.request.contextPath}/resources/wx/js/orderDetail.js"></script>
 </body>
 </html>

@@ -20,10 +20,15 @@
 </head>
 <body>
 <header>
-    <div class="pic">
+    <div class="pull-left col-sm-2">
         <span class="glyphicon glyphicon-menu-left" onclick="javaScript:window.history.back()"></span>
     </div>
-    <p>查询结果</p>
+    <div class="col-sm-8">
+        <p>查询结果</p>
+    </div>
+    <div class="pull-right col-sm-2">
+        <span class="glyphicon glyphicon-home"  onclick="javaScript:window.location.href='/wx/login/toHome?userKey='+ myCache.userKey"></span>
+    </div>
 </header>
 <div class="container-fluid" id="main">
     <form action="" class="form-group">
@@ -90,6 +95,7 @@
 <script src="${pageContext.request.contextPath}/resources/wx/plugin/Vue/vue.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/wx/plugin/Vue/vue-resource.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/wx/js/common.js"></script>
+<script src="${pageContext.request.contextPath}/resources/wx/js/cache.js"></script>
 <script src="${pageContext.request.contextPath}/resources/wx/js/sentOrder.js"></script>
 </body>
 </html>

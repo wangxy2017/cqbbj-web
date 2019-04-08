@@ -10,6 +10,7 @@ import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -30,6 +31,15 @@ public class EmployeeServiceImpl implements IEmployeeService {
 
     @Override
     public int saveEntity(Employee employee) {
+        if (employee.getCreateTime() == null) {
+            employee.setCreateTime(new Date());
+        }
+        if (employee.getDeleteStatus() == null) {
+            employee.setDeleteStatus(0);
+        }
+        if (employee.getIs_wxLogin() == null) {
+            employee.setIs_wxLogin(0);
+        }
         return employeeMapper.save(employee);
     }
 

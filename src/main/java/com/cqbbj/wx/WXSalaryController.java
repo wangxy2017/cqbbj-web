@@ -24,11 +24,12 @@ public class WXSalaryController extends BaseController {
     private IOperationLogService operationLogService;
 
     @RequestMapping("/mySalary")
-    public String salary(){
+    public String salary() {
         return "wx/finance/mySalary";
     }
+
     @RequestMapping("/salaryUpdate")
-    public String salaryUpdate(){
+    public String salaryUpdate() {
         return "wx/finance/salaryUpdate";
     }
 
@@ -37,10 +38,10 @@ public class WXSalaryController extends BaseController {
      */
     @RequestMapping("/save")
     @ResponseBody
-    public Result save(HttpServletRequest request, Salary salary) {
+    public Result save(HttpServletRequest request, Salary salary) throws Exception {
         salaryService.saveEntity(salary);
         // 记录日志
-        OperationLog log = createLog(request, "新增员工工资核算" + salary.getSalary_no());
+        OperationLog log = createWXLog(request, "新增员工工资核算" + salary.getSalary_no());
         operationLogService.saveEntity(log);
         return ResultUtils.success();
     }
@@ -53,10 +54,10 @@ public class WXSalaryController extends BaseController {
      */
     @RequestMapping("/update")
     @ResponseBody
-    public Result update(HttpServletRequest request, Salary salary) {
+    public Result update(HttpServletRequest request, Salary salary) throws Exception {
         salaryService.updateEntity(salary);
         // 记录日志
-        OperationLog log = createLog(request, salary.getEmp_name(),"修改员工工资核算" + salary.getSalary_no());
+        OperationLog log = createWXLog(request, "修改员工工资核算" + salary.getSalary_no());
         operationLogService.saveEntity(log);
         return ResultUtils.success();
     }
@@ -97,12 +98,12 @@ public class WXSalaryController extends BaseController {
      */
     @RequestMapping("/delete")
     @ResponseBody
-    public Result delete(HttpServletRequest request, Integer id) {
+    public Result delete(HttpServletRequest request, Integer id) throws Exception {
         Salary salary = salaryService.queryById(id);
         if (salary != null) {
             salaryService.deleteEntity(id);
             // 记录日志
-            OperationLog log = createLog(request, salary.getEmp_name(),"删除员工【" + salary.getEmp_name() + "】工资核算");
+            OperationLog log = createWXLog(request, "删除员工【" + salary.getEmp_name() + "】工资核算");
             operationLogService.saveEntity(log);
             return ResultUtils.success();
         }

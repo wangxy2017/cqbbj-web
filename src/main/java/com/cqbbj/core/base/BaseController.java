@@ -1,5 +1,7 @@
 package com.cqbbj.core.base;
 
+import com.cqbbj.core.util.WXSessionUtils;
+import com.cqbbj.entity.Customer;
 import com.cqbbj.entity.Employee;
 import com.cqbbj.entity.OperationLog;
 import org.apache.log4j.Logger;
@@ -44,41 +46,51 @@ public class BaseController {
         return (Employee) getSession(request).getAttribute("loginUser");
     }
 
-//    /**
-//     * 获取微信登录员工信息
-//     * @param request
-//     * @return
-//     */
-//    protected Employee getWXEmpUser(HttpServletRequest request) {
-//        return (Employee) getSession(request).getAttribute("empUser");
-//    }
+    /**
+     * 获取微信登录员工信息
+     *
+     * @param request
+     * @return
+     */
+    protected Employee getWXEmpUser(HttpServletRequest request) throws Exception {
+        WXSession session = WXSessionUtils.getSession(request.getParameter("userKey"));
+        return (Employee) session.get("wxEmpUser");
+    }
 
-//    /**
-//     * 获取微信客户登录信息
-//     * @param request
-//     * @return
-//     */
-//    protected Employee getWXCosUser(HttpServletRequest request) {
-//        return (Employee) getSession(request).getAttribute("cosUser");
-//    }
+    /**
+     * 获取微信客户登录信息
+     *
+     * @param request
+     * @return
+     */
+    protected Customer getWXCosUser(HttpServletRequest request) throws Exception {
+        WXSession session = WXSessionUtils.getSession(request.getParameter("userKey"));
+        return (Customer) session.get("cosEmpUser");
+    }
+
+    protected OperationLog createPCLog(HttpServletRequest request, String content) {
+        return createLog(getLoginUser(request).getName(), content, request.getRemoteAddr());
+    }
+
+    protected OperationLog createWXLog(HttpServletRequest request, String content) throws Exception {
+        return createLog(getWXEmpUser(request).getName(), content, request.getRemoteAddr());
+    }
 
     /**
      * 创建日志
      *
+     * @param name
      * @param content
+     * @param ip
      * @return
      */
-    protected OperationLog createLog(HttpServletRequest request, String content) {
-        return createLog(request, getLoginUser(request).getName(), content);
-    }
-
-    protected OperationLog createLog(HttpServletRequest request, String name, String content) {
+    protected OperationLog createLog(String name, String content, String ip) {
         OperationLog log = new OperationLog();
         log.setCreateTime(new Date());
         log.setDeleteStatus(0);
         log.setName(name);
         log.setContent(content);
-        log.setIp(request.getRemoteAddr());
+        log.setIp(ip);
         return log;
     }
 

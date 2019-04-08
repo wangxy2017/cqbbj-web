@@ -22,10 +22,15 @@
 </head>
 <body>
 <header>
-    <div class="pic">
+    <div class="pull-left col-sm-2">
         <span class="glyphicon glyphicon-menu-left" onclick="javaScript:window.history.back()"></span>
     </div>
-    <p>收款界面</p>
+    <div class="col-sm-8">
+        <p>收款界面</p>
+    </div>
+    <div class="pull-right col-sm-2">
+        <span class="glyphicon glyphicon-home"  onclick="javaScript:window.location.href='/wx/login/toHome?userKey='+ myCache.userKey"></span>
+    </div>
 </header>
 <div id="main" class="container-fluid">
     <div class="form-group">
@@ -64,6 +69,7 @@
 <script src="${pageContext.request.contextPath}/resources/wx/plugin/Vue/vue-resource.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/wx/plugin/toastr/toastr.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/wx/plugin/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/wx/js/cache.js"></script>
 <script src="${pageContext.request.contextPath}/resources/wx/js/payment.js"></script>
 </body>
 </html>

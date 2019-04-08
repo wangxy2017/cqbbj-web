@@ -1,0 +1,43 @@
+body{
+    background: #F5F4F9;
+    font-size: 50%;
+}
+#main{
+    margin-top: 160px;
+    /*padding: 2rem;*/
+}
+.card{
+    width: 100%;
+    height: 100%;
+    box-shadow:0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    background: white;
+    border-radius: 1rem;
+    padding: 2rem;
+    margin-top: 2rem;
+}
+.row{
+    height: 10rem;
+    border-bottom:1px solid #CFCFCF ;
+}
+.col-sm-1 img{
+    margin-top: 2rem;
+    line-height: 10rem;
+}
+ .col-sm-3, .col-sm-9, .col-sm-8{
+    font-size: 4rem;
+    line-height: 10rem;
+}
+.col-sm-8{
+    overflow: hidden;
+    white-space:nowrap;
+    text-overflow:ellipsis;
+}
+.col-sm-12 input{
+    height: 10rem;
+    font-size: 4rem;
+    letter-spacing: 10rem;
+    padding-left: 10rem;
+}
+.display{
+    display: none;
+}

@@ -95,7 +95,7 @@ public class NoticeController extends BaseController {
         noticeService.saveEntity(notice);
         // 记录日志
         operationLogService.saveEntity(
-                createLog(request, "发布公告：" + notice.getTitle()));
+                createPCLog(request, "发布公告：" + notice.getTitle()));
         return ResultUtils.success();
     }
 
@@ -112,7 +112,7 @@ public class NoticeController extends BaseController {
         noticeService.updateEntity(notice);
         // 记录日志
         operationLogService.saveEntity(
-                createLog(request, "修改公告信息：" + notice.getTitle()));
+                createPCLog(request, "修改公告信息：" + notice.getTitle()));
         return ResultUtils.success();
     }
 
@@ -160,7 +160,7 @@ public class NoticeController extends BaseController {
             notice.setStatus(1);
             noticeService.updateEntity(notice);
             // 记录日志
-            OperationLog log = createLog(request, "推送公告" + notice.getTitle());
+            OperationLog log = createPCLog(request, "推送公告" + notice.getTitle());
             operationLogService.saveEntity(log);
             return ResultUtils.success();
         }

@@ -16,7 +16,8 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/css/login.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/plugin/toastr/toastr.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/css/header.css">
-    <link rel="stylesheet"  href="${pageContext.request.contextPath}/resources/wx/plugin/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <link rel="stylesheet"
+          href="${pageContext.request.contextPath}/resources/wx/plugin/bootstrap-3.3.7-dist/css/bootstrap.min.css">
     <title>员工登录</title>
 </head>
 <body>
@@ -37,7 +38,8 @@
                         <span class="glyphicon glyphicon-user"></span>
                     </div>
                     <div class="col-sm-11">
-                        <input id="account" type="text" placeholder="请输入账号\邮箱\手机号" onfocus="this.placeholder='' " onblur="this.placeholder='请输入账号\\邮箱\\手机号'" autocomplete="off">
+                        <input id="account" type="text" placeholder="请输入账号\邮箱\手机号" onfocus="this.placeholder='' "
+                               onblur="this.placeholder='请输入账号\\邮箱\\手机号'" autocomplete="off">
                     </div>
                 </div>
                 <div class="row">
@@ -45,7 +47,8 @@
                         <span class="glyphicon glyphicon-lock"></span>
                     </div>
                     <div class="col-sm-11">
-                        <input id="password" type="password" placeholder="请输入您的密码" onfocus="this.placeholder=''" onblur="this.placeholder='请输入您的密码'" autocomplete="off">
+                        <input id="password" type="password" placeholder="请输入您的密码" onfocus="this.placeholder=''"
+                               onblur="this.placeholder='请输入您的密码'" autocomplete="off">
                     </div>
                 </div>
                 <%--<div class="col-sm-6">--%>
@@ -76,6 +79,7 @@
 <script src="${pageContext.request.contextPath}/resources/wx/plugin/toastr/toastr.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/wx/plugin/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/wx/js/common.js"></script>
+<script src="${pageContext.request.contextPath}/resources/wx/js/cache.js"></script>
 <script src="${pageContext.request.contextPath}/resources/wx/js/login.js"></script>
 </body>
 </html>

@@ -6,6 +6,7 @@ import com.cqbbj.core.base.Result;
 import com.cqbbj.core.util.*;
 import com.cqbbj.entity.*;
 import com.cqbbj.service.*;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -35,6 +36,8 @@ public class WXOrderControll extends BaseController {
     private IMessageLogService messageLogService;
     @Autowired
     private ISignBillService signBillService;
+    @Autowired
+    private IIntentionOrderService intentionOrderService;
 
     /**
      * 进入添加订单页面
@@ -126,6 +129,14 @@ public class WXOrderControll extends BaseController {
         return "wx/order/callback";
     }
 
+    /**
+     * 进入在线下单页面
+     */
+    @RequestMapping("/onlineOrder")
+    public String onlineOrder() {
+
+        return "wx/order/onlineOrder";
+    }
 
     /**
      * 进入回访页面
@@ -133,6 +144,29 @@ public class WXOrderControll extends BaseController {
     @RequestMapping("/myTask")
     public String myTask() {
         return "wx/myTask/myTask";
+    }
+
+
+    /**
+     * 添加意向订单
+     *
+     * @param
+     * @return
+     */
+    @RequestMapping("/addIntentionOrder")
+    @ResponseBody
+    public Result addIntentionOrder(String name, String phone, String start, String end) {
+
+        //添加意向订单
+        IntentionOrder order = new IntentionOrder();
+        order.setName(name);
+        order.setPhone(phone);
+        order.setStart(start);
+        order.setEnd(end);
+        order.setInten_no(CommUtils.getCode(ConstantUtils.INTENTION_ORDER));
+        order.setStatus(0);
+        intentionOrderService.saveEntity(order);
+        return ResultUtils.success();
     }
 
 
@@ -145,7 +179,7 @@ public class WXOrderControll extends BaseController {
     @RequestMapping("/addOrder")
     @ResponseBody
     public Result addOrder(String name, String phone, String start, String end, Double price, Date beginTime,
-                           String content, Integer type, Integer isNotice, HttpServletRequest request) {
+                           String content, Integer type, Integer isNotice, HttpServletRequest request) throws Exception {
         //添加客户信息
         Customer customer = new Customer();
         customer.setName(name);
@@ -172,7 +206,7 @@ public class WXOrderControll extends BaseController {
         order.setSource(1);
         orderService.saveEntity(order);
 
-        operationLogService.saveEntity(createLog(request, name, "新增订单：" + order.getOrder_no()));
+        operationLogService.saveEntity(createWXLog(request, "新增订单：" + order.getOrder_no()));
         if (isNotice != null && isNotice == 1) {
             log.debug("发送短信");
             CompanyInfo companyInfo = companyInfoService.queryById(1);
@@ -195,12 +229,7 @@ public class WXOrderControll extends BaseController {
     @RequestMapping("/queryPageListEmployee")
     @ResponseBody
     public Result queryPageList(Order order, int pageNum, int pageSize) {
-
-        Employee empUser = EmployeeUtils.getEmployee();
-        order.setEmp_no(empUser.getEmp_no());
-
         PageModel<Order> orderPageModel = orderService.queryPageList(order, pageNum, pageSize);
-
         return ResultUtils.success(orderPageModel);
     }
 
@@ -295,7 +324,7 @@ public class WXOrderControll extends BaseController {
     @ResponseBody
     public Result dispatchOrder(HttpServletRequest request, String order_no,
                                 String moneyEmps, String driveEmps, String moveEmps,
-                                String airEmps) {
+                                String airEmps) throws Exception {
         // 派单
         orderService.dispatchOrder(order_no,
                 CommUtils.toStringArray(moneyEmps),
@@ -303,7 +332,7 @@ public class WXOrderControll extends BaseController {
                 CommUtils.toStringArray(moveEmps),
                 CommUtils.toStringArray(airEmps));
         // 记录日志
-        operationLogService.saveEntity(createLog(request, EmployeeUtils.getEmployee().getName(), "派单：" + order_no));
+        operationLogService.saveEntity(createWXLog(request, "派单：" + order_no));
         return ResultUtils.success();
     }
 
@@ -314,23 +343,12 @@ public class WXOrderControll extends BaseController {
      */
     @RequestMapping("/update")
     @ResponseBody
-    public Result update(HttpServletRequest request, Order order,
-                         String moneyEmps, String driveEmps, String moveEmps,
-                         String airEmps) {
+    public Result update(HttpServletRequest request, Order order) throws Exception {
 
         // 更新订单
         orderService.updateEntity(order);
-        // 更新派单
-        if (moneyEmps != null || driveEmps != null || moneyEmps != null || airEmps != null)
-            orderService.dispatchOrder(order.getOrder_no(),
-                    CommUtils.toStringArray(moneyEmps),
-                    CommUtils.toStringArray(driveEmps),
-                    CommUtils.toStringArray(moveEmps),
-                    CommUtils.toStringArray(airEmps));
         // 记录日志
-        operationLogService.saveEntity(createLog(request, EmployeeUtils.getEmployee().getName(), "修改订单：" + order.getOrder_no()));
-
-
+        operationLogService.saveEntity(createWXLog(request, "修改订单：" + order.getOrder_no()));
         return ResultUtils.success();
     }
 
@@ -339,9 +357,9 @@ public class WXOrderControll extends BaseController {
      */
     @RequestMapping("/search")
 
-    public String search(Order order,Integer pageNum,Integer pageSize, ModelMap map) {
-        PageModel<Order> pageModel = orderService.queryPageList(order,pageNum,pageSize);
-        map.put("list",pageModel.getList());
+    public String search(Order order, Integer pageNum, Integer pageSize, ModelMap map) {
+        PageModel<Order> pageModel = orderService.queryPageList(order, pageNum, pageSize);
+        map.put("list", pageModel.getList());
         return "wx/order/searchResult.jsp";
     }
 
@@ -354,7 +372,7 @@ public class WXOrderControll extends BaseController {
      */
     @RequestMapping("/helpDone")
     @ResponseBody
-    public Result helpDone(HttpServletRequest request, Order order, Integer isNotPay) {
+    public Result helpDone(HttpServletRequest request, Order order, Integer isNotPay) throws Exception {
         Order order1 = orderService.queryById(order.getId());
         if (order1 != null) {
             // 暂不付款
@@ -362,6 +380,8 @@ public class WXOrderControll extends BaseController {
                 order1.setPayState(0);
                 order1.setStatus(2);
                 order1.setEndTime(new Date());
+                order1.setCostMoney(order.getCostMoney());
+                order1.setCostText(order.getCostText());
                 orderService.updateEntity(order1);
                 // 生成欠条
                 SignBill bill = new SignBill();
@@ -383,13 +403,15 @@ public class WXOrderControll extends BaseController {
             } else {
                 order1.setReceiveMoney(order.getReceiveMoney());
                 order1.setReceiveText(order.getReceiveText());
+                order1.setCostMoney(order.getCostMoney());
+                order1.setCostText(order.getCostText() == null ? "" : order.getCostText());
                 order1.setPayState(1);
                 order1.setStatus(2);
                 order1.setEndTime(new Date());
                 orderService.updateEntity(order1);
             }
             // 记录日志
-            operationLogService.saveEntity(createLog(request, "辅助完成订单：" + order1.getOrder_no()));
+            operationLogService.saveEntity(createWXLog(request, "辅助完成订单：" + order1.getOrder_no()));
             return ResultUtils.success();
         }
         return ResultUtils.error();
@@ -399,9 +421,10 @@ public class WXOrderControll extends BaseController {
      * 登出
      */
     @RequestMapping("/loginOut")
-    public String loginOut() {
-        EmployeeUtils.setEmployee(null);
-        return "wx/login";
+    @ResponseBody
+    public Result loginOut(HttpServletRequest request) throws Exception {
+        WXSessionUtils.delSession(request.getParameter("userKey"));
+        return ResultUtils.success();
     }
 
     /**

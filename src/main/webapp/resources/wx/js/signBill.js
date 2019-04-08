@@ -6,16 +6,15 @@ var main = new Vue({
         loaded: 0,
         total: 0,
         status: 0,
-        pageNum: 1,
-        pageSize: 4
+        pageNum: 0,
+        pageSize: 0
     },
     methods: {
         /**
          * 点击卡片打开隐藏的收款按钮
          */
         taskSwitch: function (event) {
-            var _this = $(event.currentTarget);
-            _this.children('.display').toggle(500).css('display');
+            $(event.currentTarget).children('.display').fadeToggle(500);
         },
         /**
          * 点击收款按钮事件
@@ -25,30 +24,8 @@ var main = new Vue({
              * 把当前页面的订单号码传送给跳转的页面
              * @type {string}
              */
-            var url = "/wx/signBill/payment?id=" + "order_no=" + encodeURI($("#order_no").text());
+            var url = "/wx/signBill/payment?userKey=" + myCache.userKey + "&id=" + id + "&order_no=" + encodeURI($("#order_no").text());
             window.location.href = url;
-            var _this = $(event.currentTarget);
-            $.ajax({
-                url: "/wx/signBill/receive",
-                dataType: "json",
-                data: {
-                    "pageNum": this.pageNum
-                    //展示数据
-                    , "pageSize": this.pageSize
-                    , "status": _this.status
-                },
-                type: "POST",
-                success: function (result) {
-                    console.log(result);
-                    if (result.code == 1) {
-                        main.status = 1;
-                    } else {
-                        toastr.error("数据出错啦");
-                    }
-                },
-                error: function () {
-                }
-            });
         },
         /**
          * 点击已付款
@@ -64,9 +41,10 @@ var main = new Vue({
                 url: "/wx/signBill/queryPageList",
                 dataType: "json",
                 data: {
+                    "userKey": myCache.userKey,
                     "pageNum": this.pageNum
                     //展示数据
-                    , "pageSize": this.pageSize
+                    , "pageSize": 4
                     , "status": 1
                 },
                 type: "POST",
@@ -95,6 +73,7 @@ var main = new Vue({
                 url: "/wx/signBill/queryPageList",
                 dataType: "json",
                 data: {
+                    "userKey": myCache.userKey,
                     "pageNum": this.pageNum
                     //展示数据
                     , "pageSize": this.pageSize
@@ -118,6 +97,7 @@ var main = new Vue({
          * 加载数据
          */
         this.$http.post("/wx/signBill/queryPageList", {
+            "userKey": myCache.userKey,
             //当前页面
             "pageNum": this.pageNum
             //展示数据
@@ -128,7 +108,7 @@ var main = new Vue({
             if (res.body.code == 1) {
                 main.signBills = res.body.data.list;
                 // 分页准备工作--赋值
-                main.loaded = res.body.data.list.length;
+                main.loaded = main.signBills.length;
                 main.total = res.body.data.total;
             }
         }, function (res) {
@@ -143,7 +123,7 @@ var main = new Vue({
             $(window).scroll(function () {
                 // 当滚动到底且有未加载的数据的时候，开启开关，异步加载数据
                 var i = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
-                if ($(document).height() - (i + $(window).height()) == 1) {
+                if ($(document).height() - $(window).height() === i) {
                     console.log("滚动到底打印：", main.loaded, main.total);
                     // 当已加载的条数 >= 总条数，关闭开关，显示已经到底
                     if (main.loaded >= main.total) {
@@ -162,8 +142,9 @@ var main = new Vue({
                         url: '/wx/signBill/queryPageList',
                         dataType: 'json',
                         data: {
-                            "pageNum": main.pageNum++,
-                            "pageSize": main.pageSize,
+                            "userKey":myCache.userKey,
+                            "pageNum": main.pageNum,
+                            "pageSize": main.pageSize++,
                             "status": main.status
                         },
                         type: "POST",
@@ -180,7 +161,8 @@ var main = new Vue({
                                 signBills.push.apply(signBills, result.data.list);
                                 // 更新已经加载的条数
                                 main.loaded += result.data.list.length;
-                                console.log("已经加载" + main.loaded + "条");
+                                main.total = result.data.total;
+                                console.log("已经加载" + main.loaded + "条" + "总条数" + main.total + "条");
                             }
                         },
                         error: function () {

@@ -14,22 +14,29 @@ body{
     background: #e7e7e7;
     position: relative;
 }
-
+.scorllTop{
+    width: 102%;
+    height: 100%;
+}
+#main{
+    width: 102%;
+    overflow-y: auto;
+    margin-top: 166px;
+}
 .list-ul{
     padding: 0 1.5rem;
 }
 .container-fluid{
     font-size: 5rem;
-    padding-top: 4rem;
 }
  /*Li卡片的样式*/
  .list-li{
      background: white;
-     border-radius: 2.5rem;
+     border-radius: 3rem;
      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
      margin-bottom: 4rem;
-     padding: 2rem;
      position: relative;
+     padding: 2rem;
      overflow: hidden;
 }
  .col-sm-7 a{

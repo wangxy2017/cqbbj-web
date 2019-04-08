@@ -22,10 +22,15 @@
 </head>
 <body>
 <header>
-    <div class="pic">
+    <div class="pull-left col-sm-2">
         <span class="glyphicon glyphicon-menu-left" onclick="javaScript:window.history.back()"></span>
     </div>
-    <p>未派订单</p>
+    <div class="col-sm-8">
+        <p>开始派单</p>
+    </div>
+    <div class="pull-right col-sm-2">
+        <span class="glyphicon glyphicon-home"  onclick="javaScript:window.location.href='/wx/login/toHome?userKey='+ myCache.userKey"></span>
+    </div>
 </header>
 <div class="container-fluid" id="main" dataid="<%=request.getParameter("order_no")%>">
     <!--<form action="" class="form-horizontal">-->
@@ -75,8 +80,6 @@
                 </div>
             </div>
         </div>
-
-
         <!--随车司机模态框-->
         <div class="row list-div">
             <label class="col-sm-3 control-label">司机:</label>
@@ -116,13 +119,6 @@
                 </div>
             </div>
         </div>
-
-
-
-
-
-
-
         <!--随车搬运工模态框-->
         <div class="row list-div">
             <label class="col-sm-3 control-label">搬运工:</label>
@@ -175,8 +171,7 @@
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#hvac" @click="chooseHvac">添加人员</button>
             </div>
         </div>
-        <div id="hvac" class="modal fade" tabindex="-1" role="dialog"
-             aria-labelledby="myLargeModalLabel">
+        <div id="hvac" class="modal fade" tabindex="-1" role="dialog"aria-labelledby="myLargeModalLabel">
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-title">
@@ -220,6 +215,7 @@
 <script src="${pageContext.request.contextPath}/resources/wx/plugin/Vue/vue.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/wx/plugin/toastr/toastr.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/wx/plugin/Vue/vue-resource.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/wx/js/cache.js"></script>
 <script src="${pageContext.request.contextPath}/resources/wx/js/dispatch.js"></script>
 </body>
 </html>

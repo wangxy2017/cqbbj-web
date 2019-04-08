@@ -63,7 +63,7 @@ public class SalaryController extends BaseController {
     public Result save(HttpServletRequest request, Salary salary) {
         salaryService.saveEntity(salary);
         // 记录日志
-        OperationLog log = createLog(request, "新增员工工资核算" + salary.getSalary_no());
+        OperationLog log = createPCLog(request, "新增员工工资核算" + salary.getSalary_no());
         operationLogService.saveEntity(log);
         return ResultUtils.success();
     }
@@ -79,7 +79,7 @@ public class SalaryController extends BaseController {
     public Result update(HttpServletRequest request, Salary salary) {
         salaryService.updateEntity(salary);
         // 记录日志
-        OperationLog log = createLog(request, "修改员工工资核算" + salary.getSalary_no());
+        OperationLog log = createPCLog(request, "修改员工工资核算" + salary.getSalary_no());
         operationLogService.saveEntity(log);
         return ResultUtils.success();
     }
@@ -125,7 +125,7 @@ public class SalaryController extends BaseController {
         if (salary != null) {
             salaryService.deleteEntity(id);
             // 记录日志
-            OperationLog log = createLog(request, "删除员工【" + salary.getEmp_name() + "】工资核算");
+            OperationLog log = createPCLog(request, "删除员工【" + salary.getEmp_name() + "】工资核算");
             operationLogService.saveEntity(log);
             return ResultUtils.success();
         }

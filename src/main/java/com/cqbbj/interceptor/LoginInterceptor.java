@@ -6,7 +6,11 @@
  */
 package com.cqbbj.interceptor;
 
-import com.cqbbj.core.util.EmployeeUtils;
+import com.alibaba.fastjson.JSON;
+import com.cqbbj.core.base.WXSession;
+import com.cqbbj.core.util.CommUtils;
+import com.cqbbj.core.util.ResultUtils;
+import com.cqbbj.core.util.WXSessionUtils;
 import com.cqbbj.entity.Employee;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
@@ -20,7 +24,8 @@ public class LoginInterceptor implements HandlerInterceptor {
     /**
      * 配置不需要拦截的路径
      */
-    private static final String[] rule = {"/resources/", "/upload/", "/login", "/doLogin", "/wx/login/toLogin", "/wx/login/empLogin"};
+    private static final String[] rule = {"/resources/", "/upload/",
+            "/login", "/doLogin", "/wx/login/toLogin", "/wx/login/empLogin", "/wx/order/onlineOrder", "/wx/order/addIntentionOrder"};
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
@@ -32,14 +37,26 @@ public class LoginInterceptor implements HandlerInterceptor {
             }
         }
         // 2.判断是否登录
-        if (uri.startsWith("/wx/")) {
-            System.out.println("微信操作："+uri);
-            if (EmployeeUtils.getEmployee() != null) {
+        if (uri.startsWith("/wx/")) {// 判断微信登录
+            System.out.println("微信操作：" + uri);
+            WXSession session = null;
+            try {
+                session = WXSessionUtils.getSession(request.getParameter("userKey"));
+            } catch (Exception e) {
+                response.setContentType("text/html;charset=UTF-8");
+                response.getWriter().write(JSON.toJSONString(ResultUtils.error("参数错误")));
+                return false;
+            }
+            Employee employee = (Employee) session.get("wxEmpUser");
+            if (employee != null) {
+                // 重置session时间
+                session.setOutTime(WXSessionUtils.DEFAULT_TIME);
+                // 放行
                 return true;
             } else {
                 response.sendRedirect("/wx/login/toLogin");
             }
-        } else {
+        } else {// 判断PC登录
             HttpSession session = request.getSession();
             Employee loginUser = (Employee) session.getAttribute("loginUser");
             if (loginUser != null) {

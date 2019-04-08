@@ -58,7 +58,7 @@ public class IntentionFollowController extends BaseController {
         intentionFollowService.saveEntity(intentionFollow);
         // 记录日志
         operationLogService.saveEntity(
-                createLog(request, "跟进订单：" + intentionFollow.getInten_no()));
+                createPCLog(request, "跟进订单：" + intentionFollow.getInten_no()));
         return ResultUtils.success();
     }
 }

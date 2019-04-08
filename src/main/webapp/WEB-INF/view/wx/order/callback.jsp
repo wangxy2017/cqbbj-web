@@ -21,10 +21,15 @@
 </head>
 <body>
 <header>
-    <div class="pic">
-        <span class="glyphicon glyphicon-menu-left" onclick="javaScript:window.history.back()" ></span>
+    <div class="pull-left col-sm-2">
+        <span class="glyphicon glyphicon-menu-left" onclick="javaScript:window.history.back()"></span>
     </div>
-    <p>回访详情</p>
+    <div class="col-sm-8">
+        <p>回访详情</p>
+    </div>
+    <div class="pull-right col-sm-2">
+        <span class="glyphicon glyphicon-home"  onclick="javaScript:window.location.href='/wx/login/toHome?userKey='+ myCache.userKey"></span>
+    </div>
 </header>
 <div class="container-fluid" id="main" dataid="<%=request.getParameter("id")%>">
     <h1>备注记录</h1>
@@ -39,6 +44,7 @@
 <script src="${pageContext.request.contextPath}/resources/wx/plugin/Vue/vue-resource.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/wx/plugin/toastr/toastr.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/wx/plugin/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/wx/js/cache.js"></script>
 <script src="${pageContext.request.contextPath}/resources/wx/js/callback.js"></script>
 </body>
 <html>

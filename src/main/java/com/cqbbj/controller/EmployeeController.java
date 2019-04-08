@@ -213,13 +213,13 @@ public class EmployeeController extends BaseController {
                 employee.setIs_disabled(0);
                 employeeService.updateEntity(employee);
                 // 记录日志
-                OperationLog log = createLog(request, "启用员工：" + employee.getName());
+                OperationLog log = createPCLog(request, "启用员工：" + employee.getName());
                 operationLogService.saveEntity(log);
             } else {
                 employee.setIs_disabled(1);
                 employeeService.updateEntity(employee);
                 // 记录日志
-                OperationLog log = createLog(request, "禁用员工：" + employee.getName());
+                OperationLog log = createPCLog(request, "禁用员工：" + employee.getName());
                 operationLogService.saveEntity(log);
             }
             return ResultUtils.success();
@@ -244,7 +244,7 @@ public class EmployeeController extends BaseController {
             employee.setReason(reason);
             employeeService.updateEntity(employee);
             // 记录日志
-            OperationLog log = createLog(request, "设置员工离职：" + employee.getName()
+            OperationLog log = createPCLog(request, "设置员工离职：" + employee.getName()
                     + "离职原因：" + employee.getReason());
             operationLogService.saveEntity(log);
             return ResultUtils.success();
@@ -267,7 +267,7 @@ public class EmployeeController extends BaseController {
             employee.setIs_onjob(0);
             employeeService.updateEntity(employee);
             // 记录日志
-            OperationLog log = createLog(request, "恢复员工职位状态为在职：" + employee.getName());
+            OperationLog log = createPCLog(request, "恢复员工职位状态为在职：" + employee.getName());
             operationLogService.saveEntity(log);
             return ResultUtils.success();
         }

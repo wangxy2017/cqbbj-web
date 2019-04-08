@@ -110,7 +110,7 @@ public class CarController extends BaseController {
         carService.saveEntity(car);
         // 记录日志
         operationLogService.saveEntity(
-                createLog(request, "新增车辆：" + car.getCar_no()));
+                createPCLog(request, "新增车辆：" + car.getCar_no()));
         return ResultUtils.success();
     }
 
@@ -127,7 +127,7 @@ public class CarController extends BaseController {
         carService.updateEntity(car);
         // 记录日志
         operationLogService.saveEntity(
-                createLog(request, "修改车辆信息：" + car.getCar_no()));
+                createPCLog(request, "修改车辆信息：" + car.getCar_no()));
         return ResultUtils.success();
     }
 
@@ -143,7 +143,7 @@ public class CarController extends BaseController {
         for (int i = 0; i < array.length; i++) {
             Car car = carService.queryById(Integer.parseInt(array[i]));
             operationLogService.saveEntity(
-                    createLog(request, "删除车辆信息：" + car.getCar_no()));
+                    createPCLog(request, "删除车辆信息：" + car.getCar_no()));
         }
         return ResultUtils.success();
     }

@@ -64,23 +64,6 @@ public class ExcelUtils {
     }
 
     /**
-     * 设置响应头
-     *
-     * @param response
-     * @param fileName
-     */
-    public static void setResponseHeader(HttpServletResponse response, String fileName) {
-        try {
-            response.setContentType("application/vnd.ms-excel;charset=utf-8");
-            response.setHeader("Content-Disposition", "attachment;filename=" + new String(fileName.getBytes("UTF-8"), "ISO8859-1"));
-            response.addHeader("Pargam", "no-cache");
-            response.addHeader("Cache-Control", "no-cache");
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-    }
-
-    /**
      * 导出excel
      *
      * @param fileName
@@ -94,13 +77,16 @@ public class ExcelUtils {
                                      String[] title, String[][] values, HttpServletResponse response) throws Exception {
         // 创建 HSSFWorkbook
         HSSFWorkbook workbook = getHSSFWorkbook(sheetName, title, values);
-        if (response != null) {
+        if (response != null) {// 下载
             // 设置响应头
-            setResponseHeader(response, fileName);
+            response.setContentType("application/vnd.ms-excel;charset=utf-8");
+            response.setHeader("Content-Disposition", "attachment;filename=" + new String(fileName.getBytes("UTF-8"), "ISO8859-1"));
+            response.addHeader("Pargam", "no-cache");
+            response.addHeader("Cache-Control", "no-cache");
             OutputStream out = response.getOutputStream();
             workbook.write(out);
             out.close();
-        } else {
+        } else {// 写入本地
             FileOutputStream outputStream = new FileOutputStream("/" + fileName);
             workbook.write(outputStream);
             outputStream.close();

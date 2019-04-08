@@ -158,7 +158,7 @@ public class OrderController extends BaseController {
         order.setSalesman(getLoginUser(request).getEmp_no());
         orderService.saveEntity(order);
         // 记录日志
-        operationLogService.saveEntity(createLog(request, "新增订单：" + order.getOrder_no()));
+        operationLogService.saveEntity(createPCLog(request, "新增订单：" + order.getOrder_no()));
         if (isNotice != null && isNotice == 1) {
             CompanyInfo companyInfo = companyInfoService.queryById(1);
             log.debug("发送短信");
@@ -183,20 +183,11 @@ public class OrderController extends BaseController {
      */
     @RequestMapping("/update")
     @ResponseBody
-    public Result update(HttpServletRequest request, Order order,
-                         String moneyEmps, String driveEmps, String moveEmps,
-                         String airEmps) {
+    public Result update(HttpServletRequest request, Order order) {
         // 更新订单
         orderService.updateEntity(order);
-        // 更新派单
-        if (moneyEmps != null || driveEmps != null || moneyEmps != null || airEmps != null)
-            orderService.dispatchOrder(order.getOrder_no(),
-                    CommUtils.toStringArray(moneyEmps),
-                    CommUtils.toStringArray(driveEmps),
-                    CommUtils.toStringArray(moveEmps),
-                    CommUtils.toStringArray(airEmps));
         // 记录日志
-        operationLogService.saveEntity(createLog(request, "修改订单：" + order.getOrder_no()));
+        operationLogService.saveEntity(createPCLog(request, "修改订单：" + order.getOrder_no()));
         return ResultUtils.success();
     }
 
@@ -235,7 +226,7 @@ public class OrderController extends BaseController {
                 CommUtils.toStringArray(moveEmps),
                 CommUtils.toStringArray(airEmps));
         // 记录日志
-        operationLogService.saveEntity(createLog(request, "派单：" + order_no));
+        operationLogService.saveEntity(createPCLog(request, "派单：" + order_no));
         return ResultUtils.success();
     }
 
@@ -319,7 +310,7 @@ public class OrderController extends BaseController {
                 orderService.updateEntity(order1);
             }
             // 记录日志
-            operationLogService.saveEntity(createLog(request, "辅助完成订单：" + order1.getOrder_no()));
+            operationLogService.saveEntity(createPCLog(request, "辅助完成订单：" + order1.getOrder_no()));
             return ResultUtils.success();
         }
         return ResultUtils.error();
@@ -353,7 +344,7 @@ public class OrderController extends BaseController {
         order.setStatus(3);
         orderService.updateEntity(order);
         // 记录日志
-        OperationLog log = createLog(request, "取消订单：" + order.getOrder_no());
+        OperationLog log = createPCLog(request, "取消订单：" + order.getOrder_no());
         operationLogService.saveEntity(log);
         return ResultUtils.success();
     }
@@ -373,7 +364,7 @@ public class OrderController extends BaseController {
         order.setStatus(0);
         orderService.updateEntity(order);
         // 记录日志
-        OperationLog log = createLog(request, "恢复订单：" + order.getOrder_no());
+        OperationLog log = createPCLog(request, "恢复订单：" + order.getOrder_no());
         operationLogService.saveEntity(log);
         return ResultUtils.success();
     }
@@ -403,7 +394,7 @@ public class OrderController extends BaseController {
     public Result visit(HttpServletRequest request, Order order) {
         orderService.updateEntity(order);
         // 记录日志
-        OperationLog log = createLog(request, "回访订单：" + order.getOrder_no());
+        OperationLog log = createPCLog(request, "回访订单：" + order.getOrder_no());
         operationLogService.saveEntity(log);
         return ResultUtils.success();
     }
@@ -505,7 +496,7 @@ public class OrderController extends BaseController {
             }
         }
         // 记录日志
-        OperationLog log = createLog(request, content);
+        OperationLog log = createPCLog(request, content);
         operationLogService.saveEntity(log);
         ExcelUtils.downloadExcel(fileName, sheetName, title, values, response);
     }

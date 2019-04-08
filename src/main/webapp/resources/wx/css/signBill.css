@@ -1,6 +1,9 @@
 body{
     background: #e7e7e7;
 }
+#main{
+    margin-top: 18rem;
+}
 /*已付签单样式*/
 .paid{
     margin: 0 auto;

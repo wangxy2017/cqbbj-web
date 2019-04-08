@@ -1,7 +1,3 @@
-$(function () {
-
-
-});
 var main = new Vue({
     el: "#main",
     data: {
@@ -34,15 +30,14 @@ var main = new Vue({
          * 模态框重置事件
          */
         replacement: function () {
-            console.log("你点了");
             window.location.reload();
         },
         /**
          * 选择收款人员
          */
         chooseEmp: function () {
-            main.$http.post("/wx/employee/queryPageList", {}, {emulateJSON: true}).then(function (res) {
-                console.log(res.body);
+            main.$http.post("/wx/employee/queryPageList", {"userKey": myCache.userKey}, {emulateJSON: true}).then(function (res) {
+                // console.log(res.body);
                 // [{name:xxx,emp_no:xxx},{name:xxx,emp_no:xxx},{name:xxx,emp_no:xxx}]
                 main.emps = res.body.data;
             }, function (res) {
@@ -76,8 +71,8 @@ var main = new Vue({
         *添加随车司机
         */
         chooseDriver: function () {
-            main.$http.post("/wx/employee/queryPageList", {}, {emulateJSON: true}).then(function (res) {
-                console.log(res.body);
+            main.$http.post("/wx/employee/queryPageList", {"userKey": myCache.userKey}, {emulateJSON: true}).then(function (res) {
+                // console.log(res.body);
                 // [{name:xxx,emp_no:xxx},{name:xxx,emp_no:xxx},{name:xxx,emp_no:xxx}]
                 main.motorMans = res.body.data;
             }, function (res) {
@@ -95,7 +90,7 @@ var main = new Vue({
             if (info) {// 取消选中
                 _this.removeClass('btn-info').addClass('btn-default');
                 var name = _this.text() + " ";
-                $("#driver").val($("#driver").val().replace(name,""));
+                $("#driver").val($("#driver").val().replace(name, ""));
                 // 删值 ,123,456
                 var emp_no = "," + _this.attr("data-emp_no");
                 main.driveEmps.replace(emp_no, "");
@@ -116,8 +111,8 @@ var main = new Vue({
          */
 
         chooseHamal: function () {
-            main.$http.post("/wx/employee/queryPageList", {}, {emulateJSON: true}).then(function (res) {
-                console.log(res.body);
+            main.$http.post("/wx/employee/queryPageList", {"userKey": myCache.userKey}, {emulateJSON: true}).then(function (res) {
+                // console.log(res.body);
                 // [{name:xxx,emp_no:xxx},{name:xxx,emp_no:xxx},{name:xxx,emp_no:xxx}]
                 main.hamals = res.body.data;
             }, function (res) {
@@ -137,7 +132,7 @@ var main = new Vue({
                 $("#hamal").val("");
                 //删值
                 var emp_no = "," + _this.attr("data-emp_no");
-                main.airEmps.replace(emp_no,"");
+                main.airEmps.replace(emp_no, "");
             } else {// 选中
                 _this.removeClass('btn-default').addClass('btn-info');
                 // 赋值
@@ -158,8 +153,8 @@ var main = new Vue({
          */
 
         chooseHvac: function () {
-            main.$http.post("/wx/employee/queryPageList", {}, {emulateJSON: true}).then(function (res) {
-                console.log(res.body);
+            main.$http.post("/wx/employee/queryPageList", {"userKey": myCache.userKey}, {emulateJSON: true}).then(function (res) {
+                // console.log(res.body);
                 // [{name:xxx,emp_no:xxx},{name:xxx,emp_no:xxx},{name:xxx,emp_no:xxx}]
                 main.hvacs = res.body.data;
             }, function (res) {
@@ -179,7 +174,7 @@ var main = new Vue({
                 $("#techniCian").val("");
                 //删值
                 var emp_no = "," + _this.attr("data-emp_no");
-                main.moveEmps.replace(emp_no,"");
+                main.moveEmps.replace(emp_no, "");
             } else {// 选中
                 _this.removeClass('btn-default').addClass('btn-info');
                 // 赋值
@@ -201,20 +196,27 @@ var main = new Vue({
             window.location.reload();
         },
 
-
-        /*
-        * 派单提交点击事件
-        *
-        * */
+        /**
+         * 提交事件
+         */
 
         submit: function () {
-            // console.log(main.driveEmps);
-            // console.log(main.moveEmps);
-            // console.log(main.moveEmps);
-            // return;
+            /**
+             * 判断收款人员不能为空
+             */
+            if ($("#moneyEmp").val() == "") {
+                toastr.warning("收款人员不能为空");
+                return;
+            }
+            if ($("#driver").val() == "") {
+                toastr.warning("随车司机不能为空");
+                return;
+            }
+
             $.ajax({
                 url: "/wx/order/dispatchOrder",
                 data: {
+                    "userKey": myCache.userKey,
                     // 订单编号
                     order_no: main.order_no
                     //收款人员
@@ -231,24 +233,28 @@ var main = new Vue({
                 //异步请求
                 type: "post",
                 success: function (res) {
-                    if(res.code==1) {
-                        console.log(res);
+                    console.log(res);
+                    if (res.code == 1) {
                         //    请求成功执行的代码
                         toastr.success("派单成功");
-                            //派单成功刷新页面
-                            window.location.reload();
+                        //派单成功回退到未派界面页面
+                        setTimeout(function () {
+                            window.location.href = "/wx/order/unSentOrder?userKey=" + myCache.userKey;
+                        }, 500)
+                    } else {
+                        toastr.error("派单失败");
                     }
-                }, error: function (res) {
-                    console.log(res);
-                    toastr.error("提交失败!");
+                },
+                error: function (res) {
+                    toastr.error("服务器异常!");
                 }   //    请求失败执行的代码
             });
         },
 
 
     },
-    mounted:function () {
-         this.order_no=$("#main").attr("dataid");
+    mounted: function () {
+        this.order_no = $("#main").attr("dataid");
 
     }
 });

@@ -1,0 +1,98 @@
+html,body{
+    width: 100%;
+    height: 100%;
+}
+/*头部显示*/
+header{
+    width: 100%;
+    height: 120px;
+    background: #3385ff;
+    text-align: center;
+    color: white;
+    font-size: 4.5rem;
+}
+header p{
+    line-height: 120px;
+    /*font-weight: bold;*/
+}
+/*banner样式*/
+.banner{
+    width: 100%;
+    margin: 0 auto;
+}
+.banner img{
+    border: none;
+    width: auto;
+    height: auto;
+    background-size: 90%;
+    width: 100%;
+    height: 100%;
+}
+/*广告样式*/
+.advertising{
+    width: 100%;
+    height: 10rem;
+    margin: 1rem auto;
+    background: deepskyblue;
+}
+.title{
+    /*border: 1px solid black;*/
+    line-height: 10rem;
+    text-align: center;
+    color: white;
+}
+.title p{
+    font-size: 4rem;
+    font-weight: bold;
+}
+.advertising span{
+    margin-left: 1rem;
+}
+marquee{
+    line-height: 10rem;
+    font-size: 4rem;
+    color: white;
+}
+/*main区块儿样式*/
+
+#main .col-sm-2{
+    height: 10rem;
+    text-align: center;
+    font-size: 3rem;
+    margin-top: 4rem;
+    line-height: 10rem;
+    color: #737372;
+    position: relative;
+}
+#main .col-sm-2 span{
+    color: red;
+    position: absolute;
+    margin-top: 4rem;
+    margin-left: 2px;
+}
+#main .col-sm-2 img{
+    margin-top: 2rem;
+}
+#main .col-sm-2 p{
+    font-size: 3rem;
+    line-height: 10rem;
+}
+.col-sm-10 input{
+    height: 10rem;
+    margin-top: 4rem;
+    font-size: 4rem;
+    padding-left: 4rem;
+}
+#main .col-sm-12 input{
+    height: 10rem;
+    background: deepskyblue;
+    font-size: 4rem;
+    color: whitesmoke;
+    border: none !important;
+    margin-top: 4rem;
+}
+#submit{
+    margin-bottom: 10rem;
+    letter-spacing: 10rem;
+    padding-left: 10rem;
+}

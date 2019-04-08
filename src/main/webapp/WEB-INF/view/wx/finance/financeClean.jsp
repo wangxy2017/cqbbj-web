@@ -23,10 +23,15 @@
 </head>
 <body>
 <header>
-    <div class="pic">
+    <div class="pull-left col-sm-2">
         <span class="glyphicon glyphicon-menu-left" onclick="javaScript:window.history.back()"></span>
     </div>
-    <p>财务结算</p>
+    <div class="col-sm-8">
+        <p>财务结算</p>
+    </div>
+    <div class="pull-right col-sm-2">
+        <span class="glyphicon glyphicon-home"  onclick="javaScript:window.location.href='/wx/login/toHome?userKey='+ myCache.userKey"></span>
+    </div>
 </header>
 <div class="container-fluid" id="main">
     <div class="title row">
@@ -43,7 +48,7 @@
     <div class="center">
         <div class="complete">
             <ul class="list-ul">
-                <li class="row list-li" v-for="item in orders">
+                <li class="row list-li" @click.stop="showBtn($event)" v-for="item in orders">
                     <div class="row li-title">
                         <div class="col-sm-7">
                             <p>订单号：<a href="javascript:;">{{item.order_no}}</a></p>
@@ -68,10 +73,10 @@
                     </div>
                     <div class="row display">
                         <div class="col-sm-6">
-                            <button type="button" class="btn btn-danger" @click.stop="2">查看</button>
+                            <button type="button" class="btn btn-danger" @click.stop="view(item.id)">查看</button>
                         </div>
                         <div class="col-sm-6">
-                            <button type="button" class="btn btn-info" @click.stop="0">结算</button>
+                            <button type="button" class="btn btn-info" @click.stop="clean(item.id)">结算</button>
                         </div>
                     </div>
                 </li>
@@ -100,6 +105,7 @@
 <script src="${pageContext.request.contextPath}/resources/wx/plugin/Vue/vue-resource.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/wx/plugin/toastr/toastr.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/wx/js/common.js"></script>
+<script src="${pageContext.request.contextPath}/resources/wx/js/cache.js"></script>
 <script src="${pageContext.request.contextPath}/resources/wx/js/financeClean.js"></script>
 </body>
 </html>

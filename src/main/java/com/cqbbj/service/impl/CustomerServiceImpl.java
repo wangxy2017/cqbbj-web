@@ -53,7 +53,8 @@ public class CustomerServiceImpl implements ICustomerService {
 
     @Override
     public List<Customer> queryList(Customer customer) {
-        return null;
+        List<Customer> list = customerMapper.queryList(customer);
+        return list;
     }
 
     @Override

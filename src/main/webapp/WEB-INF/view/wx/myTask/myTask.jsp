@@ -22,10 +22,15 @@
 </head>
 <body>
 <header>
-    <div class="pic">
+    <div class="pull-left col-sm-2">
         <span class="glyphicon glyphicon-menu-left" onclick="javaScript:window.history.back()"></span>
     </div>
-    <p>我的任务</p>
+    <div class="col-sm-8">
+        <p>我的任务</p>
+    </div>
+    <div class="pull-right col-sm-2">
+        <span class="glyphicon glyphicon-home" onclick="javaScript:window.location.href='/wx/login/toHome?userKey='+ myCache.userKey"></span>
+    </div>
 </header>
 <div class="container-fluid" id="main">
     <div class="title row">
@@ -72,17 +77,73 @@
                         </div>
                     </div>
                     <div class="row display">
-                        <div class="col-sm-4">
-                            <button type="button" class="btn btn-info" @click.stop="0">支付</button>
+                        <div class="col-sm-6">
+                            <button type="button" class="btn btn-danger btn-block" @click.stop="view(order.id)">查看
+                            </button>
                         </div>
-                        <div class="col-sm-4">
-                            <button type="button" class="btn btn-success" @click.stop="finish(order.id)">完成</button>
-                        </div>
-                        <div class="col-sm-4">
-                            <button type="button" class="btn btn-danger" @click.stop="view(order.id)">查看</button>
+                        <div class="col-sm-6">
+                            <button type="button" class="btn btn-success btn-block"
+                                    @click.stop="finish(order.id,order.order_no,$event)">完成
+                            </button>
                         </div>
                     </div>
                 </li>
+
+                <%--模态框开始--%>
+                <div class="alert_model" @click.stop="end">
+                    <div class="alert_body">
+                        <input type="hidden" id="checkId" value="">
+                        <input type="hidden" id="checkOrderNo" value="">
+                        <div class="alert-title">
+                            <p>选择收款方式</p>
+                            <span @click.stop="hide" class="glyphicon glyphicon-remove"></span>
+                        </div>
+                        <div class="container-fluid">
+                            <div class="modal-text">
+                                <div class="row">
+                                    <div class="col-sm-3">微信支付</div>
+                                    <div class="col-sm-9">
+                                        <input id="weChatPay" name="weChatPay" type="button" class="btn btn-success btn-block" @click.stop="0" value="微信支付">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-3">现金支付</div>
+                                    <div class="col-sm-9">
+                                        <input id="cashPay" name="casPay" type="number" @click.stop="2" class="form-control" placeholder="请输入收款金额"
+                                               onfocus="this.placeholder=''" onblur="this.placeholder='请输入收款金额'">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-3">支付备注</div>
+                                    <div class="col-sm-9">
+                                        <textarea id="payNote" name="payNote" @click.stop="0" class="form-control" rows="3" placeholder="请输入备注"
+                                                  onfocus="this.placeholder=''"
+                                                  onblur="this.placeholder='请输入备注'"></textarea>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-3">暂不收款:</div>
+                                    <div class="col-sm-9">
+                                        <div class="checkbox" @click.stop="1">
+                                            <label id="checkBox">
+                                                <input id="isNotPay" name="isNotPay" type="checkbox">
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <input type="button" class="btn btn-primary btn-lg btn-block" @click.stop="ascertain"
+                                       value="确定">
+                            </div>
+                            <div class="col-sm-6">
+                                <input type="button" class="btn btn-default btn-lg btn-block" value="取消">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <%--模态框结束--%>
+
             </ul>
         </div>
     </div>
@@ -103,6 +164,7 @@
 <script src="${pageContext.request.contextPath}/resources/wx/plugin/Vue/vue-resource.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/wx/plugin/toastr/toastr.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/wx/js/common.js"></script>
+<script src="${pageContext.request.contextPath}/resources/wx/js/cache.js"></script>
 <script src="${pageContext.request.contextPath}/resources/wx/js/myTask.js"></script>
 </body>
 </html>

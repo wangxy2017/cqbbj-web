@@ -30,15 +30,16 @@ public class WXSignBillController extends BaseController {
 
     @Autowired
     private IOperationLogService operationLogService;// 操作日志
+
     @RequestMapping("/signBill")
     public String signBill() {
         return "wx/finance/signBill";
     }
+
     @RequestMapping("/payment")
     public String payment() {
         return "wx/finance/payment";
     }
-
 
 
     @RequestMapping("/queryPageList")
@@ -49,6 +50,7 @@ public class WXSignBillController extends BaseController {
 
         return ResultUtils.success(pageModel);
     }
+
     @RequestMapping("/queryById")
     @ResponseBody
     public Result queryById(Integer id) {
@@ -57,6 +59,7 @@ public class WXSignBillController extends BaseController {
 
         return ResultUtils.success(signBill);
     }
+
     /**
      * 收款
      *
@@ -66,13 +69,13 @@ public class WXSignBillController extends BaseController {
      */
     @RequestMapping("/receive")
     @ResponseBody
-    public Result receive(HttpServletRequest request, SignBill signBill) {
+    public Result receive(HttpServletRequest request, SignBill signBill) throws Exception {
         SignBill signBill1 = signBillService.queryById(signBill.getId());
         if (signBill1 != null) {
             // 更新欠条
             signBill1.setReceiveMoney(signBill.getReceiveMoney());
             signBill1.setReceiveText(signBill.getReceiveText());
-            signBill1.setEmp_no(getLoginUser(request).getEmp_no());
+            signBill1.setEmp_no(getWXEmpUser(request).getEmp_no());
             signBill1.setStatus(1);
             signBillService.updateEntity(signBill1);
             // 更新订单
@@ -85,7 +88,7 @@ public class WXSignBillController extends BaseController {
             order1.setPayState(1);
             orderService.updateEntity(order1);
             // 记录日志
-            OperationLog log = createLog(request, "完成未收款订单收款：" + signBill1.getOrder_no());
+            OperationLog log = createWXLog(request, "完成未收款订单收款：" + signBill1.getOrder_no());
             operationLogService.saveEntity(log);
             return ResultUtils.success();
         }

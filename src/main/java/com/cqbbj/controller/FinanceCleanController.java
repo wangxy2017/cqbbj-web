@@ -48,6 +48,15 @@ public class FinanceCleanController extends BaseController {
     public String financeClean() {
         return "finance/financeClean";
     }
+    /**
+     * 财务结算详情
+     *
+     * @return
+     */
+    @RequestMapping("/cleanDetail")
+    public String cleanDetail() {
+        return "finance/cleanDetail";
+    }
 
     /**
      * 财务结算列表查询
@@ -129,7 +138,7 @@ public class FinanceCleanController extends BaseController {
             i++;
         }
         // 记录日志
-        OperationLog log = createLog(request, "导出财务结算");
+        OperationLog log = createPCLog(request, "导出财务结算");
         operationLogService.saveEntity(log);
         ExcelUtils.downloadExcel(fileName, sheetName, title, values, response);
     }

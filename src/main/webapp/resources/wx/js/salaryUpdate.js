@@ -11,6 +11,7 @@ var main = new Vue({
             $.ajax({
                 url: "/wx/salary/update",
                 data: {
+                    "userKey": myCache.userKey,
                     "id": main.salary.id,
                     "emp_name": main.salary.emp_name,
                     "base_money": main.salary.base_money,
@@ -27,7 +28,7 @@ var main = new Vue({
                     console.log(result);
                     toastr.success("修改成功");
                     setTimeout(function () {
-                        window.location.href = "/wx/salary/mySalary";
+                        window.location.href = "/wx/salary/mySalary?userKey=" + myCache.userKey;
                     }, 1000)
                 }, error: function () {
                     toastr.error("提交失败");
@@ -53,7 +54,7 @@ var main = new Vue({
         var n2 = url.indexOf("=");//取得=号的位置
         var id = url.substr(n2 + 1, n1 - n2);//从=号后面的内容
         console.log(id);
-        this.$http.post("/wx/salary/queryById", {"id": id}, {emulateJSON: true}).then(function (res) {
+        this.$http.post("/wx/salary/queryById", {"userKey": myCache.userKey,"id": id}, {emulateJSON: true}).then(function (res) {
             // console.log(res.body);
             // return;
             if (res.body.code == 1) {

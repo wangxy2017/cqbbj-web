@@ -6,7 +6,8 @@ var main = new Vue({
         loaded: 0,
         total: 0,
         pageNum: 0,
-        pageSize: 4
+        pageSize: 4,
+        status: 3
     },
     //方法
     methods: {
@@ -20,7 +21,7 @@ var main = new Vue({
          * 查看跳转页面
          * */
         view: function (id) {
-            window.location.href = "/wx/order/orderDetail?id=" + id;
+            window.location.href = "/wx/order/orderDetail?userKey=" + myCache.userKey + "&id=" + id;
         },
         /**
          * 还原跳转页面
@@ -31,6 +32,7 @@ var main = new Vue({
                 url: "/wx/order/updateOrderStatus",
                 dataType: "json",
                 data: {
+                    "userKey": myCache.userKey,
                     "id": id,
                     "status": 0
                 },
@@ -60,11 +62,13 @@ var main = new Vue({
         loadData: function () {
             var _this = this;
             $.ajax({
-                url: '/wx/financeClean/queryPageList',
+                url: '/wx/order/queryPageListEmployee',
                 dataType: 'json',
                 data: {
+                    "userKey": myCache.userKey,
                     "pageNum": _this.pageNum++,
-                    "pageSize": _this.pageSize
+                    "pageSize": _this.pageSize,
+                    "status": _this.status
                 },
                 type: "POST",
                 beforeSend: function () {
@@ -74,12 +78,14 @@ var main = new Vue({
                     $(".loading").hide();
                 },
                 success: function (result) {
-                    // console.log(result);
+                    console.log(result);
                     if (result.code == 1) {
                         // 1.请求成功，渲染数据
                         _this.orders.push.apply(_this.orders, result.data.list);
                         // 2.更新已经加载的条数
                         _this.loaded += result.data.list.length;
+                        //更新总条数
+                        _this.total = result.data.total;
                         // 3.把锁打开
                         _this.locked = false;
                         // 4.如果已加载的条数 == 总条数 ，显示已经到底

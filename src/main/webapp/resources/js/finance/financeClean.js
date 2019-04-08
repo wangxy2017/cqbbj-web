@@ -78,7 +78,11 @@ layui.use(["table", "layer", "laydate", "jquery"], function () {
                             }
                         }
                         , {field: 'price', title: '订单价格', align: "center"}
-                        , {field: 'receiveMoney', title: '实际收款', align: "center"}
+                        , {
+                            field: 'receiveMoney', title: '实际收款', align: "center", templet: function (d) {
+                                return d.payState == 0 ? "未收款" : d.receiveMoney;
+                            }
+                        }
                         , {
                             field: 'costMoney', title: '支出费用', align: "center", templet: function (d) {
                                 return isEmpty(d.costMoney) ? "<span style='color:#FF5722'>未结算</span>" : d.costMoney;
@@ -132,7 +136,16 @@ layui.use(["table", "layer", "laydate", "jquery"], function () {
 
                     // 结算
                     if (layEvent === 'clean') {
-
+                        layer.open({
+                            type: 2,
+                            content: "/financeClean/cleanDetail?id=" + data.id,
+                            area: ["700px", "550px"],
+                            anim: 5,
+                            title: "结算方式",
+                            success: function (layero, index) {
+                                // console.log(layero, index);
+                            }
+                        });
                     }
                     // 查看
                     if (layEvent === 'view') {
@@ -140,6 +153,7 @@ layui.use(["table", "layer", "laydate", "jquery"], function () {
                             type: 2,
                             content: "/order/orderView?id=" + data.id,
                             area: ["700px", "550px"],
+                            anim: 5,
                             title: "订单详情"
                         });
                     }

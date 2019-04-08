@@ -49,7 +49,9 @@ public class DivideModelServiceImpl implements IDivideModelService {
 
     @Override
     public List<DivideModel> queryList(DivideModel divideModel) {
-        return null;
+
+        List<DivideModel> list = divideModelMapper.queryList(divideModel);
+        return list;
     }
 
     @Override

@@ -13,7 +13,8 @@
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
     <meta http-equiv="Pragma" content="no-cache"/>
     <meta http-equiv="Expires" content="0"/>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/plugin/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <link rel="stylesheet"
+          href="${pageContext.request.contextPath}/resources/wx/plugin/bootstrap-3.3.7-dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/css/header.css?time=2">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/css/wallet.css?time=2">
     <title>财务管理</title>
@@ -21,40 +22,45 @@
 </head>
 <body>
 <header>
-    <div class="pic">
+    <div class="pull-left col-sm-2">
         <span class="glyphicon glyphicon-menu-left" onclick="javaScript:window.history.back()"></span>
     </div>
-    <p>我的钱包</p>
+    <div class="col-sm-8">
+        <p>我的钱包</p>
+    </div>
+    <div class="pull-right col-sm-2">
+        <span class="glyphicon glyphicon-home"  onclick="javaScript:window.location.href='/wx/login/toHome?userKey='+ myCache.userKey"></span>
+    </div>
 </header>
 <div id="main">
-<div class="main">
-    <div class="main-center">
-        <p>余额账户（元）</p>
-        <h1>{{employee.money}}</h1>
+    <div class="main">
+        <div class="main-center">
+            <p>账户余额（元）</p>
+            <h1>{{employee.money}}</h1>
+        </div>
     </div>
-</div>
-<section>
-    <p><span class="glyphicon glyphicon-calendar"></span> 收支明细</p>
-</section>
-<form action="" class="form-group">
-    <div class="container-fluid">
-        <article class="list">
-            <ul>
-                <li class="row" v-for="wallet in wallets">
-                    <div class="col-sm-6">
-                        <p class="h1"><span v-if="wallet.type==0">在线收入</span> <span v-else>在线支出</span></p>
-                        <p>{{formatDateTime(wallet.createTime)}}</p>
-                    </div>
-                    <div class="col-sm-6">
-                        <p class="pg">{{wallet.money}}元</p>
-                    </div>
-                </li>
+    <section>
+        <p><span class="glyphicon glyphicon-calendar"></span> 收支明细</p>
+    </section>
+    <form action="" class="form-group">
+        <div class="container-fluid">
+            <article class="list">
+                <ul>
+                    <li class="row" v-for="wallet in wallets">
+                        <div class="col-sm-6">
+                            <p class="h1"><span v-if="wallet.type==0">在线收入</span> <span v-else>在线支出</span></p>
+                            <p>{{formatDateTime(wallet.createTime)}}</p>
+                        </div>
+                        <div class="col-sm-6">
+                            <p class="pg">{{wallet.money}}元</p>
+                        </div>
+                    </li>
 
-            </ul>
-            <div class="loading" style="display: none;">.....我是有底线的....</div>
-        </article>
-    </div>
-</form>
+                </ul>
+                <div class="loading" style="display: none;">.....我是有底线的....</div>
+            </article>
+        </div>
+    </form>
 </div>
 <div class="row loading">
     <div class="col-sm-5">
@@ -74,6 +80,7 @@
 <script src="${pageContext.request.contextPath}/resources/wx/js/common.js"></script>
 <script src="${pageContext.request.contextPath}/resources/wx/plugin/Vue/vue-resource.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/wx/plugin/toastr/toastr.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/wx/js/cache.js"></script>
 <script src="${pageContext.request.contextPath}/resources/wx/js/wallet.js"></script>
 </body>
 </html>

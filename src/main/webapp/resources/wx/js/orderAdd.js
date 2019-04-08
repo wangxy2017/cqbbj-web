@@ -1,5 +1,5 @@
 var calendardatetime = new lCalendar();
-calendardatetime.init({
+    calendardatetime.init({
     'trigger': '#beginTime',
     'type': 'datetime'
 });
@@ -10,7 +10,7 @@ $(function () {
      */
     $.ajax({
         url: "/wx/order/queryKeys",
-        data: {},
+        data: {"userKey": myCache.userKey},
         dataType: "JSON",
         type: "POST",
         success: function (result) {
@@ -20,7 +20,7 @@ $(function () {
                 var html = "";
                 for (var i = 0; i < keys.length; i++) {
                     if (!isEmpty(keys[i])) {
-                        html += "<input type='button' value='" + keys[i] + "'/>";
+                        html += "<input class='col-sm-4' type='button' value='" + keys[i] + "'/>";
                     }
                 }
                 $("#items").empty().append(html);
@@ -57,9 +57,14 @@ $(function () {
      * 表单提交
      */
     $("#submit").on("click", function () {
+        if (isEmpty($("#typeSelect").val())) {
+            toastr.info("请选择类型");
+            return;
+        }
         $.ajax({
             url: "/wx/order/addOrder",
             data: {
+                "userKey": myCache.userKey,
                 "name": $("#name").val(),
                 "phone": $("#phone").val(),
                 "start": $("#start").val(),
@@ -67,17 +72,22 @@ $(function () {
                 "price": $("#price").val(),
                 "beginTime": $("#beginTime").val() + ":00",
                 "content": $("#content").val(),
-                "type": $("input[name='type']:checked").val(),
+                "type": $("#typeSelect").val(),
                 "isNotice": $("#isNotice").is(":checked") ? 1 : 0
             },
             dataType: "JSON",
             type: "POST",
             success: function (res) {
                 console.log(res);
-                toastr.info("提交成功");
-                setTimeout(function () {
-                    window.location.href = "/wx/login/toHome";
-                }, 1000);
+                if (res.code == 1){
+                    toastr.info("提交成功");
+                    setTimeout(function () {
+                        window.location.href = "/wx/login/toHome?userKey=" + myCache.userKey;
+                    }, 1000);
+                }else {
+                    toastr.error("提交失败");
+                    return;
+                }
             }, error: function () {
                 toastr.error("提交异常");
             }

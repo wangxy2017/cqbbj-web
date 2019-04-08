@@ -16,10 +16,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.ArrayList;
 import java.util.List;
+
 @Controller
 @RequestMapping("/wx/financeClean")
 public class WXFinanceCleanController extends BaseController {
-
 
 
     @Autowired
@@ -69,5 +69,18 @@ public class WXFinanceCleanController extends BaseController {
             }
         }
         return ResultUtils.success(pageModel);
+    }
+
+    /**
+     * 查询财务详情
+     *
+     * @param id
+     * @return
+     */
+    @RequestMapping("/queryById")
+    @ResponseBody
+    public Result queryPageList(Integer id) {
+        Order order = orderService.queryById(id);
+        return ResultUtils.success(order);
     }
 }

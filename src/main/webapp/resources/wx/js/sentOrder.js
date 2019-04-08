@@ -6,7 +6,7 @@ var main = new Vue({
         locked: false,
         loaded: 0,
         total: 0,
-        pageNum: 0,
+        pageNum: 1,
         pageSize: 4
     },
     methods: {
@@ -19,6 +19,7 @@ var main = new Vue({
                 url: '/wx/order/queryPageListEmployee',
                 dataType: 'json',
                 data: {
+                    "userKey": myCache.userKey,
                     "pageNum": _this.pageNum++,
                     "pageSize": _this.pageSize,
                     "is_clean": _this.is_clean,
@@ -38,6 +39,8 @@ var main = new Vue({
                         _this.orders.push.apply(_this.orders, result.data.list);
                         // 2.更新已经加载的条数
                         _this.loaded += result.data.list.length;
+                        //更新总条数
+                        _this.total = result.data.total;
                         // 3.把锁打开
                         _this.locked = false;
                         // 4.如果已加载的条数 == 总条数 ，显示已经到底
@@ -63,7 +66,7 @@ var main = new Vue({
             });
         },
         /**
-         * 作废订单事件
+         * 点击作废订单事件
          */
         cancel: function (id, order_no, event) {
             // 设置选中id
@@ -86,6 +89,7 @@ var main = new Vue({
             $.ajax({
                 url: "/wx/order/cancelOrderStatus",
                 data: {
+                    "userKey": myCache.userKey,
                     "id": id,
                     "status": 3,
                     "order_no": order_no
@@ -94,8 +98,11 @@ var main = new Vue({
                 type: "post",
                 success: function (res) {
                     if (res.code == 1) {
-                        console.log(res.data);
-                        window.location.href = "/wx/order/sentOrder";
+                        toastr.success("操作成功");
+                        // console.log(res.data);
+                        setTimeout(function () {
+                            window.location.href = "/wx/order/sentOrder?userKey=" + myCache.userKey;
+                        }, 500)
                     }
                 }, error: function () {
                     toastr.error("数据异常");
@@ -105,7 +112,7 @@ var main = new Vue({
         },
 
         /**
-         * 点击任意地方关闭弹窗
+         * 点击任意地方关闭模态框
          */
         end: function () {
             $(".alert_body").animate({
@@ -137,19 +144,19 @@ var main = new Vue({
          * 查看按钮
          */
         view: function (id) {
-            window.location.href = "/wx/order/orderDetail?id=" + id;
+            window.location.href = "/wx/order/orderDetail?userKey=" + myCache.userKey + "&id=" + id;
         },
         /**
          * 修改按钮
          */
         modify: function (id) {
-            window.location.href = "/wx/order/orderUpdate?id=" + id;
+            window.location.href = "/wx/order/orderUpdate?userKey=" + myCache.userKey + "&id=" + id;
         },
         /**
          * 辅助完成
          */
         finish: function (id, order_no) {
-            window.location.href = "/wx/order/finishOrder?id=" + id + "&order_no=" + order_no;
+            window.location.href = "/wx/order/finishOrder?userKey=" + myCache.userKey + "&id=" + id + "&order_no=" + order_no;
         }
     },
     mounted: function () {
@@ -169,6 +176,7 @@ var main = new Vue({
                 if (!_this.locked && ($(document).height() - (i + $(window).height()) == 1 || $(document).height() - (i + $(window).height()) < i) && _this.loaded < _this.total) {
                     // 先上锁，避免多次请求
                     _this.locked = true;
+                    console.log("已加载" + _this.loaded + "条" + "总条数" + _this.total + "条")
                     // 发送请求
                     _this.loadData();
                 }

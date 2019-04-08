@@ -74,7 +74,7 @@ public class CustomerController extends BaseController {
     public Result update(HttpServletRequest request, Customer customer) {
         customerService.updateEntity(customer);
         // 记录日志
-        operationLogService.saveEntity(createLog(request, "修改客户【" + customer.getName() + "】信息"));
+        operationLogService.saveEntity(createPCLog(request, "修改客户【" + customer.getName() + "】信息"));
         return ResultUtils.success();
     }
 
@@ -105,7 +105,7 @@ public class CustomerController extends BaseController {
         customerService.deleteEntityActive(id);
         // 记录日志
         operationLogService.saveEntity(
-                createLog(request, "删除客户"));
+                createPCLog(request, "删除客户"));
         return ResultUtils.success();
     }
     /**
@@ -120,7 +120,7 @@ public class CustomerController extends BaseController {
         customerService.deleteEntityBatch(ids);
         // 记录日志
         operationLogService.saveEntity(
-                createLog(request, "删除客户"));
+                createPCLog(request, "删除客户"));
         return ResultUtils.success();
     }
 }

@@ -18,7 +18,6 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/plugin/toastr/toastr.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/css/header.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/wx/css/home.css">
-
     <title>员工中心</title>
 </head>
 <body>
@@ -32,7 +31,7 @@
             </a>
         </div>
         <p>{{empName}}</p>
-        <div class="row" style="margin-bottom: 4rem">
+        <div class="row" style="margin-bottom: 6rem">
             <div class="col-sm-6" @click="wallet">
                 <p>钱包</p>
                 <p><span class="glyphicon glyphicon-yen"></span>{{money}}</p>
@@ -53,20 +52,24 @@
                     <p>{{menu.name}}</p>
                 </a>
             </li>
+            <li>
+                <a @click="logout">
+                    <div>
+                        <img src="/resources/wx/imge/0008.png" alt="退出系统">
+                    </div>
+                    <p>退出系统</p>
+                </a>
+            </li>
         </ul>
     </div>
 </div>
-<div class="notFind" style="padding: 0">
-    <img src="${pageContext.request.contextPath}/resources/wx/imge/undefind.png" alt="">
-    <p>-.-.-.-.-.-暂无数据-.-.-.-.-.-</p>
-</div>
-<!--<footer></footer>-->
 <script src="${pageContext.request.contextPath}/resources/wx/plugin/jquery-3.3.1.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/wx/plugin/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/wx/plugin/toastr/toastr.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/wx/plugin/Vue/vue.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/wx/plugin/Vue/vue-resource.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/wx/js/common.js"></script>
+<script src="${pageContext.request.contextPath}/resources/wx/js/cache.js"></script>
 <script src="${pageContext.request.contextPath}/resources/wx/js/home.js"></script>
 </body>
 </html>

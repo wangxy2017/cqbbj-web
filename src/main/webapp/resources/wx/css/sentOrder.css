@@ -7,9 +7,20 @@ body{
     background: #e7e7e7;
     position: relative;
 }
-
+#main{
+    width: 102%;
+    margin-top: 166px;
+    overflow-y: auto;
+}
+#main ::-webkit-scrollbar{
+    display: none;
+}
+.scorllTop{
+    width: 102%;
+    height: 100%;
+}
 .list-ul{
-    padding: 0 1.5rem;
+    padding: 0 2rem;
 }
 .container-fluid{
     font-size: 5rem;
@@ -24,6 +35,19 @@ body{
     padding: 2rem;
     position: relative;
     overflow: hidden;
+}
+/*图章路径*/
+.zhang{
+    width: 30rem;
+    height: 30rem;
+    position: absolute;
+    top: 10rem;
+    right: 6rem;
+    -webkit-transform: rotate(30deg);
+}
+.zhang img{
+    width: 100%;
+    height: 100%;
 }
 .col-sm-7 a{
     color: #029141;
@@ -55,21 +79,6 @@ body{
     background-position: 1rem;
     background-size: 6%;
     padding-left: 2em !important;
-}
-
-/*图章路径*/
-.zhang{
-    width: 30rem;
-    height: 30rem;
-    position: absolute;
-    z-index: 999;
-    top: 10rem;
-    right: 6rem;
-    -webkit-transform: rotate(30deg);
-}
-.zhang img{
-    width: 100%;
-    height: 100%;
 }
 
 /*隐藏的操作按钮*/
