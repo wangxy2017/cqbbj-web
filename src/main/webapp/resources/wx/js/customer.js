@@ -3,7 +3,7 @@ var main = new Vue({
     data: {},
     methods: {
         nonPeyment:function () {
-            window.location.href ="/resources/wx/customer/nonPeyMent.html?userKey=" + myCache.userKey ;
+            window.location.href ="/wx/customer/nonPeyMent?userKey=" + myCache.userKey ;
         }
     },
     mounted: function () {
