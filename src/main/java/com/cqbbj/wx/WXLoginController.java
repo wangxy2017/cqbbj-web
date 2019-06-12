@@ -87,7 +87,7 @@ public class WXLoginController extends BaseController {
         user.setName(name);
         user.setCreateTime(new Date());
         user.setDeleteStatus(0);
-        user.setCust_no(CommUtils.getCode(ConstantUtils.CUSTOMER));
+        user.setCust_no(CommUtils.getCode(BizType.CUSTOMER));
         user.setPhone(phone);
         customerService.saveEntity(user);
         return ResultUtils.success(user.getId());

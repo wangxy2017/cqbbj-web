@@ -144,7 +144,7 @@ public class OrderController extends BaseController {
             customer = new Customer();
             customer.setName(order.getName());
             customer.setPhone(order.getPhone());
-            customer.setCust_no(CommUtils.getCode(ConstantUtils.CUSTOMER));
+            customer.setCust_no(CommUtils.getCode(BizType.CUSTOMER));
             customer.setCreateTime(new Date());
             customer.setDeleteStatus(0);
             customerService.saveEntity(customer);
@@ -153,7 +153,7 @@ public class OrderController extends BaseController {
         order.setCreateTime(new Date());
         order.setDeleteStatus(0);
         order.setStatus(0);
-        order.setOrder_no(CommUtils.getCode(ConstantUtils.ORDER));
+        order.setOrder_no(CommUtils.getCode(BizType.ORDER));
         order.setCust_no(customer.getCust_no());
         order.setSalesman(getLoginUser(request).getEmp_no());
         orderService.saveEntity(order);
@@ -299,7 +299,7 @@ public class OrderController extends BaseController {
                 bill.setStatus(0);
                 bill.setOrder_no(order1.getOrder_no());
                 bill.setCustomer_no(order1.getCust_no());
-                bill.setBill_no(CommUtils.getCode(ConstantUtils.SIGN_BILL));
+                bill.setBill_no(CommUtils.getCode(BizType.SIGN_BILL));
                 signBillService.saveEntity(bill);
             } else {
                 order1.setReceiveMoney(order.getReceiveMoney());

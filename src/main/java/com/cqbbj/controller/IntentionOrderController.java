@@ -8,7 +8,6 @@ import com.cqbbj.entity.*;
 import com.cqbbj.service.IIntentionFollowService;
 import com.cqbbj.service.IIntentionOrderService;
 import com.cqbbj.service.IOperationLogService;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -109,7 +108,7 @@ public class IntentionOrderController extends BaseController {
         intentionOrder.setCreateTime(new Date());
         intentionOrder.setDeleteStatus(0);
         intentionOrder.setIs_follow(0);
-        intentionOrder.setInten_no(CommUtils.getCode(ConstantUtils.INTENTION_ORDER));
+        intentionOrder.setInten_no(CommUtils.getCode(BizType.INTENTION_ORDER));
         intentionOrderService.saveEntity(intentionOrder);
         // 记录日志
         operationLogService.saveEntity(

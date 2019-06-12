@@ -1,7 +1,3 @@
-import com.cqbbj.core.base.PageModel;
-import com.cqbbj.core.util.CommUtils;
-import com.cqbbj.core.util.ConstantUtils;
-import com.cqbbj.core.util.MD5Utils;
 import com.cqbbj.entity.Notice;
 import com.cqbbj.service.INoticeService;
 import org.junit.Test;

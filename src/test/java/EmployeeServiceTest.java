@@ -1,4 +1,4 @@
-import com.cqbbj.core.util.ConstantUtils;
+import com.cqbbj.core.util.BizType;
 import com.cqbbj.core.base.PageModel;
 import com.cqbbj.core.util.CommUtils;
 import com.cqbbj.core.util.MD5Utils;
@@ -38,7 +38,7 @@ public class EmployeeServiceTest {
             employee.setPhone("110" + i);
             employee.setSex(0);
             employee.setIs_disabled(0);
-            employee.setEmp_no(CommUtils.getCode(ConstantUtils.EMPLOYEE));
+            employee.setEmp_no(CommUtils.getCode(BizType.EMPLOYEE));
             employee.setDept_id(1);
             employee.setPosition_id(1);
             employee.setMoney(0.00D);

@@ -6,7 +6,6 @@ import com.cqbbj.core.base.Result;
 import com.cqbbj.core.util.*;
 import com.cqbbj.entity.*;
 import com.cqbbj.service.*;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -163,7 +162,7 @@ public class WXOrderControll extends BaseController {
         order.setPhone(phone);
         order.setStart(start);
         order.setEnd(end);
-        order.setInten_no(CommUtils.getCode(ConstantUtils.INTENTION_ORDER));
+        order.setInten_no(CommUtils.getCode(BizType.INTENTION_ORDER));
         order.setStatus(0);
         intentionOrderService.saveEntity(order);
         return ResultUtils.success();
@@ -184,7 +183,7 @@ public class WXOrderControll extends BaseController {
         Customer customer = new Customer();
         customer.setName(name);
         customer.setPhone(phone);
-        customer.setCust_no(CommUtils.getCode(ConstantUtils.CUSTOMER));
+        customer.setCust_no(CommUtils.getCode(BizType.CUSTOMER));
         customerService.saveEntity(customer);
 
         //添加订单
@@ -200,7 +199,7 @@ public class WXOrderControll extends BaseController {
         order.setType(type);
 
 
-        order.setOrder_no(CommUtils.getCode(ConstantUtils.ORDER));
+        order.setOrder_no(CommUtils.getCode(BizType.ORDER));
         order.setCust_no(customerService.queryByPhone(phone).getCust_no());
         order.setStatus(0);
         order.setSource(1);
@@ -398,7 +397,7 @@ public class WXOrderControll extends BaseController {
                 bill.setStatus(0);
                 bill.setOrder_no(order1.getOrder_no());
                 bill.setCustomer_no(order1.getCust_no());
-                bill.setBill_no(CommUtils.getCode(ConstantUtils.SIGN_BILL));
+                bill.setBill_no(CommUtils.getCode(BizType.SIGN_BILL));
                 signBillService.saveEntity(bill);
             } else {
                 order1.setReceiveMoney(order.getReceiveMoney());

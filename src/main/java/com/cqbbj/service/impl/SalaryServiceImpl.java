@@ -1,6 +1,6 @@
 package com.cqbbj.service.impl;
 
-import com.cqbbj.core.util.ConstantUtils;
+import com.cqbbj.core.util.BizType;
 import com.cqbbj.core.base.PageModel;
 import com.cqbbj.core.util.CommUtils;
 import com.cqbbj.dao.SalaryMapper;
@@ -38,7 +38,7 @@ public class SalaryServiceImpl implements ISalaryService {
         if (salary.getCreateTime() == null) {
             salary.setCreateTime(new Date());
         }
-        salary.setSalary_no(CommUtils.getCode(ConstantUtils.SALARY));
+        salary.setSalary_no(CommUtils.getCode(BizType.SALARY));
         return salaryMapper.save(salary);
     }
 

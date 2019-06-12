@@ -14,9 +14,9 @@ public class CommUtils {
      * @param type 业务类型
      * @return
      */
-    public static String getCode(String type) {
-        if (type == null || type.equals("")) {
-            return type;
+    public static String getCode(BizType type) {
+        if (type == null) {
+            return null;
         }
         // 获取毫秒级当前时间
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss:SSS");
@@ -39,7 +39,7 @@ public class CommUtils {
         } else {
             code2 = number;
         }
-        return type + code1 + code2;
+        return type.getCode() + code1 + code2;
     }
 
     /**

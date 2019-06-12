@@ -4,7 +4,7 @@ import com.cqbbj.core.base.BaseController;
 import com.cqbbj.core.base.PageModel;
 import com.cqbbj.core.base.Result;
 import com.cqbbj.core.util.CommUtils;
-import com.cqbbj.core.util.ConstantUtils;
+import com.cqbbj.core.util.BizType;
 import com.cqbbj.core.util.ResultUtils;
 import com.cqbbj.entity.Car;
 import com.cqbbj.service.ICarService;
@@ -106,7 +106,7 @@ public class CarController extends BaseController {
     public Result save(HttpServletRequest request, Car car) {
         car.setCreateTime(new Date());
         car.setDeleteStatus(0);
-        car.setCar_no(CommUtils.getCode(ConstantUtils.CAR));
+        car.setCar_no(CommUtils.getCode(BizType.CAR));
         carService.saveEntity(car);
         // 记录日志
         operationLogService.saveEntity(
