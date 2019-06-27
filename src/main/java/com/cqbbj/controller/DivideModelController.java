@@ -2,7 +2,7 @@ package com.cqbbj.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.cqbbj.core.base.BaseController;
-import com.cqbbj.core.util.ConstantUtils;
+import com.cqbbj.core.util.BizType;
 import com.cqbbj.core.base.PageModel;
 import com.cqbbj.core.base.Result;
 import com.cqbbj.core.util.CommUtils;
@@ -65,7 +65,7 @@ public class DivideModelController extends BaseController {
     @ResponseBody
     public Result save(DivideModel divideModel, String drive, String move, String air) {
         divideModel.setIs_disabled(0);
-        divideModel.setModel_no(CommUtils.getCode(ConstantUtils.DIVIDE_MODEL));
+        divideModel.setModel_no(CommUtils.getCode(BizType.DIVIDE_MODEL));
         divideModel.setCreateTime(new Date());
         divideModel.setDeleteStatus(0);
         divideModelService.saveEntity(divideModel);

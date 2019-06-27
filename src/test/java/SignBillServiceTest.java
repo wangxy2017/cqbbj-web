@@ -1,4 +1,4 @@
-import com.cqbbj.core.util.ConstantUtils;
+import com.cqbbj.core.util.BizType;
 import com.cqbbj.core.util.CommUtils;
 import com.cqbbj.entity.SignBill;
 import com.cqbbj.service.ISignBillService;
@@ -41,7 +41,7 @@ public class SignBillServiceTest {
             signBill.setStatus(1);
             signBill.setOrder_no("DT201903101543537460528");
             signBill.setCustomer_no("CO201903101548241810463");
-            signBill.setBill_no(CommUtils.getCode(ConstantUtils.SIGN_BILL));
+            signBill.setBill_no(CommUtils.getCode(BizType.SIGN_BILL));
             signBillService.saveEntity(signBill);
             System.out.println("保存成功：" + signBill.getId());
         }

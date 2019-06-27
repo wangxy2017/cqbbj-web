@@ -1,4 +1,4 @@
-import com.cqbbj.core.util.ConstantUtils;
+import com.cqbbj.core.util.BizType;
 import com.cqbbj.core.util.CommUtils;
 import com.cqbbj.entity.Order;
 import com.cqbbj.service.IOrderService;
@@ -41,7 +41,7 @@ public class OrderServiceTest {
             order.setCreateTime(new Date());
             order.setDeleteStatus(0);
             order.setStatus(0);
-            order.setOrder_no(CommUtils.getCode(ConstantUtils.ORDER));
+            order.setOrder_no(CommUtils.getCode(BizType.ORDER));
 
             orderService.saveEntity(order);
             System.out.println("保存成功：" + order.getId());
